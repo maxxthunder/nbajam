@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NBA Jam Secret Codes: SNES, Genesis, Arcade and Tournament Edition</title>
+<meta name="description" content="Every NBA Jam secret character and hidden code found in the games' own code: Super Nintendo, Genesis, arcade, Game Boy, Game Gear, Sega CD and Tournament Edition (arcade, Super Nintendo, Genesis, 32X, Saturn, PlayStation, PC, Jaguar, Game Boy and Game Gear), including codes no published list had.">
+<link rel="canonical" href="https://maxxthunder.github.io/nbajam/codes.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@400;600;700&family=Space+Mono:wght@700&display=swap">
+<style>
+:root {
+  --bg: #14110f; --panel: #221b16; --ink: #f2ead9; --muted: #b3a491; --line: #3b2f25;
+  --orange: #e8742c; --orange-soft: #3d2416; --plate: #0c0a08; --gold: #ffcf3f;
+  --display: "Anton", Impact, sans-serif; --body: "Barlow", system-ui, sans-serif;
+  --mono: "Space Mono", ui-monospace, Consolas, monospace; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 17px/1.5 var(--body); }
+main { max-width: 960px; margin: 0 auto; padding: 24px 16px 48px; display: grid; gap: 18px; }
+h1 { font: 400 clamp(30px, 7vw, 46px)/1.05 var(--display); letter-spacing: .02em; margin: 0; text-transform: uppercase; }
+h1 span { color: var(--orange); }
+.sub { color: var(--muted); margin: 6px 0 0; max-width: 64ch; }
+.sub a, .hint a, footer a { color: var(--orange); }
+.bar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
+.games { display: grid; gap: 10px; }
+.game { display: grid; gap: 4px; justify-items: start; }
+.game-logo { height: 76px; width: auto; justify-self: start; }
+.seg { display: inline-flex; flex-wrap: wrap; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+.seg label { padding: 7px 13px; cursor: pointer; background: var(--panel); border-left: 1px solid var(--line); white-space: nowrap; font-weight: 600; }
+.seg label:first-child { border-left: 0; }
+.seg input { position: absolute; opacity: 0; pointer-events: none; }
+.seg label:has(input:checked) { background: var(--orange-soft); color: var(--orange); }
+.seg label:has(input:focus-visible) { outline: 2px solid var(--orange); outline-offset: -2px; }
+@media (max-width: 520px) { .seg label { padding: 6px 9px; font-size: 15px; } }
+@media (max-width: 600px) { .games, input[type=search] { flex: 1 1 100%; } .game { justify-items: stretch; } .seg { display: grid; grid-template-columns: repeat(var(--cols, 2), 1fr); gap: 1px; background: var(--line); }
+  .seg label { padding: 6px 8px; font-size: 14px; border-left: 0; text-align: center; } }
+input[type=search] { background: var(--plate); color: var(--ink); border: 1px solid var(--line); border-radius: 6px; padding: 8px 11px; font: 16px var(--body); width: min(100%, 240px); }
+input[type=search]:focus-visible { outline: 2px solid var(--orange); outline-offset: 1px; }
+.hint { color: var(--muted); font-size: 15px; margin: 0; }
+h2 { font: 400 22px var(--display); letter-spacing: .04em; text-transform: uppercase; margin: 10px 0 0; }
+.group { display: grid; gap: 10px; }
+.group > .hint { margin-top: -4px; }
+.code-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 290px), 1fr)); gap: 10px; }
+.code-card { position: relative; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; display: grid; gap: 7px; align-content: start; }
+.code-card h3 { font: 700 17px var(--body); margin: 0; }
+.code-card .where { color: var(--muted); font-size: 14px; margin: 0; }
+.code-card .note { color: var(--muted); font-size: 14px; margin: 0; }
+/* "★ New" hangs from the card's top edge like a tab; the title keeps clear of it */
+.badge { font: 700 11px var(--body); letter-spacing: .1em; text-transform: uppercase; border-radius: 0 0 4px 4px; padding: 3px 9px;
+  position: absolute; top: 0; right: 14px; background: var(--orange); color: var(--plate); }
+.code-card:has(.badge) { padding-top: 18px; }
+.code-card:has(.badge) h3 { padding-right: 70px; }
+.keys { display: flex; flex-wrap: wrap; gap: 5px; margin: 0; padding: 0; list-style: none; }
+.keys li { font: 700 14px var(--mono); padding: 3px 8px; border-radius: 4px; background: var(--plate); border: 1px solid var(--line); color: var(--gold); }
+.keys.words li { font: 600 15px var(--body); color: var(--ink); }
+.empty { color: var(--muted); }
+/* portraits from the team select screen (MAME), 60×64 */
+.code-card:has(.pic) { grid-template-columns: 146px 1fr; column-gap: 14px; }
+.code-card:has(.pic) > :not(.pic, .badge) { grid-column: 2; }
+.pic { grid-row: 1 / span 5; width: 146px; height: 128px; object-fit: contain; image-rendering: pixelated; justify-self: center; }
+.pic-snes { width: 96px; height: 112px; justify-self: center; }
+.code-card:has(.pic-genesis, .pic-segacd, .pic-32x, .pic-jaguar, .pic-saturn, .pic-playstation, .pic-pc) { grid-template-columns: 128px 1fr; }
+.pic-genesis, .pic-segacd, .pic-jaguar, .pic-saturn, .pic-playstation, .pic-pc { width: 128px; height: 112px; }
+.pic-32x { width: 124px; height: 112px; justify-self: center; }
+.pic-gameboy, .pic-gamegear { width: 96px; height: 96px; }
+@media (max-width: 400px) { .code-card:has(.pic) { grid-template-columns: 110px 1fr; } .pic { width: 110px; height: 96px; } .pic-snes { width: 72px; height: 84px; }
+  .code-card:has(.pic-genesis, .pic-segacd, .pic-32x, .pic-jaguar, .pic-saturn, .pic-playstation, .pic-pc) { grid-template-columns: 96px 1fr; } .pic-genesis, .pic-segacd, .pic-jaguar, .pic-saturn, .pic-playstation, .pic-pc { width: 96px; height: 84px; } .pic-32x { width: 93px; height: 84px; } .pic-gameboy, .pic-gamegear { width: 64px; height: 64px; } }
+details { color: var(--muted); font-size: 15px; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; }
+summary { cursor: pointer; color: var(--ink); font-weight: 700; }
+code { font-family: var(--mono); color: var(--ink); }
+footer { color: var(--muted); font-size: 13px; text-align: center; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>NBA Jam <span>Secret Codes</span></h1>
+    <p class="sub">Every secret character and hidden code in the games' own code, for Super Nintendo, Genesis, the arcade game, Game Boy, Game Gear, Sega CD
+      and Tournament Edition (arcade, Super Nintendo, Genesis, 32X, Saturn, PlayStation, PC, Jaguar, Game Boy and Game Gear). <b>★ New</b> marks codes that no published list had.
+      Got a Super Nintendo password? <a href="./">Check it here</a>.</p>
+  </header>
+
+  <div class="bar">
+    <div class="games" id="plat" role="radiogroup" aria-label="Version">
+      <div class="game"><img class="game-logo" src="img/logo_nbajam.png" width="209" height="190" alt="NBA Jam">
+        <div class="seg">
+          <label><input type="radio" name="plat" value="snes" checked aria-label="NBA Jam, Super Nintendo"><span>Super Nintendo</span></label>
+          <label><input type="radio" name="plat" value="genesis" aria-label="NBA Jam, Genesis"><span>Genesis</span></label>
+          <label><input type="radio" name="plat" value="arcade" aria-label="NBA Jam, Arcade"><span>Arcade</span></label>
+          <label><input type="radio" name="plat" value="gb" aria-label="NBA Jam, Game Boy"><span>Game Boy</span></label>
+          <label><input type="radio" name="plat" value="gg" aria-label="NBA Jam, Game Gear"><span>Game Gear</span></label>
+          <label><input type="radio" name="plat" value="segacd" aria-label="NBA Jam, Sega CD"><span>Sega CD</span></label>
+        </div></div>
+      <div class="game"><img class="game-logo" src="img/logo_te.png" width="395" height="254" alt="NBA Jam Tournament Edition">
+        <div class="seg">
+          <label><input type="radio" name="plat" value="te" aria-label="Tournament Edition, Arcade"><span>Arcade</span></label>
+          <label><input type="radio" name="plat" value="tesnes" aria-label="Tournament Edition, Super Nintendo"><span>Super Nintendo</span></label>
+          <label><input type="radio" name="plat" value="tegen" aria-label="Tournament Edition, Genesis"><span>Genesis</span></label>
+          <label><input type="radio" name="plat" value="te32x" aria-label="Tournament Edition, 32X"><span>32X</span></label>
+          <label><input type="radio" name="plat" value="tesat" aria-label="Tournament Edition, Saturn"><span>Saturn</span></label>
+          <label><input type="radio" name="plat" value="teps" aria-label="Tournament Edition, PlayStation"><span>PlayStation</span></label>
+          <label><input type="radio" name="plat" value="tepc" aria-label="Tournament Edition, PC"><span>PC</span></label>
+          <label><input type="radio" name="plat" value="tejag" aria-label="Tournament Edition, Jaguar"><span>Jaguar</span></label>
+          <label><input type="radio" name="plat" value="tegb" aria-label="Tournament Edition, Game Boy"><span>Game Boy</span></label>
+          <label><input type="radio" name="plat" value="tegg" aria-label="Tournament Edition, Game Gear"><span>Game Gear</span></label>
+        </div></div>
+    </div>
+    <input type="search" id="q" placeholder="Search name or initials" aria-label="Search codes">
+  </div>
+  <p class="hint" id="sum" aria-live="polite"></p>
+  <div id="codes"></div>
+
+  <details>
+    <summary>Where these come from</summary>
+    <p>Each version checks your initials against a table in its program. These lists are those tables, read straight from the
+      ROMs, so nothing is missing. Every ★ New code was entered in an emulator (Mesen 2, BizHawk or MAME) to make sure
+      it works, except where a card says otherwise.</p>
+    <p>Not listed: match-up power-up codes for the Super Nintendo, Genesis and original arcade game, which haven't been traced
+      in the code yet. Details, addresses and screenshots are in the
+      <a href="https://github.com/maxxthunder/nbajam/tree/main/docs">research notes</a>.</p>
+  </details>
+
+  <footer>Read from the games' own tables. <a href="https://github.com/maxxthunder/nbajam/blob/main/CHANGELOG.md">v1.1.0</a></footer>
+</main>
+<script>
+// Card: [title, where, input, new?, note]. Input: "ini:MJT|Mar 22" = initials (and birthday);
+// "pw:INI|PASSWORD"; a ", "-separated list = one press each; anything else = words.
+const SNES_HOLD = ['Start + X + L', 'Start + X + R', 'X + L + R', 'Start + L', 'Start + R', 'L + R', 'Start + Y + L', 'Start + Y + R'];  // $2AF84C
+const snes = (name, ini, isNew, note) => [name, `Initials: on ${ini[2].replace('_', 'the blank')}, hold ${SNES_HOLD['ABCDEFGHIJKLMNOPQRSTUVWXYZ_'.indexOf(ini[0]) & 7]} and press A`, 'ini:' + ini, isNew, note];
+const GEN_BTN = 'ABCC';  // $1D426C, by the first initial's grid index
+const gen = (name, ini, isNew, note) => [name, `Initials: on ${ini[2].replace('_', 'the blank')}, hold Start and press ${GEN_BTN['ABCDEFGHIJKLMNOPQRSTUVWXYZ_'.indexOf(ini[0]) & 3]}`, 'ini:' + ini, isNew, note];
+const CHARS = [['Mark Turmell', 'MJT'], ['Weasel', 'SAX'], ['Warren Moon', 'UW_'], ['P-Funk', 'DIS'], ['Bill Clinton', 'ARK'],
+  ['Al Gore', 'NET'], ['Scruff', 'ROD'], ['Sal DiVita', 'SAL'], ['Air Dog', 'AIR'], ['Jamie Rivett', 'RJR'], ['Kabuki', 'QB_']];
+const INI = 'Initials and birthday';
+const MU = "Tonight's Match-Up";
+const arc = ([name, ini, bday], isNew, note) => [name, INI, `ini:${ini}|${bday}`, isNew, note];
+// Portraits (img/arcade, cut from MAME's team-select screen): o_<ini> for the original, t_<ini>_<birthday> for TE
+const orig = c => [...arc(c, false, 'Plays with the stats of the player it replaces; the team-select screen shows that player\'s bars.'), 'o_' + c[1].toLowerCase()];
+const te = (c, isNew, note, pic) => [...arc(c, isNew, note), pic || `t_${c[1]}_${c[2].replace(' ', '')}`.toLowerCase()];
+
+// TE Super Nintendo ($29:8A7F): one letter per character, A/B/Y = hold Start and press it, - = press as usual
+const TE_SNES = [['Tony Goskie', 'TWG', 'B-A'], ['Jamie Rivett', 'RJR', '-AY'], ['John Carlton', 'JMC', 'YYB'],
+  ['Sal DiVita', 'SAL', 'AY-'], ['Shawn Liptak', 'SL_', '-BB'], ['Mark Turmell', 'MJT', 'A-A'], ['Scooter Pie', 'HTP', 'A-Y'],
+  ['Kid Silk', 'KSK', '-BY'], ['Chris Kirby', 'CK_', 'B-Y'], ['Steve Snake', 'GOF', 'AYB'], ['Jason Falcus', 'JF_', 'A-Y'],
+  ['"Mad" Mike Muskett', 'MCM', 'BBY'], ['Neil "Ziggy" Hill', 'NDH', 'ABA'], ['Larry Bird', 'BRD', 'AYA'],
+  ['Carol Blazekowski', 'BLZ', 'Y-Y'], ['Benny (Bulls mascot)', 'BNY', 'B-Y'], ['Hugo (Hornets mascot)', 'HGO', '-YA'],
+  ['Crunch (Timberwolves mascot)', 'CRN', 'AB-'], ['Gorilla (Suns mascot)', 'GOR', '-BB'], ['Bill Clinton', 'CIC', 'A-B'],
+  ['Prince Charles', 'ROY', 'BA-'], ['Chow-Chow', 'AMX', '-AY'], ['Brutah', 'LGN', 'AB-'], ['Weasel', 'RAY', 'BA-'],
+  ['Air Dog', 'AIR', 'Y-B'], ['Facime', 'XYZ', 'BBA'], ['Jay Moon', 'JAY', '-AB'], ['Kabuki', 'DAN', '-BA'],
+  ['Hillary Clinton', 'HC_', '-B-'], ['Moosekat', 'MPF', 'BY-'], ['Heavy D', 'HVY', 'A-B'],
+  ['Jazzy Jeff', 'JAZ', 'YAA'], ['Fresh Prince', 'WIL', 'YB-'], ['Frank Thomas', 'SOX', 'B-A'],
+  ['Randall Cunningham', 'PHI', '-AY'], ['Mike D', 'MKD', 'Y-Y'], ['Ad-Rock', 'ADR', '-YB'], ['MCA', 'MCA', 'BB-']];
+const teHome = (dir, conv = c => c, hold = 'Start') => ([name, ini, code], isNew, note) => [name, 'Initials', [...conv(code)].map((b, i) =>
+  `${ini[i] === '_' ? 'Blank' : ini[i]}: ${b === '-' ? 'as usual' : hold + ' + ' + b}`).join(', '), isNew, note, dir + '/te_' + ini.toLowerCase()];
+const tesnes = teHome('snes');
+const GEN_CODE = c => c.replace(/Y/g, 'C');  // same table; Genesis C is the Super Nintendo's Y
+const tegen = teHome('genesis', GEN_CODE);
+const te32x = teHome('32x', c => [...GEN_CODE(c)].reverse().join(''));  // the 32X stores the button word the other way round
+const TE_32X = TE_SNES.filter(c => !['HTP', 'KSK'].includes(c[1])).map(c => c[1] === 'GOF' ? ['Steve Snake', 'SNK', c[2]] : c);
+// TE Jaguar ($860CE0): its own 40 entries, ASCII initials and the button pressed with Option ($8080FA)
+const tejag = teHome('jaguar', undefined, 'Option');
+const TE_JAG = [['Bob Ganofsky (High Voltage)', 'RBG', 'AAA'], ['Adisak (High Voltage)', 'ALP', 'CBA'], ['Kerry (High Voltage)', 'KJG', 'BB-'],
+  ['Damion (High Voltage)', 'DJD', 'ABC'], ['Morty (High Voltage)', 'K_M', 'CCC'], ['Harold (High Voltage)', 'HAM', 'A-A'],
+  ['Jamie Rivett', 'RJR', 'CA-'], ['Sal DiVita', 'SAL', '-CA'], ['Mark Turmell', 'MJT', 'A-A'], ['Larry Bird', 'BRD', 'ACA'],
+  ['Carol Blazekowski', 'BLZ', 'C-C'], ['Benny (Bulls mascot)', 'BNY', 'C-B'], ['Hugo (Hornets mascot)', 'HGO', 'AC-'],
+  ['Crunch (Timberwolves mascot)', 'CRN', '-BA'], ['Gorilla (Suns mascot)', 'GOR', 'BB-'], ['Bill Clinton', 'CIC', 'B-A'],
+  ['Prince Charles', 'ROY', '-AB'], ['Weasel', 'RAY', '-AB'], ['Air Dog', 'AIR', 'B-C'], ['Facime', 'XYZ', 'ABB'], ['Kabuki', 'DAN', 'AB-'],
+  ['Hillary Clinton', 'HC_', '-B-'], ['Heavy D', 'HVY', 'B-A'], ['Jazzy Jeff', 'JAZ', 'AAC'], ['Fresh Prince', 'WIL', '-BC'],
+  ['Frank Thomas', 'SOX', 'A-B'], ['Mike D', 'MKD', 'C-C'], ['Ad-Rock', 'ADR', 'BC-'], ['MCA', 'MCA', '-BB'], ['Phil Gelber', 'FIL', 'BAB'],
+  ['L. Pacey', 'PAY', '--C'], ['Correll', 'CRL', 'CA-'], ['Faran Thomason', 'FAR', 'A--'], ['Kristine Chambers', 'KC_', '-A-'],
+  ['Leonard Tramiel', 'LAT', '-CB'], ['Theinvanich', 'THE', 'CAB'], ['Shawn Rosen', 'SR_', '--A'], ['Wanat', 'WAN', 'B-B'],
+  ['Gunter', 'GUN', 'CCA'], ['Seth Rosenfield', 'SET', '-AB']];
+// Game Boy ($9EFE default records): the last letter is picked by moving onto it with the direction shown while pressing
+// B and any other buttons listed, all on the same frame. The buttons depend on the first initial ($E:6F78).
+const GB = [['Mark Turmell', 'WIL', 'M', 'Left + B'], ['Sal DiVita', 'SD_', 'T', 'Down + B'], ['Air Dog', 'JAM', 'T', 'Up + B'],
+  ['Weasel', 'MAN', 'U', 'Up + A + B + Start'], ['P-Funk', 'FNK', 'L', 'Left + B'], ['Warren Moon', 'VIK', 'J', 'Right + A + B'],
+  ['Al Gore', 'EXC', 'J', 'Up + B + Start'], ['Bill Clinton', 'USA', 'B', 'Left + A + B'], ['Kabuki', 'FRD', 'E', 'Left + B'],
+  ['Brutah', 'BAT', '_', 'Up + A + B'], ['Chow-Chow', 'AMX', 'Q', 'Down + A + B'], ['Jamie Rivett', 'RJ_', 'F', 'Up + A + B']];
+const blank = c => c === '_' ? 'the blank' : c;
+const lastMove = (dir, pick, notes = {}) => ([name, ini, from, keys]) => [name, 'Initials',
+  `${blank(ini[0])}: ${pick}, ${blank(ini[1])}: ${pick}, ${blank(ini[2])}: from ${blank(from)} press ${keys}`, false, notes[ini] || '', dir + '/o_' + ini.toLowerCase()];
+const gb = lastMove('gameboy', 'B', { FRD: 'GameFAQs says Right + B; from E that lands on F. Left + B is what the game wants (checked).' });
+// Game Gear (default records at file 0x43142, required buttons by first initial at file 0xBFB3): same scheme, button 1 picks
+const GG = [['Mark Turmell', 'MJT', '_', 'Up + 1 + 2 + Start'], ['Sal DiVita', 'SAL', 'M', 'Left + 1'], ['Air Dog', 'AIR', 'Y', 'Up + 1 + 2'], ['Weasel', 'SAX', 'Y', 'Left + 1'], ['P-Funk', 'DIS', 'R', 'Right + 1 + 2'], ['Warren Moon', 'UW_', 'F', 'Up + 1 + Start'], ['Al Gore', 'NET', 'M', 'Down + 1 + 2'], ['Bill Clinton', 'ARK', 'R', 'Up + 1 + 2'], ['Kabuki', 'QB_', 'T', 'Down + 1'], ['Scruff', 'ROD', 'K', 'Up + 1'], ['Chow-Chow', 'CAR', 'S', 'Left + 1 + 2'], ['Jamie Rivett', 'RJR', 'Y', 'Up + 1']];
+const gg = lastMove('gamegear', '1');
+// TE Game Boy ($177C initials, $40C6 buttons; checked at $470C): each letter is picked with the button shown
+const TE_GB = [['Bill Clinton', 'CIC', 'BAA'], ['Hillary Clinton', 'HC_', 'AAS'], ['Gorilla (Suns mascot)', 'GOR', 'ASA'], ['Heavy D', 'HVY', 'SBB'],
+  ['Jazzy Jeff', 'JAZ', 'ASS'], ['Fresh Prince', 'WIL', 'SAB'], ['Frank Thomas', 'SOX', 'ASS'], ['Randall Cunningham', 'PHI', 'BSA'],
+  ['Larry Bird', 'BRD', 'SSA'], ['Mike D', 'MKD', 'ABS'], ['Ad-Rock', 'ADR', 'SAB'], ['MCA', 'MCA', 'SBA'],
+  ['RP Rodent (Torus Games mascot)', 'RPR', 'BSA'], ['Crunch (Timberwolves mascot)', 'CRN', 'SSB']];
+const teLetter = dir => ([name, ini, code]) => [name, 'Initials', [...code].map((b, i) =>
+  `${ini[i] === '_' ? 'Blank' : ini[i]}: ${b === 'S' ? 'Start' : b}`).join(', '), false, '', dir + '/te_' + ini.toLowerCase()];
+const tegb = teLetter('gameboy');
+// TE Game Gear (file 0x7B433 initials, 0x7C000 buttons): as TE Game Boy, with buttons 1, 2 and Start
+const TE_GG = [['Bill Clinton', 'CIC', '211'], ['Hillary Clinton', 'HC_', '11S'], ['Gorilla (Suns mascot)', 'GOR', '1S1'], ['Heavy D', 'HVY', 'S22'], ['Jazzy Jeff', 'JAZ', '1SS'], ['Fresh Prince', 'WIL', 'S12'], ['Frank Thomas', 'SOX', '1SS'], ['Randall Cunningham', 'PHI', '2S1'], ['Larry Bird', 'BRD', 'SS1'], ['Mike D', 'MKD', '12S'], ['Ad-Rock', 'ADR', 'S12'], ['MCA', 'MCA', 'S21'], ['Hugo (Hornets mascot)', 'HGO', '2S1'], ['Crunch (Timberwolves mascot)', 'CRN', 'SS2']];
+const tegg = teLetter('gamegear');
+// Sega CD (FRONT.BIN +0x3D202, loaded at sub-CPU $4B202; checked at $1ACC2): each letter is a plain A, or Start held with A, B or C
+const SCD = [['Mark Turmell', 'MJT', 'SA SC A'], ['Weasel', 'SAX', 'A SA SA'], ['Warren Moon', 'UW_', 'SC A SA'], ['P-Funk', 'DIS', 'SB SA SC'],
+  ['Bill Clinton', 'ARK', 'SA SB SC'], ['Al Gore', 'NET', 'SC SB A'], ['Brutah', 'BRT', 'SA A SC'], ['Sal DiVita', 'SAL', 'A SC A'],
+  ['Air Dog', 'AIR', 'SC SB SB'], ['Jamie Rivett', 'RJR', 'SA SA SC'], ['Kabuki', 'QB_', 'SB SA SB'], ['Chow-Chow', 'CAR', 'SC A SC'],
+  ['Bloke!', 'NEH', 'SB SA A'], ['Chris', 'CK_', 'A SC SC'], ['Snake', 'STE', 'SA SB SC'], ['Fleece', 'BAA', 'SB SA SA'],
+  ['Daz', 'DAZ', 'SC SB A'], ['Banana!', 'ANG', 'A SC SA'], ['Geezer', 'IAN', 'SC SB SB'], ['Mr. C', 'IDD', 'SA SC A'],
+  ['Bob', 'ROB', 'SB SA SC'], ['Gary', 'GJV', 'SC SA SC'], ['Jase', 'JF_', 'A SA A'], ['The Last V6', 'MAD', 'SA SC SC'],
+  ['Ziggy', 'ZIG', 'SC SA SB'], ['Velociraptor', 'RAP', 'SA A SC'], ['T-Rex', 'REX', 'A SC SA'], ['Triceratops', 'TRI', 'SB SC SB']];
+const segacd = ([name, ini, code]) => [name, 'Initials', code.split(' ').map((b, i) =>
+  `${ini[i] === '_' ? 'Blank' : ini[i]}: ${b[0] === 'S' ? 'Start + ' + b[1] : b}`).join(', '), false,
+  ini === 'BRT' ? 'Takes the slot Scruff (ROD) has on the Genesis and Super Nintendo.' : '', 'segacd/' + ini.toLowerCase()];
+const JAG_NOTE = { MKD: 'The published list gives as usual, B, A; the game wants Option + C on both M and D (checked).',
+  KC_: "Uses Steven Tyler's slot from the other versions." };
+// TE Saturn (table loaded at $060667EC, 24-byte entries: record pointer, ASCII initials, day, month)
+const TE_SAT = [['Catling', 'CAT', 'Jan 2'], ['Hutchinson', 'BAR', 'Apr 9'], ['Chris Kirby', 'CHR', 'Dec 18'], ['D. Falcus', 'DAZ', 'Aug 6'], ['Hodgeson', 'HOG', 'Dec 31'], ['Tunnicliff', 'SAT', 'May 7'], ['Jason Falcus', 'JAS', 'Nov 16'], ['"Mad" Mike Muskett', 'MUS', 'Dec 24'], ['McHugh', 'BAA', 'Jul 12'], ['Higgins', 'TOM', 'Feb 19'], ['Neil "Ziggy" Hill', 'ZIG', 'Apr 7'], ['Steve Snake', 'SNK', 'Jun 15'], ['Jay Moon', 'JAY', 'Aug 24'], ['Chow-Chow', 'CHD', 'May 5'], ['Brutah', 'GOW', 'Jul 17'], ['Weasel', 'DAN', 'Jan 2'], ['Fumungus', 'GUN', 'Jan 11'], ['Kabuki', 'KUB', 'Apr 14'], ['Max', 'LIZ', 'Aug 7'], ['Magic Hair', 'STH', 'Dec 8'], ['Sequoia', 'SAW', 'Apr 10'], ['Boo-Boo', 'THI', 'Nov 1'], ['Pistol', 'WAN', 'Jun 10'], ['Facime', 'DEL', 'Oct 19'], ['Air Dog', 'AIR', 'Jan 21'], ['John Carlton', 'CAL', 'Mar 25'], ['Sal DiVita', 'DIV', 'Jul 3'], ['Tony Goskie', 'GOS', 'Jan 6'], ['Tim Kitzrow (announcer)', 'KIT', 'Jun 8'], ['Shawn Liptak', 'LIP', 'Jan 14'], ['Jamie Rivett', 'REV', 'Jul 6'], ['Mark Turmell', 'TUR', 'Jan 31'], ['Prince Charles', 'CHA', 'May 4'], ['Frank Thomas', 'FNK', 'Jan 8'], ['Fresh Prince', 'FRS', 'Feb 2'], ['Heavy D', 'HEA', 'Jan 9'], ['Hillary Clinton', 'HIL', 'Nov 6'], ['Jazzy Jeff', 'JAZ', 'Oct 9'], ['Benny (Bulls mascot)', 'BEN', 'Sep 20'], ['Carol Blazejowski', 'BLZ', 'Jan 14'], ['Hugo (Hornets mascot)', 'HOR', 'Jun 12'], ['Larry Bird', 'LAR', 'Jan 15'], ['Gorilla (Suns mascot)', 'APE', 'Apr 2'], ['Crunch (Timberwolves mascot)', 'WOL', 'Mar 7'], ['Bill Clinton', 'BIL', 'Jun 3'], ['Mike D', 'M_D', 'Jul 1'], ['Ad-Rock', 'ADR', 'Apr 6'], ['Kim Gordon', 'GOR', 'Jul 3'], ['MCA', 'MCA', 'Apr 9'], ['Lee Ranaldo', 'REN', 'Feb 4'], ['Steve Shelley', 'SHY', 'Jun 8'], ['Fox', 'FOX', 'Aug 3'], ['Thurston Moore', 'MOE', 'Jun 8']];
+const tesat = (c, note) => [...arc(c, false, note), 'saturn/te_' + c[1].toLowerCase()];
+// TE PlayStation (OVERLAY.BIN +0x2F324, loaded at $801EE324: same entry format as the Saturn, little-endian)
+const TE_PS = [['Catling', 'CAT', 'Jan 2'], ['Hutchinson', 'BAR', 'Apr 9'], ['Chris Kirby', 'CHR', 'Dec 18'], ['D. Falcus', 'DAZ', 'Aug 6'], ['Hodgeson', 'HOG', 'Dec 31'], ['Tunnicliff', 'SAT', 'May 7'], ['Jason Falcus', 'JAS', 'Nov 16'], ['Jax', 'JAX', 'Mar 1'], ['"Mad" Mike Muskett', 'MUS', 'Dec 24'], ['McHugh', 'BAA', 'Jul 12'], ['Gray', 'ROB', 'Feb 23'], ['Higgins', 'TOM', 'Feb 19'], ['Neil "Ziggy" Hill', 'ZIG', 'Apr 7'], ['Steve Snake', 'SNK', 'Jun 15'], ['Jay Moon', 'JAY', 'Aug 24'], ['Chow-Chow', 'CHD', 'May 5'], ['Brutah', 'GOW', 'Jul 17'], ['Weasel', 'DAN', 'Jan 2'], ['Fumungus', 'GUN', 'Jan 11'], ['Kabuki', 'KUB', 'Apr 14'], ['Max', 'LIZ', 'Aug 7'], ['Magic Hair', 'STH', 'Dec 8'], ['Sequoia', 'SAW', 'Apr 10'], ['Boo-Boo', 'THI', 'Nov 1'], ['Pistol', 'WAN', 'Jun 10'], ['Facime', 'DEL', 'Oct 19'], ['Air Dog', 'AIR', 'Jan 21'], ['John Carlton', 'CAL', 'Mar 25'], ['Sal DiVita', 'DIV', 'Jul 3'], ['Tony Goskie', 'GOS', 'Jan 6'], ['Shawn Liptak', 'LIP', 'Jan 14'], ['Jamie Rivett', 'REV', 'Jul 6'], ['Mark Turmell', 'TUR', 'Jan 31'], ['Prince Charles', 'CHA', 'May 4'], ['Frank Thomas', 'FNK', 'Jan 8'], ['Fresh Prince', 'FRS', 'Feb 2'], ['Heavy D', 'HEA', 'Jan 9'], ['Hillary Clinton', 'HIL', 'Nov 6'], ['Jazzy Jeff', 'JAZ', 'Oct 9'], ['Benny (Bulls mascot)', 'BEN', 'Sep 20'], ['Carol Blazejowski', 'BLZ', 'Jan 14'], ['Hugo (Hornets mascot)', 'HOR', 'Jun 12'], ['Larry Bird', 'LAR', 'Jan 15'], ['Gorilla (Suns mascot)', 'APE', 'Apr 2'], ['Crunch (Timberwolves mascot)', 'WOL', 'Mar 7'], ['Bill Clinton', 'BIL', 'Jun 3'], ['Mike D', 'M_D', 'Jul 1'], ['Ad-Rock', 'ADR', 'Apr 6'], ['Kim Gordon', 'GOR', 'Jul 3'], ['MCA', 'MCA', 'Apr 9'], ['Lee Ranaldo', 'REN', 'Feb 4'], ['Steve Shelley', 'SHY', 'Jun 8'], ['Thurston Moore', 'MOE', 'Jun 8']];
+const teps = c => [...arc(c, false, ''), 'playstation/te_' + c[1].toLowerCase()];
+// TE PC ()-----(.EXE, table at file 0x8C6D6, F-key codes 0x1C0 bytes before it; checked at $1C84E): before each pick, press the F-key
+const TE_PC = [['Semmens', 'SEM', 'Oct 23', 0], ['Jax', 'JAX', 'Mar 1', 1], ['Magic Hair', 'STH', 'Dec 8', 2], ['Jason Falcus', 'JF_', 'Nov 16', 3], ['Hodgeson', 'HOG', 'Dec 31', 0], ['Air Dog', 'AIR', 'Jan 21', 1], ['Gorilla (Suns mascot)', 'APE', 'Apr 2', 2], ['Ad-Rock', 'ADR', 'Apr 6', 3], ['Hutchinson', 'BAR', 'Apr 9', 0], ['McHugh', 'BAA', 'Jul 12', 1], ['Benny (Bulls mascot)', 'BEN', 'Sep 20', 2], ['Carol Blazejowski', 'BLZ', 'Jan 14', 3], ['Bill Clinton', 'BIL', 'Jun 3', 0], ['Catling', 'CAT', 'Jan 2', 1], ['Chris Kirby', 'CHR', 'Dec 18', 2], ['Chow-Chow', 'CHD', 'May 5', 3], ['John Carlton', 'CAL', 'Mar 25', 0], ['Prince Charles', 'CHA', 'May 4', 1], ['Weasel', 'DAN', 'Jan 2', 2], ['Sal DiVita', 'DIV', 'Jul 3', 3], ['Facime', 'DEL', 'Oct 19', 0], ['D. Falcus', 'DAZ', 'Aug 6', 1], ['Frank Thomas', 'FNK', 'Jan 8', 2], ['Fresh Prince', 'FRS', 'Feb 2', 3], ['Brutah', 'GOW', 'Jul 17', 0], ['Fumungus', 'GUN', 'Jan 11', 1], ['Tony Goskie', 'GOS', 'Jan 6', 2], ['Kim Gordon', 'GOR', 'Jul 3', 3], ['Heavy D', 'HEA', 'Jan 9', 0], ['Hillary Clinton', 'HIL', 'Nov 6', 1], ['Hugo (Hornets mascot)', 'HOR', 'Jun 12', 2], ['Jazzy Jeff', 'JAZ', 'Oct 9', 3], ['Jay Moon', 'JAY', 'Aug 24', 0], ['Kabuki', 'KUB', 'Apr 14', 1], ['Max', 'LIZ', 'Aug 7', 2], ['Shawn Liptak', 'LIP', 'Jan 14', 3], ['Larry Bird', 'LAR', 'Jan 15', 0], ['Mike D', 'M_D', 'Jul 1', 1], ['MCA', 'MCA', 'Apr 9', 2], ['Thurston Moore', 'MOE', 'Jun 8', 3], ['"Mad" Mike Muskett', 'MUS', 'Dec 24', 0], ['Jamie Rivett', 'REV', 'Jul 6', 1], ['Lee Ranaldo', 'REN', 'Feb 4', 2], ['Sequoia', 'SAW', 'Apr 10', 3], ['Steve Shelley', 'SHY', 'Jun 8', 0], ['Tunnicliff', 'SAT', 'May 7', 1], ['Steve Snake', 'SNK', 'Jun 15', 2], ['Boo-Boo', 'THI', 'Nov 1', 3], ['Mark Turmell', 'TUR', 'Jan 31', 0], ['Higgins', 'TOM', 'Feb 19', 1], ['Pistol', 'WAN', 'Jun 10', 2], ['Crunch (Timberwolves mascot)', 'WOL', 'Mar 7', 3], ['Neil "Ziggy" Hill', 'ZIG', 'Apr 7', 0]];
+const PC_KEYS = [['F1', 'F2', 'F3', 'F4', 'F5'], ['F6', 'F7', 'F8', 'F9', 'F10'], ['F10', 'F9', 'F8', 'F7', 'F6'], ['F5', 'F4', 'F3', 'F2', 'F1']];
+const tepc = ([name, ini, bday, k]) => [name, INI, [...ini, ...bday.split(' ')].map((x, i) => `${PC_KEYS[k][i]} → ${x === '_' ? 'blank' : x}`).join(', '),
+  false, PC_NOTE[ini] || '', 'pc/te_' + ini.toLowerCase()];
+const PC_NOTE = { AIR: 'Missing from the published PC list; same initials and birthday as on the PlayStation (checked).', BAA: 'Missing from the published PC list; same initials and birthday as on the PlayStation (checked).',
+  CHR: 'The published PC list says F6 to F10; the game wants F10 down to F6 (checked).',
+  SEM: 'Not on the PlayStation, which has Gray (ROB) in its place.', JF_: 'The other versions use JAS for Jason Falcus.' };
+const TYLER = ['Steven Tyler (cut)', 'Not enterable', 'Removed from the table', true,
+  'His entry is still in the table, but with initials the grid has no letters for (the same on all three home versions). The game still names him "TYLER" and draws a blank portrait.'];
+const SNES_NOTE = { RAY: "One published list says Start + Y on the Y; that fails, a plain press works (checked)." };
+
+const TE_STAFF = [['Tony Goskie', 'TWG', 'Dec 7'], ['Jamie Rivett', 'RJR', 'Jan 17'], ['John Carlton', 'JMC', 'Aug 5'], ['Sal DiVita', 'SAL', 'Feb 1'],
+  ['Shawn Liptak', 'SL_', 'Jun 24'], ['Mark Turmell', 'MJT', 'Mar 22'], ['Jon Hey', 'JWH', 'Sep 20'], ['George Petro', 'GNP', 'Oct 8'],
+  ['John Newcomer', 'JRN', 'Jun 18'], ['Sheridan Oursler', 'SNO', 'Jan 3'], ['Al Lasko', 'AML', 'Aug 31'], ['Willie "Air" Morris', 'WIL', 'Jan 1'],
+  ['Cary Mednick', 'CMM', 'Jul 2'], ['Dan Forden', 'DWF', 'Sep 28'], ['Eric Kinkead', 'DIE', 'Jan 1'], ['Eugene Jarvis', 'EPJ', 'Jan 27'],
+  ['Jack Haeger', 'JEH', 'Jul 13'], ['Jake Simpson', 'JMS', 'Feb 22'], ['Jim Green', 'JDG', 'May 31'], ['Jim Gentile', 'JPG', 'Jan 23'],
+  ['Joe Dillon', 'JPD', 'Jun 3'], ['John Lowes', 'JML', 'Nov 4'], ['John Vogel', 'VOG', 'Jun 27'], ['Josh Tsui', 'JYT', 'Nov 28'],
+  ['Kamm', 'VLK', 'Nov 9'], ['Linda Deal', 'LTD', 'Apr 30'], ['Matt Booty', 'MVB', 'Apr 18'], ['Mark Loffredo', 'ML_', 'May 25'],
+  ['Mark Penacho', 'MDP', 'Jan 13'], ['Paul Barker', 'PCB', 'May 9'], ['Pat Cox', 'PGC', 'Apr 11'], ['Ray Macika', 'REM', 'Mar 26'],
+  ['Roger Sharpe', 'ROG', 'Aug 1'], ['Steve Beran', 'SAB', 'Aug 29'], ['Vince Pontarelli', 'VJP', 'Apr 11'], ['Warren Davis', 'WBD', 'Aug 17'],
+  ['Ed Boon', 'EJB', 'Feb 22'], ['John Tobias', 'TOB', 'Aug 24'], ['Paul Heitsch', 'WMN', 'Nov 11'], ['Bill Dabelstein', 'DOZ', 'Dec 31'],
+  ['Mark Martinez', 'MAM', 'Aug 7'], ['Rachel Davies', 'RJD', 'Sep 3'], ['Kerri Hoskins', 'KER', 'Oct 10'], ['Lorraine Olivia', 'LOR', 'Feb 20'],
+  ['Chris Granner', 'CG_', 'Dec 4'], ['Raymond Gay', 'RMG', 'Aug 11'], ['Jason Skiles', 'JMS', 'Jul 29'], ['Joe Linhoff', 'JFL', 'Apr 16']];
+const TE_NBA = [['Dominique Wilkins', 'DOM', 'Apr 16'], ['Dee Brown', 'DEE', 'Nov 29'], ['Alonzo Mourning', 'ZO_', 'Feb 8'], ['Scottie Pippen', 'PIP', 'Sep 25'],
+  ['Isiah Thomas', 'ZEK', 'Apr 30'], ['Chris Webber', 'WEB', 'Mar 1'], ['Hakeem Olajuwon', 'HAK', 'Jan 21'], ['Derrick Coleman', 'DC_', 'Jun 21'],
+  ['Patrick Ewing', 'PAT', 'Aug 5'], ['Charles Barkley', 'BRK', 'Feb 20'], ['David Robinson', 'ROB', 'Aug 6'], ['Shawn Kemp', 'KMP', 'Nov 26'],
+  ['Karl Malone', 'KRL', 'Jul 24']];
+const NOTE = { VLK: 'Looks like Larry DeMar; VLK is Vicki Kamm.',
+  EPJ: "GameFAQs lists EPG, which doesn't work (checked).", VJP: "GameFAQs lists VJB, which doesn't work (checked).",
+  ZEK: 'Also works on rev 1.00 (checked), though one published list says it doesn\'t. The Nani Edition has Gary Payton instead.',
+  BRK: 'Revs 3.0 3/04 and 4.0 3/03 have Dennis Rodman instead; it\'s back on 4.0 3/23 (checked).' };
+
+const MK = 'Revs 1.00 and 2.0 only; removed from rev 3.0 on.';
+const GROUPS = {
+  snes: [
+    ['Secret characters', 'Type the first two initials as usual. On the third, hold the buttons shown and press A. Which buttons depends on the first initial. Original and Rev 1 are the same.',
+      [...CHARS.map(([n, i]) => snes(n, i, false, i === 'MJT' ? 'Checked in Mesen 2.' : i === 'DIS' ? 'GameFAQs says hold L and press A; that fails, Start has to be held too (checked in Mesen 2).' : '')), snes('Chow-Chow', 'CAR', false)]
+        .map(c => [...c, 'snes/o_' + c[2].slice(-3).toLowerCase()])],
+    ['Passwords', 'Type the initials, then the password. Both decode to the record they were posted with.', [
+      ['27–0, streak 27, all 27 teams beaten', 'Initials, then password', 'pw:LJP|Z443C1WY434S2J', false],
+      ['108–117, streak 173, 18 teams beaten', 'Initials, then password', 'pw:RAT|12345432123454', false]]],
+  ],
+  genesis: [
+    ['Secret characters', 'Type the first two initials as usual. On the third, hold Start and press the button shown. Which button depends on the first initial: A E I M Q U Y → A, B F J N R V Z → B, anything else → C.',
+      [...CHARS.map(([n, i]) => gen(n, i, false)),
+        gen('Chow-Chow', 'CAR', false, 'GameFAQs leaves Chow-Chow out of the Genesis version; Sega Retro lists it. Checked in BizHawk.')]
+        .map(c => [...c, 'genesis/' + c[2].slice(-3).toLowerCase()])],
+    ['Announcer clips', 'The same initials entry, with the Start code on the last letter. Each plays a speech clip on the Genesis only. Checked in BizHawk; what each clip says hasn\'t been checked by ear.', [
+      gen('All power-ups', 'SNK', false, 'Also plays clip $26.'),
+      gen('Speech clip $22', 'SAM', true), gen('Speech clip $20', 'GAP', true),
+      gen('Random speech clip', 'CHR', true), gen('Random speech clip', 'JAZ', true), gen('Random speech clip', 'ZOB', true)]],
+  ],
+  segacd: [
+    ['Secret characters', 'Pick each letter with the button shown: a plain A, or hold Start and press A, B or C. On the stats screen that follows, press A, B or C (not Start) to go on to team select. The first 12 are the Genesis characters with new button codes; the other 16, including four dinosaurs, are only on the Sega CD. Names are the ones the game shows. All 28 checked in BizHawk.',
+      SCD.map(segacd)],
+  ],
+  arcade: [
+    ['Secret characters', 'Revisions 1.00, 2.00 and 3.01 have the same 13; the prototypes have none.', [
+      ['Tony Goskie', 'TWG', 'Dec 7'], ['Jamie Rivett', 'RJR', 'Jan 17'], ['John Carlton', 'JMC', 'Aug 5'], ['Sal DiVita', 'SAL', 'Feb 1'],
+      ['Shawn Liptak', 'SL_', 'Jun 24'], ['Mark Turmell', 'MJT', 'Mar 22'], ['Jon Hey', 'JWH', 'Sep 20'], ['George Petro', 'GNP', 'Oct 8'],
+      ['John Newcomer', 'JRN', 'Jun 18'], ['Sheridan Oursler', 'SNO', 'Jan 3'], ['Stephen Howard', 'HOW', 'Jul 15'],
+      ['Willie Morris', 'WIL', 'Jan 1'], ['Tony Scott', 'TON', 'Jul 3']].map(orig)],
+    ['Hidden games and screens', 'Checked in MAME on rev 3.01.', [
+      ['Tank game', "Tonight's Match-Up", 'Hold P1 Down and all three buttons on both sides', false, 'Once per game.'],
+      ['Tank game reward: all players powered up', 'Tank game', 'Survive until it ends (about a minute)', true,
+        'Shows "ALL PLAYERS POWERUP!" and sets all four players\' power-up level to 8. Rev 3.01 only; rev 1.00 just says "YOU SURVIVED!".'],
+      ['Hidden copyright screen', 'As the tank game starts', 'Also hold P1 Right, P2 Right, P2 Shoot and P2 Turbo', true,
+        'Replaces the tank game with an encrypted message: NBA-JAM, COPYRIGHT-1993, MIDWAY-MANUFACTURING-COMPANY, ALL-RIGHTS-RESERVED. No reward.'],
+      ['Hidden stats menu: step 1', 'Attract mode, after any button press', 'Hold P1 and P2 Up and all buttons, then switch to only P1 and P2 Down', true,
+        'Keep both Downs held for about a second; the credits start.'],
+      ['Hidden stats menu: step 2', 'During those credits', 'P1 Turbo, P1 Turbo, P2 Shoot, P2 Shoot, P2 Shoot, P2 Pass, P2 Pass, P1 Shoot, P1 Pass, P2 Turbo, P2 Turbo', true,
+        'After the credits: "NBA JAM REV 3.01 4/07/93", jam counts, audits, team stats and the records table. Any button pages through. Rev 3.01 only.']]],
+  ],
+  tesnes: [
+    ['Secret characters', 'At the initials screen, on each letter marked Start, hold Start first and then press the button; pressing both on the same frame can miss. Enter the other letters as usual. All checked in Mesen 2.',
+      TE_SNES.map(c => tesnes(c, false, SNES_NOTE[c[1]]))],
+    ['Extra step or cut', 'Checked in Mesen 2.', [
+      tesnes(['Stud Muffin', 'G_F', 'AAY'], false, 'First hold Left + L + R through the copyright screens at power-on; without it the initials do nothing.'),
+      TYLER]],
+    ['Hidden codes', 'Checked in Mesen 2.', [
+      ['All-Star team', 'Title menu (Head to Head, Team Game...)', 'Y, Up, Down, B, Left, A, Right, Down, then keep a record as JAM', false,
+        'Up and Down also move the menu cursor; put it back on Head to Head. The new JAM record is 27-0 with every team beaten, so ALL-STARS replaces ROOKIES on the team list.'],
+      ['One team short', 'Title menu', 'Y, Up, Down, B, Left, A, Right, Down, then keep a record as END', true,
+        'The new END record is 26-0, last played Chicago: one win short of the All-Stars.'],
+      ['Quit to the title screen', 'During a game', 'Hold Start to pause, then press L + R', false,
+        'Back to the title screen (checked in Mesen 2). May be in the manual.']]],
+  ],
+  tegen: [
+    ['Secret characters', 'At the initials screen, on each letter marked Start, hold Start and press the button. Enter the other letters as usual. All checked in BizHawk.',
+      TE_SNES.map(c => tegen(c, false))],
+    ['Extra step or cut', 'Checked in BizHawk.', [
+      tegen(['Stud Muffin', 'G_F', 'AAY'], false, 'First hold Start + C + Left through the copyright screens at power-on; without it the initials do nothing.'),
+      TYLER]],
+    ['Hidden codes', 'Checked in BizHawk.', [
+      ['All-Star team', 'Title menu (Head to Head, Team Game...)', 'C, Up, Down, B, Left, A, Right, Down, then keep a record as JAM', false,
+        'Up and Down also move the menu cursor; put it back on Head to Head. The new JAM record is 27-0 with every team beaten, so ALL-STARS replaces ROOKIES on the team list.'],
+      ['One team short', 'Title menu', 'C, Up, Down, B, Left, A, Right, Down, then keep a record as END', true,
+        'The new END record is 26-0, last played Chicago: one win short of the All-Stars.']]],
+  ],
+  gb: [
+    ['Secret characters', 'Enter the first two initials with B. For the third, put the cursor next to it and press the direction and buttons shown at the same moment: the cursor moves onto the letter and picks it. Pressing B on the letter itself, or adding any other button, gives a normal player. All checked in BizHawk.',
+      GB.map(gb)],
+  ],
+  gg: [
+    ['Secret characters', 'Enter the first two initials with button 1. For the third, put the cursor next to it and press the direction and buttons shown at the same moment: the cursor moves onto the letter and picks it. Both revisions are the same. All checked in BizHawk.',
+      GG.map(gg)],
+  ],
+  tegg: [
+    ['Secret characters', 'At the initials screen, pick each letter with the button shown: 1, 2 or Start all enter a letter, and the game remembers which. All checked in BizHawk.',
+      TE_GG.map(tegg)],
+  ],
+  tesat: [
+    ['Secret characters', 'Answer Yes to keep a record, then enter the initials and birthday. The game shows "SECRET PLAYER" before team select. Published lists say to hold L + R, but the codes work without it (checked with TUR and FOX). All 53 checked in BizHawk.',
+      TE_SAT.map(c => tesat(c, c[1] === 'TUR' ? 'GameFAQs gives January 3, which shows NO RECORD; the table has January 31 (checked).' : ''))],
+    ['Preset records', 'Answer Yes to keep a record and enter these with no buttons held. A new save already holds them. Checked in BizHawk.', [
+      ['Champion record', 'Keep-record screen', 'FIN, January 1', false,
+        'Opens a 27-9 record, rank 1st: "You have defeated all 27 NBA teams!"'],
+      ['One team short', 'Keep-record screen', 'END, January 1', true,
+        'Opens a 26-9 record, rank 2nd, with only Houston left to beat. The same default list has CHR, DAZ, TOM and ZIG records dated 99/99, which the date grid has no way to enter.']]],
+  ],
+  teps: [
+    ['Secret characters', 'Answer Yes to keep a record, then enter the initials and birthday while holding L1 + R1; without them the game shows NO RECORD (checked). The game shows "SECRET PLAYER" before team select. The same list as the Saturn without Tim Kitzrow and Fox, plus Jax and Gray. All 53 checked in BizHawk.',
+      TE_PS.map(teps)],
+    ['Preset records', 'Answer Yes to keep a record and enter these with no buttons held. A new save already holds them. Checked in BizHawk.', [
+      ['Champion record', 'Keep-record screen', 'FIN, January 1', false,
+        'Opens a 27-9 record, rank 1st: "You have defeated all 27 NBA teams!"'],
+      ['One team short', 'Keep-record screen', 'END, January 1', true,
+        'Opens a 26-9 record, rank 2nd, with only Houston left to beat. The same default list has CHR, DAZ, TOM and ZIG records dated 99/99, which the date grid has no way to enter.']]],
+  ],
+  tepc: [
+    ['Secret characters', 'Answer Yes to keep a record (player 1 picks with Right Ctrl or Right Alt). Then, for each of the five picks (three letters, month, day), press the F-key shown first and then pick: the game keeps the last F-key pressed and checks all five. Initials and birthday alone give a normal player. The same list as the PlayStation, with Semmens in place of Gray and JF_ for Jason Falcus. The published PC list has all but Air Dog and McHugh. All 53 checked in DOSBox-X.',
+      TE_PC.map(tepc)],
+  ],
+  tegb: [
+    ['Secret characters', 'At the initials screen, pick each letter with the button shown: A, B or Start all enter a letter, and the game remembers which. All checked in BizHawk.',
+      TE_GB.map(tegb)],
+  ],
+  tejag: [
+    ['Secret characters', 'At the initials screen, on each letter marked Option, hold Option and press the button. Enter the other letters as usual, with A, B or C. Every one works with no extra step. All checked in BizHawk.',
+      TE_JAG.map(c => tejag(c, false, JAG_NOTE[c[1]]))],
+  ],
+  te32x: [
+    ['Secret characters', 'At the initials screen, on each letter marked Start, hold Start and press the button. Enter the other letters as usual. The buttons run the other way from the Genesis codes. All checked in BizHawk.',
+      TE_32X.map(c => te32x(c, false, c[1] === 'SNK' ? 'Genesis and Super Nintendo use GOF.' : ''))],
+    ['Cut from the 32X', 'Their entries are still in the table, with letters the grid has no key for.', [
+      ...[['Scooter Pie', 'HTP'], ['Kid Silk', 'KSK'], ['Stud Muffin', 'G_F']].map(([n, i]) => [n + ' (cut)', 'Not enterable', `Removed (${i} on the other versions)`, false]),
+      TYLER]],
+    ['Hidden codes', 'Checked in BizHawk.', [
+      ['All-Star team', 'Title menu (Head to Head, Team Game...)', 'C, Up, Right, Down, Left, A, Right, Down, then keep a record as FIN', true,
+        'Not the Genesis sequence, and FIN instead of JAM. Put the menu cursor back on Head to Head. The new FIN record is 27-0, and ALL-STARS replaces ROOKIES ("EXPANDED ROSTER").'],
+      ['One team short', 'Title menu', 'C, Up, Right, Down, Left, A, Right, Down, then keep a record as PRE', true,
+        'The new PRE record is 26-0, last played Chicago: one win short of the All-Stars.']]],
+  ],
+  te: [
+    ['NBA players', 'Rev 4.0 3/23/94, the final revision.', TE_NBA.map(c => te(c, false, NOTE[c[1]]))],
+    ['Midway staff', 'Rev 4.0 3/23/94. Rev 3.0 2/26/94 disables every one of these (only the NBA players work there).', TE_STAFF.map(c => te(c, false, NOTE[c[1]]))],
+    ['Removed after revision 2', MK + ' Rev 2.1 (2/06/94) changed five of the birthdays: use the cards below for it.', [
+      ['Sub-Zero', 'SUB', 'Dec 5'], ['Raiden', 'RAD', 'Jul 9'], ['Grim Reaper', 'GRM', 'Oct 31'], ['Tim Coman', 'TJC', 'Oct 11'],
+      ['Kongo', 'KNG', 'Jan 16'], ['Elviscious', 'ELV', 'Jan 8'], ['Scorpion', 'SCO', 'Jul 6'], ['Reptile', 'RPT', 'Nov 11']].map(c => te(c, false))],
+    ["Tonight's Match-Up codes", "Enter these while the Tonight's Match-Up screen is up. The game counts each player's presses of any button; codes with a count need exactly that many. The message shows at tip-off. Tournament Mode turns all of them off. Checked in MAME on rev 4.0 3/23/94.", [
+      ['Powerup goaltending', MU, 'Press any button 24 times', false, 'Exactly 24. Shows "POWERUP G.T."'],
+      ['Shot percentage display', MU, 'Press any button 15 or more times while turning the stick Up → Right → Down → Left', false,
+        "GameFAQs says to press all three buttons together 7 times; that doesn't work, and holding all three with Down or Right sets Max Power or Tournament Mode instead."],
+      ['Maximum power', MU, 'Hold Down + Turbo + Shoot + Pass', false, "Start isn't needed."],
+      ['Tournament mode', MU, 'Hold Right + Turbo + Shoot + Pass', false, 'Turns off power-ups, computer assistance and hidden features, including secret characters.'],
+      ['Big heads', MU, 'Hold Up + Turbo + Pass until tip-off', false],
+      ['Huge heads', MU, 'Press any button 5 times; then hold Up + Turbo + Pass until tip-off', false, 'Big heads with exactly 6 presses in all.'],
+      ['Quick hands', MU, 'Press any button 4 times; then hold Down + Shoot until tip-off', false, '5 or more presses in all.'],
+      ['Baby-size players', MU + ', holding Down-Right', 'Turbo, Shoot, Pass, Turbo, Shoot, Pass, Turbo, Shoot, Pass', false],
+      ['All computer assistance off', MU, 'Press any button exactly 10 times', true,
+        'Needs a human player on each team. Shows "ALL COMPUTER ASSISTANCE TURNED OFF!" Not on any published TE list; the original game had a similar Turbo ×10 code.']]],
+    ['Other codes', 'Checked in MAME.', [
+      ['Fatalities', 'Team select', 'Hold Up and press Pass 20 times', false, 'Revs 1.00, 2.0 and 2.1 only; 3.0 2/26 and both 4.0s don\'t have it. Shows "FATALITIES ENABLED!"'],
+      ['Team swap', 'Halftime substitution screen', 'Hold Right + Pass', false, 'Shows "TEAM SWAP ENABLED!" Per GameFAQs, Pass then changes team, Turbo swaps players and Shoot confirms.']]],
+    ['New finds', 'Not on the published lists. Checked in MAME unless noted.', [
+      te(['Dennis Rodman', 'ROD', 'May 13'], true, 'Revs 3.0 3/04/94 and 4.0 3/03/94, in place of Barkley.'),
+      te(['Grim Reaper (rev 2.1)', 'BIG', 'Sep 31'], true, 'Rev 2.1 only. The birthday screen lets you pick the 31st of any month.', 't_grm_oct31'),
+      te(['Sub-Zero (rev 2.1)', 'SUB', 'Nov 5'], true, 'Rev 2.1 only; Dec 5 fails there.', 't_sub_dec5'),
+      te(['Kongo (rev 2.1)', 'KNG', 'Mar 26'], true, 'Rev 2.1 only.', 't_kng_jan16'),
+      te(['Scorpion (rev 2.1)', 'SCO', 'Jul 5'], true, 'Rev 2.1 only.', 't_sco_jul6'),
+      te(['Reptile (rev 2.1)', 'RPT', 'Nov 10'], true, 'Rev 2.1 only.', 't_rpt_nov11'),
+      te(['Gary Payton', 'GEE', 'Jul 23'], true, 'Nani Edition prototype (rev 5.2, 1995), in place of Isiah Thomas.'),
+      te(['Jim Gentile (prototype)', 'JZG', 'Jan 1'], true, 'December 1993 prototype; later JPG Jan 23. Portrait from the final revision.', 't_jpg_jan23'),
+      te(['Ray Macika (prototype)', 'RZM', 'Jan 1'], true, 'December 1993 prototype; later REM Mar 26. Portrait from the final revision.', 't_rem_mar26'),
+      te(['Warren Davis (prototype)', 'WZD', 'Jan 1'], true, 'December 1993 prototype; later WBD Aug 17. Portrait from the final revision.', 't_wbd_aug17'),
+      te(['Bill Dabelstein (prototype)', 'BZD', 'Jan 1'], true, 'December 1993 prototype; later DOZ Dec 31. Portrait from the final revision.', 't_doz_dec31'),
+      te(['Joe Linhoff (prototype)', 'JZL', 'Jan 1'], true, 'December 1993 prototype; later JFL Apr 16. Portrait from the final revision.', 't_jfl_apr16'),
+      te(['Kerri Hoskins (prototype)', 'KER', 'Jan 1'], true, 'December 1993 prototype; later Oct 10. Portrait from the final revision.', 't_ker_oct10'),
+      te(['Lorraine Olivia (prototype)', 'LOR', 'Jan 1'], true, 'December 1993 prototype; later Feb 20. Portrait from the final revision. Not checked in MAME.', 't_lor_feb20'),
+      ['Secret Midway Menu: step 1', 'Attract mode, after any button press', 'Hold P1 and P2 Up and all buttons, then switch to only P1 and P2 Down', true,
+        'Keep both Downs held for about a second; the credits start.'],
+      ['Secret Midway Menu: step 2', 'During those credits', 'P1 Turbo, P1 Turbo, P2 Shoot, P2 Shoot, P2 Shoot, P2 Pass, P2 Pass, P1 Shoot, P1 Pass, P2 Turbo, P2 Turbo', true,
+        'After the credits: a hidden operator screen with jam counts, audits, team stats and the records table. Any button pages through. Revs 2.0 to 4.0.']]],
+  ],
+};
+
+const esc = t => t.replace(/[&<>"]/g, c => `&#${c.charCodeAt(0)};`);
+const chips = (list, cls = '') => `<ul class="keys ${cls}">${list.map(k => `<li>${esc(k)}</li>`).join('')}</ul>`;
+// Arcade TE plays a secret character with the replaced player's stats ($FF9F6A50)
+function card([title, where, input, isNew, note, pic], plat) {
+  const el = document.createElement('article');
+  el.className = 'code-card';
+  const how = input.startsWith('ini:') || input.startsWith('pw:') ? chips(input.slice(input.indexOf(':') + 1).split('|'))
+    : input.includes(', ') ? chips(input.split(', ')) : chips([input], 'words');
+  el.innerHTML = `${isNew ? '<span class="badge">★ New</span>' : ''}${pic ? `<img class="pic${pic.includes('/') ? ' pic-' + pic.split('/')[0] : ''}" src="img/${pic.includes('/') ? pic : 'arcade/' + pic}.png" alt="" loading="lazy">` : ''}<h3>${esc(title)}</h3>
+    <p class="where">${esc(where)}</p>${how}${note || plat === 'te' && pic ? `<p class="note">${esc([note, plat === 'te' && pic ? 'Plays with the stats of the player it replaces.' : ''].filter(Boolean).join(' '))}</p>` : ''}`;
+  el.dataset.text = (title + ' ' + input).toLowerCase();
+  return el;
+}
+const $ = id => document.getElementById(id);
+function show() {
+  const plat = document.querySelector('#plat input:checked').value, q = $('q').value.trim().toLowerCase();
+  let total = 0, fresh = 0, shown = 0;
+  $('codes').replaceChildren(...GROUPS[plat].map(([name, hint, list]) => {
+    const g = document.createElement('section');
+    g.className = 'group';
+    g.innerHTML = `<h2>${esc(name)}</h2><p class="hint">${esc(hint)}</p>`;
+    const cards = list.map(c => card(c, plat)).filter(el => !q || el.dataset.text.includes(q));
+    total += list.length; fresh += list.filter(c => c[3]).length; shown += cards.length;
+    const box = document.createElement('div');
+    box.className = 'code-list';
+    box.replaceChildren(...cards);
+    if (cards.length) g.append(box); else g.hidden = true;
+    return g;
+  }));
+  $('sum').textContent = q ? `${shown} of ${total} codes match.` : `${total} codes, ${fresh ? fresh + ' of them new' : 'all already published'}.`;
+}
+$('plat').addEventListener('change', show);
+$('q').addEventListener('input', show);
+show();
+</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+# Names used in the listings. One per line: platform  kind  address  name  [bank]
+#   kind code: a routine or data label; it replaces L_xxxxxx in the listing and reassembles to that address
+#   kind ram:  a variable; it is shown at the end of the comment on every line that uses it
+# SNES RAM below $10000 is the low page ($7E0000 mirror). Names are lowercase.
+
+# ---- SNES: password screen (bank $8A). Per-player arrays are 8 bytes apart (X = player * 2)
+snes code $8AD6FF find_record             # $A4/$A6 = initials -> A = record offset, carry set if none
+snes code $8AD722 new_record
+snes code $8AD826 rank_records
+snes code $8AD8F0 encode_password         # record X -> $1C4F-$1C5C
+snes code $8ADB17 decode_password         # $1C4F-$1C5C -> record X; carry clear if valid
+snes code $8ADD39 password_xor            # 14 bytes
+snes ram  $16C4   grid_cursor
+snes ram  $16CC   initial1                 # grid index, A = 0; also $16D4, $16DC
+snes ram  $16E4   password_count           # +1 then +7 per character, $38 when full
+snes ram  $16EC   password_chars           # two per word, high byte first, words 8 bytes apart
+snes ram  $1724   player_record
+snes ram  $172E   record_initials          # 88 records of 4 bytes: 3 initials and a flag
+snes ram  $188E   record_wins              # 4 bytes per record: wins, losses, streak, rank
+snes ram  $188F   record_losses
+snes ram  $1890   record_streak
+snes ram  $1891   record_rank
+snes ram  $19EE   record_teams             # 27 bits, Golden State = bit 7 of the first byte
+snes ram  $1C4E   password_key
+snes ram  $1C4F   password_work            # 14 bytes

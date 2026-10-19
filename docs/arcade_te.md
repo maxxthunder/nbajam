@@ -1,0 +1,137 @@
+# Arcade NBA Jam Tournament Edition: codes in the program ROM
+
+What the TE program ROMs hold for secret characters and hidden screens, across all nine sets in MAME's
+`nbajamte.zip`. As with [the original](arcade.md), the program is `uj12` (low byte) and `ug12` (high byte)
+interleaved, mapped at `FF800000`, and was disassembled with MAME 0.282's debugger. Everything marked
+*checked* was entered in MAME 0.282 through the game's own initials and birthday screens, with a Lua script
+driving the inputs.
+
+Published lists compared against: GameFAQs, the arcadecontrols.com code thread and the Johnny Joystick Retrogaming list
+(both list the same 61 codes for the final revision, plus the 8 removed after revision 2).
+
+## Secret characters
+
+The table at `FF9DF760` (rev 4.0 3/23/94) has 5-word entries: three letters (A = 0, `_` = 26), month and
+day. The check at `FF9DF380` runs only when the "hidden characters" adjustment (`#$1C`) is on, stops at the
+first match, and puts the entry's number in the player's character slot.
+
+| Set (MAME name) | Revision | Table | Entries checked | Differences from the published codes |
+|-----------------|----------|-------|-----------------|--------------------------------------|
+| `nbajamtep2` | proto 2.00 12/17/93 | `FF9C9280` | 56 | placeholder codes, see below |
+| `nbajamte1` | 1.00 1/17/94 | `FF9DC890` | 69 | none |
+| `nbajamte2a` | 2.0 1/28/94 | `FF9DC400` | 69 | none |
+| `nbajamte2` | 2.1 2/06/94 | `FF9DC400` | 69 | **5 removed characters have new birthdays** |
+| `nbajamte3a` | 3.0 2/26/94 | `FF9E0450` | 69 | **all staff codes disabled** |
+| `nbajamte3` | 3.0 3/04/94 | `FF9DF510` | 61 | **`ROD` replaces `BRK`** |
+| `nbajamte4` | 4.0 3/03/94 | `FF9DF510` | 61 | **`ROD` replaces `BRK`** |
+| `nbajamte` | 4.0 3/23/94 | `FF9DF760` | 61 | none |
+| `nbajamten` | Nani Edition 5.2 8/11/95 | `FF9E0A20` | 61 | **`GEE` replaces `ZEK`** |
+
+The 61-entry tables have a 62nd entry, a second copy of `KRL` 7/24, which the loop never reaches.
+
+### Not on the published lists
+
+All checked in MAME.
+
+- **Dennis Rodman: `ROD`, May 13** (revs 3.0 3/04 and 4.0 3/03). These two revisions have Rodman in place
+  of Charles Barkley. The published lists only say that `BRK` doesn't work on 3.0/4.0. It does work again on
+  4.0 3/23, the last revision (checked).
+- **Rev 2.1's codes for the removed characters.** Rev 2.1 changed five of the eight birthdays, so the
+  published codes for them fail on it (`SUB` 12/5 and `GRM` 10/31 checked):
+
+  | Character | Revs 1.00 and 2.0 (published) | Rev 2.1 |
+  |-----------|-------------------------------|---------|
+  | Grim Reaper | `GRM` Oct 31 | **`BIG` Sep 31** |
+  | Sub-Zero | `SUB` Dec 5 | **`SUB` Nov 5** |
+  | Kongo | `KNG` Jan 16 | **`KNG` Mar 26** |
+  | Scorpion | `SCO` Jul 6 | **`SCO` Jul 5** |
+  | Reptile | `RPT` Nov 11 | **`RPT` Nov 10** |
+
+  Elviscious (`ELV` Jan 8), Raiden (`RAD` Jul 9) and Tim Coman (`TJC` Oct 11) are unchanged. The birthday
+  screen offers day 31 for every month, so Sep 31 can be entered.
+- **Rev 3.0 2/26 has only the 13 NBA players.** It keeps all 69 entries, but 17 is added to the first
+  letter of every staff and removed-character entry, so they can never match. `MJT` 3/22 and `TWG` 12/7 fail;
+  `PIP` 9/25 works.
+- **Two GameFAQs typos.** GameFAQs lists Eugene Jarvis as `EPG` and Vince Pontarelli as `VJB`. The table
+  has `EPJ` 1/27 and `VJP` 4/11. `EPG` and `VJB` fail on rev 4.0 3/23; `EPJ` and `VJP` work (checked).
+- **Isiah Thomas works on rev 1.00.** One published list says `ZEK` 4/30 doesn't work on 1.0/2.0, but rev
+  1.00 has it and shows Thomas.
+- **Gary Payton: `GEE`, Jul 23** (Nani Edition prototype). Payton takes Isiah Thomas's place.
+- **Prototype 2.00 placeholders.** The December 1993 prototype has 56 entries. It has none of the 13 NBA
+  players. Several staff are in it under placeholder initials with a Jan 1 birthday:
+  `JZG` (Gentile), `RZM` (Macika), `WZD` (Davis), `BZD` (Dabelstein), `JZL` (Linhoff), `KER` (Hoskins) and
+  `LOR` (Olivia, not checked).
+
+<p align="center">
+  <img src="images/te_codes.png" alt="Rodman (ROD, rev 4.0 3/03), the Grim Reaper (BIG, rev 2.1) and Payton (GEE, Nani Edition)" width="546">
+</p>
+
+## Match-up codes
+
+The Tonight's Match-Up code (`FF937E50`–`FF939360`, rev 4.0 3/23) counts each player's presses of any button
+(`@10EB160` + 16 × player) and watches the stick. When the tip-off help boxes are gone, separate processes print
+the results (`FF939390`). All checked in MAME on rev 4.0 3/23.
+
+| Code | Input | Notes |
+|------|-------|-------|
+| Powerup G.T. | exactly 24 presses | |
+| Shot % display | 15+ presses while turning the stick through all four directions | GameFAQs' "all three buttons 7 times" fails; holding all three with Down or Right triggers Max Power or Tournament Mode instead |
+| Max Power | hold Down + all three buttons | Start isn't checked |
+| Tournament Mode | hold Right + all three buttons | sets `@10EB1C0`, clears secret characters, cancels everything else |
+| Big Head / Huge Head | hold Up + Turbo + Pass at tip-off (`FF876220`); Huge with exactly 6 presses | |
+| Quick Hands | 5+ presses, hold Down + Shoot at tip-off | |
+| Baby size | hold Down-Right; Turbo, Shoot, Pass ×3 (table `FF93E180`) | |
+| **All computer assistance off** | **exactly 10 presses, with a human on each team** (`FF93A640`) | not on any published TE list |
+
+Also checked: **Fatalities** (team select, hold Up and press Pass 20 times) works on revs 1.00, 2.0 and 2.1 but
+not 3.0 2/26, 4.0 3/03 or 4.0 3/23. **Team Swap** (halftime substitutions, hold Right + Pass) shows
+"TEAM SWAP ENABLED!" on rev 4.0 3/23.
+
+<p align="center">
+  <img src="images/te_assist_off.png" alt="ALL COMPUTER ASSISTANCE TURNED OFF! at tip-off" width="400">
+</p>
+
+## Secret Midway menu
+
+A hidden stats screen titled "SECRET MIDWAY MENU", reached with two codes. The table below is for rev 4.0
+3/23. Revs 2.0 to 4.0 and the Nani Edition have the title. Rev 1.00 and the prototype have both codes and the
+`JAM INFO` page, but not the title, and weren't checked.
+
+1. **In attract mode, after any button press** (`@10E58B0` = 1; `FF9FF250`): hold Up and all three buttons
+   on both P1 and P2 (`IN0` `0x7171`). That starts a 53-frame timer. When it runs out, both players must be
+   holding Down and nothing else (`0x0202`). The credits roll starts (`FFA39D80`, process `$82`).
+2. **During the credits** (`FF962230`, sequence at `FF9624A0`), press one button at a time:
+   P1 Turbo, P1 Turbo, P2 Shoot, P2 Shoot, P2 Shoot, P2 Pass, P2 Pass, P1 Shoot, P1 Pass, P2 Turbo, P2 Turbo.
+   A wrong press starts the sequence over.
+
+When the credits end, the menu shows "TOURNAMENT EDITION REV 4.0 3/23/94" and steps through pages on any
+button:
+- `JAM INFO`: jams from the left, right and center.
+- Uptime, games started, initials entered, 1-4 player play, quarters finished.
+- CPU-vs-human score stats and a count for each team.
+- The records table.
+- The "Tournament Edition Features" pages.
+
+Then it returns to attract mode. It's an operator/developer audit screen, not a gameplay unlock. Checked in
+MAME on rev 4.0 3/23.
+
+The original NBA Jam's rev 3.01 has the same menu, titled with its revision instead (checked; see [arcade.md](arcade.md#hidden-stats-menu-rev-301)).
+
+<p align="center">
+  <img src="images/te_secret_menu.png" alt="The Secret Midway Menu's JAM INFO page" width="400">
+</p>
+
+## Hidden copyright text
+
+TE keeps an encrypted signature like the original's, at `FFA18670` (rev 4.0 3/23; `FFA14EC0` in rev 1.00).
+The key starts at 1 and grows by 7 per byte; the second and third lines are offset again:
+
+```
+NBA-JAM-COPYRIGHT-1993-MIDWAY-MANUFACTURING-COMPANY
+ALL-RIGHTS-RESERVED.
+PROGRAMMED-BY-SHAWN-LIPTAK-&-MARK-TURMELL-&-JAMIE-RIVETT
+```
+
+TE has no tank game, which is where the original's message was triggered. Nothing in the program points at
+the text, and a MAME read watch saw no reads during boot, attract mode or the start of a game. It looks like
+a dormant ownership mark.

@@ -1,0 +1,16 @@
+# ROMs: never commit them (README.md and CHANGELOG.md are the only .md files in the root)
+*.sfc
+*.smc
+*.32x
+*.j64
+*.gb
+*.gg
+*.chd
+*.bin
+/*.md
+!/README.md
+!/CHANGELOG.md
+__pycache__/
+.claude/
+*.zip
+NBAJamTo/

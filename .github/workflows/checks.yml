@@ -1,0 +1,51 @@
+# Runs the checks that don't need the ROMs, then publishes the password checker and codes pages.
+name: checks
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Password self-test
+        run: python tools/nbajam_password.py
+      - name: Web checker matches nbajam_password.py
+        run: python tools/check_checker.py
+      - name: Page footer and README badge match the CHANGELOG version
+        run: |
+          v=$(grep -m1 -oP '^## \K[0-9.]+' CHANGELOG.md)
+          for f in tools/nbajam_password_checker.html tools/nbajam_codes.html; do
+            grep -q ">v$v</a>" $f || { echo "$f footer isn't v$v"; exit 1; }
+          done
+          grep -qF "badge/version-$v-" README.md || { echo "README badge isn't $v"; exit 1; }
+      - name: names.txt loads
+        run: python -c "import sys; sys.path.insert(0, 'tools'); import names; names.load('snes')"
+
+  pages:
+    needs: checks
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Collect the page
+        run: mkdir site && cp tools/nbajam_password_checker.html site/index.html && cp tools/nbajam_codes.html site/codes.html && cp -r tools/img site/img
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - id: deploy
+        uses: actions/deploy-pages@v4
