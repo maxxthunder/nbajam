@@ -1,4 +1,4 @@
-"""Cross-check the JS in nbajam_password_checker.html against nbajam_password.py (needs node).
+"""Cross-check the JS in nbajam_password_checker.html against nbajam_password.py and nbajam_te_password.py (needs node).
 
 Usage: python tools/check_checker.py
 Decodes passwords made by the encoder and random strings with both, and fails on any difference
@@ -13,6 +13,7 @@ import sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import nbajam_password as P  # noqa: E402
+import nbajam_te_password as T  # noqa: E402
 
 JS = r"""
 const fs = require("fs");
@@ -20,7 +21,7 @@ const src = [...fs.readFileSync(process.argv[1], "utf8").matchAll(/<script>([\s\
 const module = { exports: {} };
 new Function("module", src)(module);
 const cases = JSON.parse(fs.readFileSync(0, "utf8"));
-console.log(JSON.stringify(cases.map(c => { try { return module.exports.decode(c); } catch (e) { return null; } })));
+console.log(JSON.stringify(cases.map(([fn, ...c]) => { try { return module.exports[fn](c); } catch (e) { return null; } })));
 """
 
 
@@ -31,12 +32,16 @@ def main(n=5000):
         ini = "".join(rnd.choice(P.LETTERS) for _ in range(3))
         f = {"wins": rnd.randrange(256), "losses": rnd.randrange(256), "streak": rnd.randrange(256),
              "teams": rnd.randrange(P.ALL_TEAMS + 1)}
-        cases.append((ini, P.encode(ini, f)))
-        cases.append((ini, "".join(rnd.choice(P.ALPHABET) for _ in range(14))))
+        cases.append(("decode", ini, P.encode(ini, f)))
+        cases.append(("decode", ini, "".join(rnd.choice(P.ALPHABET) for _ in range(14))))
+        w = rnd.randrange(256)
+        f = {"wins": w, "losses": rnd.randrange(256), "streak": rnd.randrange(w + 1), "teams": rnd.randrange(min(w, 27) + 1)}
+        cases.append(("decodeTE", ini, T.encode(ini, f)))
+        cases.append(("decodeTE", ini, "".join(rnd.choice(T.ALPHABET) for _ in range(10))))
     want = []
-    for ini, pw in cases:
+    for fn, ini, pw in cases:
         try:
-            want.append(P.decode(ini, pw))
+            want.append((P if fn == "decode" else T).decode(ini, pw))
         except ValueError:
             want.append(None)
     html = os.path.join(HERE, "nbajam_password_checker.html")

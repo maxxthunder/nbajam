@@ -68,12 +68,41 @@ sequences, and for preset records:
   (PlayStation `SLUS_000.02` file offset `0x1550`, Saturn `0` offset `0x8B6A`): **END** and **FIN**, both dated
   January 1, then CHR, DAZ, TOM and ZIG dated 99/99, which the date grid can't enter. Keeping a record as FIN, January 1
   opens a 27-9 record, rank 1st ("You have defeated all 27 NBA teams!"), which is the published "champion" code; END,
-  January 1 opens 26-9, rank 2nd, with only Houston left. No buttons need to be held. Checked in BizHawk on both. The
-  only other button-sequence list is the PlayStation's 19 match-up codes in `OVERLAY.BIN` (`0x2AD88`), not traced here.
+  January 1 opens 26-9, rank 2nd, with only Houston left. No buttons need to be held. Checked in BizHawk on both.
+  Sega Retro's Saturn page lists both; we found END on no PlayStation list.
 - **PC, Jaguar, Game Boy, Game Gear.** No sequence tables and no preset records found. The two handhelds do have a
   quit from pause, read from the code only: on Game Boy, Select pauses and A + B while paused sets game state 10
   (`$13E28`), which waits and restarts at the title; on Game Gear, 1 + 2 + Start pauses and 1 + 2 while paused sets
   state `$0A` (`$29966`).
+
+## Match-up codes
+
+Every version keeps its Tonight's Match-Up codes as a table of button sequences, so the game holds the complete list.
+
+**Super Nintendo, Genesis and 32X.** Each new press goes into a per-player history (SNES `$7E2258`, Genesis
+`$FF217E`, `$20` bytes per player; one byte per press: Up `$10`/`$01`, Down `$08`/`$02`, Left, Right, A, B; X, Y
+and C aren't recorded), and when the screen ends the game searches it for each sequence in its table
+(SNES `$8A:FA37`, table `$4C:EFDA`; Genesis `$2ACF5A`, table `$2AD01E`; 32X `$3D5BE`, table `$8BD67C`). An entry is
+the sequence, an end byte, then the address of the flag it sets. The flags are copied to the players when the game
+starts (Genesis `$266762`, 32X `$12D82`; SNES packs them into a mask at `$07EE`, around `$82:F9D8`).
+
+- Super Nintendo and Genesis share the same 17 sequences. The cyberly.org Genesis list has 16 of them right. One
+  Super Nintendo list has three wrong: three pointers without the last Up, teleport pass with an extra Left, and
+  rainbow arc shots without the first Up. None of those versions sets anything (checked in Mesen 2).
+- **The 17th code is unused:** Down, Up, Down, Up, Down, Up, Left, Left, B, B. The game recognises it and sets its
+  flag (Genesis `$FF2312`, SNES `$0B82`, both checked), but never applies it. The Genesis and 32X copy loops step over
+  it (`adda.w #8, a0`), and on Super Nintendo it becomes mask bit `$4000`, which nothing tests. Probably a cut
+  power-up. It isn't on any list we found.
+- **The 32X has its own 18 sequences**, for the same effects in the same order plus baby mode (a global flag,
+  `$FF4610`). All 18 checked in BizHawk: each sets its flag. RQ87's list has six of them, and gives turbo without
+  its second Down, which does nothing (checked); the other twelve, including the unused code, weren't on any 32X
+  list we found. Lists that give the Genesis codes for the 32X are wrong: those sequences aren't in its table.
+- **PlayStation** (`OVERLAY.BIN` `0x2AD88`, 19 sequences, checked at `$801D5CF0`) and **Saturn** (`0` `0x578A2`, the
+  same 19 in the same order) hold nothing new. The PlayStation's match the Cheat Code Central list exactly, except
+  that mammoth heads is stored as four rounds of Circle, X, Square, Triangle, not five. The Saturn's two that differ
+  from the PlayStation's (turbo and push) were published by 32bits. Sega Retro's Saturn page has 17 of the 19, all
+  matching (its baby mode and head codes are longer than needed, which still works); it lacks Y, Y, Y, B, Down, Down, Up, Left and
+  Down, Right, C, Y, C, Right, Down.
 
 ## Jaguar
 

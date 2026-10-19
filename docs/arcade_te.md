@@ -118,7 +118,7 @@ MAME on rev 4.0 3/23.
 The original NBA Jam's rev 3.01 has the same menu, titled with its revision instead (checked; see [arcade.md](arcade.md#hidden-stats-menu-rev-301)).
 
 <p align="center">
-  <img src="images/te_secret_menu.png" alt="The Secret Midway Menu's JAM INFO page" width="400">
+  <img src="images/te_secret_menu.png" alt="All five pages of the Secret Midway Menu in rev 4.0: JAM INFO, audits, score stats, team counts and the records table" width="806">
 </p>
 
 ## Hidden copyright text

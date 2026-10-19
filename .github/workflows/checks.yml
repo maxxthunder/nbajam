@@ -18,6 +18,8 @@ jobs:
           node-version: "20"
       - name: Password self-test
         run: python tools/nbajam_password.py
+      - name: Tournament Edition password self-test
+        run: python tools/nbajam_te_password.py
       - name: Web checker matches nbajam_password.py
         run: python tools/check_checker.py
       - name: Page footer and README badge match the CHANGELOG version
@@ -43,7 +45,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Collect the page
-        run: mkdir site && cp tools/nbajam_password_checker.html site/index.html && cp tools/nbajam_codes.html site/codes.html && cp -r tools/img site/img
+        run: mkdir site && cp tools/nbajam_password_checker.html site/index.html && cp tools/nbajam_codes.html site/codes.html && cp -r tools/img site/img && cp -r tools/audio site/audio
       - uses: actions/upload-pages-artifact@v3
         with:
           path: site

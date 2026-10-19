@@ -4,7 +4,7 @@
 
 <p align="center"><img src="docs/images/stats_screen.png" alt="The stats screen for LJP / Z443C1WY434S2J: rank 1, 27 W 0 L, streak 27 wins" width="384"></p>
 
-- **Check a password**: type your initials and the 14 characters, and it tells you whether the game will take them.
+- **Check a password**: type your initials and the password (14 characters for NBA Jam, 10 for Tournament Edition), and it tells you whether the game will take them.
 - **See what it holds**: wins, losses, percentage, win streak, and which of the 27 NBA teams you've beaten.
 
 - **Secret codes**: every secret character and hidden code, for Super Nintendo, Genesis, arcade, Game Boy, Game Gear, Sega CD, and Tournament Edition on arcade, Super Nintendo, Genesis, 32X, Saturn, PlayStation, PC, Jaguar, Game Boy and Game Gear. [Open the codes page →](https://maxxthunder.github.io/nbajam/codes.html)
@@ -13,16 +13,19 @@ It works offline too: save [`tools/nbajam_password_checker.html`](tools/nbajam_p
 
 ## Supported versions
 
-| Console | Passwords |
-|---------|-----------|
-| Super Nintendo, original and Rev 1 | Yes, the same on both |
-| Genesis / Mega Drive | None: records are saved on the cartridge |
+| Game | Passwords |
+|------|-----------|
+| NBA Jam: Super Nintendo (original and Rev 1), Game Boy, Game Gear | Yes, 14 characters, one scheme: a password works on all of them |
+| NBA Jam: Genesis / Mega Drive, Sega CD | None: records are saved |
+| Tournament Edition: Game Boy, Game Gear | Yes, 10 characters, a scheme of their own, shared by both |
+| Tournament Edition: every other version | None: records are saved |
 
 ## If a password won't work
 
 - **Initials.** A password only works with the initials it was made for. The initials are part of its key.
-- **Typo.** The password uses `BCDFGHJKLMNPQRSTVWXYZ12345`: no vowels, and only the digits 1 to 5.
-- **All 14 characters.** The game checks the password when you type the 14th character. Choosing EX
+- **Typo.** NBA Jam passwords use `BCDFGHJKLMNPQRSTVWXYZ12345` (no vowels, digits 1 to 5); Tournament Edition uses
+  `BCDFGHJKLNPQRTVWXYZ1234567` (no vowels, M or S, digits 1 to 7).
+- **All the characters.** The game checks the password when you type the last one. Choosing EX
   before that starts a new record.
 
 ## Published passwords

@@ -87,5 +87,5 @@ then return to attract mode. Revisions 1.00 and 2.00 don't have it.
 Checked in MAME: both codes entered as above brought up the menu and all its pages.
 
 <p align="center">
-  <img src="images/arcade_jam_info.png" alt="The hidden JAM INFO page in rev 3.01" width="400">
+  <img src="images/arcade_jam_info.png" alt="All five pages of the hidden menu in rev 3.01: JAM INFO, audits, score stats, team counts and the records table" width="806">
 </p>

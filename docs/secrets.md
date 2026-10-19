@@ -116,15 +116,18 @@ when entered with the Start code on the last letter (`$1D4ED0`). The SNES doesn'
 
 | Initials | Clip ID | Notes |
 |----------|---------|-------|
-| the secret characters above except `AIR`, plus `SAM` | `$22` | `AIR` isn't in this table |
-| `GAP` | `$20` | |
-| `CHR`, `SNK`, `JAZ`, `ZOB` | random: `$1B`, `$0F`, `$13` or `$17` | |
-| `SNK` with Start on S and K | `$26` | the published all-power-ups code; also sets `$FF1D6C` |
+| the secret characters above except `AIR`, plus `SAM` | `$22` | "It's a blowout!"; `AIR` isn't in this table |
+| `GAP` | `$20` | "Hello!" |
+| `CHR`, `SNK`, `JAZ`, `ZOB` | random: `$1B`, `$0F`, `$13` or `$17` | "Boomshakalaka!", "Is it the shoes?", "Ugly shot!", "Oh my!" |
+| `SNK` with Start on S and K | `$26` | "Nail in the coffin!"; the published all-power-ups code; also sets `$FF1D6C` |
 
 `GAP`, `SNK`, `JAZ` and `ZOB` are also on the Genesis default high-score table (with SL, GON, JWH and DAZ),
 which suggests they're the developers' initials. `SAM`, `GAP`, `CHR`, `JAZ` and `ZOB` aren't on the published
-lists. All of them were checked in BizHawk: each one triggers the clip ID shown. What each clip says hasn't
-been checked by ear yet.
+lists. All of them were checked in BizHawk: each one triggers the clip ID shown. Recordings are in `tools/audio/genesis_<id>.mp3`.
+
+Tournament Edition on Genesis and 32X still holds the same table and lookup routine (Genesis `$2A8C52` / `$2A6910`,
+32X `$8B92D2` / `$8B7A18`), but nothing calls the routine, so the codes do nothing there (checked in BizHawk on the
+Genesis: GAP and SAM with each Start code play nothing, and the routine never runs). The Sega CD has no speech table.
 
 ## Sega CD
 

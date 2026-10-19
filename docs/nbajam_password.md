@@ -1,7 +1,8 @@
 # The NBA Jam password
 
 How the Super Nintendo version of NBA Jam (1993) turns a player's record into a 14-character password,
-and how it reads one back. Addresses are in the original US ROM, `NBA Jam (USA).sfc`. Rev 1 has the same
+and how it reads one back. The Game Boy and Game Gear versions use the same scheme, and Tournament Edition
+on Game Boy and Game Gear has a 10-character one of its own (see the last two sections). Addresses are in the original US ROM, `NBA Jam (USA).sfc`. Rev 1 has the same
 code moved `$60` bytes up (encode `$8AD950`, decode `$8ADB77`, table `$8ADD99`) and takes the same passwords.
 
 `tools/nbajam_password.py` implements both directions. `tools/nbajam_romcheck.py` checks it against the
@@ -116,3 +117,50 @@ Both decode in the game exactly as the tool says.
 |----------|----------|--------|
 | `LJP` | `Z443C1WY434S2J` | 27–0, streak 27, all 27 teams beaten |
 | `RAT` | `12345432123454` | 108–117, streak 173, 18 teams beaten |
+
+## Game Boy and Game Gear
+
+The Game Boy and Game Gear versions of NBA Jam use the same scheme: they hold the same XOR table
+(`04 07 09 03 …`; Game Boy file offset `0xA49F`, Game Gear `0x4362B`) and the same alphabet, and show the 14
+characters as two rows of 7 (Game Boy buffer `$CD98`). Super Nintendo passwords load on both: `LJP` /
+`Z443C1WY434S2J` shows "YOU HAVE DEFEATED ALL 27 TEAMS", and `RAT` / `12345432123454` lists the same nine
+unbeaten teams and puts 108, 117, 173 in RAM (Game Boy `$CFBA`, Game Gear `$C825`). Checked in BizHawk. On
+both, letters are picked with B (Game Boy) or 1 (Game Gear), and the password cursor starts on EX.
+
+## Tournament Edition on Game Boy and Game Gear
+
+Tournament Edition on the other systems saves records instead. The Game Boy and Game Gear versions use a
+10-character password of their own, shown as two rows of 5. Addresses below are in the Game Boy ROM
+(bank 1); the Game Gear holds the same tables (alphabet `0x7BC90`, tables `0x7BEBC`) and takes the same
+passwords. `tools/nbajam_te_password.py` implements both directions.
+
+**Alphabet** (`$68B0`): `B C D F G H J K L N P Q R T V W X Y Z 1 2 3 4 5 6 7`, 26 characters, no M or S.
+
+**What it holds**: wins, losses and streak (8 bits each; record bytes `$D2B6`–`$D2B8`) and how many teams
+you've beaten (5 bits, `$D416`). The teams come in a fixed order (`$1226`; Game Gear `$06A4`): Dallas,
+Minnesota, Miami, Washington, Philadelphia, Sacramento, Milwaukee, Denver, Golden State, San Antonio, Seattle,
+Atlanta, Orlando, L.A. Clippers, New Jersey, Charlotte, Boston, Cleveland, Detroit, Indiana, L.A. Lakers, Utah,
+New York, Portland, Phoenix, Chicago, Houston. The count is how far along it you are.
+
+**Key**: the Super Nintendo's formula, but starting from the first initial instead of 0: `a = i0; ROL;
+ADC i1; ROL; ADC i2; ROL; ADC #$2A`, key = `(a >> 4 XOR a) AND $0F`. Initials are grid indexes (blank = 26).
+
+**Encoding** (`$66E2`):
+
+1. Ten 4-bit values. The bits of wins (W), losses (L), streak (S) and teams (T) are spread across them:
+   `v0 = W&5 | L&A`, `v1 = L&5 | S&A`, `v2 = W&A | S&5`, `v4 = T&5 | (L>>4&5)<<1`, `v5 = W>>4&5 | L>>4&A`,
+   `v6 = (W>>4&A)>>1 | T&A`, `v7` = streak bits 4–7, `v9` bit 3 = T bit 4. Then `v7 ^= v1`, `v6 ^= v2`,
+   `v5 ^= v4`.
+2. Checksum: the sum of `(i + 1) × v[i]`; its low 4 bits go in `v3` and the high 4 in `v8`.
+3. `v0`–`v8` are XORed with `5 XOR i`.
+4. `r = ((v0 + v1) XOR key) AND 7` goes in the low 3 bits of `v9`, and `v0`–`v8` are rotated right `r` bits as
+   one 36-bit chain.
+5. Each value becomes `(v[i] XOR X[i]) + A[i] + key`, mod 26, with `X` = `0E 0A 01 05 0F 03 0B 0D 0C 02`
+   (`$6A8E`) and `A` = `0F 01 06 09 0A 04 05 0B 02 03` (`$6A98`).
+
+**Decoding** (`$68D0`) reverses it and gives **No record** unless the rotation count and both checksum nibbles
+match, and the streak and team count are no more than the wins (`$668F`).
+
+Checked in BizHawk: `RAT` / `BZZ6DZ37KY` (made by the tool for 100–7, streak 50, 20 teams) loads on both. The
+Game Boy says the seven teams after Indiana are left, and the Game Gear's stats screen shows 100–7, streak 50
+and the same password back. (Its PCT reads 0.322, which isn't wins over games.)
