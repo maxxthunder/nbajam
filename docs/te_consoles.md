@@ -146,11 +146,31 @@ the month. The pointer gives each entry's name (`KITZROW`, `FOX`, `MAGIC HAIR`, 
 
 All 53 checked in BizHawk (Saturnus, US BIOS `mpr-17933`): each shows "SECRET PLAYER" and then the character at team
 select. They match the GameFAQs list except **Mark Turmell**: GameFAQs says `TUR` January 3, which shows "NO RECORD";
-the table has January 31, which works. GameFAQs also says to hold L + R while entering; `TUR` and `FOX` work without it.
+the table has January 31, which works. GameFAQs also says to hold L + R while entering, and that's right: each letter is stored with the L and R bits of
+the pad (`$06043788`), and the secret check (`$0603F408`) compares it with the table letter OR'd with `$00880000`, so
+every letter must be picked with L + R held. `TUR` and `FOX` without them show NO RECORD (checked).
 
 The lineup is bigger than the cartridge versions. Besides the usual staff, mascots and celebrities it has twelve
 more entries named only by their record (`CAT`, `BAR`, `HOG`, `SAT`, `BAA`, `TOM`, `LIZ`, `STH`, `SAW`, `THI`, `WAN`,
 `GUN`), the announcer Tim Kitzrow (`KIT`), Fox (`FOX`), and the four members of Sonic Youth (`GOR`, `REN`, `SHY`, `MOE`).
+
+### Saturn program: other input checks
+
+The main program (file `0`, loaded at `$06010000`) was disassembled to look for codes beyond the tables:
+
+- **Pad.** The SMPC data is parsed into `$060724B4` (one word per player, active high: Right `8000`, Left `4000`,
+  Down `2000`, Up `1000`, Start `0800`, A `0400`, C `0200`, B `0100`, R `0080`, X `0040`, Y `0020`, Z `0010`,
+  L `0008`). `$06018894` turns it into new presses and held buttons for each player, raw at `$0606C0B4` and remapped
+  to the button config at `$0606A00C`.
+- **Sequences.** The press-history matcher (`$0604A348`) has a single caller, the match-up screen (`$0604A0A4`),
+  which checks exactly the 19 sequences in the table. There are no other sequence codes.
+- **Combinations.** Nothing compares a pad word with an exact multi-button value. The L + R bits are stored with
+  each initial (`$06043788`) for the secret check, and R and Z presses are counted per team in one game phase
+  (`$06022376`), which looks like jump-ball tapping.
+- **Tournament Mode** (`$0606B564`, saved with the options) switches off both secret players and match-up codes.
+
+Not covered: functions that read the pad through a computed pointer were only skimmed, and BizHawk's Saturn core
+can't log which code reads memory, so they weren't traced live.
 
 ## PlayStation
 

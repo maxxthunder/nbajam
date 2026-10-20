@@ -176,7 +176,32 @@ every "table entry against the new presses" loop.
 - **Genesis** (pads `$FF02B4`-`$FF02BA`, new presses `$FF02BE`-`$FF02C4`) and **Sega CD** (pads `$AB3E`-`$AB44`, new
   presses `$AB48`-`$AB4E`, in `FRONT.BIN` and `GAME.BIN`): no button combinations or sequences. The Genesis has the
   same unused sound test as Tournament Edition (`$1C3E16`, nothing calls it).
-- **Game Boy**: only the usual A + B + Select + Start reset.
-- **Game Gear**: the only combinations are the Tonight's Match-Up power-up codes (`$43DD9`: defence, intercept,
-  turbo, dunks, fire, show shot, juice mode), not traced further here.
+- **Game Boy** and **Game Gear**: the usual reset, and the Tonight's Match-Up power-ups (below).
+
+## Game Boy and Game Gear: match-up power-ups
+
+Both handhelds have seven power-ups entered at Tonight's Match-Up, and the game prints the ones you got
+("power up / defence / intercept / turbo / dunks / fire / show shot / juice mode"). They aren't sequences. Each
+frame on that screen the game counts new presses of the two buttons (Game Gear 1 or 2, `$C49E`; Game Boy A or B,
+`$CC33`) and, on the Game Gear only, collects which of the 8 D-pad directions you've held (`$C49F`). When the screen
+ends it checks the count and the pad as it is at that moment (Game Gear `$BDD9` in bank `$10`, `$D66C`; Game Boy
+`$6D09` in bank 2, `$D24D`). The press that starts a hold with a button counts too. Pressing Start to leave the screen
+puts Start into the pad, so the codes that end with a hold only work if you let the screen time out.
+
+| Power-up | Game Gear | Game Boy |
+|----------|-----------|----------|
+| Defence | exactly 5 presses | 5 presses, holding Up |
+| Intercept | 15 or more, and all 8 directions | 15 presses, holding Right |
+| Turbo | 15 or more, holding Left | 15 or more, holding Up + B |
+| Dunks | exactly 13, and all 8 directions | 11, holding Down + A |
+| Fire | 8, holding Up + 2 | 7, holding Left |
+| Show shot % | 2, holding Down + 2 | 4, holding Up + B |
+| Juice mode (toggles on GG) | 15, holding 1 + 2 | 16, holding A + B |
+
+All 14 checked in BizHawk, with the wrong counts and Start failing. Both Game Gear revisions have the same code. They
+match the published lists ([SMS Power](https://www.smspower.org/Cheats/NBAJam-GG),
+[Cheat Happens](https://www.cheathappens.com/9646-Game_Boy-NBA_Jam_cheats)) except juice mode, which both give one
+press short (13 then 1 + 2; 14 then A + B): that only works if the two buttons go down on separate frames, so each
+counts. Cheat Happens also lists fire as 7 presses then Down + Left, which does nothing (checked). Tournament Edition
+on the handhelds has no such list: its juice mode is an option on the options screen.
 

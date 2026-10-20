@@ -2,6 +2,10 @@
 
 Changes to the [password checker](https://maxxthunder.github.io/nbajam/) and [secret codes page](https://maxxthunder.github.io/nbajam/codes.html). The version is shown at the bottom of the page.
 
+## 1.1.2 (2026-10-20)
+- Secret codes page: match-up power-ups for NBA Jam on Game Boy and Game Gear, with the exact press counts (the
+  published juice mode codes are one press short); the Saturn secret players do need L + R held on each letter.
+
 ## 1.1.1 (2026-10-18)
 - Password checker: clearer error messages, and a Tournament Edition record past 27 teams shows as all 27 beaten.
 - Secret codes page: a clip that fails to play no longer leaves its button highlighted.
