@@ -124,12 +124,11 @@ footer a { color: var(--orange); text-decoration: none; display: inline-flex; al
     <summary>Where these come from</summary>
     <p>These lists are read straight from each game's code, so nothing is missing, and every code was tested in an
       emulator unless its card says otherwise.</p>
-    <p>Not listed yet: match-up power-ups for the original arcade game. Details, addresses and screenshots
-      are in the
+    <p>Details, addresses and screenshots are in the
       <a href="https://github.com/maxxthunder/nbajam/tree/main/docs">research notes</a>.</p>
   </details>
 
-  <footer><a href="https://github.com/maxxthunder/nbajam"><svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg>maxxthunder/nbajam</a><a href="https://github.com/maxxthunder/nbajam/blob/main/CHANGELOG.md">v1.1.2</a></footer>
+  <footer><a href="https://github.com/maxxthunder/nbajam"><svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg>maxxthunder/nbajam</a><a href="https://github.com/maxxthunder/nbajam/blob/main/CHANGELOG.md">v1.1.3</a></footer>
 </main>
 <script>
 // Card: [title, where, input, new?, note]. Input: "ini:MJT|Mar 22" = initials (and birthday);
@@ -314,10 +313,21 @@ const GROUPS = {
       ['Shawn Liptak', 'SL_', 'Jun 24'], ['Mark Turmell', 'MJT', 'Mar 22'], ['Jon Hey', 'JWH', 'Sep 20'], ['George Petro', 'GNP', 'Oct 8'],
       ['John Newcomer', 'JRN', 'Jun 18'], ['Sheridan Oursler', 'SNO', 'Jan 3'], ['Stephen Howard', 'HOW', 'Jul 15'],
       ['Willie Morris', 'WIL', 'Jan 1'], ['Tony Scott', 'TON', 'Jul 3']].map(orig)],
+    ["Tonight's Match-Up codes", "Enter these while the Tonight's Match-Up screen is up. The game counts each player's presses of any button; codes with a count need exactly that many. The message shows at tip-off. Rev 3.01.", [
+      ['Powerup defense', MU, 'Press any button 8 times', false, 'Exactly 8. Shows "POWERUP DEF".'],
+      ['Powerup intercept', MU, 'Press any button 4 times; then hold Down + Turbo + Shoot + Pass until tip-off', false,
+        '5 or more presses in all, counting the one that starts the hold. Shows "POWERUP INT". The hold alone, as the 1993 FAQ gives it, does nothing. 7 presses before the hold give defense too.'],
+      ['Big heads', MU, 'Hold Up + Turbo + Pass until tip-off', false, 'Shows "BIG HEAD ON". Turns big heads off if the operator set them on.'],
+      ['Shot percentage display', MU, 'Press any button 15 or more times while turning the stick Up → Right → Down → Left', false,
+        'Shows "SHOT % DISPLAY ACTIVATED - (LEARNING MODE 2)".'],
+      ['All computer assistance off', MU, 'Press any button exactly 10 times', false,
+        'Needs a human player on each team. Shows "ALL COMPUTER ASSISTANCE TURNED OFF!"'],
+      ['Powerup offense', MU, 'Press any button 21 times', false,
+        "Doesn't exist: the 1993 FAQ lists it, but the game never checks for 21."]]],
     ['Hidden games and screens', '', [
       ['Tank game', "Tonight's Match-Up", 'Hold P1 Down and all three buttons on both sides', false, 'Once per game.'],
       ['Tank game reward: all players powered up', 'Tank game', 'Survive until it ends (about a minute)', true,
-        'Shows "ALL PLAYERS POWERUP!" and sets all four players\' power-up level to 8. Rev 3.01 only; rev 1.00 just says "YOU SURVIVED!".'],
+        'Shows "ALL PLAYERS POWERUP!": at tip-off all four players get big heads, powerup intercept and powerup defense, and the shot percentage display comes on. Rev 3.01 only; rev 1.00 just says "YOU SURVIVED!".'],
       ['Hidden copyright screen', 'As the tank game starts', 'Also hold P1 Right, P2 Right, P2 Shoot and P2 Turbo', true,
         'Replaces the tank game with an encrypted message: NBA-JAM, COPYRIGHT-1993, MIDWAY-MANUFACTURING-COMPANY, ALL-RIGHTS-RESERVED. No reward.'],
       ['Hidden stats menu: step 1', 'Attract mode, after any button press', 'Hold P1 and P2 Up and all buttons, then switch to only P1 and P2 Down', true,
@@ -396,12 +406,34 @@ const GROUPS = {
     ['Preset records', 'Answer Yes to keep a record and enter these with no buttons held. A new save already holds them.', [
       ['Champion record', 'Keep-record screen', 'FIN, January 1', false,
         'Opens a 27-9 record, rank 1st: "You have defeated all 27 NBA teams!"'],
-      ['One team short', 'Keep-record screen', 'END, January 1', true,
+      ['One team short', 'Keep-record screen', 'END, January 1', false,
         'Opens a 26-9 record, rank 2nd, with only Houston left to beat.']]],
   ],
   tepc: [
     ['Secret characters', 'Answer Yes to keep a record (player 1 picks with Right Ctrl or Right Alt). Then, for each of the five picks (three letters, month, day), press the F-key shown first and then pick: the game keeps the last F-key pressed and checks all five. Initials and birthday alone give a normal player.',
       TE_PC.map(tepc)],
+    ['Match-up codes', "At Tonight's Match-Up (about 4 seconds), on player 1's keys: the arrows, Right Alt for Turbo and Right Ctrl for Shoot. Let go of everything between presses. The PC has its own 19 sequences, not the console ones; GG Mania's list has 11. ★ New: not on that list.", [
+      ['Display shot percentage', MU, 'Up, Shoot, Up, Shoot, Up, Shoot', false, 'Sets its flag, but the game never reads it, so no percentage shows (read from the code).'],
+      ['Quick hands', MU, 'Down, Turbo, Down, Turbo, Down, Turbo', false],
+      ['Maximum power', MU, 'Left, Turbo, Right, Turbo, Up, Turbo', false],
+      ['Power-up goaltending', MU, 'Turbo, Turbo, Up, Turbo, Turbo', false],
+      ['Power-up on fire', MU, 'Shoot, Shoot, Down, Shoot, Shoot', false],
+      ['Power-up turbo', MU, 'Down, Down, Down, Turbo, Turbo, Turbo', false],
+      ['Power-up offense', MU, 'Turbo, Turbo, Turbo, Shoot, Shoot, Shoot', true],
+      ['Power-up three pointers', MU, 'Shoot, Shoot, Shoot, Up, Up, Up', false],
+      ['Power-up dunks', MU, 'Left, Right, Up, Down, Left, Right', false],
+      ['Power-up push', MU, 'Left, Left, Right, Right, Up, Up', true],
+      ['Push one opponent, both fall', MU, 'Turbo, Left, Turbo, Turbo, Turbo', true],
+      ['Push one opponent, teammate falls', MU, 'Shoot, Up, Shoot, Shoot, Shoot', true],
+      ['Teleport pass', MU, 'Turbo, Down, Turbo, Turbo, Turbo', true],
+      ['Rainbow arc shots', MU, 'Shoot, Right, Shoot, Shoot, Shoot', true],
+      ['Super speed', MU, 'Turbo, Turbo, Shoot, Shoot, Turbo, Turbo', true,
+        'Sets its flag, but the game checks that flag in a way that is never true, so it does nothing (read from the code).'],
+      ['Baby mode', MU, 'Turbo, Shoot, Turbo, Shoot, Turbo, Shoot', false, 'Small bodies with big heads, for everyone.'],
+      ['Big heads', MU, 'Down, Down, Down, Shoot, Shoot, Shoot', false, 'For everyone.'],
+      ['Huge heads', MU, 'Up, Down, Up, Down, Turbo, Shoot', true, 'Bigger than big heads, for everyone.'],
+      ['Big-body mode', MU, 'Up, Up, Up, Turbo, Shoot, then all four arrows at once', false,
+        'GG Mania ends it with a plain Up, which does nothing (checked). The real code sets its flag, but the game never reads it (read from the code).']]],
   ],
   tegb: [
     ['Secret characters', 'At the initials screen, pick each letter with the button shown: A, B or Start all enter a letter, and the game remembers which.',

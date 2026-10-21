@@ -1,6 +1,6 @@
 # NBA Jam — Password Checker and Secret Codes
 
-**[Password checker →](https://maxxthunder.github.io/nbajam/)** &nbsp; **[Secret codes →](https://maxxthunder.github.io/nbajam/codes.html)** &nbsp;[![v1.1.2](https://img.shields.io/badge/version-1.1.2-e8742c)](CHANGELOG.md)
+**[Password checker →](https://maxxthunder.github.io/nbajam/)** &nbsp; **[Secret codes →](https://maxxthunder.github.io/nbajam/codes.html)** &nbsp;[![v1.1.3](https://img.shields.io/badge/version-1.1.3-e8742c)](CHANGELOG.md)
 
 <p align="center"><img src="docs/images/stats_screen.png" alt="The stats screen for LJP / Z443C1WY434S2J: rank 1, 27 W 0 L, streak 27 wins" width="384"></p>
 
@@ -17,8 +17,10 @@ Both pages work offline too: save [`tools/nbajam_password_checker.html`](tools/n
 
 ## What's new here
 
-The codes page marks 48 codes that no published list had with **★ New**. Among them:
+The codes page marks 55 codes that no published list had with **★ New**. Among them:
 
+- **PC match-up codes.** The PC has its own 19 key sequences; 8 weren't on the published list, and three codes
+  set flags the game never uses.
 - **32X match-up codes.** The 32X has its own 18 sequences, not the Genesis ones; 12 weren't on any list.
 - **An unused match-up code** on the Super Nintendo, Genesis and 32X: the game recognises it but never applies it,
   probably a cut power-up.

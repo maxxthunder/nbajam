@@ -2,6 +2,11 @@
 
 Changes to the [password checker](https://maxxthunder.github.io/nbajam/) and [secret codes page](https://maxxthunder.github.io/nbajam/codes.html). The version is shown at the bottom of the page.
 
+## 1.1.3 (2026-10-20)
+- Secret codes page: match-up codes for the original arcade game (the published intercept code needs 5 presses
+  first, and there's no offense power-up), what the tank game's reward gives, and the PC's 19 match-up codes (8
+  new; shot percentage, big body and super speed do nothing). The PlayStation END record is no longer marked new.
+
 ## 1.1.2 (2026-10-20)
 - Secret codes page: match-up power-ups for NBA Jam on Game Boy and Game Gear, with the exact press counts (the
   published juice mode codes are one press short); the Saturn secret players do need L + R held on each letter.

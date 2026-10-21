@@ -124,6 +124,19 @@ or "hold Option and press A/B/C".
 - The published Jaguar list ([consoledatabase.com](https://www.consoledatabase.com/cheats/atarijaguar/nbajamtournamentedition/))
   matches the table except **Mike D**: it gives as usual, B, A, but the table wants Option + C on M and on D (checked).
 
+**Match-up codes.** The Jaguar has its own 24 sequences. Each player's presses go into a 256-byte history
+(`$705D` + `$100` × player), and when the screen ends `$80A24C` searches it for each sequence in the pointer table
+at `$81C36C` (file offset `0x1C36C`). A sequence is the joypad bit numbers of its presses (Up `$14`, Down `$15`,
+Left `$16`, Right `$17`, A `$1D`, B `$19`, C `$0D`), with bit 7 set on the last one. Sequence *n* sets bit *n* of the
+player's mask (`$6922` + 4 × player); `$80A1D8` ORs the four into `$6932` and turns the global ones on, and `$80B432`
+copies the rest into each player. `$80B24E` lists the active ones at tip-off under "CHEATS ACTIVATED".
+
+The consoledatabase.com list linked above has all 24, each with the same inputs as the table, so there's nothing
+new here. In table order: CD-ROM mode, baby mode, shot percentage, quick hands, goaltending, on fire, turbo,
+offense, three pointers, dunks, push, push (both fall), push (other falls), teleport pass, high shots, speed,
+slippery court, big heads, small heads, small ball, small players, all players on fire, Doom mode, strength (max
+power). Read from the code, not tested in the emulator.
+
 ## Game Boy
 
 The Game Boy version (by Torus Games) has 14 secret characters. The initials are plain ASCII at `$177C` (bank 0), 3
@@ -205,6 +218,48 @@ The published PC list has 51 of the 53 with their F-keys. Two aren't on it: `AIR
 12 (McHugh), both F6-F10. They're on the PlayStation and Saturn lists with the same initials and birthdays, so they
 aren't marked new. One is wrong: it gives Chris Kirby (`CHR` December 18) as F6-F10, but the table has
 F10-F6. Checked: F6-F10 gives a normal player, F10-F6 gives Kirby.
+
+**Match-up codes.** The match-up screen is in the front end, which passes the results to the game in
+`CONTROL.DAT`. While its 240-frame countdown (`$9ACBC`) runs, `$1B15D` takes each player's input word (`$92099` +
+2 × player: Up `1`, Down `2`, Left `4`, Right `8`, Turbo `10`, Shoot `20`, Pass `40`) on every new press from
+nothing held, and steps through 19 sequences at `$9958C`. Each is halfwords ending in `FFFF`, then a flag dword
+that is ORed into the player's mask (`$9B402` + 4 × player). A wrong press restarts that sequence. At the end
+(`$1B301`) the bits `3E00` are shared with all four players. The game reads the masks at `$6DDC2` (copied to
+`$6BFA4`).
+
+The per-player bits are the PlayStation's (`1`-`100`, `8000000`-`80000000` in the same order), so the effects follow
+from its list. All 19 checked in DOSBox-X: each sets its flag in the front end.
+
+| Effect | Keys | Flag | GG Mania |
+|--------|------|------|----------|
+| Quick hands | Down, Turbo, Down, Turbo, Down, Turbo | `1` | yes |
+| Maximum power | Left, Turbo, Right, Turbo, Up, Turbo | `2` | yes |
+| Goaltending | Turbo, Turbo, Up, Turbo, Turbo | `4` | yes |
+| On fire | Shoot, Shoot, Down, Shoot, Shoot | `8` | yes |
+| Turbo | Down, Down, Down, Turbo, Turbo, Turbo | `10` | yes |
+| Offense | Turbo, Turbo, Turbo, Shoot, Shoot, Shoot | `20` | no |
+| Three pointers | Shoot, Shoot, Shoot, Up, Up, Up | `40` | yes |
+| Dunks | Left, Right, Up, Down, Left, Right | `80` | yes |
+| Push | Left, Left, Right, Right, Up, Up | `100` | no |
+| Push, both fall | Turbo, Left, Turbo, Turbo, Turbo | `8000000` | no |
+| Push, teammate falls | Shoot, Up, Shoot, Shoot, Shoot | `10000000` | no |
+| Teleport pass | Turbo, Down, Turbo, Turbo, Turbo | `20000000` | no |
+| Rainbow arc shots | Shoot, Right, Shoot, Shoot, Shoot | `40000000` | no |
+| Super speed | Turbo, Turbo, Shoot, Shoot, Turbo, Turbo | `80000000` | no |
+| Shot percentage | Up, Shoot, Up, Shoot, Up, Shoot | `200` (all) | yes |
+| Baby mode | Turbo, Shoot, Turbo, Shoot, Turbo, Shoot | `1400` (all) | yes |
+| Big body | Up, Up, Up, Turbo, Shoot, all four arrows at once | `800` (all) | wrong |
+| Big heads | Down, Down, Down, Shoot, Shoot, Shoot | `1000` (all) | yes |
+| Huge heads | Up, Down, Up, Down, Turbo, Shoot | `2000` (all) | no |
+
+- **Three codes do nothing in the game.** Nothing in `(O)_(-).EXE` tests `200` (shot percentage) or `800` (big
+  body). Super speed is tested at `$176F0` as `(mask AND 80000000h) = 1`, which is never true. Read from the code.
+- **Big body** really ends with Up, Down, Left and Right pressed on the same frame (`000F`): possible on the
+  keyboard, not on a joystick. GG Mania's plain Up does nothing (checked).
+- **Heads.** Normal heads are drawn at 0.625 × (`$2C811`); `1000` (big) skips the scaling, `2000` (huge) uses
+  1.375 ×. `400` halves the body sizes (`$2C4CC`), so baby mode is small bodies with big heads.
+- GG Mania's list ([ggmania.com](https://www.ggmania.com/gimmecheat.php?cheat=5447)) has 11 of the 19; the other
+  eight weren't on any PC list we found.
 
 Player 1's keys come from `JOYSTICK.CAL`: the arrow keys, and Right Alt, Right Ctrl and Right Shift as the buttons.
 

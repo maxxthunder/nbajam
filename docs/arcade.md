@@ -41,12 +41,44 @@ Checked in MAME: holding the code started the tank game. With no input the tank 
 up. With its health held at 7 every frame, the tank game ended after about a minute with "ALL PLAYERS
 POWERUP!", and RAM showed `@10F1290` = 1 and all four power-up levels at 8.
 
-The matchup-message code also shows "SHOT % DISPLAY ACTIVATED - (LEARNING MODE 2)" when `@10F1290` is set
-(`FF908AF0`), but that message didn't appear in the test, and what the power-up level does in the game
-hasn't been checked.
+It also stores `EAEA` in the big-head flags (`@10E59C0`). At tip-off (`FF858EE0`) that value turns on
+powerup intercept and big heads for all four players. A power-up level of 8 is powerup defense (see
+[Match-up codes](#match-up-codes-rev-301)), and `@10F1290` is the shot percentage display. Checked in MAME: at
+tip-off the screen shows BIG HEAD ON, POWERUP INT and POWERUP DEF for every player, and "SHOT % DISPLAY
+ACTIVATED - (LEARNING MODE 2)". (The earlier test didn't clear the tip-off help box, so no messages came up.)
 
 Rev 1.00 printed "YOU SURVIVED!" / "YOUR DEAD!" instead and has none of this, so the reward came in a later
 revision. I couldn't find it documented.
+
+<p align="center">
+  <img src="images/arcade_tank_reward_tipoff.png" alt="Tip-off after the tank reward: shot % display, and big head, powerup intercept and powerup defense for all four players" width="400">
+</p>
+
+## Match-up codes (rev 3.01)
+
+While the Tonight's Match-Up screen is up (`@10F83C0` = 1), a process (`FF907000`) counts each player's new
+presses of any button into their power-up level (`@10F1250` + 16 × player). Other processes check the counts
+and the stick, and when the tip-off help boxes are gone (`@10E4920` = 0), print the results. All checked in
+MAME on rev 3.01.
+
+| Code | Input | Check | Message |
+|------|-------|-------|---------|
+| Powerup defense | exactly 8 presses | `FF908FD0`; used in play at `FF884520` | POWERUP DEF |
+| Powerup intercept | 5+ presses, then hold Down + all three buttons at tip-off | `FF8592F0`: input `0x72`, level ≥ 5 | POWERUP INT |
+| Big heads | hold Up + Turbo + Pass at tip-off | `FF859440`: input `0x61` | BIG HEAD ON |
+| Shot % display | 15+ presses, with the stick turned through all four directions (any order) | `FF906A80` | SHOT % DISPLAY ACTIVATED - (LEARNING MODE 2) |
+| All computer assistance off | exactly 10 presses, with a human on each team | `FF908380`, used at `FF887880` | ALL COMPUTER ASSISTANCE TURNED OFF! |
+
+- **Intercept needs presses.** The 1993 FAQ (v1.17) gives intercept as the hold alone. That leaves the count
+  at 0, and nothing happens. The press that starts the hold counts, so 3 presses and the hold (4 in all) fail
+  and 4 presses and the hold work. The FAQ's "7 taps then hold" combo
+  gives intercept and defense (8 presses in all, as the press that starts the hold counts).
+- **No offense power-up.** The FAQ's "Powerup Offense" (21 presses) has no check in the program: the counts it
+  tests are 8, 10 and 15 or more.
+- **Assistance off with one human.** The flag is set by any player's 10 presses, but the message and the effect
+  both need humans on both teams.
+- Big heads and intercept toggle (`XOR`), so on a machine with big heads set on, the code turns them off.
+  `@10E59C0`/`@10E59D0` hold the big-head and intercept bits, one per player.
 
 ## Hidden copyright message
 
