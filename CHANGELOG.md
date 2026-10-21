@@ -2,6 +2,10 @@
 
 Changes to the [password checker](https://maxxthunder.github.io/nbajam/) and [secret codes page](https://maxxthunder.github.io/nbajam/codes.html). The version is shown at the bottom of the page.
 
+## 1.1.4 (2026-10-21)
+- Secret codes page: match-up codes for Tournament Edition on PlayStation (19), Saturn (19) and Jaguar (24), all
+  tested. None are new.
+
 ## 1.1.3 (2026-10-20)
 - Secret codes page: match-up codes for the original arcade game (the published intercept code needs 5 presses
   first, and there's no offense power-up), what the tank game's reward gives, and the PC's 19 match-up codes (8

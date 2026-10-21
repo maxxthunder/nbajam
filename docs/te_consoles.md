@@ -97,8 +97,10 @@ starts (Genesis `$266762`, 32X `$12D82`; SNES packs them into a mask at `$07EE`,
   `$FF4610`). All 18 checked in BizHawk: each sets its flag. RQ87's list has six of them, and gives turbo without
   its second Down, which does nothing (checked); the other twelve, including the unused code, weren't on any 32X
   list we found. Lists that give the Genesis codes for the 32X are wrong: those sequences aren't in its table.
-- **PlayStation** (`OVERLAY.BIN` `0x2AD88`, 19 sequences, checked at `$801D5CF0`) and **Saturn** (`0` `0x578A2`, the
-  same 19 in the same order) hold nothing new. The PlayStation's match the Cheat Code Central list exactly, except
+- **PlayStation** (`OVERLAY.BIN` `0x2AD88`, 19 sequences, checked at `$801D5CF0`) and **Saturn** (`0` `0x578A4`, the
+  same 19 in the same order, checked at `$0604A09C`) hold nothing new. Each searches the player's history (PlayStation
+  `$801F3564`, Saturn `$06073E38`, 30 presses per player); sequences 1-14 set bits in the player's mask (`$80084308` /
+  `$06070B94`) and the other five set global bytes. All 19 checked on both in BizHawk. The PlayStation's match the Cheat Code Central list exactly, except
   that mammoth heads is stored as four rounds of Circle, X, Square, Triangle, not five. The Saturn's two that differ
   from the PlayStation's (turbo and push) were published by 32bits. Sega Retro's Saturn page has 17 of the 19, all
   matching (its baby mode and head codes are longer than needed, which still works); it lacks Y, Y, Y, B, Down, Down, Up, Left and
@@ -135,7 +137,8 @@ The consoledatabase.com list linked above has all 24, each with the same inputs 
 new here. In table order: CD-ROM mode, baby mode, shot percentage, quick hands, goaltending, on fire, turbo,
 offense, three pointers, dunks, push, push (both fall), push (other falls), teleport pass, high shots, speed,
 slippery court, big heads, small heads, small ball, small players, all players on fire, Doom mode, strength (max
-power). Read from the code, not tested in the emulator.
+power). All 24 checked in BizHawk: each sets its bit. The screen is short, so a long code has to be entered as soon
+as it comes up.
 
 ## Game Boy
 
