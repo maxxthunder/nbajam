@@ -140,6 +140,16 @@ slippery court, big heads, small heads, small ball, small players, all players o
 power). All 24 checked in BizHawk: each sets its bit. The screen is short, so a long code has to be entered as soon
 as it comes up.
 
+Two of the names say little about what they do. **CD-ROM mode** (`$6914`) puts up a fake loading screen before the
+game (`$80AB76` calls `$809776`): "LOADING, PLEASE WAIT", "CD-ROM MODE EMULATION", held for `$4B0` (1200) frames,
+about 20 seconds. **Doom mode** (`$691E`) makes `$804F5A` give every player the same head graphic (`$BB8430`).
+Both checked in BizHawk.
+
+<p align="center">
+  <img src="images/jag_cdrom_mode.png" alt="The fake CD-ROM loading screen" width="326">
+  <img src="images/jag_doom_mode.png" alt="Doom mode: all four players with the same head" width="326">
+</p>
+
 ## Game Boy
 
 The Game Boy version (by Torus Games) has 14 secret characters. The initials are plain ASCII at `$177C` (bank 0), 3
@@ -256,7 +266,10 @@ from its list. All 19 checked in DOSBox-X: each sets its flag in the front end.
 | Huge heads | Up, Down, Up, Down, Turbo, Shoot | `2000` (all) | no |
 
 - **Three codes do nothing in the game.** Nothing in `(O)_(-).EXE` tests `200` (shot percentage) or `800` (big
-  body). Super speed is tested at `$176F0` as `(mask AND 80000000h) = 1`, which is never true. Read from the code.
+  body). Super speed is tested at `$176F0` as `(mask AND 80000000h) = 1`, which is never true. Checked in play
+  (keys written into the game's key table at `$5CAFC`): each flag reaches the game's masks (`$6BFA4`), but no shot
+  percentage appears when shooting and the bodies stay normal size, while big heads, run the same way, show. Super
+  speed's effect can't be judged from screenshots, so that one rests on the code.
 - **Big body** really ends with Up, Down, Left and Right pressed on the same frame (`000F`): possible on the
   keyboard, not on a joystick. GG Mania's plain Up does nothing (checked).
 - **Heads.** Normal heads are drawn at 0.625 × (`$2C811`); `1000` (big) skips the scaling, `2000` (huge) uses

@@ -1,6 +1,6 @@
 # NBA Jam — Password Checker and Secret Codes
 
-**[Password checker →](https://maxxthunder.github.io/nbajam/)** &nbsp; **[Secret codes →](https://maxxthunder.github.io/nbajam/codes.html)** &nbsp;[![v1.1.4](https://img.shields.io/badge/version-1.1.4-e8742c)](CHANGELOG.md)
+**[Password checker →](https://maxxthunder.github.io/nbajam/)** &nbsp; **[Secret codes →](https://maxxthunder.github.io/nbajam/codes.html)** &nbsp;[![v1.1.5](https://img.shields.io/badge/version-1.1.5-e8742c)](CHANGELOG.md)
 
 <p align="center"><img src="docs/images/stats_screen.png" alt="The stats screen for LJP / Z443C1WY434S2J: rank 1, 27 W 0 L, streak 27 wins" width="384"></p>
 

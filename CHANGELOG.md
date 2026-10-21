@@ -2,6 +2,10 @@
 
 Changes to the [password checker](https://maxxthunder.github.io/nbajam/) and [secret codes page](https://maxxthunder.github.io/nbajam/codes.html). The version is shown at the bottom of the page.
 
+## 1.1.5 (2026-10-21)
+- Secret codes page: the PC's shot percentage and big body codes checked in play (they set their flags but change
+  nothing); what the Jaguar's CD-ROM mode and Doom mode do.
+
 ## 1.1.4 (2026-10-21)
 - Secret codes page: match-up codes for Tournament Edition on PlayStation (19), Saturn (19) and Jaguar (24), all
   tested. None are new.
