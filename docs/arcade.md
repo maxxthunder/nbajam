@@ -80,6 +80,11 @@ MAME on rev 3.01.
 - Big heads and intercept toggle (`XOR`), so on a machine with big heads set on, the code turns them off.
   `@10E59C0`/`@10E59D0` hold the big-head and intercept bits, one per player.
 
+**Defense in play.** The only place the game reads power-up level 8 is `FF884560`, deep in the ball-contact routine
+`FF883940`: there a level-8 player gets a 70% roll (`FF82DEF0` with 700/1000) that skips `FF8747D0`. With MAME
+breakpoints over about 11 minutes of scripted play, the routine ran thousands of times, but the branch that reaches the
+check (`FF884490`) never did, so its effect wasn't seen.
+
 **Older revisions.** Rev 2.00 (2/10/93) has the same checks without assistance off (no string, no code), and its
 shot % message lacks "- (LEARNING MODE 2)". Rev 1.00 (2/1/93) counts presses (`@10F1130`) and checks only two:
 exactly 8 presses (defense, `FF8FBBB0`, also read in play at `FF87A6A0`) and Up + Turbo + Pass at tip-off (big

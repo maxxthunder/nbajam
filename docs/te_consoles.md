@@ -93,6 +93,9 @@ starts (Genesis `$266762`, 32X `$12D82`; SNES packs them into a mask at `$07EE`,
   flag (Genesis `$FF2312`, SNES `$0B82`, both checked), but never applies it. The Genesis and 32X copy loops step over
   it (`adda.w #8, a0`), and on Super Nintendo it becomes mask bit `$4000`, which nothing tests. Probably a cut
   power-up. It isn't on any list we found.
+- **The copy loops, checked in play.** After tip-off, each per-player code's flag shows up as 1 in its own field of
+  player 1's struct (Genesis `$FF4446` + `$12C`-`$146`, 32X `$FF6730` + `$12E`-`$14A`); the unused code sets none.
+  Shot percentage and baby mode are global, not per player. Checked in BizHawk on both.
 - **The 32X has its own 18 sequences**, for the same effects in the same order plus baby mode (a global flag,
   `$FF4610`). All 18 checked in BizHawk: each sets its flag. RQ87's list has six of them, and gives turbo without
   its second Down, which does nothing (checked); the other twelve, including the unused code, weren't on any 32X
@@ -268,8 +271,10 @@ from its list. All 19 checked in DOSBox-X: each sets its flag in the front end.
 - **Three codes do nothing in the game.** Nothing in `(O)_(-).EXE` tests `200` (shot percentage) or `800` (big
   body). Super speed is tested at `$176F0` as `(mask AND 80000000h) = 1`, which is never true. Checked in play
   (keys written into the game's key table at `$5CAFC`): each flag reaches the game's masks (`$6BFA4`), but no shot
-  percentage appears when shooting and the bodies stay normal size, while big heads, run the same way, show. Super
-  speed's effect can't be judged from screenshots, so that one rests on the code.
+  percentage appears when shooting and the bodies stay normal size, while big heads, run the same way, show. For super
+  speed, player 1's x position (`$6CFC0`) was sampled while running: with the code, the speed matched normal; with the
+  test patched to `cmp eax, 0` / `je` (bytes `83 F8 00 74 0D` at `$176FB`), it rose by about half (15.7 to 24 million
+  position units a second, the medians of 30 samples), the 1.5 × the code was meant to give. Huge heads also checked in play.
 - **Big body** really ends with Up, Down, Left and Right pressed on the same frame (`000F`): possible on the
   keyboard, not on a joystick. GG Mania's plain Up does nothing (checked).
 - **Heads.** Normal heads are drawn at 0.625 × (`$2C811`); `1000` (big) skips the scaling, `2000` (huge) uses

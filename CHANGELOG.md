@@ -2,6 +2,10 @@
 
 Changes to the [password checker](https://maxxthunder.github.io/nbajam/) and [secret codes page](https://maxxthunder.github.io/nbajam/codes.html). The version is shown at the bottom of the page.
 
+## 1.1.7 (2026-10-23)
+- Secret codes page: the PC's super speed measured in play (no effect; fixing one check makes it work), and the
+  unused match-up code confirmed in play on Genesis and 32X (every other code reaches its player, this one doesn't).
+
 ## 1.1.6 (2026-10-23)
 - Secret codes page: which arcade revisions have each match-up code (rev 2.00 has all but computer assistance off;
   rev 1.00 only defense and big heads, with no messages), tested in MAME.
