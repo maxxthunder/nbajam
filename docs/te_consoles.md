@@ -153,6 +153,27 @@ Both checked in BizHawk.
   <img src="images/jag_doom_mode.png" alt="Doom mode: all four players with the same head" width="326">
 </p>
 
+### Jaguar keypad
+
+Keypad keys are bits of the pad word (`$4660` + 8 × player): # `0`, 9 `1`, 6 `2`, 3 `3`, 0 `4`, 8 `5`, 5 `6`, 2 `7`,
+* `16`, 7 `17`, 4 `18`, 1 `19` (Option `9`, C `13`, Up `20`-Right `23`, B `25`, Pause `28`, A `29`). Every place the
+game tests them:
+
+- `$804502`, during the boot screens: Left + 1 + 4 + 6 + 9, story mode (published).
+- `$806BAA`, as team select opens: 1 + 5 + 9 extended rosters, 2 + 4 + 6 a 26-team record, 4 + 7 + 8 a 27-team record
+  (all published).
+- `$80332E`, every pad read: * + # on any pad jumps to the reset at `$80210A`, the standard Jaguar soft reset.
+- `$804404`, after a soft reset (`$1FFFAE` set): * + # + Option resets the saved options (`$81826C`) and shows
+  **"CARTRIDGE MEMORY CLEARED"** (`$6914` = -8). Not on the published list. Checked in BizHawk.
+- After the 27-team check (`$806C0E`): if any player's record has beaten all 27 teams and Tournament Mode is off, the
+  extended rosters open (`$5F28`), and **each player without a secret character gets a 1-in-5 chance** (1 in 8 when
+  their record's byte 6 is set) of a random character from the secret table (`$860CE0`). Read from the code only:
+  BizHawk's Jaguar core doesn't send keypad 0 to 5, so 4 + 7 + 8 can't be pressed, and a patched ROM didn't boot.
+
+<p align="center">
+  <img src="images/jag_memory_cleared.png" alt="CARTRIDGE MEMORY CLEARED" width="326">
+</p>
+
 ## Game Boy
 
 The Game Boy version (by Torus Games) has 14 secret characters. The initials are plain ASCII at `$177C` (bank 0), 3
@@ -281,6 +302,11 @@ from its list. All 19 checked in DOSBox-X: each sets its flag in the front end.
   1.375 ×. `400` halves the body sizes (`$2C4CC`), so baby mode is small bodies with big heads.
 - GG Mania's list ([ggmania.com](https://www.ggmania.com/gimmecheat.php?cheat=5447)) has 11 of the 19; the other
   eight weren't on any PC list we found.
+
+**Keyboard.** Apart from the F-keys for secret characters, the front end and the game test only Esc, Enter and Pause
+directly, and otherwise only whether any key was pressed; the game's typing buffer (`$5CAF9`) is never turned on. So
+there are no typed codes. The front end has a leftover `/DEBUG` switch ("JAX: Debug mode invoked", a load and memory
+log from Iguana's engine); run as `JAM /DEBUG` it printed nothing extra.
 
 Player 1's keys come from `JOYSTICK.CAL`: the arrow keys, and Right Alt, Right Ctrl and Right Shift as the buttons.
 
