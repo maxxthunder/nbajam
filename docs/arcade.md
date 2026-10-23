@@ -80,6 +80,13 @@ MAME on rev 3.01.
 - Big heads and intercept toggle (`XOR`), so on a machine with big heads set on, the code turns them off.
   `@10E59C0`/`@10E59D0` hold the big-head and intercept bits, one per player.
 
+**Older revisions.** Rev 2.00 (2/10/93) has the same checks without assistance off (no string, no code), and its
+shot % message lacks "- (LEARNING MODE 2)". Rev 1.00 (2/1/93) counts presses (`@10F1130`) and checks only two:
+exactly 8 presses (defense, `FF8FBBB0`, also read in play at `FF87A6A0`) and Up + Turbo + Pass at tip-off (big
+heads, `FF850900`). It prints no messages. Checked in MAME (`nbajamr2`, `nbajamr1`): on rev 2.00 defense, intercept,
+big heads and shot % all set their flags and show their messages; on rev 1.00 defense and big heads set theirs, and
+the intercept hold does nothing. This agrees with the FAQ, which says assistance off needs version 3.0.
+
 ## Hidden copyright message
 
 If you also hold **P1 Right, P2 Right, P2 Shoot and P2 Turbo** (MAME's names; `IN0` mask `0x5808`) as the

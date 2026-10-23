@@ -2,6 +2,10 @@
 
 Changes to the [password checker](https://maxxthunder.github.io/nbajam/) and [secret codes page](https://maxxthunder.github.io/nbajam/codes.html). The version is shown at the bottom of the page.
 
+## 1.1.6 (2026-10-23)
+- Secret codes page: which arcade revisions have each match-up code (rev 2.00 has all but computer assistance off;
+  rev 1.00 only defense and big heads, with no messages), tested in MAME.
+
 ## 1.1.5 (2026-10-21)
 - Secret codes page: the PC's shot percentage and big body codes checked in play (they set their flags but change
   nothing); what the Jaguar's CD-ROM mode and Doom mode do.
