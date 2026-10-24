@@ -438,6 +438,15 @@ const HT_JOY = [['Big heads', 'Up + Pass + Turbo together', 'Caption "BIG HEAD".
   ['Lock in the numbers', 'Down', "Any Down press stops your three digits counting and flashes them, which is why some published codes end in Down."],
   ['Unused code: hot spots', 'No input sets it', '"HOTSPOTS ON" is already in NBA Hangtime: its caption and its flag (@1136C10h). Nothing sets the flag and only the caption code reads it, so hot spots never applies. Forced on in MAME, the caption shows. Maximum Hangtime adds the code.']];
 const htJoy = (list, newOnes) => list.map(([n, k, note]) => [n, `${MU}, about two seconds in`, k, newOnes.includes(n), note]);
+// N64 and PlayStation keep the arcade's detectors; buttons renamed, and only some checked on PlayStation
+const HT_JOY_HOME = { htn64: { Turbo: 'A', Shoot: 'C-Down', Pass: 'C-Right', stick: 'the control stick', checked: null },
+  htps: { Turbo: 'Square', Shoot: 'X', Pass: 'Circle', stick: 'the D-pad', checked: ['Big heads', 'Shot percentage', 'ABA ball', 'Rooftop court', 'Four at once'] } };
+const htJoyHome = plat => {
+  const m = HT_JOY_HOME[plat];
+  return HT_JOY.filter(([n]) => !n.startsWith('Unused')).map(([n, k, note]) => [n, MU,
+    k.replace(/Turbo|Shoot|Pass/g, b => m[b]).replace('the joystick', m.stick),
+    ['Four at once', 'Lock in the numbers'].includes(n), m.checked && !m.checked.includes(n) ? 'Not checked on PlayStation.' : note.replace(/^Caption "[^"]*"\.$|; caption "[^"]*"/, '')]);
+};
 const MHT_JOY = [...HT_JOY.filter(([n]) => !['Rooftop court', 'Four at once', 'Unused code: hot spots'].includes(n)),
   ['Outdoor court', 'Right', 'Shows "COURT: STADIUM / OUTDOOR" on the match-up screen; Right picks the rooftop court and Left goes back. Published as "press Left", which leaves it on Stadium.'],
   ['Hot spots', 'Hold Up, Shoot, Shoot', 'Caption "HOTSPOTS ON".'],
@@ -452,7 +461,7 @@ const HT_GONE = { htn64: ['NOBUD', 'MARIUS', 'NORTH', 'JIGGET'], htps: ['NOBUD',
 const htPort = plat => HT.filter(([n]) => !HT_GONE[plat].includes(n)).map(c => {
   const card = htCard(c);
   if (c[0] === 'MDOC' && plat === 'htps') return [card[0], NP, 'pw:MDOC|2000', true, 'Fixed to 2000 on PlayStation.', card[5]];
-  return [...card.slice(0, 4), c[0] === 'MDOC' ? 'Still unreachable: the same stored zeros as the arcade.' : (c[3] || ''), card[5]];
+  return [...card.slice(0, 4), c[0] === 'MDOC' ? (plat === 'htn64' ? 'Unreachable on the US cartridge (the same stored zeros as the arcade); the European cartridge stores 2, 0, 0, 0 and fixes it.' : 'Still unreachable: the same stored zeros as the arcade.') : (c[3] || ''), card[5]];
 });
 // Super Nintendo and Genesis (Funcom): no secret players; these names and PINs open preset records
 const HT16 = { htsnes: [['CHE', '6581'], ['KUNGEN', '1414'], ['HENRIK', '6502'], ['JOHAN', '1911'], ['OLAV', '2509'], ['CHRIS', '0912'], ['NILS', '5555'], ['TORE', '1505'], ['TURMEL', '0000'], ['DIVITA', '0000']],
@@ -468,7 +477,7 @@ const HT16_JOY = {
     ['Nine cheats at once', 'Up, Right, Down, Left, Start, A, B, Y, X, Select', false, 'Published as four effects. It sets nine: goaltending, max block, max steal, max power, max speed, hyper speed, stealth turbo, unlimited turbo and fast passing. Its A, B and Y also leave the numbers on 1, 1, 1: tournament mode, which clears number codes but not these.'],
     ['City court', 'Hold Down, B, A, X, Y', false, 'Keep Down held as you let go of Y: the code ends on Down alone.'],
     ['Cheat ending', 'Start, Y, Right, A, B, Up, Start, Up, Down, Down, Start, L, A, Down, Down', false, 'It switches on all eight codes above at once, and the game plays the cheat ending whenever all eight are on.'],
-    ['All eight codes', 'Enter the eight codes above, on any players', true, "After the match-up the game adds up every player's codes and plays the cheat ending if all eight are on, so the long code isn't the only way. Checked by that condition, not by entering all eight."]],
+    ['All eight codes', 'Enter the eight codes above, on any players', true, "After the match-up the game adds up every player's codes and plays the cheat ending if all eight are on, so the long code isn't the only way. Checked: all eight entered on one pad in a single match-up in Mesen 2 played the cheat ending."]],
   htgen: [['Rooftop court', 'Hold Left, B, B', false, 'Published as "outdoor court". The published rooftop code (hold Left, A three times) isn\'t in the game: the only other court is Hawaii.'],
     ['Hawaii court', 'B, A, Right, Right, A, C, Up, Down, A', false, ''],
     ['No tag arrows', 'Left, Left, C, A', false, 'Sets its flag ($FF1194), but the game never reads it; the arrows still show.'],
@@ -733,6 +742,8 @@ const GROUPS = {
   ht: [
     ['Secret players', "Create a new player and enter the name, then the PIN. Every typed digit counts, SPC included; names shorter than six letters end with END. All 61 checked in MAME by writing each entry into the name check (TURMEL and JC also typed). Titles are the names published for Maximum Hangtime.",
       HT.map(htCard)],
+    ['Trivia contest', "A 1996 sweepstakes built into the game (the TRIVIA CONTEST setting, on from the factory). Attract mode shows the prizes; the questions come at game over.",
+      [['Trivia password', 'Game over, after a full four-quarter game with a created player', 'Answer the questions (2 points each) until you have 100 points', false, 'The game then shows "CONTEST DRAWING QUALIFIER" and an 8-letter password to mail in with your name and PIN (AAAAAA 0000 gets EOFTCSJN). Reached in MAME by setting the points to 98 and answering one question; entries closed September 13, 1996.']]],
     ['Match-up codes', "At Tonight's Match-Up, press Turbo, Shoot and Pass the number of times shown. Holding the joystick counts a digit down instead of up, and each digit wraps from 9 to 0. All 13 checked in MAME by their flags and tip-off captions. The published \"2, 0, 0 + Left\" outdoor court is really the joystick code below.", HT_MU.map(htMu)],
     ['Match-up joystick codes', "Also at Tonight's Match-Up, on any player's controls, once the screen has been up for a moment (the codes are watched a little after it appears). \"Hold\" means keep it held through the rest of the code. All checked in MAME by their flags and in play. ★ New: on no published list.", htJoy(HT_JOY, ['Four at once', 'Lock in the numbers', 'Unused code: hot spots'])],
   ],
@@ -742,11 +753,13 @@ const GROUPS = {
         ...MHT.map(([name, pin, who, note]) => [who, NP, `pw:${name}|${pin}`, !['ZIRIN', 'HEITH', 'MATT B', 'K DAY'].includes(name), note || '', `hangtime/mht_${name.toLowerCase().replace(' ', '_')}`])]],
     ['Match-up joystick codes', "Maximum Hangtime moves the court to a Stadium/Outdoor selector and adds hot spots. Checked in MAME: outdoor court, hot spots, big heads; the rest are the same detectors as NBA Hangtime.", htJoy(MHT_JOY, ['Four at once', 'Lock in the numbers'])],
   ],
-  htn64: [['Secret players', "The arcade table, read from the cartridge (not checked in play). NOBUD, MARIUS, NORTH and JIGGET are blanked out, and MDOC is still unreachable.", htPort('htn64')],
-    ['Match-up codes', "The arcade's 13 numbers, read from the cartridge (`0xA0148`); not checked in play.", htMuPort('htn64', 'Turbo, Shoot, Pass')]],
+  htn64: [['Secret players', "The arcade table, read from the cartridge (not checked in play). NOBUD, MARIUS, NORTH and JIGGET are blanked out, and MDOC is still unreachable (the European cartridge fixes it).", htPort('htn64')],
+    ['Match-up codes', "The arcade's 13 numbers, read from the cartridge (`0xA0148`); not checked in play.", htMuPort('htn64', 'A, C-Down, C-Right')],
+    ['Match-up joystick codes', "The arcade's detectors, flags at RDRAM 0xA6EB2 in the arcade's order. A is Turbo, C-Down Shoot and C-Right Pass; turns need the control stick (the D-pad's diagonals don't count). All ten entered in BizHawk and checked by their flags. No hot spots.", htJoyHome('htn64')]],
   htps: [['Secret players', "The arcade table, read from PRES.BIN on the disc (not checked in play). NOBUD, MUNDAY, NORTH and JIGGET are blanked out, MARIUS becomes OLDBOY 0505, and MDOC is fixed to 2000.",
-    [...htPort('htps'), ['Marius Enge', NP, 'pw:OLDBOY|0505', true, 'MARIUS 1005 in the arcade; renamed on PlayStation.', 'hangtime/ht_marius']]],
-    ['Match-up codes', "The arcade's 13 numbers, read from PRES.BIN; not checked in play.", htMuPort('htps', 'Turbo, Shoot, Pass')]],
+    [...htPort('htps'), ['Marius Enge', NP, 'pw:OLDBOY|0505', true, 'MARIUS 1005 in the arcade; renamed on PlayStation. Typed in BizHawk: the same bearded head, with hidden attributes.', 'hangtime/ht_marius']]],
+    ['Match-up codes', "The arcade's 13 numbers, read from PRES.BIN; not checked in play.", htMuPort('htps', 'Square, X, Circle')],
+    ['Match-up joystick codes', "The arcade's detectors again. Square (or any shoulder button) is Turbo, X or Triangle Shoot, Circle Pass, and the D-pad works for turns. Big heads, shot percentage, ABA ball, rooftop and four at once entered in BizHawk and checked by their flags. No hot spots.", htJoyHome('htps')]],
   htsnes: [['Preset records', "Funcom's port has no secret players. These names and PINs, published as secret characters, open preset records. KUNGEN 1414 checked in BizHawk: a 2-3 record with a custom character.",
     HT16.htsnes.map(([n, p]) => [n, NP, `pw:${n}|${p}`, false, ''])],
     ['Match-up codes', "Funcom's version keeps 11 of the arcade's numbers (no baby size, no music), as presses of Y, B and A; table at file offset 0x57771, not checked in play.", htMuPort('htsnes', 'Y, B, A')],

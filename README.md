@@ -29,14 +29,14 @@ Both pages work offline too: save [`tools/nbajam_password_checker.html`](tools/n
 | Tournament Edition: PC, Jaguar | ✓ | ✓ | Jaguar keypad codes |
 | Tournament Edition: Game Boy, Game Gear | ✓ | | |
 | NBA Hangtime, Maximum Hangtime: arcade | ✓ (name and PIN) | ✓ | joystick codes |
-| NBA Hangtime: N64, PlayStation | ✓ (read from the game) | ✓ (read from the game) | |
+| NBA Hangtime: N64, PlayStation | ✓ (read from the game) | ✓ (read from the game) | joystick codes |
 | NBA Hangtime: Super Nintendo, Genesis | | ✓ (read from the game) | preset records, joystick codes, Genesis options screen |
 
 Every code was entered in an emulator unless its card says otherwise.
 
 ## What's new here
 
-The codes page marks 126 codes that no published list had with **★ New**:
+The codes page marks 130 codes that no published list had with **★ New**:
 
 - **Match-up codes nobody had listed**: the Sega CD's seven button sequences, 12 of the 32X's 18, 8 of the PC's 19,
   and a code on Super Nintendo, Genesis and 32X that the game recognises but never applies (probably a cut power-up).
@@ -55,7 +55,8 @@ The codes page marks 126 codes that no published list had with **★ New**:
   a four-at-once joystick code and the Down press that locks the numbers; the "HOTSPOTS ON" flag already in NBA
   Hangtime with nothing to set it; Maximum Hangtime's 21 extra NBA players; two unpublished Super Nintendo joystick
   codes, and that all eight codes together play its cheat ending; the Genesis options-screen credits code, and
-  the Genesis no-arrows code that never applies.
+  the Genesis no-arrows code that never applies; the arcade trivia contest's password, reached only after a full
+  game; the European N64 cartridge's working M-DOC.
 - **Betas**: the Japanese NBA Jam beta's 11 secret characters, four of them dinosaurs (in the
   [research notes](docs/variants.md)).
 - **Genesis announcer codes**: initials that play a speech clip, with the clips on the page.

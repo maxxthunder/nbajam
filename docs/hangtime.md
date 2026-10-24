@@ -127,6 +127,20 @@ two exceptions:
   no gameplay code reads it. Forced on at the match-up in MAME, the caption shows at tip-off and nothing else happens.
   Maximum Hangtime adds the code and the hot spots themselves.
 
+## Arcade: the trivia contest
+
+NBA Hangtime carries a 1996 sweepstakes, "NBA HANGTIME TRIVIA GAME" (rules in the program at `FFA2E0C0h`, prizes: a trip
+for two to an NBA game, an NBA Hangtime cabinet, 25 jerseys, 1,000 T-shirts; entries closed September 13, 1996). It's
+an operator setting, TRIVIA CONTEST (adjustment `20h`, on from the factory). Attract mode shows the prize screen and the
+"TRIVIA MASTERS" record table.
+
+At game over (`FFA217A0h`), a player gets questions only after a full game (`@1137A30h` = 4, i.e. all four quarters)
+and only while their trivia points (`@11397D0h` for player 1) are under 100 (`FFB7BAB0h`). Each question is multiple
+choice, worth 2 points. At 100 points the game shows "CONTEST DRAWING QUALIFIER", then "CONGRATUATIONS !!!" (sic) and an
+8-letter password to mail to a Phoenix P.O. box with your name and PIN. Checked in MAME by forcing the quarter counter
+to 4 and the points to 98, then answering "What is the name of the NBA franchise in Miami?" with Heat: AAAAAA 0000 got
+`EOFTCSJN`. A one-quarter game (two credits) never reaches the questions.
+
 ## Maximum Hangtime
 
 Same name check and the same 13 match-up numbers. The joystick codes are rewritten (`FF8C4930h` on): the court becomes
@@ -146,6 +160,10 @@ Webb becomes `SPUD`), `MDOC` is fixed to 2000, `JASON`'s PIN becomes 0, 7, 2, SP
 `MDOC`, `JASON`, `ZIRIN`, `HEITH`, `MATT B`, `K DAY` and `TURMEL` were typed in MAME (L1.03); all 86 were also checked
 by writing them into the check. The prototype and the other two revisions have the same table.
 
+The same read/write tap on Maximum Hangtime (and a full disassembly) finds no leftover flag like NBA Hangtime's hot
+spots: every joystick and match-up word has a setter and a gameplay reader except 6-1-6 (`@1136CC0h` here), which is
+again read only by its own check, so it does nothing in Maximum Hangtime either.
+
 ## N64 and PlayStation
 
 Both keep the arcade table, packed as bytes (N64 ROM `0xA0440`; PlayStation in `PRES.BIN` inside `BIGLUMP.BIN`, file
@@ -153,12 +171,24 @@ offset `0x16C8C`), with some entries blanked out by giving them an impossible na
 ASCII "0000" PIN:
 
 - **N64:** `NOBUD`, `MARIUS`, `NORTH` and `JIGGET` blanked; `MDOC` still 2, 0, 0, 0 stored as 3, 1, 0, 0, so still
-  unreachable.
+  unreachable. The European cartridge's table (`0x9F600`) differs in only those two bytes: it stores 3, 1, 1, 1, so
+  `MDOC` 2000 works there.
 - **PlayStation:** `NOBUD`, `MUNDAY`, `NORTH` and `JIGGET` blanked; `MARIUS` renamed `OLDBOY` 0505; `MDOC` fixed to
   2000.
 
-Both also keep the arcade's 13 match-up numbers (N64 `0xA0148`, PlayStation `PRES.BIN` `0x13598`). Neither was
-checked in play.
+Both also keep the arcade's 13 match-up numbers (N64 `0xA0148`, PlayStation `PRES.BIN` `0x13598`), not checked in play.
+`OLDBOY` 0505 was typed on the PlayStation in BizHawk: the old bearded head from the arcade's `MARIUS`, with hidden
+attributes.
+
+Both also keep the arcade's joystick detectors, entered in BizHawk at the match-up and found by RAM diffs:
+
+- **N64:** A is Turbo, C-Down Shoot, C-Right Pass. The flags are 16-bit words at RDRAM `0xA6EB2` in the arcade's order
+  (lock, big heads, huge heads, shot %, no arrows, no drift, no assistance, ABA ball, rooftop). All ten codes, the
+  four-at-once code included, set their flags. Turns need the control stick: the same circle on the D-pad didn't count.
+- **PlayStation:** Square (or any shoulder button) is Turbo, X or Triangle Shoot, Circle Pass. Big heads (`0x7320C`),
+  shot % (`0x7322C`, D-pad turn), ABA ball (`0x732EC`), rooftop (`0x735DC`) and four at once (all four) were checked.
+
+Neither has Maximum Hangtime's hot spots code.
 
 All 63 files in the PlayStation `BIGLUMP.BIN` are named in the program, so none is orphaned. The disc also carries
 `HANGTIME.MAP`, the mastering tool's log (BuildCD 2.39.b, 27 April 1997, paths under `D:\HANGTIME\VERSION\PSX\RELEASE\CD`).
@@ -211,6 +241,7 @@ then applies them (`$C5779F`):
   stealth turbo, unlimited turbo and fast passing.
 - After the match-up the game ORs every player's bits together and plays the cheat ending (`JML $C800E9`) if all eight
   are set (`$C5753E`). The long code is one way to get there; the other eight codes, split across any players, are another.
+  All eight entered on one pad in a single match-up (three frames per step) in Mesen 2 reached `$C800E9`.
 - Bits 1 and 6 press A, B and Y once each, which also leaves the numbers on 1-1-1, tournament mode. Tournament mode
   clears the number-code flags (`$C311C5`) before the joystick bits are applied, so it cancels number codes typed earlier
   but not these.
@@ -253,6 +284,19 @@ each new press with a list):
 
 All three entered in BizHawk.
 
+### Other Genesis leftovers
+
+- Thirteen built-in player records at `$36374` (MARTIN, CARLOS, CARLTN, EUGENE, DIVITA, JAPPLE, TURMEL, then Funcom's
+  NILS, KRILLE, GLENN, TOMMY, TORE, COLIN, all PIN 0000). They seed the attract-mode record screens (`$3664A` walks them
+  before the saved records); the record lookup at name entry doesn't use them, and typing TURMEL 0000 changed nothing.
+- "SVEN-BERTIL", "EVERT", "KROKODILEN" and "CARL-HENRIK" sit after "PRESS  START" at `$5A30` with nothing pointing at them.
+
+### European versions
+
+The European Super Nintendo and Genesis cartridges have the same name tables, match-up numbers, joystick sequences,
+options-screen sequences and preset records as the US ones, only moved (Super Nintendo number table `0x577C2`, sequences
+`0x5B429`; Genesis numbers `$12A34`, presets `$37838`). The European N64 differs from the US in its `MDOC` PIN (above).
+
 ## The logo
 
 The arcade only draws its logo as part of the full-screen title picture (ten 8-bit tiles of one composited image,
@@ -260,6 +304,13 @@ The arcade only draws its logo as part of the full-screen title picture (ten 8-b
 picture. The Genesis title puts the logo on its own planes (A and the window) over the background on plane B, so
 `tools/img/logo_hangtime.png` is the Genesis logo, cut by taking the frame with plane B switched off and keeping the
 pixels that don't change when it's switched back on.
+
+## Not covered
+
+- Unused arcade graphics: 686 image-header-shaped records in the program have no direct pointer, but most are
+  animation frames reached through frame tables, and showing them needs a decoder for the board's graphics format.
+- Arcade code coverage: MAME's Lua can't see every instruction fetch at a usable speed, so there's no list of routines
+  that never run.
 
 ## Tests
 
