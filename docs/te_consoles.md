@@ -167,11 +167,14 @@ game tests them:
   **"CARTRIDGE MEMORY CLEARED"** (`$6914` = -8). Not on the published list. Checked in BizHawk.
 - After the 27-team check (`$806C0E`): if any player's record has beaten all 27 teams and Tournament Mode is off, the
   extended rosters open (`$5F28`), and **each player without a secret character gets a 1-in-5 chance** (1 in 8 when
-  their record's byte 6 is set) of a random character from the secret table (`$860CE0`). Read from the code only:
-  BizHawk's Jaguar core doesn't send keypad 0 to 5, so 4 + 7 + 8 can't be pressed, and a patched ROM didn't boot.
+  their record's byte 6 is set) of a random character from the secret table (`$860CE0`). BizHawk's Jaguar core doesn't
+  send keypad 0 to 5, so 4 + 7 + 8 can't be pressed; instead a read callback set player 1's teams-beaten byte (`$5F36`)
+  to 27 just as the check read it. Team select then showed the All-Stars and both slots as random secret characters
+  (Gorilla and Morty).
 
 <p align="center">
   <img src="images/jag_memory_cleared.png" alt="CARTRIDGE MEMORY CLEARED" width="326">
+  <img src="images/jag_champion_secret.png" alt="Team select with a 27-team record: Gorilla and Morty, and the All-Stars" width="326">
 </p>
 
 ## Game Boy

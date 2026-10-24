@@ -128,7 +128,7 @@ footer a { color: var(--orange); text-decoration: none; display: inline-flex; al
       <a href="https://github.com/maxxthunder/nbajam/tree/main/docs">research notes</a>.</p>
   </details>
 
-  <footer><a href="https://github.com/maxxthunder/nbajam"><svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg>maxxthunder/nbajam</a><a href="https://github.com/maxxthunder/nbajam/blob/main/CHANGELOG.md">v1.1.8</a></footer>
+  <footer><a href="https://github.com/maxxthunder/nbajam"><svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg>maxxthunder/nbajam</a><a href="https://github.com/maxxthunder/nbajam/blob/main/CHANGELOG.md">v1.1.9</a></footer>
 </main>
 <script>
 // Card: [title, where, input, new?, note]. Input: "ini:MJT|Mar 22" = initials (and birthday);
@@ -343,6 +343,15 @@ const GROUPS = {
     ['Passwords', 'Type the initials, then the password. Both decode to the record they were posted with.', [
       ['27–0, streak 27, all 27 teams beaten', 'Initials, then password', 'pw:LJP|Z443C1WY434S2J', false],
       ['108–117, streak 173, 18 teams beaten', 'Initials, then password', 'pw:RAT|12345432123454', false]]],
+    ['Match-up codes', "At Tonight's Match-Up. Presses of A, B, X and Y all count, including the press that starts a hold. Keep holding until the screen changes by itself. Both revisions are the same.", [
+      ['Power-up defense', MU, 'Press B exactly 5 times', false],
+      ['Power-up steals', MU, 'Press B at least 15 times and turn the D-pad through all 8 directions', false],
+      ['Power-up dunks', MU, 'Press B exactly 13 times and turn the D-pad through all 8 directions', false],
+      ['Power-up fire', MU, 'Press B exactly 7 times; then hold Up + Y + B until the screen changes', false],
+      ['Power-up turbo', MU, 'Press B at least 5 times; then hold Y + B + A until the screen changes', false],
+      ['Display shot percentage', MU, 'Press B once; then hold Down + B + A until the screen changes', false,
+        'almarsguides leaves out Down; without it nothing happens (checked).'],
+      ['Juice mode', MU, 'Press B exactly 13 times; then hold B + X until the screen changes', false, 'Turns juice mode on, or off again.']]],
   ],
   genesis: [
     ['Secret characters', 'Type the first two initials as usual. On the third, hold Start and press the button shown. Which button depends on the first initial: A E I M Q U Y → A, B F J N R V Z → B, anything else → C.',
@@ -353,10 +362,27 @@ const GROUPS = {
       [...gen('All power-ups', 'SNK', false), '', [['26', 'Nail in the coffin!']]],
       [...gen('"It\'s a blowout!"', 'SAM', true), '', [['22', 'Play']]], [...gen('"Hello!"', 'GAP', true), '', [['20', 'Play']]],
       ...['CHR', 'JAZ', 'ZOB'].map(i => [...gen('Random speech clip', i, true, 'Plays one of these four at random.'), '', RANDOM_CLIPS])]],
+    ['Match-up codes', "At Tonight's Match-Up. Each press of a button counts, including the press that starts a hold. Keep holding until the screen changes by itself. Both revisions are the same.", [
+      ['Power-up defense', MU, 'Press B exactly 5 times', false],
+      ['Power-up intercept', MU, 'Press B at least 15 times and turn the D-pad through all 8 directions', false],
+      ['Power-up dunks', MU, 'Press B exactly 13 times and turn the D-pad through all 8 directions', false],
+      ['Power-up fire', MU, 'Press B exactly 7 times; then hold Up + B + C until the screen changes', false,
+        "Cyberly's \"multiple power-ups\" (B seven times, then hold B + C + Up) is this code: it gives fire only (checked)."],
+      ['Power-up turbo', MU, 'Press B at least 5 times; then hold A + B + C until the screen changes', false],
+      ['Display shot percentage', MU, 'Press B once; then hold Down + A + B until the screen changes', false],
+      ['Juice mode', MU, 'Press B exactly 13 times; then hold B + C until the screen changes', false, 'Turns juice mode on, or off again.']]],
   ],
   segacd: [
     ['Secret characters', 'Pick each letter with the button shown: a plain A, or hold Start and press A, B or C. On the stats screen that follows, press A, B or C (not Start) to go on to team select. The first 12 are the Genesis characters with new button codes; the other 16, including four dinosaurs, are only on the Sega CD.',
       SCD.map(segacd)],
+    ['Match-up codes', "At Tonight's Match-Up, on any player's pad. The Sega CD uses button sequences instead of the cartridge's press counts: a wrong press starts that sequence over. ★ New: not on any list we found.", [
+      ['Power-up defense', MU, 'A, B, C, B, C, A, Up', true],
+      ['Power-up fire', MU, 'C, B, C, B, C, B', true],
+      ['Power-up intercept', MU, 'Up, Down, Left, Right, Up, Down, Up, Down', true],
+      ['Power-up dunks', MU, 'C, C, C, A, A, A, B', true],
+      ['Power-up turbo', MU, 'C, A, C, A, C, A', true],
+      ['Display shot percentage', MU, 'A, Right', true],
+      ['Juice mode', MU, 'Up, Right, Down, Left, A, B, C', true]]],
   ],
   arcade: [
     ['Secret characters', 'Revisions 1.00, 2.00 and 3.01 have the same 13; the prototypes have none.', [
@@ -500,7 +526,7 @@ const GROUPS = {
       ['Clear cartridge memory', 'Any time', 'Hold * + # to reset, and keep holding them with Option', true,
         'The game restarts on "CARTRIDGE MEMORY CLEARED" with the saved options back at their defaults.'],
       ['Random secret character', 'Team select', 'Bring a record that has beaten all 27 teams', true,
-        "Read from the code, not tested: each player not already playing a secret character gets a 1-in-5 (or 1-in-8) chance of being given a random one. The same record also opens the extended rosters. The emulator can't press the keypad's 0 to 5, so 4, 7, 8 couldn't be used to set it up."]]],
+        "Each player slot not already a secret character gets a 1-in-5 (or 1-in-8) chance of a random one, and the All-Stars team appears. Checked with the record set to 27 teams in memory, since the emulator can't press the keypad's 4: both slots came up secret (Gorilla and Morty)."]]],
   ],
   te32x: [
     ['Secret characters', 'At the initials screen, on each letter marked Start, hold Start and press the button. Enter the other letters as usual. The buttons run the other way from the Genesis codes.',

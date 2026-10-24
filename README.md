@@ -1,6 +1,6 @@
 # NBA Jam — Password Checker and Secret Codes
 
-**[Password checker →](https://maxxthunder.github.io/nbajam/)** &nbsp; **[Secret codes →](https://maxxthunder.github.io/nbajam/codes.html)** &nbsp;[![v1.1.8](https://img.shields.io/badge/version-1.1.8-e8742c)](CHANGELOG.md)
+**[Password checker →](https://maxxthunder.github.io/nbajam/)** &nbsp; **[Secret codes →](https://maxxthunder.github.io/nbajam/codes.html)** &nbsp;[![v1.1.9](https://img.shields.io/badge/version-1.1.9-e8742c)](CHANGELOG.md)
 
 <p align="center"><img src="docs/images/stats_screen.png" alt="The stats screen for LJP / Z443C1WY434S2J: rank 1, 27 W 0 L, streak 27 wins" width="384"></p>
 
@@ -17,8 +17,10 @@ Both pages work offline too: save [`tools/nbajam_password_checker.html`](tools/n
 
 ## What's new here
 
-The codes page marks 57 codes that no published list had with **★ New**. Among them:
+The codes page marks 64 codes that no published list had with **★ New**. Among them:
 
+- **Sega CD match-up codes.** The Sega CD uses its own seven button sequences for the power-ups; none were on any
+  list.
 - **PC match-up codes.** The PC has its own 19 key sequences; 8 weren't on the published list, and three codes
   set flags the game never uses.
 - **Jaguar hidden codes.** A soft-reset combination that clears the cartridge memory, and a random secret character

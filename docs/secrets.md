@@ -205,3 +205,46 @@ press short (13 then 1 + 2; 14 then A + B): that only works if the two buttons g
 counts. Cheat Happens also lists fire as 7 presses then Down + Left, which does nothing (checked). Tournament Edition
 on the handhelds has no such list: its juice mode is an option on the options screen.
 
+
+## Super Nintendo, Genesis and Sega CD: match-up power-ups
+
+The three home consoles have the same seven power-ups as the handhelds. The cartridges count presses; the Sega CD
+uses button sequences.
+
+**Super Nintendo** (`$8AFDF4`, both revisions) and **Genesis** (`$1D9B22`, both revisions) count each player's new
+presses during Tonight's Match-Up (SNES `$1CF9` + 2 × player, any of A, B, X, Y; Genesis `$FF1D28`), note which of the
+8 stick directions were seen (SNES `$1D01`, Genesis high byte of `$FF1D30`) and, when the screen ends, the buttons
+still held (SNES `$1D09`, Genesis `$FF1D30`). The press that starts a hold counts.
+
+| Power-up | Presses | Also | SNES flag | Genesis flag |
+|----------|---------|------|-----------|--------------|
+| Defense | exactly 5 | | `$0AD0` | `$FF1D28` |
+| Steals / intercept | 15 or more | all 8 directions | `$0AC8` | `$FF1D29` |
+| Dunks | exactly 13 | all 8 directions | `$0AE8` | `$FF1E12` |
+| Fire | exactly 8 | SNES Up + Y + B held, Genesis Up + B + C | `$0AE0` | `$FF1E16` |
+| Turbo | 6 or more | SNES Y + B + A held, Genesis A + B + C | `$0AD8` | `$FF1E1A` |
+| Shot percentage | exactly 2 | SNES Down + B + A held, Genesis Down + A + B | `$0AC6` | `$FF1D38` |
+| Juice mode (toggle) | exactly 14 | SNES B + X held, Genesis B + C | `$1D39` | `$FF1D5A` |
+
+All 7 checked on all four cartridges (Mesen 2 and BizHawk). The published lists have them, with two slips:
+almarsguides' SNES shot percentage (tap once, hold B + A) leaves out Down and does nothing, and Cyberly's Genesis
+"multiple power-ups" (B seven times, then hold B + C + Up, said to give fire, goaltending and turbo) is the fire code
+and gives fire only. Both checked.
+
+**Sega CD.** The main CPU's match-up routine (`MAIN.BIN`, loaded at `$FF10A0`; routine at `$FF2B36`) keeps each
+player's place in seven sequences (`$FF2B74` + 4 × sequence + player; `$FF` when done) and copies the result to the
+sub CPU through Word RAM (`$239006`). A wrong press starts that sequence over. The sub CPU then copies the flags into
+the players exactly as the Genesis does (`$010A28`-`$010AE4` in PRG RAM), which is what names them:
+
+| Power-up | Sequence | Flag (PRG RAM) |
+|----------|----------|----------------|
+| Defense | A, B, C, B, C, A, Up | `$816A` |
+| Fire | C, B, C, B, C, B | `$8260` |
+| Intercept | Up, Down, Left, Right, Up, Down, Up, Down | `$816B` |
+| Dunks | C, C, C, A, A, A, B | `$825C` |
+| Turbo | C, A, C, A, C, A | `$8264` |
+| Shot percentage | A, Right | `$817A` |
+| Juice mode | Up, Right, Down, Left, A, B, C | game-wide (play runs faster) |
+
+All 7 checked in BizHawk: each completes its sequence, and after tip-off the flag is set in the game (none of the
+others are). None are on any list we found; Sega Retro's Mega-CD section is empty.

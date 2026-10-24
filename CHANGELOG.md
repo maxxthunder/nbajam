@@ -2,6 +2,11 @@
 
 Changes to the [password checker](https://maxxthunder.github.io/nbajam/) and [secret codes page](https://maxxthunder.github.io/nbajam/codes.html). The version is shown at the bottom of the page.
 
+## 1.1.9 (2026-10-23)
+- Secret codes page: match-up power-ups for the original NBA Jam on Super Nintendo and Genesis (all seven tested;
+  two published slips corrected) and the Sega CD's own seven button sequences (all new). The Jaguar's random secret
+  character for 27-team records is now tested.
+
 ## 1.1.8 (2026-10-23)
 - Secret codes page: two hidden Jaguar codes, found by scanning every keypad check: * + # + Option after a soft
   reset clears the cartridge memory, and a 27-team record can hand players a random secret character. The PC
