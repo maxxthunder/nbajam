@@ -234,6 +234,12 @@ almarsguides' SNES shot percentage (tap once, hold B + A) leaves out Down and do
 "multiple power-ups" (B seven times, then hold B + C + Up, said to give fire, goaltending and turbo) is the fire code
 and gives fire only. Both checked.
 
+**Super Nintendo: juice mode from a 27-team record.** The second stats page (`$8ACA95`) counts the teams beaten. With
+all 27 it prints "You have defeated all 27 NBA teams!" and sets `$1D39`, the same flag as the match-up code, for the
+next game. That explains the "juice mode password" in a Super Nintendo FAQ, `HRY` / `QF3B43T QJY55TF`: it decodes to
+86–0, streak 86, all 27 teams beaten. Checked in Mesen 2: that password and `LJP` / `Z443C1WY434S2J` turn `$1D39` on
+when the page shows; `RAT` / `12345432123454` (18 teams) doesn't. With 14 to 26 teams the page lists the teams left.
+
 **Sega CD.** The main CPU's match-up routine (`MAIN.BIN`, loaded at `$FF10A0`; routine at `$FF2B36`) keeps each
 player's place in seven sequences (`$FF2B74` + 4 × sequence + player; `$FF` when done) and copies the result to the
 sub CPU through Word RAM (`$239006`). A wrong press starts that sequence over. The sub CPU then copies the flags into
@@ -251,3 +257,50 @@ the players exactly as the Genesis does (`$010A28`-`$010AE4` in PRG RAM), which 
 
 All 7 checked in BizHawk: each completes its sequence, and after tip-off the flag is set in the game (none of the
 others are). None are on any list we found; Sega Retro's Mega-CD section is empty.
+
+## Super Nintendo: controller warning screens
+
+Every frame the pad routine (`$8AA86B`) checks two things, and either one stops the game with a full-screen message
+from bank `$8D` (it disables interrupts, so only a reset gets out):
+
+- **Unsupported device** (`$8DFD2A`): the ID bits of a pad (the low four bits of `$4218`/`$421A`, which a standard
+  pad reads as zero) stay set for 16 frames (`$1CCB`), as a mouse or Super Scope would do.
+- **Multitap in port 1** (`$8DFD21`): the multitap check (`$80B02B`) puts `$80` in `$1D3D`.
+
+![Unsupported-device screen](images/snes_device_error.png) ![Multitap warning](images/snes_multitap_warning.png)
+
+Both forced in Mesen 2 (`$1CCB` = `$10`; `$1D3D` = `$80` at `$8AA86B`). Neither is a code, but neither appears on any
+list we found.
+
+**Code that never ran.** A Mesen 2 run with an execute callback on all of ROM (attract mode, the menus, a password,
+Tonight's Match-Up and a stretch of play) ran 19,403 of the 81,072 instructions the disassembler decodes. Among the
+code that didn't run, the blocks that read the pads are the multitap reader (`$80B0E2`), the screens above, pause
+handling and screens the run didn't reach (stats, records). No unknown button check turned up, but one run can't
+reach everything, so this is not a proof.
+
+## Sega CD: disc files
+
+The disc's files were checked against the names in `SUB.BIN` (the loader) and the main programs. `Q1S`-`Q4S` and
+`Q1S4`-`Q4S4` come from the patterns `Q?S.BIN` and `Q?S4.BIN`, and `FRONT.BIN`, `GAME.BIN` and `QUARTER.BIN` each
+appear twice in the directory with identical contents (copies placed for faster seeking). `ABS.TXT`, `BBY.TXT` and
+`CPY.TXT` are the standard ISO 9660 abstract, bibliography and copyright files. The one loose end runs the other way:
+`FRONT.BIN` and `QUARTER.BIN` ask for `ADVERT?.VID`, and no such file is on the disc (only `ENDVID.VID` and
+`HALFTIME.VID`). In `FRONT.BIN` (loaded at `$E000`) the routine at `$F3B6` puts `1`-`4` in place of the `?`, takes
+that advert's two parameters from `$F3E2`, and starts the video player (`$F422`); `$F3A2` steps a counter
+(`$BC2E`) through 0-3 so the four adverts would play in turn. Nothing calls either routine or the setup at `$F374`,
+so the advert breaks were cut along with the files.
+
+## Genesis: Iguana's crash screen
+
+Both Genesis revisions point the 68000's error vectors (bus error, address error, illegal instruction and so on;
+`$141262`-`$14137E` on the original) at a crash screen that prints the error and every register: "Iguana debug has
+found an error. Please report all the below info to Iguana Entertainment Inc." It's a leftover from testing; the
+finished game only reaches it if the CPU faults. Forced in BizHawk by putting an odd return address on the stack:
+
+![Iguana debug screen after an address error](images/genesis_iguana_debug.png)
+
+Tournament Edition on Genesis sends every vector to one handler and has no such screen.
+
+The Genesis also has a device-error screen like the Super Nintendo's ("An error has occured with a device connected
+to the control pad connectors..."). The Team Player reader (`$1D9E28`) shows it when the adapter's header isn't
+`$030F0000` for 36 reads in a row (`$FF1D5C`). It only runs with a Team Player detected, so it wasn't forced.

@@ -2,6 +2,13 @@
 
 Changes to the [password checker](https://maxxthunder.github.io/nbajam/) and [secret codes page](https://maxxthunder.github.io/nbajam/codes.html). The version is shown at the bottom of the page.
 
+## 1.2.2 (2026-10-24)
+- Secret codes page: three cut PlayStation Tournament Edition characters (Wright, Kita, Sprite Boy) with their
+  portraits; a Super Nintendo juice-mode password, since beating all 27 teams turns juice mode on. Notes: Arcade
+  DIP switches, Super Nintendo controller warning screens, Genesis crash screen, the Sega CD's cut advert player,
+  unused disc files on the Saturn, PlayStation and Sega CD, and roster checks on the other versions. Also adds the
+  disassembly, emulator and test scripts.
+
 ## 1.2.1 (2026-10-23)
 - Secret codes page: the arcade games' preset records (13 on the original, 7 more on Tournament Edition), all tested;
   the arcade prototypes' big heads. Notes: no other hidden inputs in either arcade game, a pause-quit on the

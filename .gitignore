@@ -14,3 +14,12 @@ __pycache__/
 .claude/
 *.zip
 NBAJamTo/
+
+# emulator test output
+tools/tests/_run.lua
+tools/tests/_s.lua
+tools/tests/log.txt
+tools/tests/*.png
+tools/tests/*.ram
+tools/tests/nvram/
+tools/tests/cfg/

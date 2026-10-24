@@ -246,6 +246,36 @@ All 53 checked in BizHawk (US BIOS `scph5501`): each shows "SECRET PLAYER" and t
 Unlike the Saturn, **L1 + R1 must be held** on the letter and date presses: without them `TUR` January 31 shows
 "NO RECORD".
 
+### PlayStation: three cut characters
+
+The roster in `OVERLAY.BIN` (records of `0x34` bytes from `0x2BE04`, name at `+0x1B`) has 56 secret records, but the
+code table points to only 53. The other three are finished characters with no code:
+
+| Record | File offset | RAM | Between |
+|--------|-------------|-----|---------|
+| `WRIGHT` | `0x2BE6C` | `$801EAE6C` | Catling and Hutchinson |
+| `KITA` | `0x2C248` | `$801EB248` | Kabuki and Max |
+| `SPRITE BOY` | `0x2C318` | `$801EB318` | Sequoia and Boo-Boo |
+
+Their portraits are in `HIDDEN.BIN` (`cd_data\hidden.bin`), an RNC file of 56 blocks of 4096 bytes in roster order:
+a 256-colour palette (15-bit, little-endian), then a 64 × 56 8-bit image. Blocks 1, 22 and 26 match no character on any
+version; the other 53 match the PlayStation portraits.
+
+Checked in BizHawk (`tools/tests/ps_cut_characters.lua`): with the `CAT` entry's pointer (`$801EE324`) changed to each
+record, `CAT` January 2 shows "SECRET PLAYER", and team select shows the cut character with name, stats and portrait.
+All three play a game normally.
+
+![The three cut characters at team select](images/ps_cut_characters.png)
+
+The Saturn roster has none of them (it drops `JAX` and `GRAY` too, and adds `KITZROW` and `FOX`).
+
+**Other versions, same check.** Saturn: all 53 secret records in file `0` (from `$06063368`) have a code. PC: the front
+end names exactly the 53 characters its table holds. Super Nintendo, Genesis and 32X: the only name without a code is
+Steven Tyler (above). Jaguar: the name table (16 bytes per ID, from `0x1D06E`) has one entry nothing else explains,
+**`BLARG`** (ID `$8D`), sitting among the extra NBA players (`$82`-`$97`) between Strickland and Dumas. No code points
+to it. Forcing the ID into the player slot freezes the game at team select, but so does a real extra player's ID
+(`$93`, Rozier), so that doesn't tell us whether BLARG is a placeholder or a dropped player.
+
 ## PC (MS-DOS)
 
 The PC version (Iguana, 1995) splits into a front end, `)-----(.EXE`, and the game, `(O)_(-).EXE`, both DOS/4GW
@@ -365,3 +395,21 @@ The Game Gear version (Iguana) works like the Game Boy one. The initials are pla
   the framebuffer with no colour conflicts, and its colours match that CLUT entry for entry.
 - **32X**: BizHawk, each character on 14 team views (3 logos). A pixel is kept if it's the same on every team and isn't
   the panel's teal, cropped at x 16-78, y 112-168.
+
+## Saturn and PlayStation: disc files
+
+Every file on both discs was checked against the names the programs use (PlayStation `SLUS_000.02`, `MOVIE.EXE` and
+`OVERLAY.BIN`; Saturn `0` and the other `.BIN` files):
+
+- **Saturn: one dunk clip never named.** `DUK.BIN` lists the video clips (`\ZZ\WB2DUK.AVI` ... `\YY\AH1DUK.AVI`, two
+  per team, plus `\END\END.AVI`). Phoenix has `PH4DUK.AVI` in the list but not `PH2DUK.AVI`, which is on the disc
+  (`ZZ`) with nothing pointing to it. The other 54 clips are all listed.
+- **PlayStation: two names don't match.** `MOVIE.EXE` lists 55 clips. For the Clippers it asks for `\2\LC3.STR` and
+  `\2\LC2HALF.STR`, but the disc has `LC3HALF.STR` and `LC2.STR`. All the other names match.
+- **PlayStation: `HIDDEN.BIN`** holds the secret-player portraits, including the three cut characters above.
+- The PlayStation's `NEW1.RAW`-`NEW7.RAW` and `END.RAW` aren't named by any program because they're the CD audio
+  tracks: the disc's track list puts track 2 at sector 70,731, where `NEW1.RAW` starts, and the eight files line up
+  with tracks 2-9. The game plays music by track number. `END.RAW` (track 9) is the same length as `NEW1.RAW`
+  (track 2), so it may be a repeat; the audio wasn't decoded.
+
+Neither mismatch was checked in play.

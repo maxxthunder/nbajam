@@ -1,0 +1,15 @@
+-- Tournament Edition (PlayStation): all 19 match-up sequences from OVERLAY.BIN, from a savestate at Tonight's Match-Up.
+-- python tools/emu/bizhawk.py tools/tests/ps_matchup.lua <PlayStation CHD>  -> per-player masks ($80084308) and global bytes.
+dofile(OUT.."pslib.lua")
+local function fl() local s="" for i=0,3 do s=s..string.format("%08X ",memory.read_u32_le(0x084308+4*i,"System Bus")) end
+  for _,o in ipairs({0x3108,0x3107,0x3106,0x30fe,0x30fd}) do s=s..string.format("%02X",memory.read_u8(0x080000-o,"System Bus")) end return s end
+local C={{"D-Pad Up","D-Pad Up","D-Pad Down","D-Pad Down","\226\150\179"},{"D-Pad Left","D-Pad Left","D-Pad Left","D-Pad Left","\226\151\139","D-Pad Right"},{"D-Pad Right","D-Pad Right","D-Pad Left","D-Pad Right","X","X","D-Pad Right"},{"D-Pad Right","D-Pad Up","D-Pad Down","D-Pad Right","D-Pad Down","D-Pad Up"},{"D-Pad Down","D-Pad Right","D-Pad Right","\226\151\139","\226\150\179","D-Pad Left"},{"\226\151\139","\226\151\139","\226\151\139","\226\150\161","D-Pad Down","D-Pad Down","D-Pad Up","D-Pad Up"},{"\226\150\161","\226\151\139","D-Pad Up","\226\150\161","\226\151\139","D-Pad Up","D-Pad Down"},{"D-Pad Up","D-Pad Down","D-Pad Left","D-Pad Right","D-Pad Left","D-Pad Down","D-Pad Up"},{"D-Pad Left","D-Pad Right","X","\226\151\139","\226\151\139","X"},{"D-Pad Down","D-Pad Down","X","\226\151\139","X","D-Pad Right","D-Pad Right"},{"D-Pad Up","D-Pad Up","D-Pad Up","D-Pad Up","D-Pad Left","D-Pad Left","D-Pad Left","D-Pad Left","\226\151\139","\226\151\139"},{"D-Pad Up","D-Pad Up","D-Pad Up","D-Pad Up","D-Pad Left","D-Pad Left","D-Pad Left","D-Pad Left","\226\151\139","\226\150\179"},{"D-Pad Up","D-Pad Right","D-Pad Right","D-Pad Left","\226\151\139","D-Pad Down","D-Pad Left","D-Pad Left","\226\151\139","\226\150\161"},{"D-Pad Up","D-Pad Down","D-Pad Up","D-Pad Down","D-Pad Right","D-Pad Up","\226\151\139","\226\151\139","\226\151\139","\226\151\139","D-Pad Down"},{"D-Pad Up","D-Pad Up","D-Pad Up","D-Pad Up","D-Pad Left","D-Pad Left","D-Pad Left","D-Pad Left","X","\226\150\179"},{"\226\151\139","\226\150\161","\226\151\139","\226\150\161","\226\151\139","\226\150\161"},{"\226\150\179","X","\226\150\179","X","\226\150\179","X","\226\150\179","X","\226\150\179","X","\226\150\179","X","\226\150\179","X"},{"\226\150\179","\226\150\161","X","\226\151\139","\226\150\179","\226\150\161","X","\226\151\139"},{"\226\151\139","X","\226\150\161","\226\150\179","\226\151\139","X","\226\150\161","\226\150\179","\226\151\139","X","\226\150\161","\226\150\179","\226\151\139","X","\226\150\161","\226\150\179"}}
+boot() HOLD={}
+code("XYZ",1,1) wait(200) press({X=true},8) wait(150) press({X=true},8) wait(200) shot("pm_start")
+local st=memorysavestate.savecorestate()
+for i,c in ipairs(C) do memorysavestate.loadcorestate(st)
+  for _,b in ipairs(c) do press({[b]=true},6) wait(4) end
+  local seen=fl() for k=1,30 do wait(20) seen=fl() if seen:find("[1-9A-F]") then break end end
+  local h="" for k=0,9 do h=h..string.format("%04X ",memory.read_u16_le(0x1F3564+2*k,"System Bus")) end
+  log((i-1).." "..seen.." hist "..h)
+end

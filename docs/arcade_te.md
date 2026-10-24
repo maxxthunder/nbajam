@@ -94,8 +94,8 @@ not 3.0 2/26, 4.0 3/03 or 4.0 3/23. **Team Swap** (halftime substitutions, hold 
 **Location-test message.** The December 1993 prototype (proto 2.00 12/17/93) has text the releases don't: "ATTENTION
 CHICAGO: WE HAVE CHOSEN THIS ARCADE FOR OUR FIRST TEST OF THE NEW NBA JAM - TOURNAMENT EDITION!", saying the game will
 be updated every few days through Christmas, records will be saved as it's updated, and asking players for ideas on
-how to improve it. It also has a set of player rating labels (ROOKIE ... SUPERSTAR, ALL STAR, BENCH WARMER, plus one
-offensive one). The big-heads, match-up count and hidden-menu checks are present as in the release (found by their instructions). The
+how to improve it. It also has a set of player rating labels (ROOKIE ... SUPERSTAR, ALL STAR, BENCH WARMER, and the
+homophobic slur "FAG BOY", which no release revision has). The big-heads, match-up count and hidden-menu checks are present as in the release (found by their instructions). The
 message wasn't brought up in MAME.
 
 ## Secret Midway menu

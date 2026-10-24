@@ -131,6 +131,13 @@ player) in rev 3.01 was listed, with the test that follows. Apart from the codes
 start handling, the operator test screens (holding both Starts leaves the switch test) and ordinary play. TE rev 4.0
 3/23 (`@10E62E0h`) gives the same result. So there are no other button codes in either game.
 
+**DIP switches.** The switch word (`@1600030h`) is read in two places: the bill-validator check at power-on (raw bit
+6) and `FF9BD000h`, which inverts it and reverses the bits of each byte. Each caller of that routine tests one
+setting, and they cover only the settings the operator menu names: test switch, power-up test, show/skip video,
+validator, 2 or 4 players, coin counters, country, coinage and coinage source. The menu itself (`FF9BB6B0h`) labels
+the other three switches (raw `0x04`, `0x08`, `0x10`) "UNUSED", and nothing else reads them. TE rev 4.0 3/23 has
+the same callers without the video check, so four switches are unused there. These match MAME's names.
+
 ## Hidden copyright message
 
 If you also hold **P1 Right, P2 Right, P2 Shoot and P2 Turbo** (MAME's names; `IN0` mask `0x5808`) as the

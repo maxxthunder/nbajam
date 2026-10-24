@@ -1,6 +1,6 @@
 # NBA Jam — Password Checker and Secret Codes
 
-**[Password checker →](https://maxxthunder.github.io/nbajam/)** &nbsp; **[Secret codes →](https://maxxthunder.github.io/nbajam/codes.html)** &nbsp;[![v1.2.1](https://img.shields.io/badge/version-1.2.1-e8742c)](CHANGELOG.md)
+**[Password checker →](https://maxxthunder.github.io/nbajam/)** &nbsp; **[Secret codes →](https://maxxthunder.github.io/nbajam/codes.html)** &nbsp;[![v1.2.2](https://img.shields.io/badge/version-1.2.2-e8742c)](CHANGELOG.md)
 
 <p align="center"><img src="docs/images/stats_screen.png" alt="The stats screen for LJP / Z443C1WY434S2J: rank 1, 27 W 0 L, streak 27 wins" width="384"></p>
 
@@ -15,29 +15,43 @@ Both pages work offline too: save [`tools/nbajam_password_checker.html`](tools/n
 [`tools/nbajam_codes.html`](tools/nbajam_codes.html) and open it in a browser (the codes page needs `tools/img/` and
 `tools/audio/` next to it for pictures and sound).
 
+## What's on the codes page
+
+| Version | Secret characters | Match-up codes | Also |
+|---------|:-:|:-:|------|
+| NBA Jam: arcade | ✓ | ✓ | tank game, hidden menu and copyright screen, preset records |
+| NBA Jam: Super Nintendo, Genesis | ✓ | ✓ | passwords (SNES), announcer codes (Genesis) |
+| NBA Jam: Sega CD, Game Boy, Game Gear | ✓ | ✓ | |
+| Tournament Edition: arcade | ✓ | ✓ | hidden menu, preset records, other codes |
+| Tournament Edition: Super Nintendo, Genesis, 32X | ✓ | ✓ | hidden title-menu codes |
+| Tournament Edition: Saturn, PlayStation | ✓ | ✓ | preset records, three cut PlayStation characters |
+| Tournament Edition: PC, Jaguar | ✓ | ✓ | Jaguar keypad codes |
+| Tournament Edition: Game Boy, Game Gear | ✓ | | |
+
+Every code was entered in an emulator unless its card says otherwise.
+
 ## What's new here
 
-The codes page marks 84 codes that no published list had with **★ New**. Among them:
+The codes page marks 87 codes that no published list had with **★ New**:
 
-- **Sega CD match-up codes.** The Sega CD uses its own seven button sequences for the power-ups; none were on any
-  list.
-- **PC match-up codes.** The PC has its own 19 key sequences; 8 weren't on the published list, and three codes
-  set flags the game never uses.
-- **Jaguar hidden codes.** A soft-reset combination that clears the cartridge memory, and a random secret character
-  for players whose record has beaten all 27 teams.
-- **32X match-up codes.** The 32X has its own 18 sequences, not the Genesis ones; 12 weren't on any list.
-- **An unused match-up code** on the Super Nintendo, Genesis and 32X: the game recognises it but never applies it,
-  probably a cut power-up.
-- **Three wrong Super Nintendo match-up codes** on a published list (three pointers, teleport pass, rainbow shots).
-- **Hidden title-menu codes** for Tournament Edition: a record one team short of the All-Stars on Super Nintendo and
-  Genesis, and the 32X's own All-Star and one-short codes.
-- **Genesis announcer codes**: initials that play a speech clip, with the clips on the page to listen to.
-- **Arcade preset records**: 23 records the arcade games write into memory when set up; entering one of the 13
-  that aren't secret characters opens its record.
-- **Arcade**: the Secret Midway Menu (an operator stats screen), the tank game's reward, a hidden copyright
-  message, Dennis Rodman in two TE revisions, and the prototype and revision 2.1 birthdays.
+- **Match-up codes nobody had listed**: the Sega CD's seven button sequences, 12 of the 32X's 18, 8 of the PC's 19,
+  and a code on Super Nintendo, Genesis and 32X that the game recognises but never applies (probably a cut power-up).
+- **Hidden codes**: Tournament Edition title-menu codes (a record one team short of the All-Stars, and the 32X's
+  own codes), the Jaguar's cartridge-memory clear and its random secret character for 27-team records, and the
+  arcade's Secret Midway Menu, tank-game reward and hidden copyright message.
+- **Preset records**: the 23 records the arcade games write into their memory; the 13 that aren't secret characters
+  open a saved record.
+- **Cut characters**: three finished PlayStation characters with no code (Wright, Kita, Sprite Boy).
+- **Characters**: Dennis Rodman in two arcade Tournament Edition revisions, and the prototype and revision 2.1
+  birthdays.
+- **Leftovers in the research notes**: Iguana's crash screen on Genesis, the Super Nintendo's controller warnings, the
+  Sega CD's cut advert breaks and a Saturn dunk clip nothing plays.
+- **Genesis announcer codes**: initials that play a speech clip, with the clips on the page.
 
-## Supported versions
+Published codes that don't work as printed (wrong buttons, missing presses, codes that do nothing) are corrected on
+their cards.
+
+## Passwords by version
 
 | Game | Passwords |
 |------|-----------|
@@ -61,6 +75,7 @@ All are valid in the game and decode to the record they were made with.
 | Game | Initials | Password | Record |
 |------|----------|----------|--------|
 | NBA Jam | `LJP` | `Z443C1WY434S2J` | 27–0, streak 27, all 27 teams beaten |
+| NBA Jam | `HRY` | `QF3B43TQJY55TF` | 86–0, streak 86, all 27 teams beaten (turns on juice mode) |
 | NBA Jam | `RAT` | `12345432123454` | 108–117, streak 173, 18 teams beaten |
 | Tournament Edition (Game Boy, Game Gear) | `RAT` | `BZZ6DZ37KY` | 100–7, streak 50, 20 teams beaten |
 
@@ -112,6 +127,9 @@ python tools/nbajam_te_password.py RAT BZZ6DZ37KY
 | `tools/check_checker.py` | Checks that the page's JavaScript agrees with both Python tools (needs Node.js) |
 | `tools/nbajam_romcheck.py` | Checks `nbajam_password.py` against the game's own code in Mesen 2 (needs the ROM) |
 | `tools/disasm.py`, `tools/reasm.py` | SNES disassembler and reassembler |
+| `tools/dis/` | Small disassemblers (68000, SH-2, Z80, SM83, MIPS), a DOS/4GW LE reader, and Game Boy / Game Gear pad-check scanners (need `capstone` for 68000, SH-2 and MIPS) |
+| `tools/emu/` | Scripted runners for BizHawk, MAME, Mesen 2 and DOSBox-X (set `EMUHAWK`, `MAME`, `MESEN`, `DOSBOX`) |
+| `tools/tests/` | The tests run for the codes page: match-up codes (Super Nintendo, Genesis, 32X, PlayStation, Saturn, Jaguar, arcade), the PlayStation cut characters and the Super Nintendo 27-team juice mode |
 | `disasm/snes/` | 65816 listings of the original ROM, one file per 32 KB bank |
 | `disasm/names.txt`, `disasm/entries.txt` | Names for routines and RAM; code addresses seen running in Mesen |
 | [CHANGELOG.md](CHANGELOG.md) | What changed in each version |
