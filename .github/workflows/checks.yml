@@ -22,6 +22,11 @@ jobs:
         run: python tools/nbajam_te_password.py
       - name: Web checker matches nbajam_password.py
         run: python tools/check_checker.py
+      - name: Both pages' scripts parse
+        run: |
+          for f in tools/nbajam_codes.html tools/nbajam_password_checker.html; do
+            node -e "const s=require('fs').readFileSync('$f','utf8'); new Function([...s.matchAll(/<script>([\s\S]*?)<\/script>/g)].map(m=>m[1]).join('\n'))" || { echo "$f script doesn't parse"; exit 1; }
+          done
       - name: Every password on the codes page and in the README decodes to its record
         run: python tools/check_codes.py
       - name: Page footer and README badge match the CHANGELOG version

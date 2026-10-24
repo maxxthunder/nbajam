@@ -335,6 +335,11 @@ Claims from published lists, checked here:
   driver at `$C5:C5DA`) and a second, uncalled copy of an upload loop (`$C5:B7FD`/`$C5:B810`) that sends the same SLICK
   driver. Pointing the boot upload at that second copy in BizHawk gave silence, as a driver waiting for commands would.
   No routine decompresses or uploads the Alfatech driver, so the song can't be heard without patching the game.
+- **N64: the "unused" credits play.** A published list says there's no way to show them. Attract mode (`0x80044120`) counts its
+  loops in `0x800A76BC` and calls the credits routine (`0x80044AC8`, the only code that loads those strings) whenever
+  the count is 2 mod 4: the third loop, about 8 minutes after power-on, and every fourth after that. Checked in BizHawk
+  (with the counter set to 1 to save a loop): Programming: Jamie Rivett, Gary Liddon, Graeme Webb; Graphics: Terry Ford;
+  Music: Rob Atesalp; then the testers, producers and the arcade credits.
 - **Build dates** (all present): Super Nintendo "September 24 1996 11:37" and henrik@funcom.com (`0xC971`); N64 US
   "Oct 29 1996 10:25:52" (`0xA3650`) and EU "Jun 3 1997 16:22:11" (`0x97256`), with the memory-manager error text
   (`0xA34B0`); PlayStation "Apr 27 1997" in `SLUS_003.29` (`0x4E1D3`).

@@ -184,7 +184,7 @@ footer a { color: var(--orange); text-decoration: none; display: inline-flex; al
       <a href="https://github.com/maxxthunder/nbajam/tree/main/docs">research notes</a>.</p>
   </details>
 
-  <footer><a href="https://github.com/maxxthunder/nbajam"><svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg>maxxthunder/nbajam</a><a href="https://github.com/maxxthunder/nbajam/blob/main/CHANGELOG.md">v1.3.6</a></footer>
+  <footer><a href="https://github.com/maxxthunder/nbajam"><svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg>maxxthunder/nbajam</a><a href="https://github.com/maxxthunder/nbajam/blob/main/CHANGELOG.md">v1.3.7</a></footer>
 </main>
 <script>
 // Card: [title, where, input, new?, note]. Input: "ini:MJT|Mar 22" = initials (and birthday);
@@ -789,12 +789,15 @@ const GROUPS = {
   ],
   mht: [
     ['Added in Maximum Hangtime', "Entered the same way. Maximum Hangtime keeps NBA Hangtime's 61 entries except WEBB (and fixes MDOC and JASON), and adds the rest. These were typed in MAME or checked by writing the table's values in. The 13 match-up numbers are the same.",
-      [['Marc Williams (M-Doc)', NP, 'pw:MDOC|2000', false, 'Unreachable in NBA Hangtime. Typed in MAME.', 'hangtime/ht_mdoc'], ['Jason Skiles', NP, 'pw:JASON|0, 7, 2, SPC', false, 'The PIN now ends with the SPC key. Typed in MAME.', 'hangtime/ht_jason'],
+      [['Marc Williams (M-Doc)', NP, 'pw:MDOC|2000', false, 'Fixed here; in NBA Hangtime its PIN is stored so it cannot be typed. Typed in MAME.', 'hangtime/ht_mdoc'], ['Jason Skiles', NP, 'pw:JASON|0, 7, 2, SPC', false, 'The PIN now ends with the SPC key. Typed in MAME.', 'hangtime/ht_jason'],
         ...MHT.map(([name, pin, who, note]) => [who, NP, `pw:${name}|${pin}`, !['ZIRIN', 'HEITH', 'MATT B', 'K DAY'].includes(name), note || '', `hangtime/mht_${name.toLowerCase().replace(' ', '_')}`])]],
     ['Match-up joystick codes', "Maximum Hangtime moves the court to a Stadium/Outdoor selector and adds hot spots. Checked in MAME: outdoor court, hot spots, big heads; the rest are the same detectors as NBA Hangtime.", htJoy(MHT_JOY, ['Four at once', 'Lock in the numbers'])],
   ],
   htn64: [['Secret players', "The arcade table, read from the cartridge (not checked in play). NOBUD, MARIUS, NORTH and JIGGET are blanked out, and MDOC is still unreachable (the European cartridge fixes it).", htPort('htn64')],
     ['Match-up codes', "The arcade's 13 numbers, read from the cartridge; not checked in play.", htMuPort('htn64', 'A, C-Down, C-Right')],
+    ['Hidden credits', '', [
+      ['Credits roll', 'Attract mode, third time round', 'Leave the game on the title screen for about 8 minutes', true,
+        'Attract mode shows the full credits (Programming: Jamie Rivett, Gary Liddon, Graeme Webb, then the arcade team) once every four loops, starting on the third. Published lists call it unused. Checked in BizHawk.', 'shots/htn64_credits']]],
     ['Match-up joystick codes', "The arcade's joystick codes. A is Turbo, C-Down Shoot and C-Right Pass; turns need the control stick (the D-pad's diagonals don't count). All ten entered in BizHawk and checked by their flags. No hot spots.", htJoyHome('htn64')]],
   htps: [['Secret players', "The arcade table, read from PRES.BIN on the disc (not checked in play). NOBUD, MUNDAY, NORTH and JIGGET are blanked out, MARIUS becomes OLDBOY 0505, and MDOC is fixed to 2000.",
     [...htPort('htps'), ['Marius Enge', NP, 'pw:OLDBOY|0505', true, 'MARIUS 1005 in the arcade; renamed on PlayStation. Typed in BizHawk: the same bearded head, with hidden attributes.', 'hangtime/ht_marius']]],
@@ -839,7 +842,8 @@ function card([title, where, input, isNew, note, pic, clips], plat) {
   return el;
 }
 // codes that are in the game but do nothing, or content with no code at all
-const CUT = /^Unused code|never (applies|reads)|never true|can't be entered/i;
+const CUT = /^Unused code|never (applies|reads)|never true|can't be entered|unreachable/i;
+const CUT_GROUPS = ['Cut characters', 'Cut from the 32X', 'Unused players'];
 const $ = id => document.getElementById(id);
 function show() {
   const plat = document.querySelector('#plat input:checked').value, q = $('q').value.trim().toLowerCase(), only = $('only').value;
@@ -848,7 +852,7 @@ function show() {
     const g = document.createElement('section');
     g.className = 'group';
     g.innerHTML = `<h2>${esc(name)}</h2>${hint ? `<p class="hint">${esc(hint)}</p>` : ''}`;
-    const cards = list.filter(c => !only || (only === 'new' ? c[3] : name === 'Cut characters' || CUT.test(c[0] + ' ' + c[4])))
+    const cards = list.filter(c => !only || (only === 'new' ? c[3] : CUT_GROUPS.includes(name) || CUT.test(c[0] + ' ' + c[4])))
       .map(c => card(c, plat)).filter(el => !q || el.dataset.text.includes(q));
     total += list.length; fresh += list.filter(c => c[3]).length; shown += cards.length;
     const box = document.createElement('div');
