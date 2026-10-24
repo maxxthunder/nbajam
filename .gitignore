@@ -15,7 +15,6 @@ roms/
 !/README.md
 !/CHANGELOG.md
 __pycache__/
-.claude/
 *.zip
 
 # emulator test output

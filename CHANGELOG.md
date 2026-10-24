@@ -2,6 +2,10 @@
 
 Changes to the [password checker](https://maxxthunder.github.io/nbajam/) and [secret codes page](https://maxxthunder.github.io/nbajam/codes.html). The version is shown at the bottom of each page. **Codes page** and **Checker** are what visitors see; **Notes** are the [research notes](docs/); **README** is this repo's front page.
 
+## 1.4.2 (2026-10-24)
+- **Codes page:** the Super Nintendo Hangtime Jungle and City court screenshots, blank since 1.3.6, now show the courts.
+- **Codes page:** 137 images re-packed losslessly, 0.5 MB smaller with the same pixels.
+
 ## 1.4.1 (2026-10-24)
 - **Codes page:** "Winners don't use drugs" now matches a search typed with a plain apostrophe.
 - **Notes:** the Super Nintendo skips a repeat ad pair only some of the time, not always; the arcade's unused pictures
