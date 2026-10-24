@@ -2,6 +2,15 @@
 
 Changes to the [password checker](https://maxxthunder.github.io/nbajam/) and [secret codes page](https://maxxthunder.github.io/nbajam/codes.html). The version is shown at the bottom of each page. **Codes page** and **Checker** are what visitors see; **Notes** are the [research notes](docs/); **README** is this repo's front page.
 
+## 1.4.0 (2026-10-24)
+- **Codes page:** the Super Nintendo Tournament Edition's five unused courtside ads (MK II, an Air Morris shoe ad,
+  "Winners dont use drugs" and two Mortal Kombat ads), pictured.
+- **Codes page:** unused arcade NBA Jam graphics: the NBA Jam Session logo and a front-on hoop, plus a gold trophy and
+  a Chicago Bulls logo that no published list had.
+- **Codes page:** notes no longer say how each code was tested; that's in the research notes.
+- **Notes:** how the Super Nintendo picks its courtside ads, and the arcade image format.
+- **Repo:** `tools/arcade_gfx.py`, an arcade image decoder, and a courtside ad test.
+
 ## 1.3.9 (2026-10-24)
 - **Codes page:** the Hangtime match-up numbers tested on N64, PlayStation, Super Nintendo and Genesis (every one sets
   its flag; N64 and PlayStation show the arcade's captions, now pictured), and all ten PlayStation joystick codes.

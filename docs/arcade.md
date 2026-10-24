@@ -189,3 +189,33 @@ Checked in MAME: both codes entered as above brought up the menu and all its pag
 <p align="center">
   <img src="images/arcade_jam_info.png" alt="All five pages of the hidden menu in rev 3.01: JAM INFO, audits, score stats, team counts and the records table" width="806">
 </p>
+
+## Unused graphics
+
+`tools/arcade_gfx.py` decodes the arcade images. The program ROM (uj12/ug12, bit address `FF800000`) holds 18-byte
+image headers: width, height, x and y anchor (words), a bit offset into the graphics chips (from `02000000`; the 16
+chips form four 2 MB banks of ug/uj/ug/uj bytes), a control word (bits 12-14 bits per pixel, 0 meaning 8; bit 7 a skip
+byte at the start of each row) and a palette pointer (a word count, then 15-bit colours). The format was worked out by
+logging the blitter's registers in MAME (`01A80010` command, `01A80020`/`30` offset, `01A80060`/`70` size) and finding
+the same values in the program ROM. Rev 3.01 has 3,557 headers.
+
+The images are drawn through header pointers, through lists of them, or (for backgrounds) through records that hold
+the graphics offset directly. Four images have none of these: no pointer to the header, and their graphics offset and
+palette appear only in their own header. None was drawn in 36,000 frames (10 minutes) of attract mode in MAME,
+with every blitter offset logged. They sit together at `FFA4CB30`-`FFA4CE00`:
+
+- **NBA Jam Session logo** (`FFA4CB30`, 307 × 196), already published.
+- **Front-on hoop** (`FFA4CBC0` shot clock, `FFA4CC50` backboard, `FFA4CCE0` MIDWAY stand), already published.
+  Put together by their anchors they make one 88 × 177 hoop.
+- **NBA Jam trophy** (`FFA4CD70`, 136 × 201). Tournament Edition rev 4.0 has the same picture with its header pointed
+  to (`FFAB85B0`).
+- **Chicago Bulls logo** (`FFA4CE00`, 185 × 183). Its palette is also in a list of palettes at `FF9FB850`; the image
+  itself is never pointed to.
+
+<p align="center">
+  <img src="images/arcade_unused_graphics.png" alt="The NBA Jam Session logo, the front-on hoop, the trophy and the Chicago Bulls logo" width="740">
+</p>
+
+Not settled: the scorer's-table ads (Recycle, Midway, MK II, NBA Jam Session, Tortorice's Pizzeria, Cheer-Accident,
+Jon Hey Band and others) come from a list of about 30 header pointers at `FF8458F0`. Six weren't drawn in the attract
+loop, but whether the code can pick every entry hasn't been read.

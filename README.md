@@ -1,6 +1,6 @@
 # NBA Jam and NBA Hangtime: Password Checker and Secret Codes
 
-**[Password checker →](https://maxxthunder.github.io/nbajam/)** &nbsp; **[Secret codes →](https://maxxthunder.github.io/nbajam/codes.html)** &nbsp;[![v1.3.9](https://img.shields.io/badge/version-1.3.9-e8742c)](CHANGELOG.md)
+**[Password checker →](https://maxxthunder.github.io/nbajam/)** &nbsp; **[Secret codes →](https://maxxthunder.github.io/nbajam/codes.html)** &nbsp;[![v1.4.0](https://img.shields.io/badge/version-1.4.0-e8742c)](CHANGELOG.md)
 
 <p align="center"><img src="docs/images/stats_screen.png" alt="The stats screen for LJP / Z443C1WY434S2J: rank 1, 27 W 0 L, streak 27 wins" width="384"></p>
 
@@ -27,19 +27,19 @@ Both pages work offline too: save [`tools/nbajam_password_checker.html`](tools/n
 
 | Version | Secret characters | Match-up codes | Also |
 |---------|:-:|:-:|------|
-| NBA Jam: arcade | ✓ | ✓ | tank game, hidden menu and copyright screen, preset records |
+| NBA Jam: arcade | ✓ | ✓ | tank game, hidden menu and copyright screen, preset records, unused graphics |
 | NBA Jam: Super Nintendo, Genesis | ✓ | ✓ | passwords (Super Nintendo), announcer codes (Genesis) |
 | NBA Jam: Sega CD, Game Boy, Game Gear | ✓ | ✓ | |
 | Tournament Edition: arcade | ✓ | ✓ | hidden menu, preset records, other codes |
-| Tournament Edition: Super Nintendo, Genesis, 32X | ✓ | ✓ | hidden title-menu codes |
+| Tournament Edition: Super Nintendo, Genesis, 32X | ✓ | ✓ | hidden title-menu codes, unused courtside ads (Super Nintendo) |
 | Tournament Edition: Saturn, PlayStation | ✓ | ✓ | preset records, three cut PlayStation characters |
 | Tournament Edition: PC, Jaguar | ✓ | ✓ | Jaguar keypad codes |
 | Tournament Edition: Game Boy, Game Gear | ✓ | | |
 | NBA Hangtime, Maximum Hangtime: arcade | ✓ | ✓ | joystick codes, trivia contest |
-| NBA Hangtime: N64, PlayStation | ○ | ○ | joystick codes ✓ |
-| NBA Hangtime: Super Nintendo, Genesis | | ○ | preset records, joystick codes ✓, Genesis options screen ✓ |
+| NBA Hangtime: N64, PlayStation | ○ | ✓ | joystick codes ✓ |
+| NBA Hangtime: Super Nintendo, Genesis | | ✓ | preset records, joystick codes ✓, Genesis options screen ✓ |
 
-Each card on the page says how it was checked.
+How each one was checked is in the [research notes](docs/).
 
 ## What's new here
 
@@ -54,6 +54,7 @@ Codes that no published list had are marked **★ New** on the page. A few terms
   arcade games write into their memory.
 - Sega CD: seven match-up codes no list had.
 - Genesis: initials that play a speech clip (with the clips on the page).
+- Arcade: two pictures nothing in the game draws, a gold trophy and a Chicago Bulls logo.
 
 **Tournament Edition**
 - Title-menu codes on Super Nintendo, Genesis and 32X (a record one team short of the All-Stars, and the 32X's own).
@@ -163,6 +164,7 @@ python tools/nbajam_te_password.py RAT BZZ6DZ37KY
 | `tools/check_codes.py` | Decodes every password on the codes page and in the README and checks it against the record it's listed with |
 | `tools/nbajam_romcheck.py` | Checks `nbajam_password.py` against the game's own code in Mesen 2 (needs the ROM) |
 | `tools/disasm.py`, `tools/reasm.py` | SNES disassembler and reassembler |
+| `tools/arcade_gfx.py` | Arcade NBA Jam image decoder: every image in the graphics chips, and which ones nothing points to |
 | `tools/dis/` | Small disassemblers (68000, SH-2, Z80, SM83, MIPS), a DOS/4GW LE reader, and Game Boy / Game Gear pad-check scanners (need `capstone` for 68000, SH-2 and MIPS) |
 | `tools/emu/` | Scripted runners for BizHawk, MAME, Mesen 2 and DOSBox-X (set `EMUHAWK`, `MAME`, `MESEN`, `DOSBOX`) |
 | `tools/tests/` | The emulator tests behind the codes page: match-up codes on most versions, cut characters, hidden screens, unused DIP switches, and NBA Hangtime's names, match-up and joystick codes |

@@ -390,6 +390,18 @@ Claims from published lists that could be tested here, and what came of them:
 
   <img src="images/teps_unused_portraits.png" alt="Unused PlayStation portraits: Armstrong, Wilkins, Williams, Worthy" width="512">
 
+- **Super Nintendo: five unused courtside ads.** The 17 scorer's-table ads are 9 × 5 tiles of uncompressed 4bpp
+  graphics at `0x2C0000` + 0x5A0 each (`$58:8000`). Every so often the routine at `$3F:D371` picks a random pair 0-7
+  (`$1726` AND 7, never the same pair twice in a row, kept in `$176A`), looks up its offset at `$3F:D408` and copies
+  the two ads named by the 3-byte pointers at `$3F:D418` (16 slots, two per pair) into VRAM, a row of 9 tiles at a time
+  (destinations at `$3F:D448`). The slots name ads 0, 1, 2, 3, 2, 5, 6, 7, 8, 9, 10, 3, 2, 13, 14, 3: slots 4, 11, 12
+  and 15 repeat ads 2 and 3 where ads 4 (MK II), 11 (Air Morris shoe ad), 12 ("Winners dont use drugs") and 15 (the
+  Mortal Kombat dragon) would go, and ad 16 (two Mortal Kombat II fighters) is on no slot. Checked in BizHawk by
+  pointing every slot at each unused ad in a copy of the ROM: each shows on the scorer's table in the attract-mode
+  game. The codes page pictures are rebuilt from the ROM tiles with the colours read off those screenshots.
+
+  <img src="images/tesnes_unused_ads.png" alt="The five unused Super Nintendo courtside ads" width="752">
+
 - **Genesis: unused music (not reproduced).** A published list gives tracks 80, 88 and 89. The game plays sounds by ID through a
   table at `$28B476` (8 bytes per ID; the last word is the song number for the GEMS-style driver at `$1F65DA`). Song
   numbers 80 and 88 put in every entry replaced only the logo jingle, with nothing musical (judged by ear); 89 crashed
