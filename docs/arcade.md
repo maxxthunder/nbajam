@@ -197,11 +197,11 @@ image headers: width, height, x and y anchor (words), a bit offset into the grap
 chips form four 2 MB banks of ug/uj/ug/uj bytes), a control word (bits 12-14 bits per pixel, 0 meaning 8; bit 7 a skip
 byte at the start of each row) and a palette pointer (a word count, then 15-bit colours). The format was worked out by
 logging the blitter's registers in MAME (`01A80010` command, `01A80020`/`30` offset, `01A80060`/`70` size) and finding
-the same values in the program ROM. Rev 3.01 has 3,557 headers.
+the same values in the program ROM. The scan finds 3,557 headers in rev 3.01.
 
 The images are drawn through header pointers, through lists of them, or (for backgrounds) through records that hold
-the graphics offset directly. Four images have none of these: no pointer to the header, and their graphics offset and
-palette appear only in their own header. None was drawn in 36,000 frames (10 minutes) of attract mode in MAME,
+the graphics offset directly. Six headers (four pictures; the hoop is three pieces) have none of these: nothing points
+to the header, and the graphics offset appears only in the header itself. None was drawn in 36,000 frames (10 minutes) of attract mode in MAME,
 with every blitter offset logged. They sit together at `FFA4CB30`-`FFA4CE00`:
 
 - **NBA Jam Session logo** (`FFA4CB30`, 307 × 196), already published.
