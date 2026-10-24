@@ -354,10 +354,28 @@ Claims from published lists, checked here:
   "Oct 29 1996 10:25:52" (`0xA3650`) and EU "Jun 3 1997 16:22:11" (`0x97256`), with the memory-manager error text
   (`0xA34B0`); PlayStation "Apr 27 1997" in `SLUS_003.29` (`0x4E1D3`).
 
+## Arcade: unused graphics
+
+`tools/arcade_gfx.py roms/nbahangt.zip` decodes the Wolf unit's images: the same 18-byte headers as NBA Jam, with the
+20 graphics chips in 4 MB banks (read off MAME's assembled region and rebuilt from the chip files). L1.3 has 7,723
+headers. The blitter takes the same command and offset values at `01A80010`-`01A80030`, with size and position at
+`01A00040`-`01A00070`.
+
+The team logos (`FFF56F70`-`FFF580E0`) are pointed to one each, except three: new logos for the **Pistons**
+(`FFF573F0`), **Timberwolves** (`FFF57900`) and **Jazz** (`FFF57FC0`), the designs those teams took up for 1996-97.
+Every NBA Hangtime revision (L1.1, L1.2, L1.3, M1.1, M1.2, M1.3) points to the old logos instead; every Maximum Hangtime
+revision (the L0.9 prototype, L1.0, M1.0, L1.03) points to the new ones and not the old. The **DCS Sound System**
+logo (`FFF58170`) at the end of the block is pointed to by no revision of either game, and wasn't drawn in 36,000
+frames of attract mode from power-on.
+
+<p align="center">
+  <img src="images/ht_unused_logos.png" alt="Old and new Pistons, Timberwolves and Jazz logos, and the DCS Sound System logo" width="740">
+</p>
+
 ## Not covered
 
-- Unused arcade graphics: 686 image-header-shaped records in the program have no direct pointer, but most are
-  animation frames reached through frame tables, and showing them needs a decoder for the board's graphics format.
+- The rest of the arcade's unreferenced images: some (the match-up captions, for one) are drawn without a direct
+  pointer, so having none doesn't mean unused here.
 - Arcade code coverage: MAME's Lua can't see every instruction fetch at a usable speed, so there's no list of routines
   that never run.
 

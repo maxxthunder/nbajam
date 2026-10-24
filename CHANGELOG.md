@@ -2,6 +2,16 @@
 
 Changes to the [password checker](https://maxxthunder.github.io/nbajam/) and [secret codes page](https://maxxthunder.github.io/nbajam/codes.html). The version is shown at the bottom of each page. **Codes page** and **Checker** are what visitors see; **Notes** are the [research notes](docs/); **README** is this repo's front page.
 
+## 1.5.0 (2026-10-24)
+- **Codes page:** every game lists its versions in the same order (arcade, then Super Nintendo, Genesis, Sega CD, 32X,
+  Saturn, PlayStation, N64, PC, Jaguar, Game Boy, Game Gear), and NBA Jam opens on arcade.
+- **Codes page:** unused Tournament Edition name labels for Shaquille O'Neal and Derrick McKey, in no revision.
+- **Codes page:** NBA Hangtime's unused 1996 Pistons, Timberwolves and Jazz logos (Maximum Hangtime uses them) and
+  DCS Sound System logo.
+- **Notes:** every arcade NBA Jam ad on the list can come up; the other home versions have no ad list to cut from; 13
+  Super Nintendo TE heads belong to no player.
+- **Repo:** `tools/arcade_gfx.py` decodes Tournament Edition and NBA Hangtime too; a Super Nintendo TE head test.
+
 ## 1.4.2 (2026-10-24)
 - **Codes page:** the Super Nintendo Hangtime Jungle and City court screenshots, blank since 1.3.6, now show the courts.
 - **Codes page:** 137 images re-packed losslessly, 0.5 MB smaller with the same pixels.

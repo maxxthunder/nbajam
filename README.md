@@ -1,6 +1,6 @@
 # NBA Jam and NBA Hangtime: Password Checker and Secret Codes
 
-**[Password checker →](https://maxxthunder.github.io/nbajam/)** &nbsp; **[Secret codes →](https://maxxthunder.github.io/nbajam/codes.html)** &nbsp;[![v1.4.2](https://img.shields.io/badge/version-1.4.2-e8742c)](CHANGELOG.md)
+**[Password checker →](https://maxxthunder.github.io/nbajam/)** &nbsp; **[Secret codes →](https://maxxthunder.github.io/nbajam/codes.html)** &nbsp;[![v1.5.0](https://img.shields.io/badge/version-1.5.0-e8742c)](CHANGELOG.md)
 
 <p align="center"><img src="docs/images/stats_screen.png" alt="The stats screen for LJP / Z443C1WY434S2J: rank 1, 27 W 0 L, streak 27 wins" width="384"></p>
 
@@ -36,8 +36,8 @@ Both pages work offline too: save [`tools/nbajam_password_checker.html`](tools/n
 | Tournament Edition: PC, Jaguar | ✓ | ✓ | Jaguar keypad codes |
 | Tournament Edition: Game Boy, Game Gear | ✓ | | |
 | NBA Hangtime, Maximum Hangtime: arcade | ✓ | ✓ | joystick codes, trivia contest |
-| NBA Hangtime: N64, PlayStation | ○ | ✓ | joystick codes ✓ |
 | NBA Hangtime: Super Nintendo, Genesis | | ✓ | preset records, joystick codes ✓, Genesis options screen ✓ |
+| NBA Hangtime: PlayStation, N64 | ○ | ✓ | joystick codes ✓ |
 
 How each one was checked is in the [research notes](docs/).
 
@@ -63,12 +63,15 @@ Codes that no published list had are marked **★ New** on the page. A few terms
 - Jaguar: a keypad code that clears the cartridge memory, and a random secret character for records that have beaten
   all 27 teams.
 - Arcade: Dennis Rodman in two revisions, and the prototype and revision 2.1 birthdays.
+- Arcade: name labels for Shaquille O'Neal and Derrick McKey that no revision uses.
 
 **NBA Hangtime and Maximum Hangtime**
 - Arcade: a code that turns on four effects at once; the trivia contest's password, which needs a full
   four-quarter game.
 - Arcade: M-DOC's PIN is stored so it can't be typed; the published 6-1-6 (max blocking) does nothing; the game has a
   "HOTSPOTS ON" setting with no code to turn it on.
+- Arcade: new 1996 Pistons, Timberwolves and Jazz logos that only Maximum Hangtime uses, and an unused DCS Sound
+  System logo.
 - Maximum Hangtime: 21 extra NBA players.
 - N64 and PlayStation: the arcade's joystick codes work there too; M-DOC works on the European N64 cartridge.
 - Super Nintendo: two joystick codes no list had, and all eight codes together play the cheat ending.
@@ -164,10 +167,10 @@ python tools/nbajam_te_password.py RAT BZZ6DZ37KY
 | `tools/check_codes.py` | Decodes every password on the codes page and in the README and checks it against the record it's listed with |
 | `tools/nbajam_romcheck.py` | Checks `nbajam_password.py` against the game's own code in Mesen 2 (needs the ROM) |
 | `tools/disasm.py`, `tools/reasm.py` | SNES disassembler and reassembler |
-| `tools/arcade_gfx.py` | Arcade NBA Jam image decoder: every image in the graphics chips, and which ones nothing points to |
+| `tools/arcade_gfx.py` | Arcade image decoder for NBA Jam, Tournament Edition and NBA Hangtime: every image in the graphics chips, and which ones nothing points to |
 | `tools/dis/` | Small disassemblers (68000, SH-2, Z80, SM83, MIPS), a DOS/4GW LE reader, and Game Boy / Game Gear pad-check scanners (need `capstone` for 68000, SH-2 and MIPS) |
 | `tools/emu/` | Scripted runners for BizHawk, MAME, Mesen 2 and DOSBox-X (set `EMUHAWK`, `MAME`, `MESEN`, `DOSBOX`) |
-| `tools/tests/` | The emulator tests behind the codes page: match-up codes on most versions, cut characters, hidden screens, unused DIP switches, and NBA Hangtime's names, match-up and joystick codes |
+| `tools/tests/` | The emulator tests behind the codes page: match-up codes on most versions, cut characters, hidden screens, unused DIP switches, Super Nintendo TE courtside ads and heads, and NBA Hangtime's names, match-up and joystick codes |
 | `disasm/snes/` | 65816 listings of the original ROM, one file per 32 KB bank |
 | `disasm/names.txt`, `disasm/entries.txt` | Names for routines and RAM; code addresses seen running in Mesen |
 | [CHANGELOG.md](CHANGELOG.md) | What changed in each version |

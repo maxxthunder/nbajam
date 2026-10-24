@@ -216,6 +216,9 @@ with every blitter offset logged. They sit together at `FFA4CB30`-`FFA4CE00`:
   <img src="images/arcade_unused_graphics.png" alt="The NBA Jam Session logo, the front-on hoop, the trophy and the Chicago Bulls logo" width="740">
 </p>
 
-Not settled: the scorer's-table ads (Recycle, Midway, MK II, NBA Jam Session, Tortorice's Pizzeria, Cheer-Accident,
-Jon Hey Band and others) come from a list of about 30 header pointers at `FF8458F0`. Six weren't drawn in the attract
-loop, but whether the code can pick every entry hasn't been read.
+The scorer's-table ads (Recycle, Midway, MK II, NBA Jam Session, Tortorice's Pizzeria, Cheer-Accident, Jon Hey Band
+and others) all come up. `FF845460` picks a random 0-7 for the left boards and indexes two lists of eight header
+pointers (`FF8458F0`, `FF8459F0`), then a random 0-6 for the right boards and two lists of seven (`FF845AF0`,
+`FF845BD0`). The random routine (`FF82DE00`) multiplies a 32-bit random number by n + 1 and keeps the high word, so it
+returns 0 to n and every entry can be picked. MAME's debugger (`-debug -debugger none`, then `dasm` from Lua) gave the
+listing.

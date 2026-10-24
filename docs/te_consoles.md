@@ -398,10 +398,27 @@ Claims from published lists that could be tested here, and what came of them:
   and 15 repeat ads 2 and 3 where ads 4 (MK II), 11 (Air Morris shoe ad), 12 ("Winners dont use drugs") and 15 (the
   Mortal Kombat dragon) would go, and ad 16 (two Mortal Kombat II fighters) is on no slot. Checked in BizHawk by
   pointing every slot at each unused ad in a copy of the ROM: each shows on the scorer's table in the attract-mode
-  game. The codes page pictures are rebuilt from the ROM tiles with the colours read off those screenshots.
+  game. The codes page pictures are rebuilt from the ROM tiles with the colours read off those screenshots. The beta
+  (`0x1FD2EF`), European and Japanese carts have the same 16 slots. The other home versions keep no such list: the
+  original Super Nintendo NBA Jam shows a fixed NBA and JAM pair, Genesis TE a fixed NBA Jam Session and TE logo pair
+  (their tiles side by side at `0x2E199E`), and the 32X an Acclaim and NBA Jam pair (its attract demo then crashed in
+  BizHawk's 32X core).
 
   <img src="images/tesnes_unused_ads.png" alt="The five unused Super Nintendo courtside ads" width="752">
 
+- **Super Nintendo: unused heads (partly settled).** A published list shows seven heads with no description. The on-court head
+  comes from the player struct (`$7E07C0` + `$100` per player; `+$D8` is the player ID, `+$DA` the head number × 32).
+  The drawing code (`$80:B61C`, file `0x361C`) adds the animation frame to `+$DA` and reads a 16-bit frame pointer from
+  the table at `$AA:AD82` (file `0x152D82`): 1,280 pointers, 80 heads of 16 turning frames, `0x8B` bytes per frame. The
+  bank and base come from the player's own record, not the table, and heads 0-13 share their frame offsets with 62-75
+  (and 0-3 with 16, 17, 25, 28 and 76-79), so the same offsets point at different heads in different banks.
+  `tools/tests/snes_te_heads.lua` forced every player ID (`$00`-`$A9`; IDs from `$AA` read past the roster) into slot
+  1 and read the head number at tip-off. Ordinary NBA players share stock heads (head 5 has 30 players, head 8 has 28);
+  the secret characters and some players have their own. **Thirteen heads have no player: 0, 10, 12, 13, 17, 28, 29,
+  63, 65, 67, 72, 73 and 77.** Three of the published frames turn up raw in bank `$46` at `0x2310E0`, `0x232240` and
+  `0x2333A0`, in the frame-offset groups of heads 1/17/63/77, 3/65/79 and 5/67. Not done: which bank each unused head is
+  drawn from. Writing an unused number into `+$DA` in a game draws that head's frames from the current player's bank,
+  which comes out garbled, so the heads aren't pictured here.
 - **Genesis: unused music (not reproduced).** A published list gives tracks 80, 88 and 89. The game plays sounds by ID through a
   table at `$28B476` (8 bytes per ID; the last word is the song number for the GEMS-style driver at `$1F65DA`). Song
   numbers 80 and 88 put in every entry replaced only the logo jingle, with nothing musical (judged by ear); 89 crashed

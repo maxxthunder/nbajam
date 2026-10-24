@@ -162,3 +162,18 @@ the clips are on the codes page. Sending the published commands (7A B5, 7A C9) t
 at a time to `$1D01030`, played player-name calls instead, so the board's two-byte command protocol differs from
 that; the samples themselves were identified by ear.
 
+## Unused graphics
+
+`tools/arcade_gfx.py roms/nbajamte.zip` decodes rev 4.0's 4,688 image headers; 430 have no direct pointer. Most are
+reached through tables, but two never are in any revision (1.0, 2.0, 2.1, both 3.0s, both 4.0s and the 2.0
+prototype): the name labels **O'NEAL** (`FFA99D70` in rev 4.0) and **McKEY** (`FFA9E180`). They sit among the
+roster's name labels, each of which is pointed to once, and no roster record uses them; neither player is in the
+game. O'Neal is also cut from the Super Nintendo version.
+
+<p align="center">
+  <img src="../tools/img/shots/te_cut_names.png" alt="The O'NEAL and McKEY name labels" width="114">
+</p>
+
+Rev 4.0 also keeps the heads and name labels of the characters removed after revision 2 (Kongo, the Grim Reaper,
+Scorpion, Sub-Zero, Reptile, Raiden, Coman, Elviscious) and the burning-player frames from Fatalities, with nothing
+pointing to them.
