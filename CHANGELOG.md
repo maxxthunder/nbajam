@@ -2,6 +2,18 @@
 
 Changes to the [password checker](https://maxxthunder.github.io/nbajam/) and [secret codes page](https://maxxthunder.github.io/nbajam/codes.html). The version is shown at the bottom of each page. **Codes page** and **Checker** are what visitors see; **Notes** are the [research notes](docs/); **README** is this repo's front page.
 
+## 1.3.6 (2026-10-24)
+- **Codes page:** 30 more screenshots: arcade Hangtime match-up and joystick codes, Maximum Hangtime's court selector
+  and hot spots, the Super Nintendo courts and cheat ending, N64 and PlayStation big heads and rooftop, Genesis and
+  Super Nintendo preset records, Tournament Edition title-menu records on Genesis and 32X, and the arcade match-up
+  messages for NBA Jam and Tournament Edition.
+- **Codes page:** checked against another published list. Things it already documents are no longer marked ★ New; its
+  arcade Hangtime Secret Midway Menu, Super Nintendo Funcom photo, Game Boy debug viewer and 32X unused players were
+  tested and added.
+- **Codes page:** the Genesis Hangtime shots retaken with all graphics layers on (one had been switched off).
+- **Notes:** the Genesis Hangtime "cut secret players" are default record holders; the Super Nintendo's hidden song
+  has no code to play it; the full Super Nintendo ending; build dates and developer messages confirmed.
+
 ## 1.3.5 (2026-10-24)
 - **Codes page:** click a screenshot to see the whole screen in a popup, scaled up to fit.
 - **Codes page:** a shorter introduction, the title "NBA Jam & Hangtime Secret Codes", and card notes in plain words

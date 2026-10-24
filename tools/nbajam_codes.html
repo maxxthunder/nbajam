@@ -184,7 +184,7 @@ footer a { color: var(--orange); text-decoration: none; display: inline-flex; al
       <a href="https://github.com/maxxthunder/nbajam/tree/main/docs">research notes</a>.</p>
   </details>
 
-  <footer><a href="https://github.com/maxxthunder/nbajam"><svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg>maxxthunder/nbajam</a><a href="https://github.com/maxxthunder/nbajam/blob/main/CHANGELOG.md">v1.3.5</a></footer>
+  <footer><a href="https://github.com/maxxthunder/nbajam"><svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg>maxxthunder/nbajam</a><a href="https://github.com/maxxthunder/nbajam/blob/main/CHANGELOG.md">v1.3.6</a></footer>
 </main>
 <script>
 // Card: [title, where, input, new?, note]. Input: "ini:MJT|Mar 22" = initials (and birthday);
@@ -381,7 +381,7 @@ const ARC_PRESETS = [
   ["SAN", "Jan 1", 5, 0, 2, 5]];
 const arcPreset = ([i, b, w, l, st, t]) => [`${i}'s record`, 'Initials and birthday', `${i}, ${b}`, true,
   `Opens a saved record: ${w}–${l}, streak ${st}, ${t} of the 27 teams beaten.`];
-const TYLER = ['Steven Tyler (cut)', 'Not enterable', 'Removed from the table', true,
+const TYLER = ['Steven Tyler (cut)', 'Not enterable', 'Removed from the table', false,
   'His entry is still in the table, but with initials the grid has no letters for. The game still names him "TYLER" and draws a blank portrait.'];
 const SNES_NOTE = { RAY: "One published list says Start + Y on the Y; a plain press works." };
 
@@ -448,32 +448,36 @@ const HT_MU = [['Tournament mode', '1, 1, 1', 'Every human player has to enter i
   ['Quick hands', '7, 0, 9', 'Caption "QUICK HANDS".'], ['Max power', '8, 0, 2', 'Caption "MAX. POWER".'], ['Max speed', '2, 8, 4', 'Caption "MAX. SPEED".'],
   ['Hyper speed', '5, 5, 2', 'Caption "HYPER SPEED".'], ['Stealth turbo', '2, 7, 3', 'Caption "STEALTH TURBO".'], ['Unlimited turbo', '4, 6, 1', 'Caption "UNLIM. TURBO".'],
   ['No pushing', '3, 9, 0', 'Caption "NO PUSHING".'], ['Fast passing', '1, 2, 0', 'Caption "FAST PASSING".']];
-const htMu = ([n, k, note]) => [n, `${MU}: presses of Turbo, Shoot, Pass`, k, false, note];
+const HT_MU_SHOTS = ['025', '937', '709', '802', '284', '552', '273', '461', '390', '120'];
+const htMu = ([n, k, note]) => [n, `${MU}: presses of Turbo, Shoot, Pass`, k, false, note,
+  HT_MU_SHOTS.includes(k.replace(/\D/g, '')) ? `shots/htmu_${k.replace(/\D/g, '')}` : ''];
 // Match-up joystick codes: each detector watches the player's whole input state on the frames it changes
-const HT_JOY = [['Big heads', 'Up + Pass + Turbo together', 'Caption "BIG HEAD".'],
-  ['Huge heads', 'Up, Up, Pass, Turbo', 'Bigger still; caption "BIG HEAD".'],
-  ['Shot percentage', 'Turn the joystick once clockwise from Up', 'Caption "SHOT % ON".'],
-  ['No tag arrows', 'Left, Left, Pass, Turbo', 'Caption "NO ARROWS".'],
+const HT_JOY = [['Big heads', 'Up + Pass + Turbo together', 'Caption "BIG HEAD".', 'shots/htjoy_bighead'],
+  ['Huge heads', 'Up, Up, Pass, Turbo', 'Bigger still; caption "BIG HEAD".', 'shots/htjoy_huge'],
+  ['Shot percentage', 'Turn the joystick once clockwise from Up', 'Caption "SHOT % ON".', 'shots/htjoy_shotpct'],
+  ['No tag arrows', 'Left, Left, Pass, Turbo', 'Caption "NO ARROWS".', 'shots/htjoy_noarrows'],
   ['No drift', 'Down, Down, Shoot, Turbo', ''],
-  ['No CPU assistance', 'Hold Right, Pass, Pass', ''],
-  ['ABA ball', 'Hold Right, Shoot, Turbo, Pass', 'A red, white and blue ball.'],
-  ['Rooftop court', 'Hold Left, Turbo, Turbo', 'An outdoor court on a city rooftop at night.'],
-  ['Four at once', 'Shoot, Shoot, Hold Shoot and turn the joystick once clockwise from Up', 'Big heads, shot percentage, ABA ball and the rooftop court together. Fast: the whole turn has about 1⅓ seconds.'],
+  ['No CPU assistance', 'Hold Right, Pass, Pass', '', 'shots/htjoy_noassist'],
+  ['ABA ball', 'Hold Right, Shoot, Turbo, Pass', 'A red, white and blue ball.', 'shots/htjoy_aba'],
+  ['Rooftop court', 'Hold Left, Turbo, Turbo', 'An outdoor court on a city rooftop at night.', 'shots/htjoy_rooftop'],
+  ['Four at once', 'Shoot, Shoot, Hold Shoot and turn the joystick once clockwise from Up', 'Big heads, shot percentage, ABA ball and the rooftop court together. Fast: the whole turn has about 1⅓ seconds.', 'shots/htjoy_four'],
   ['Lock in the numbers', 'Down', "Any Down press stops your three digits counting and flashes them, which is why some published codes end in Down."],
   ['Unused code: hot spots', 'No input sets it', 'NBA Hangtime already has a "HOTSPOTS ON" setting and caption, but no code turns it on, and nothing in play uses it, so hot spots never applies. Switched on in MAME, only the caption appears. Maximum Hangtime adds the code and the hot spots.', 'hangtime/ht_hotspots']];
 const htJoy = (list, newOnes) => list.map(([n, k, note, pic]) => [n, `${MU}, about two seconds in`, k, newOnes.includes(n), note, pic]);
 // N64 and PlayStation keep the arcade's detectors; buttons renamed, and only some checked on PlayStation
 const HT_JOY_HOME = { htn64: { Turbo: 'A', Shoot: 'C-Down', Pass: 'C-Right', stick: 'the control stick', checked: null },
   htps: { Turbo: 'Square', Shoot: 'X', Pass: 'Circle', stick: 'the D-pad', checked: ['Big heads', 'Shot percentage', 'ABA ball', 'Rooftop court', 'Four at once'] } };
+const HOME_SHOTS = { htn64: { 'Big heads': 'shots/htn64_bighead', 'Rooftop court': 'shots/htn64_rooftop' },
+  htps: { 'Big heads': 'shots/htps_bighead', 'Rooftop court': 'shots/htps_rooftop' } };
 const htJoyHome = plat => {
   const m = HT_JOY_HOME[plat];
   return HT_JOY.filter(([n]) => !n.startsWith('Unused')).map(([n, k, note]) => [n, MU,
     k.replace(/Turbo|Shoot|Pass/g, b => m[b]).replace('the joystick', m.stick),
-    ['Four at once', 'Lock in the numbers'].includes(n), m.checked && !m.checked.includes(n) ? 'Not checked on PlayStation.' : note.replace(/^Caption "[^"]*"\.$|; caption "[^"]*"/, '')]);
+    ['Four at once', 'Lock in the numbers'].includes(n), m.checked && !m.checked.includes(n) ? 'Not checked on PlayStation.' : note.replace(/^Caption "[^"]*"\.$|; caption "[^"]*"/, ''), HOME_SHOTS[plat]?.[n] || '']);
 };
-const MHT_JOY = [...HT_JOY.filter(([n]) => !['Rooftop court', 'Four at once', 'Unused code: hot spots'].includes(n)),
-  ['Outdoor court', 'Right', 'Shows "COURT: STADIUM / OUTDOOR" on the match-up screen; Right picks the rooftop court and Left goes back. Published as "press Left", which leaves it on Stadium.'],
-  ['Hot spots', 'Hold Up, Shoot, Shoot', 'Caption "HOTSPOTS ON".'],
+const MHT_JOY = [...HT_JOY.filter(([n]) => !['Rooftop court', 'Four at once', 'Unused code: hot spots'].includes(n)).map(([n, k, note]) => [n, k, note]),
+  ['Outdoor court', 'Right', 'Shows "COURT: STADIUM / OUTDOOR" on the match-up screen; Right picks the rooftop court and Left goes back. Published as "press Left", which leaves it on Stadium.', 'shots/mht_court'],
+  ['Hot spots', 'Hold Up, Shoot, Shoot', 'Caption "HOTSPOTS ON".', 'shots/mht_hotspots'],
   ['Four at once', 'Shoot, Shoot, Hold Shoot and turn the joystick once clockwise from Up', 'Big heads, shot percentage, ABA ball and the outdoor court.']];
 // three-digit tables in the home versions (read from the games, not entered)
 const HT_MU_PORT = { htn64: HT_MU.map(([n, k]) => [n, k]), htps: HT_MU.map(([n, k]) => [n, k]),
@@ -493,14 +497,14 @@ const HT16 = { htsnes: [['CHE', '6581'], ['KUNGEN', '1414'], ['HENRIK', '6502'],
 // 16-bit match-up joystick codes: SNES table at $C5B3B0 (whole pad word, wrong presses are skipped), Genesis detectors listed at $12B10
 const HT16_JOY = {
   htsnes: [['No tag arrows', 'Left, Left, B, R', false, ''],
-    ['Jungle court', 'L, R, Select, Start, Up, Down, A, B, Y, X', false, 'Its A, B and Y presses also leave the numbers on 1, 1, 1 (tournament mode).'],
+    ['Jungle court', 'L, R, Select, Start, Up, Down, A, B, Y, X', false, 'Its A, B and Y presses also leave the numbers on 1, 1, 1 (tournament mode).', 'shots/htsnes_jungle'],
     ['No CPU assistance', 'Hold Right, B, B', false, ''],
     ['Ball flash', 'Hold Right, R, Y, B', true, "The ball flashes white three times in the referee's hands at tip-off; nothing else changed that we saw. Same shape as the arcade's ABA ball code.", 'hangtime/snes_ball_flash'],
     ['Three at once', 'B, B, Hold B and turn the pad once counter-clockwise from Up', true, "The ball flash, the rooftop court and a per-player flag that zeroes four movement values (like the arcade's no drift). The arcade's four-at-once code turns clockwise."],
-    ['Rooftop court', 'Hold Left, Y, Y', false, ''],
+    ['Rooftop court', 'Hold Left, Y, Y', false, '', 'shots/htsnes_rooftop'],
     ['Nine cheats at once', 'Up, Right, Down, Left, Start, A, B, Y, X, Select', false, 'Published as four effects. It sets nine: goaltending, max block, max steal, max power, max speed, hyper speed, stealth turbo, unlimited turbo and fast passing. Its A, B and Y also leave the numbers on 1, 1, 1: tournament mode, which clears number codes but not these.'],
-    ['City court', 'Hold Down, B, A, X, Y', false, 'Keep Down held as you let go of Y: the code ends on Down alone.'],
-    ['Cheat ending', 'Start, Y, Right, A, B, Up, Start, Up, Down, Down, Start, L, A, Down, Down', false, 'It switches on all eight codes above at once, and the game plays the cheat ending whenever all eight are on.'],
+    ['City court', 'Hold Down, B, A, X, Y', false, 'Keep Down held as you let go of Y: the code ends on Down alone.', 'shots/htsnes_city'],
+    ['Cheat ending', 'Start, Y, Right, A, B, Up, Start, Up, Down, Down, Start, L, A, Down, Down', false, 'It switches on all eight codes above at once, and the game plays the cheat ending whenever all eight are on. It opens: "YOU REALLY SHOULD HAVE DEFEATED ALL 29 NBA TEAMS TO SEE THIS! BUT SINCE YOU FOUND THE CODE... WE GRANT YOU: THE SECRET SCREEN!"', 'shots/htsnes_ending'],
     ['All eight codes', 'Enter the eight codes above, on any players', true, "After the match-up the game adds up every player's codes and plays the cheat ending if all eight are on, so the long code isn't the only way. Checked: all eight entered on one pad in a single match-up in Mesen 2 played the cheat ending."]],
   htgen: [['Rooftop court', 'Hold Left, B, B', false, 'Published as "outdoor court". The published rooftop code (hold Left, A three times) isn\'t in the game: the only other court is Hawaii.', 'hangtime/gen_rooftop'],
     ['Hawaii court', 'B, A, Right, Right, A, C, Up, Down, A', false, '', 'hangtime/gen_hawaii'],
@@ -566,21 +570,21 @@ const GROUPS = {
       ['John Newcomer', 'JRN', 'Jun 18'], ['Sheridan Oursler', 'SNO', 'Jan 3'], ['Stephen Howard', 'HOW', 'Jul 15'],
       ['Willie Morris', 'WIL', 'Jan 1'], ['Tony Scott', 'TON', 'Jul 3']].map(orig)],
     ["Tonight's Match-Up codes", "Enter these while the Tonight's Match-Up screen is up. The game counts each player's presses of any button; codes with a count need exactly that many. The message shows at tip-off. Rev 3.01 has all of these; rev 2.00 has all but computer assistance off; rev 1.00 has only defense and big heads, with no messages; the January 1993 prototypes have only big heads.", [
-      ['Powerup defense', MU, 'Press any button 8 times', false, 'Exactly 8. Shows "POWERUP DEF".'],
+      ['Powerup defense', MU, 'Press any button 8 times', false, 'Exactly 8. Shows "POWERUP DEF".', 'shots/arcmu_def'],
       ['Powerup intercept', MU, 'Press any button 4 times; then hold Down + Turbo + Shoot + Pass until tip-off', false,
-        '5 or more presses in all, counting the one that starts the hold. Shows "POWERUP INT". The hold alone, as the 1993 FAQ gives it, does nothing. 7 presses before the hold give defense too.'],
-      ['Big heads', MU, 'Hold Up + Turbo + Pass until tip-off', false, 'Shows "BIG HEAD ON". Turns big heads off if the operator set them on.'],
+        '5 or more presses in all, counting the one that starts the hold. Shows "POWERUP INT". The hold alone, as the 1993 FAQ gives it, does nothing. 7 presses before the hold give defense too.', 'shots/arcmu_int'],
+      ['Big heads', MU, 'Hold Up + Turbo + Pass until tip-off', false, 'Shows "BIG HEAD ON". Turns big heads off if the operator set them on.', 'shots/arcmu_bighead'],
       ['Shot percentage display', MU, 'Press any button 15 or more times while turning the stick Up → Right → Down → Left', false,
-        'Shows "SHOT % DISPLAY ACTIVATED - (LEARNING MODE 2)".'],
+        'Shows "SHOT % DISPLAY ACTIVATED - (LEARNING MODE 2)".', 'shots/arcmu_shot'],
       ['All computer assistance off', MU, 'Press any button exactly 10 times', false,
-        'Needs a human player on each team. Shows "ALL COMPUTER ASSISTANCE TURNED OFF!" Rev 3.01 only.'],
+        'Needs a human player on each team. Shows "ALL COMPUTER ASSISTANCE TURNED OFF!" Rev 3.01 only.', 'shots/arcmu_assist'],
       ['Powerup offense', MU, 'Press any button 21 times', false,
         "Doesn't exist: the 1993 FAQ lists it, but the game never checks for 21."]]],
     ['Hidden games and screens', '', [
       ['Tank game', "Tonight's Match-Up", 'Hold P1 Down and all three buttons on both sides', false, 'Once per game.'],
       ['Tank game reward: all players powered up', 'Tank game', 'Survive until it ends (about a minute)', true,
         'Shows "ALL PLAYERS POWERUP!": at tip-off all four players get big heads, powerup intercept and powerup defense, and the shot percentage display comes on. Rev 3.01 only; rev 1.00 just says "YOU SURVIVED!".', 'shots/arcade_tank_reward'],
-      ['Hidden copyright screen', 'As the tank game starts', 'Also hold P1 Right, P2 Right, P2 Shoot and P2 Turbo', true,
+      ['Hidden copyright screen', 'As the tank game starts', 'Also hold P1 Right, P2 Right, P2 Shoot and P2 Turbo', false,
         'Replaces the tank game with an encrypted message: NBA-JAM, COPYRIGHT-1993, MIDWAY-MANUFACTURING-COMPANY, ALL-RIGHTS-RESERVED. No reward.', 'shots/arcade_copyright'],
       ['Hidden stats menu: step 1', 'Attract mode, after any button press', 'Hold P1 and P2 Up and all buttons, then switch to only P1 and P2 Down', true,
         'Keep both Downs held for about a second; the credits start.'],
@@ -611,9 +615,9 @@ const GROUPS = {
       TYLER]],
     ['Hidden codes', '', [
       ['All-Star team', 'Title menu (Head to Head, Team Game...)', 'C, Up, Down, B, Left, A, Right, Down, then keep a record as JAM', false,
-        'Up and Down also move the menu cursor; put it back on Head to Head. The new JAM record is 27-0 with every team beaten, so ALL-STARS replaces ROOKIES on the team list.'],
+        'Up and Down also move the menu cursor; put it back on Head to Head. The new JAM record is 27-0 with every team beaten, so ALL-STARS replaces ROOKIES on the team list.', 'shots/tegen_all_star'],
       ['One team short', 'Title menu', 'C, Up, Down, B, Left, A, Right, Down, then keep a record as END', true,
-        'The new END record is 26-0, last played Chicago: one win short of the All-Stars.']]],
+        'The new END record is 26-0, last played Chicago: one win short of the All-Stars.', 'shots/tegen_one_team_short']]],
     ['Match-up codes', "At Tonight's Match-Up, on any player's pad; C does nothing here.", teMu({})],
   ],
   gb: [
@@ -658,9 +662,9 @@ const GROUPS = {
     ['Secret characters', 'Answer Yes to keep a record, then enter the initials and birthday while holding L1 + R1; without them the game shows NO RECORD. The game shows "SECRET PLAYER" before team select.',
       TE_PS.map(teps)],
     ['Cut characters', 'Finished characters left on the disc with no code: a roster record, stats and a portrait, but no initials and birthday point to them. Pointing a code at one in memory puts them on the court.', [
-      ['Wright', 'No code', 'none', true, 'Record "WRIGHT", between Catling and Hutchinson.', 'playstation/cut_wright'],
-      ['Kita', 'No code', 'none', true, 'Record "KITA", between Kabuki and Max.', 'playstation/cut_kita'],
-      ['Sprite Boy', 'No code', 'none', true, 'Record "SPRITE BOY", between Sequoia and Boo-Boo.', 'playstation/cut_sprite_boy']]],
+      ['Wright', 'No code', 'none', false, 'Record "WRIGHT", between Catling and Hutchinson.', 'playstation/cut_wright'],
+      ['Kita', 'No code', 'none', false, 'Record "KITA", between Kabuki and Max.', 'playstation/cut_kita'],
+      ['Sprite Boy', 'No code', 'none', false, 'Record "SPRITE BOY", between Sequoia and Boo-Boo.', 'playstation/cut_sprite_boy']]],
     ['Match-up codes', "At Tonight's Match-Up, on any player's pad. The game checks each player's presses when the screen ends.", psMu(1).map(c => c[0] === 'Mammoth heads' ? [...c.slice(0, 4), 'Four rounds are enough; Cheat Code Central gives five.'] : c)],
     ['Preset records', 'Answer Yes to keep a record and enter these with no buttons held. A new save already holds them.', [
       ['Champion record', 'Keep-record screen', 'FIN, January 1', false,
@@ -697,6 +701,9 @@ const GROUPS = {
   tegb: [
     ['Secret characters', 'At the initials screen, pick each letter with the button shown: A, B or Start all enter a letter, and the game remembers which.',
       TE_GB.map(tegb)],
+    ['Debug viewer', 'Switched off in the game; a one-byte patch brings it back. Checked in BizHawk.', [
+      ['Memory viewer', 'During a game, with Game Genie 6B1-9DF-5D3', 'Select + A + B', false,
+        'Opens a memory viewer (address, bytes, CPU registers); Select switches to a character viewer. The code changes one byte at $019D from $6E to $6B.', 'shots/tegb_debug']]],
   ],
   tejag: [
     ['Secret characters', 'At the initials screen, on each letter marked Option, hold Option and press the button. Enter the other letters as usual, with A, B or C.',
@@ -711,14 +718,18 @@ const GROUPS = {
   te32x: [
     ['Secret characters', 'At the initials screen, on each letter marked Start, hold Start and press the button. Enter the other letters as usual. The buttons run the other way from the Genesis codes.',
       TE_32X.map(c => te32x(c, false, c[1] === 'SNK' ? 'Genesis and Super Nintendo use GOF.' : ''))],
+    ['Unused players', "Eight players with no code, put on team select by writing their ID into a player slot (RAM $FF1F24 + 2 per slot). Checked in BizHawk.", [
+      ['James Worthy', 'No code', 'Player ID $04', false, 'The most complete: own stats, head and portrait.', 'shots/te32x_worthy'],
+      ...[['Scooter Pie', '$6B'], ['Kid Silk', '$6C'], ['Steven Tyler', '$7A'], ['Juwan Howard', '$83'], ["Shaquille O'Neal (named Green)", '$8D'], ['Clifford Rozier', '$93'], ['Greg Fischbach', '$9A']]
+        .map(([n, id]) => [n, 'No code', 'Player ID ' + id, false, 'Name and stats only; no portrait.'])]],
     ['Cut from the 32X', 'Their entries are still in the table, with letters the grid has no key for.', [
       ...[['Scooter Pie', 'HTP'], ['Kid Silk', 'KSK'], ['Stud Muffin', 'G_F']].map(([n, i]) => [n + ' (cut)', 'Not enterable', `Removed (${i} on the other versions)`, false]),
       TYLER]],
     ['Hidden codes', '', [
       ['All-Star team', 'Title menu (Head to Head, Team Game...)', 'C, Up, Right, Down, Left, A, Right, Down, then keep a record as FIN', true,
-        'Not the Genesis sequence, and FIN instead of JAM. Put the menu cursor back on Head to Head. The new FIN record is 27-0, and ALL-STARS replaces ROOKIES ("EXPANDED ROSTER").'],
+        'Not the Genesis sequence, and FIN instead of JAM. Put the menu cursor back on Head to Head. The new FIN record is 27-0, and ALL-STARS replaces ROOKIES ("EXPANDED ROSTER").', 'shots/te32x_all_star'],
       ['One team short', 'Title menu', 'C, Up, Right, Down, Left, A, Right, Down, then keep a record as PRE', true,
-        'The new PRE record is 26-0, last played Chicago: one win short of the All-Stars.']]],
+        'The new PRE record is 26-0, last played Chicago: one win short of the All-Stars.', 'shots/te32x_one_team_short']]],
     ['Match-up codes', "At Tonight's Match-Up. The 32X has its own sequences, not the Genesis ones. ★ New: not on RQ87's 32X list.", TE32X_MU],
   ],
   te: [
@@ -730,11 +741,11 @@ const GROUPS = {
     ["Tonight's Match-Up codes", "Enter these while the Tonight's Match-Up screen is up. The game counts each player's presses of any button; codes with a count need exactly that many. The message shows at tip-off. Tournament Mode turns all of them off.", [
       ['Powerup goaltending', MU, 'Press any button 24 times', false, 'Exactly 24. Shows "POWERUP G.T."'],
       ['Shot percentage display', MU, 'Press any button 15 or more times while turning the stick Up → Right → Down → Left', false,
-        "GameFAQs says press all three buttons together 7 times, which doesn't work."],
+        "GameFAQs says press all three buttons together 7 times, which doesn't work.", 'shots/temu_shot'],
       ['Maximum power', MU, 'Hold Down + Turbo + Shoot + Pass', false, "Start isn't needed."],
-      ['Tournament mode', MU, 'Hold Right + Turbo + Shoot + Pass', false, 'Turns off power-ups, computer assistance and hidden features, including secret characters.'],
-      ['Big heads', MU, 'Hold Up + Turbo + Pass until tip-off', false],
-      ['Huge heads', MU, 'Press any button 5 times; then hold Up + Turbo + Pass until tip-off', false, 'Big heads with exactly 6 presses in all.'],
+      ['Tournament mode', MU, 'Hold Right + Turbo + Shoot + Pass', false, 'Turns off power-ups, computer assistance and hidden features, including secret characters.', 'shots/temu_tournament'],
+      ['Big heads', MU, 'Hold Up + Turbo + Pass until tip-off', false, '', 'shots/temu_bighead'],
+      ['Huge heads', MU, 'Press any button 5 times; then hold Up + Turbo + Pass until tip-off', false, 'Big heads with exactly 6 presses in all.', 'shots/temu_huge'],
       ['Quick hands', MU, 'Press any button 4 times; then hold Down + Shoot until tip-off', false, '5 or more presses in all.'],
       ['Baby-size players', MU + ', holding Down-Right', 'Turbo, Shoot, Pass, Turbo, Shoot, Pass, Turbo, Shoot, Pass', false],
       ['All computer assistance off', MU, 'Press any button exactly 10 times', true,
@@ -766,6 +777,11 @@ const GROUPS = {
   ht: [
     ['Secret players', "Create a new player and enter the name, then the PIN. Every typed digit counts, SPC included; names shorter than six letters end with END. All 61 checked in MAME by writing each entry into the name check (TURMEL and JC also typed). Titles are the names published for Maximum Hangtime.",
       HT.map(htCard)],
+    ['Hidden screens', "The same operator screen as NBA Jam's, entered the same way. Checked in MAME on L1.3.", [
+      ['Secret Midway Menu: step 1', 'Power-on, through the start-up screens', 'Hold P1 and P2 Up and all buttons, then switch to only P1 and P2 Down', false,
+        'The DESIGN TEAM screen comes up with the eight designers.', 'shots/ht_design_team'],
+      ['Secret Midway Menu: step 2', 'While DESIGN TEAM is up', 'P1 Turbo, P1 Turbo, P2 Shoot, P2 Shoot, P2 Shoot, P2 Pass, P2 Pass, P1 Shoot, P1 Pass, P2 Turbo, P2 Turbo, P1 Turbo, P1 Turbo, P1 Turbo, P1 Turbo', false,
+        '"SECRET MIDWAY MENU, NBA HANGTIME – VER L1.3 10/10/96": dunk counts, audits, team stats and records. Four more Turbo presses than the NBA Jam version.', 'shots/ht_midway_menu']]],
     ['Trivia contest', "A 1996 sweepstakes built into the game (the TRIVIA CONTEST setting, on from the factory). Attract mode shows the prizes; the questions come at game over.",
       [['Trivia password', 'Game over, after a full four-quarter game with a created player', 'Answer the questions (2 points each) until you have 100 points', false, 'The game then shows "CONTEST DRAWING QUALIFIER" and an 8-letter password to mail in with your name and PIN (AAAAAA 0000 gets EOFTCSJN). Reached in MAME by setting the points to 98 and answering one question; entries closed September 13, 1996.', 'hangtime/ht_trivia_password']]],
     ['Match-up codes', "At Tonight's Match-Up, press Turbo, Shoot and Pass the number of times shown. Holding the joystick counts a digit down instead of up, and each digit wraps from 9 to 0. All 13 checked in MAME by their flags and tip-off captions. The published \"2, 0, 0 + Left\" outdoor court is really the joystick code below.", HT_MU.map(htMu)],
@@ -784,12 +800,15 @@ const GROUPS = {
     [...htPort('htps'), ['Marius Enge', NP, 'pw:OLDBOY|0505', true, 'MARIUS 1005 in the arcade; renamed on PlayStation. Typed in BizHawk: the same bearded head, with hidden attributes.', 'hangtime/ht_marius']]],
     ['Match-up codes', "The arcade's 13 numbers, read from PRES.BIN; not checked in play.", htMuPort('htps', 'Square, X, Circle')],
     ['Match-up joystick codes', "The arcade's detectors again. Square (or any shoulder button) is Turbo, X or Triangle Shoot, Circle Pass, and the D-pad works for turns. Big heads, shot percentage, ABA ball, rooftop and four at once entered in BizHawk and checked by their flags. No hot spots.", htJoyHome('htps')]],
-  htsnes: [['Preset records', "Funcom's port has no secret players. These names and PINs, published as secret characters, open preset records. KUNGEN 1414 checked in BizHawk: a 2-3 record with a custom character.",
-    HT16.htsnes.map(([n, p]) => [n, NP, `pw:${n}|${p}`, false, ''])],
+  htsnes: [['Funcom photo', 'Checked in BizHawk.', [
+      ['Funcom team photo', 'Create a player: name, then PIN', 'FUNCOM, 1993', false,
+        'The game says NO RECORD; press a button and a photo of the Funcom team comes up, with captions naming each of them in turn.', 'shots/htsnes_funcom']]],
+    ['Preset records', "Funcom's port has no secret players. These names and PINs, published as secret characters, open preset records. KUNGEN 1414 checked in BizHawk: a 2-3 record with a custom character.",
+    HT16.htsnes.map(([n, p]) => [n, NP, `pw:${n}|${p}`, false, '', n === 'KUNGEN' ? 'shots/htsnes_record' : ''])],
     ['Match-up codes', "Funcom's version keeps 11 of the arcade's numbers (no baby size, no music), as presses of Y, B and A. Read from the game; not checked in play.", htMuPort('htsnes', 'Y, B, A')],
     ['Match-up joystick codes', "Within six seconds of Tonight's Match-Up appearing, on any player's pad. Each step is the whole pad (\"hold\" means keep it held), and wrong presses in between are skipped, not counted against you. All nine entered in Mesen 2 and checked by their flags. ★ New: on no published list.", htJoy16('htsnes')]],
   htgen: [['Preset records', "No secret players here either. These four open preset records (\"TOP 5 DEFENSIVE PLAYER\"). KUNGEN, CENSOR and ENRICO checked in BizHawk.",
-    HT16.htgen.map(([n, p]) => [n, NP, `pw:${n}|${p}`, true, n === 'JOHAN' ? 'Not checked.' : ''])],
+    HT16.htgen.map(([n, p]) => [n, NP, `pw:${n}|${p}`, true, n === 'JOHAN' ? 'Not checked.' : '', n === 'KUNGEN' ? 'shots/htgen_record' : ''])],
     ['Match-up codes', "12 numbers as presses of A, B and C, checked after every press: no baby size, and fast passing is 1, 2, 7. Read from the game; not checked in play.", htMuPort('htgen', 'A, B, C')],
     ['Match-up joystick codes', "Six detectors, all entered in BizHawk and checked by their flags; both courts and the ABA ball seen in play. The published big heads, huge heads, shot percentage and A-button rooftop codes aren't in this version. Tournament mode (1, 1, 1) switches every joystick code off at tip-off, and since the numbers are checked after every press, the A, B and C presses in these codes can land on it.", htJoy16('htgen')],
     ['Options screen', "On the Options screen (Right from the main menu, then A), on player 1's pad. Three sequences, found in the game's code and entered in BizHawk. ★ New: on no published list.",
@@ -802,7 +821,8 @@ const esc = t => t.replace(/[&<>"]/g, c => `&#${c.charCodeAt(0)};`);
 const chips = (list, cls = '') => `<ul class="keys ${cls}">${list.map(k => `<li>${esc(k)}</li>`).join('')}</ul>`;
 // Arcade TE plays a secret character with the replaced player's stats ($FF9F6A50)
 // screenshots on cards open full size; cropped ones show the whole screen
-const SHOT_FULL = { 'hangtime/ht_trivia_password': 'full/ht_trivia_password', 'hangtime/ht_hotspots': 'full/ht_hotspots',
+const SHOT_FULL = { 'shots/htmu_025': 'full/htmu_025', 'shots/htmu_937': 'full/htmu_937', 'shots/htmu_709': 'full/htmu_709', 'shots/htmu_802': 'full/htmu_802', 'shots/htmu_284': 'full/htmu_284', 'shots/htmu_552': 'full/htmu_552', 'shots/htmu_273': 'full/htmu_273', 'shots/htmu_461': 'full/htmu_461', 'shots/htmu_390': 'full/htmu_390', 'shots/htmu_120': 'full/htmu_120', 'shots/htgen_record': 'full/htgen_record', 'shots/htsnes_record': 'full/htsnes_record', 'shots/tegen_one_team_short': 'full/tegen_one_team_short', 'shots/tegen_all_star': 'full/tegen_all_star', 'shots/te32x_one_team_short': 'full/te32x_one_team_short', 'shots/te32x_all_star': 'full/te32x_all_star',
+  'hangtime/ht_trivia_password': 'full/ht_trivia_password', 'hangtime/ht_hotspots': 'full/ht_hotspots',
   'hangtime/snes_ball_flash': 'full/snes_ball_flash', 'hangtime/gen_aba': 'full/gen_aba', 'hangtime/gen_rooftop': 'hangtime/gen_rooftop',
   'hangtime/gen_hawaii': 'hangtime/gen_hawaii', 'hangtime/gen_credits': 'hangtime/gen_credits',
   'shots/arcade_stats_menu': 'full/arcade_stats_menu', 'shots/te_secret_menu': 'full/te_secret_menu' };

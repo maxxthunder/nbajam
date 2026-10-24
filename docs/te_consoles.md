@@ -368,6 +368,28 @@ The Game Gear version (Iguana) works like the Game Boy one. The initials are pla
 `$10` = button 1, `$20` = button 2, `$40` = Start. All 14 checked in BizHawk, and they match the published list
 ([SMS Power](https://www.smspower.org/Cheats/NBAJamTE-GG)).
 
+## Checked against published lists
+
+Claims from published lists that could be tested here, and what came of them:
+
+- **32X: eight unused players.** Writing a player ID into a slot (`$FF1F24` + 2 per slot) on team select brings them
+  up: James Worthy ($04, with his own portrait), Scooter Pie ($6B), Kid Silk ($6C), Steven Tyler ($7A), Juwan Howard
+  ($83), Shaquille O'Neal's slot, named Green ($8D), Clifford Rozier ($93) and Greg Fischbach ($9A). Checked in BizHawk.
+
+  <img src="images/te32x_unused_players.png" alt="The eight unused 32X players on team select" width="640">
+
+- **Game Boy: debug viewer.** Game Genie `6B1-9DF-5D3` (one byte at `$019D`, `$6E` to `$6B`) re-enables it: in a game,
+  Select + A + B opens a memory viewer, and Select switches to a character viewer. Checked in BizHawk by patching the
+  byte.
+
+  <img src="images/tegb_debug.png" alt="The Game Boy memory viewer and character viewer" width="326">
+
+- **Developer messages**, all present: "Snake Woz Ere!" (32X `0x341F8`), "I Love Emma Wadrop" (32X `0x3B9DC`), "I Luv
+  Claire Reily" (Genesis `0x2AB374`), and the Super Nintendo's "SLICK/Audio v1.01 Copyright(C)1994 Bitmasters,Inc."
+  (`0x17861B`) and leftover NBA Jam ending text (`0xD6A7A`).
+- **Already on the codes page**: Kamm (VLK, Nov 9) on arcade, Kitzrow and Fox on Saturn, Stud Muffin's extra button
+  hold, the three cut PlayStation characters, Steven Tyler's leftover entry.
+
 ## Portraits on the codes page
 
 - **Super Nintendo** (original and TE): Mesen 2 with only BG1 shown (BG2 is the panel, the team logo is BG3 on TE and

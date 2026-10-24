@@ -1,6 +1,6 @@
 # NBA Jam and NBA Hangtime: Password Checker and Secret Codes
 
-**[Password checker →](https://maxxthunder.github.io/nbajam/)** &nbsp; **[Secret codes →](https://maxxthunder.github.io/nbajam/codes.html)** &nbsp;[![v1.3.5](https://img.shields.io/badge/version-1.3.5-e8742c)](CHANGELOG.md)
+**[Password checker →](https://maxxthunder.github.io/nbajam/)** &nbsp; **[Secret codes →](https://maxxthunder.github.io/nbajam/codes.html)** &nbsp;[![v1.3.6](https://img.shields.io/badge/version-1.3.6-e8742c)](CHANGELOG.md)
 
 <p align="center"><img src="docs/images/stats_screen.png" alt="The stats screen for LJP / Z443C1WY434S2J: rank 1, 27 W 0 L, streak 27 wins" width="384"></p>
 
@@ -50,19 +50,17 @@ Codes that no published list had are marked **★ New** on the page. A few terms
 - **Cut**: something finished in the game's data that no code or menu can reach.
 
 **NBA Jam**
-- Arcade: the Secret Midway Menu (a hidden operator screen), the tank game's reward and a hidden copyright message;
-  the 23 preset records the arcade games write into their memory.
+- Arcade: the Secret Midway Menu (a hidden operator screen) and the tank game's reward; the 23 preset records the
+  arcade games write into their memory.
 - Sega CD: seven match-up codes no list had.
 - Super Nintendo and Genesis: a match-up code the game recognizes and then never uses, probably a cut power-up.
 - Genesis: initials that play a speech clip (with the clips on the page).
-- Japanese beta: 11 secret characters, four of them dinosaurs ([research notes](docs/variants.md)).
 
 **Tournament Edition**
 - Title-menu codes on Super Nintendo, Genesis and 32X (a record one team short of the All-Stars, and the 32X's own).
 - 32X and PC: 12 of the 32X's 18 match-up codes and 8 of the PC's 19 were on no list.
 - Jaguar: a keypad code that clears the cartridge memory, and a random secret character for records that have beaten
   all 27 teams.
-- PlayStation: three finished characters with no code (Wright, Kita, Sprite Boy).
 - Arcade: Dennis Rodman in two revisions, and the prototype and revision 2.1 birthdays.
 
 **NBA Hangtime and Maximum Hangtime**
@@ -78,6 +76,9 @@ Codes that no published list had are marked **★ New** on the page. A few terms
 **Leftovers** (in the [research notes](docs/secrets.md)): Iguana's crash screen and the Team Player error screen on
 Genesis, the Genesis Rev 1 region lock, the Super Nintendo's controller warnings, the Sega CD's cut advert breaks, a
 Saturn dunk clip nothing plays, and a Jaguar player slot (BLARG) with no character behind it.
+
+Things already published elsewhere (the hidden copyright message, the
+PlayStation cut characters, Steven Tyler's leftover entry, the beta's dinosaurs) aren't marked new.
 
 Published codes that don't work as printed (wrong buttons, missing presses, codes that do nothing) are corrected on
 their cards.

@@ -287,8 +287,13 @@ All three entered in BizHawk.
 ### Other Genesis leftovers
 
 - Thirteen built-in player records at `$36374` (MARTIN, CARLOS, CARLTN, EUGENE, DIVITA, JAPPLE, TURMEL, then Funcom's
-  NILS, KRILLE, GLENN, TOMMY, TORE, COLIN, all PIN 0000). They seed the attract-mode record screens (`$3664A` walks them
-  before the saved records); the record lookup at name entry doesn't use them, and typing TURMEL 0000 changed nothing.
+  NILS, KRILLE, GLENN, TOMMY, TORE, COLIN, all PIN 0000). A published list calls them "scrapped secret
+  players", but they're the default record holders: attract mode shows them on its record screens (Greatest Players:
+  KUNGEN, JOHAN, NILS, KRILLE, GLENN, TOMMY, TORE, COLIN; Experienced Players: TURMEL, JAPPLE, DIVITA, EUGENE, CARLTN,
+  CARLOS, MARTIN, KUNGEN), and `$3664A` walks them before the saved records when it builds those tables. The record
+  lookup at name entry doesn't use them, and typing TURMEL 0000 changed nothing.
+
+  <img src="images/genesis_hangtime_default_records.png" alt="Genesis attract mode: Greatest Players and Experienced Players, listing the 13 names" width="648">
 - "SVEN-BERTIL", "EVERT", "KROKODILEN" and "CARL-HENRIK" sit after "PRESS  START" at `$5A30` with nothing pointing at them.
 
 ### European versions
@@ -304,6 +309,35 @@ The arcade only draws its logo as part of the full-screen title picture (ten 8-b
 picture. The Genesis title puts the logo on its own planes (A and the window) over the background on plane B, so
 `tools/img/logo_hangtime.png` is the Genesis logo, cut by taking the frame with plane B switched off and keeping the
 pixels that don't change when it's switched back on.
+
+## Checked against published lists
+
+Claims from published lists, checked here:
+
+- **Arcade: Secret Midway Menu.** Hold P1 and P2 Up and all buttons through the start-up screens, switch to Down for the
+  DESIGN TEAM screen, then P1 Turbo ×2, P2 Shoot ×3, P2 Pass ×2, P1 Shoot, P1 Pass, P2 Turbo ×2, P1 Turbo ×4.
+  Entered in MAME on L1.3: "SECRET MIDWAY MENU, NBA HANGTIME – VER L1.3 10/10/96".
+- **Arcade: NBA Jam's hidden credits** are still in the program at `FFAE5482h` ("NBA JAM - COPYRIGHT 1993 MIDWAY
+  MANUFACTURING COMPANY", the designers), stored with each character doubled.
+- **Genesis: the 13 names at `$3637C`** aren't cut secret players (see [Other Genesis leftovers](#other-genesis-leftovers)):
+  they're the default record holders in the attract-mode tables.
+- **Super Nintendo: FUNCOM / 1993.** The game answers NO RECORD (no saved record by that name), and the next button
+  press shows a photo of the Funcom team with captions naming each person. Checked in BizHawk. The name isn't stored
+  as text anywhere in the ROM, so the check is in code.
+- **Super Nintendo: the full ending.** All eight joystick codes give a short version ("YOU REALLY SHOULD HAVE DEFEATED
+  ALL 29 NBA TEAMS TO SEE THIS!" then "DEFEAT ALL 29 NBA TEAMS FOR A FULL VERSION!"). The full version (forced in
+  BizHawk by changing the ending's flag) runs "CONGRATULATIONS!!", the Funcom credits with anagrams of each name
+  ("OLAV MOERKRID: MILK OVER ROAD", "NILS ERIK HATLEM: THIS LAME LINKER"), "THIS SCREEN MADE BY OLAV & TORE" and "THANK
+  YOU FOR PLAYING NBA HANGTIME!".
+- **Genesis: SVEN-BERTIL, EVERT, KROKODILEN, CARL-HENRIK** at `$5A30`: confirmed unused.
+- **Super Nintendo: the "Fourth Dimension" music.** A published list asks whether anything plays it. Nothing does: the only code in
+  the ROM that writes to the sound chip's ports is the SLICK/Audio uploader (`$C5:C080`, run once at boot with the
+  driver at `$C5:C5DA`) and a second, uncalled copy of an upload loop (`$C5:B7FD`/`$C5:B810`) that sends the same SLICK
+  driver. Pointing the boot upload at that second copy in BizHawk gave silence, as a driver waiting for commands would.
+  No routine decompresses or uploads the Alfatech driver, so the song can't be heard without patching the game.
+- **Build dates** (all present): Super Nintendo "September 24 1996 11:37" and henrik@funcom.com (`0xC971`); N64 US
+  "Oct 29 1996 10:25:52" (`0xA3650`) and EU "Jun 3 1997 16:22:11" (`0x97256`), with the memory-manager error text
+  (`0xA34B0`); PlayStation "Apr 27 1997" in `SLUS_003.29` (`0x4E1D3`).
 
 ## Not covered
 
