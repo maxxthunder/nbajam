@@ -1,6 +1,6 @@
 # NBA Jam and NBA Hangtime: Password Checker and Secret Codes
 
-**[Password checker →](https://maxxthunder.github.io/nbajam/)** &nbsp; **[Secret codes →](https://maxxthunder.github.io/nbajam/codes.html)** &nbsp;[![v1.3.7](https://img.shields.io/badge/version-1.3.7-e8742c)](CHANGELOG.md)
+**[Password checker →](https://maxxthunder.github.io/nbajam/)** &nbsp; **[Secret codes →](https://maxxthunder.github.io/nbajam/codes.html)** &nbsp;[![v1.3.8](https://img.shields.io/badge/version-1.3.8-e8742c)](CHANGELOG.md)
 
 <p align="center"><img src="docs/images/stats_screen.png" alt="The stats screen for LJP / Z443C1WY434S2J: rank 1, 27 W 0 L, streak 27 wins" width="384"></p>
 
@@ -64,8 +64,8 @@ Codes that no published list had are marked **★ New** on the page. A few terms
 - Arcade: Dennis Rodman in two revisions, and the prototype and revision 2.1 birthdays.
 
 **NBA Hangtime and Maximum Hangtime**
-- Arcade: a code that turns on four effects at once, and a Down press that locks the match-up numbers; the
-  trivia contest's password, which needs a full four-quarter game.
+- Arcade: a code that turns on four effects at once; the trivia contest's password, which needs a full
+  four-quarter game.
 - Arcade: M-DOC's PIN is stored so it can't be typed; the published 6-1-6 (max blocking) does nothing; the game has a
   "HOTSPOTS ON" setting with no code to turn it on.
 - Maximum Hangtime: 21 extra NBA players.

@@ -1,6 +1,7 @@
 -- NBA Jam (Genesis): the two hidden screens, patched in through cartridge memory.
 -- python tools/emu/bizhawk.py tools/tests/genesis_screens.lua <Genesis ROM>
 -- Original: the Team Player device-error screen ($1D9F24). Rev 1: the region-lock screen (Sega's check at $2FA).
+genesis.setlayer_bga(true) genesis.setlayer_bgb(true) genesis.setlayer_bgw(true)  -- shots need every plane, whatever BizHawk was left set to
 if memory.read_u8(0x1F0,"MD CART")==0x45 then  -- header region "EU": original
   wait(300)
   memory.write_u8(0x1D9DA6,0x60,"MD CART")     -- pad ID check always takes the Team Player path

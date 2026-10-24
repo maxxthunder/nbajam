@@ -2,6 +2,7 @@
 -- at Tonight's Match-Up, logs the flags, then tips off with Start (B presses could land the numbers on 1-1-1,
 -- tournament mode, which clears every joystick flag) and logs them again with a shot of play.
 -- python tools/emu/bizhawk.py tools/tests/genesis_hangtime_joystick.lua "roms/NBA Hang Time (USA).md"
+genesis.setlayer_bga(true) genesis.setlayer_bgb(true) genesis.setlayer_bgw(true)  -- shots need every plane, whatever BizHawk was left set to
 local function fl() return string.format("court=%X hawaii=%X arrows=%X drift=%X assist=%X aba=%X", r8(0x297D), r8(0x297F), r16(0x1194), r16(0x1196), r16(0x1198), r16(0x119A)) end
 wait(2100) press({Start=true},6) wait(120) press({Start=true},6) wait(120) press({A=true},6) wait(120) press({A=true},6) wait(120) press({Start=true},6) wait(90)
 for k=1,10 do press({A=true},6) wait(25) end

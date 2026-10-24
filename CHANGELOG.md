@@ -2,6 +2,12 @@
 
 Changes to the [password checker](https://maxxthunder.github.io/nbajam/) and [secret codes page](https://maxxthunder.github.io/nbajam/codes.html). The version is shown at the bottom of each page. **Codes page** and **Checker** are what visitors see; **Notes** are the [research notes](docs/); **README** is this repo's front page.
 
+## 1.3.8 (2026-10-24)
+- **Codes page:** checked against Dan Amrich's Hangtime list (bunnyears.net): every name and PIN matches. The Down
+  press that locks the match-up numbers is on his list, so it's no longer marked ★ New. His spelling "ERHLICH" is a
+  slip; both games show EHRLICH.
+- **Repo:** the Genesis screenshot tests switch every graphics layer on, so BizHawk's saved settings can't blank one.
+
 ## 1.3.7 (2026-10-24)
 - **Codes page:** the N64 Hangtime credits, listed elsewhere as unused, play in attract mode on its third loop.
 - **Codes page:** the "Cut or unused" filter now includes the 32X's cut and unused players and the N64's M-DOC.

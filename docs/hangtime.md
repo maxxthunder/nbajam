@@ -109,8 +109,8 @@ is the state `$28`. Most have about a second (60 frames) from their first input;
 | Lock | any Down press | `@1136B80h` | that player's digits stop and flash |
 
 All entered on player 1's controls in MAME (each about two seconds into the screen), checked by their flags and in
-play. The Down lock explains why some published codes end in Down. The four-at-once code and the lock are on no
-list we found; the published "2-0-0 + Left" outdoor court is really the rooftop code (hold Left, Turbo, Turbo), since
+play. The Down lock explains why some published codes end in Down; [Dan Amrich's list](https://www.bunnyears.net/hangtime/hangtimecodes.html)
+mentions it. The four-at-once code is on no list we found; the published "2-0-0 + Left" outdoor court is really the rooftop code (hold Left, Turbo, Turbo), since
 Turbo presses also count up the first digit.
 
 All NBA Hangtime revisions (L1.1, L1.2, L1.3, M1.1, M1.2, M1.3) have the same two tables.

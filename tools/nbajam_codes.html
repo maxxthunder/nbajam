@@ -184,7 +184,7 @@ footer a { color: var(--orange); text-decoration: none; display: inline-flex; al
       <a href="https://github.com/maxxthunder/nbajam/tree/main/docs">research notes</a>.</p>
   </details>
 
-  <footer><a href="https://github.com/maxxthunder/nbajam"><svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg>maxxthunder/nbajam</a><a href="https://github.com/maxxthunder/nbajam/blob/main/CHANGELOG.md">v1.3.7</a></footer>
+  <footer><a href="https://github.com/maxxthunder/nbajam"><svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg>maxxthunder/nbajam</a><a href="https://github.com/maxxthunder/nbajam/blob/main/CHANGELOG.md">v1.3.8</a></footer>
 </main>
 <script>
 // Card: [title, where, input, new?, note]. Input: "ini:MJT|Mar 22" = initials (and birthday);
@@ -461,7 +461,7 @@ const HT_JOY = [['Big heads', 'Up + Pass + Turbo together', 'Caption "BIG HEAD".
   ['ABA ball', 'Hold Right, Shoot, Turbo, Pass', 'A red, white and blue ball.', 'shots/htjoy_aba'],
   ['Rooftop court', 'Hold Left, Turbo, Turbo', 'An outdoor court on a city rooftop at night.', 'shots/htjoy_rooftop'],
   ['Four at once', 'Shoot, Shoot, Hold Shoot and turn the joystick once clockwise from Up', 'Big heads, shot percentage, ABA ball and the rooftop court together. Fast: the whole turn has about 1⅓ seconds.', 'shots/htjoy_four'],
-  ['Lock in the numbers', 'Down', "Any Down press stops your three digits counting and flashes them, which is why some published codes end in Down."],
+  ['Lock in the numbers', 'Down', "Any Down press stops your three digits counting and flashes them, which is why some published codes end in Down. Dan Amrich's list (bunnyears.net) has this too."],
   ['Unused code: hot spots', 'No input sets it', 'NBA Hangtime already has a "HOTSPOTS ON" setting and caption, but no code turns it on, and nothing in play uses it, so hot spots never applies. Switched on in MAME, only the caption appears. Maximum Hangtime adds the code and the hot spots.', 'hangtime/ht_hotspots']];
 const htJoy = (list, newOnes) => list.map(([n, k, note, pic]) => [n, `${MU}, about two seconds in`, k, newOnes.includes(n), note, pic]);
 // N64 and PlayStation keep the arcade's detectors; buttons renamed, and only some checked on PlayStation
@@ -473,7 +473,7 @@ const htJoyHome = plat => {
   const m = HT_JOY_HOME[plat];
   return HT_JOY.filter(([n]) => !n.startsWith('Unused')).map(([n, k, note]) => [n, MU,
     k.replace(/Turbo|Shoot|Pass/g, b => m[b]).replace('the joystick', m.stick),
-    ['Four at once', 'Lock in the numbers'].includes(n), m.checked && !m.checked.includes(n) ? 'Not checked on PlayStation.' : note.replace(/^Caption "[^"]*"\.$|; caption "[^"]*"/, ''), HOME_SHOTS[plat]?.[n] || '']);
+    ['Four at once'].includes(n), m.checked && !m.checked.includes(n) ? 'Not checked on PlayStation.' : note.replace(/^Caption "[^"]*"\.$|; caption "[^"]*"/, ''), HOME_SHOTS[plat]?.[n] || '']);
 };
 const MHT_JOY = [...HT_JOY.filter(([n]) => !['Rooftop court', 'Four at once', 'Unused code: hot spots'].includes(n)).map(([n, k, note]) => [n, k, note]),
   ['Outdoor court', 'Right', 'Shows "COURT: STADIUM / OUTDOOR" on the match-up screen; Right picks the rooftop court and Left goes back. Published as "press Left", which leaves it on Stadium.', 'shots/mht_court'],
@@ -785,13 +785,13 @@ const GROUPS = {
     ['Trivia contest', "A 1996 sweepstakes built into the game (the TRIVIA CONTEST setting, on from the factory). Attract mode shows the prizes; the questions come at game over.",
       [['Trivia password', 'Game over, after a full four-quarter game with a created player', 'Answer the questions (2 points each) until you have 100 points', false, 'The game then shows "CONTEST DRAWING QUALIFIER" and an 8-letter password to mail in with your name and PIN (AAAAAA 0000 gets EOFTCSJN). Reached in MAME by setting the points to 98 and answering one question; entries closed September 13, 1996.', 'hangtime/ht_trivia_password']]],
     ['Match-up codes', "At Tonight's Match-Up, press Turbo, Shoot and Pass the number of times shown. Holding the joystick counts a digit down instead of up, and each digit wraps from 9 to 0. All 13 checked in MAME by their flags and tip-off captions. The published \"2, 0, 0 + Left\" outdoor court is really the joystick code below.", HT_MU.map(htMu)],
-    ['Match-up joystick codes', "Also at Tonight's Match-Up, on any player's controls, once the screen has been up for a moment (the codes are watched a little after it appears). \"Hold\" means keep it held through the rest of the code. All checked in MAME by their flags and in play. ★ New: on no published list.", htJoy(HT_JOY, ['Four at once', 'Lock in the numbers', 'Unused code: hot spots'])],
+    ['Match-up joystick codes', "Also at Tonight's Match-Up, on any player's controls, once the screen has been up for a moment (the codes are watched a little after it appears). \"Hold\" means keep it held through the rest of the code. All checked in MAME by their flags and in play. ★ New: on no published list.", htJoy(HT_JOY, ['Four at once', 'Unused code: hot spots'])],
   ],
   mht: [
     ['Added in Maximum Hangtime', "Entered the same way. Maximum Hangtime keeps NBA Hangtime's 61 entries except WEBB (and fixes MDOC and JASON), and adds the rest. These were typed in MAME or checked by writing the table's values in. The 13 match-up numbers are the same.",
       [['Marc Williams (M-Doc)', NP, 'pw:MDOC|2000', false, 'Fixed here; in NBA Hangtime its PIN is stored so it cannot be typed. Typed in MAME.', 'hangtime/ht_mdoc'], ['Jason Skiles', NP, 'pw:JASON|0, 7, 2, SPC', false, 'The PIN now ends with the SPC key. Typed in MAME.', 'hangtime/ht_jason'],
         ...MHT.map(([name, pin, who, note]) => [who, NP, `pw:${name}|${pin}`, !['ZIRIN', 'HEITH', 'MATT B', 'K DAY'].includes(name), note || '', `hangtime/mht_${name.toLowerCase().replace(' ', '_')}`])]],
-    ['Match-up joystick codes', "Maximum Hangtime moves the court to a Stadium/Outdoor selector and adds hot spots. Checked in MAME: outdoor court, hot spots, big heads; the rest are the same detectors as NBA Hangtime.", htJoy(MHT_JOY, ['Four at once', 'Lock in the numbers'])],
+    ['Match-up joystick codes', "Maximum Hangtime moves the court to a Stadium/Outdoor selector and adds hot spots. Checked in MAME: outdoor court, hot spots, big heads; the rest are the same detectors as NBA Hangtime.", htJoy(MHT_JOY, ['Four at once'])],
   ],
   htn64: [['Secret players', "The arcade table, read from the cartridge (not checked in play). NOBUD, MARIUS, NORTH and JIGGET are blanked out, and MDOC is still unreachable (the European cartridge fixes it).", htPort('htn64')],
     ['Match-up codes', "The arcade's 13 numbers, read from the cartridge; not checked in play.", htMuPort('htn64', 'A, C-Down, C-Right')],

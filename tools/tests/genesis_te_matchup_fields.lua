@@ -1,5 +1,6 @@
 -- Tournament Edition (Genesis): which player field each match-up code sets after tip-off (the unused code sets none).
 -- python tools/emu/bizhawk.py tools/tests/genesis_te_matchup_fields.lua <TE Genesis ROM>
+genesis.setlayer_bga(true) genesis.setlayer_bgb(true) genesis.setlayer_bgw(true)  -- shots need every plane, whatever BizHawk was left set to
 local L="ABCDEFGHIJKLMNOPQRSTUVWXYZ_"
 local cur=0
 local function moveto(idx)
