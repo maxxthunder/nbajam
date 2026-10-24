@@ -1,11 +1,12 @@
 # NBA Jam and NBA Hangtime: Password Checker and Secret Codes
 
-**[Password checker →](https://maxxthunder.github.io/nbajam/)** &nbsp; **[Secret codes →](https://maxxthunder.github.io/nbajam/codes.html)** &nbsp;[![v1.3.4](https://img.shields.io/badge/version-1.3.4-e8742c)](CHANGELOG.md)
+**[Password checker →](https://maxxthunder.github.io/nbajam/)** &nbsp; **[Secret codes →](https://maxxthunder.github.io/nbajam/codes.html)** &nbsp;[![v1.3.5](https://img.shields.io/badge/version-1.3.5-e8742c)](CHANGELOG.md)
 
 <p align="center"><img src="docs/images/stats_screen.png" alt="The stats screen for LJP / Z443C1WY434S2J: rank 1, 27 W 0 L, streak 27 wins" width="384"></p>
 
-- **Check a password**: type your initials and the password (14 characters for NBA Jam, 10 for Tournament Edition),
-  and it tells you whether the game will take them.
+- **Check a password** (NBA Jam, and Tournament Edition on Game Boy and Game Gear): type your initials and the
+  password (14 characters for NBA Jam, 10 for Tournament Edition), and it tells you whether the game will take them.
+  NBA Hangtime has no passwords.
 - **See what it holds**: wins, losses, percentage, win streak, and which of the 27 NBA teams you've beaten.
 - **Secret codes**: every secret character and hidden code, read straight from the games:
   - NBA Jam: arcade, Super Nintendo, Genesis, Sega CD, Game Boy, Game Gear.
@@ -22,50 +23,61 @@ Both pages work offline too: save [`tools/nbajam_password_checker.html`](tools/n
 
 ## What's on the codes page
 
+✓ entered in an emulator · ○ read from the game's data, not entered
+
 | Version | Secret characters | Match-up codes | Also |
 |---------|:-:|:-:|------|
 | NBA Jam: arcade | ✓ | ✓ | tank game, hidden menu and copyright screen, preset records |
-| NBA Jam: Super Nintendo, Genesis | ✓ | ✓ | passwords (SNES), announcer codes (Genesis) |
+| NBA Jam: Super Nintendo, Genesis | ✓ | ✓ | passwords (Super Nintendo), announcer codes (Genesis) |
 | NBA Jam: Sega CD, Game Boy, Game Gear | ✓ | ✓ | |
 | Tournament Edition: arcade | ✓ | ✓ | hidden menu, preset records, other codes |
 | Tournament Edition: Super Nintendo, Genesis, 32X | ✓ | ✓ | hidden title-menu codes |
 | Tournament Edition: Saturn, PlayStation | ✓ | ✓ | preset records, three cut PlayStation characters |
 | Tournament Edition: PC, Jaguar | ✓ | ✓ | Jaguar keypad codes |
 | Tournament Edition: Game Boy, Game Gear | ✓ | | |
-| NBA Hangtime, Maximum Hangtime: arcade | ✓ (name and PIN) | ✓ | joystick codes |
-| NBA Hangtime: N64, PlayStation | ✓ (read from the game) | ✓ (read from the game) | joystick codes |
-| NBA Hangtime: Super Nintendo, Genesis | | ✓ (read from the game) | preset records, joystick codes, Genesis options screen |
+| NBA Hangtime, Maximum Hangtime: arcade | ✓ | ✓ | joystick codes, trivia contest |
+| NBA Hangtime: N64, PlayStation | ○ | ○ | joystick codes ✓ |
+| NBA Hangtime: Super Nintendo, Genesis | | ○ | preset records, joystick codes ✓, Genesis options screen ✓ |
 
-Every code was entered in an emulator unless its card says otherwise.
+Each card on the page says how it was checked.
 
 ## What's new here
 
-The codes page marks 130 codes that no published list had with **★ New**:
+Codes that no published list had are marked **★ New** on the page. A few terms first:
 
-- **Match-up codes nobody had listed**: the Sega CD's seven button sequences, 12 of the 32X's 18, 8 of the PC's 19,
-  and a code on Super Nintendo, Genesis and 32X that the game recognises but never applies (probably a cut power-up).
-- **Hidden codes**: Tournament Edition title-menu codes (a record one team short of the All-Stars, and the 32X's
-  own codes), the Jaguar's cartridge-memory clear and its random secret character for 27-team records, and the
-  arcade's Secret Midway Menu, tank-game reward and hidden copyright message.
-- **Preset records**: the 23 records the arcade games write into their memory; the 13 that aren't secret characters
-  open a saved record.
-- **Cut characters**: three finished PlayStation characters with no code (Wright, Kita, Sprite Boy).
-- **Characters**: Dennis Rodman in two arcade Tournament Edition revisions, and the prototype and revision 2.1
-  birthdays.
-- **Leftovers in the research notes**: Iguana's crash screen and the Team Player error screen on Genesis, the Genesis
-  Rev 1 region lock, the Super Nintendo's controller warnings, the Sega CD's cut advert breaks, a Saturn dunk clip
-  nothing plays, and the Jaguar's BLARG, a player ID with too little behind it to be shown.
-- **NBA Hangtime and Maximum Hangtime**:
-  - Arcade: M-DOC, which can't be entered; the published 6-1-6 that does nothing; a four-at-once joystick code and the
-    Down press that locks the numbers; a "HOTSPOTS ON" flag with nothing to set it; the trivia contest's password,
-    reached only after a full game.
-  - Maximum Hangtime: 21 extra NBA players.
-  - N64 and PlayStation: the arcade's joystick codes, four-at-once included; M-DOC works on the European N64 cartridge.
-  - Super Nintendo: two unpublished joystick codes, and all eight codes together play the cheat ending.
-  - Genesis: an options-screen code that plays the credits, and a published no-arrows code that never applies.
-- **Betas**: the Japanese NBA Jam beta's 11 secret characters, four of them dinosaurs (in the
-  [research notes](docs/variants.md)).
-- **Genesis announcer codes**: initials that play a speech clip, with the clips on the page.
+- **Match-up codes**: buttons pressed on the "Tonight's Match-Up" screen before tip-off, for power-ups and other effects.
+- **Preset records**: saved records the game creates for itself; entering their initials opens them.
+- **Cut**: something finished in the game's data that no code or menu can reach.
+
+**NBA Jam**
+- Arcade: the Secret Midway Menu (a hidden operator screen), the tank game's reward and a hidden copyright message;
+  the 23 preset records the arcade games write into their memory.
+- Sega CD: seven match-up codes no list had.
+- Super Nintendo and Genesis: a match-up code the game recognizes and then never uses, probably a cut power-up.
+- Genesis: initials that play a speech clip (with the clips on the page).
+- Japanese beta: 11 secret characters, four of them dinosaurs ([research notes](docs/variants.md)).
+
+**Tournament Edition**
+- Title-menu codes on Super Nintendo, Genesis and 32X (a record one team short of the All-Stars, and the 32X's own).
+- 32X and PC: 12 of the 32X's 18 match-up codes and 8 of the PC's 19 were on no list.
+- Jaguar: a keypad code that clears the cartridge memory, and a random secret character for records that have beaten
+  all 27 teams.
+- PlayStation: three finished characters with no code (Wright, Kita, Sprite Boy).
+- Arcade: Dennis Rodman in two revisions, and the prototype and revision 2.1 birthdays.
+
+**NBA Hangtime and Maximum Hangtime**
+- Arcade: a code that turns on four effects at once, and a Down press that locks the match-up numbers; the
+  trivia contest's password, which needs a full four-quarter game.
+- Arcade: M-DOC's PIN is stored so it can't be typed; the published 6-1-6 (max blocking) does nothing; the game has a
+  "HOTSPOTS ON" setting with no code to turn it on.
+- Maximum Hangtime: 21 extra NBA players.
+- N64 and PlayStation: the arcade's joystick codes work there too; M-DOC works on the European N64 cartridge.
+- Super Nintendo: two joystick codes no list had, and all eight codes together play the cheat ending.
+- Genesis: an options-screen code that plays the credits, and a published no-arrows code that never takes effect.
+
+**Leftovers** (in the [research notes](docs/secrets.md)): Iguana's crash screen and the Team Player error screen on
+Genesis, the Genesis Rev 1 region lock, the Super Nintendo's controller warnings, the Sega CD's cut advert breaks, a
+Saturn dunk clip nothing plays, and a Jaguar player slot (BLARG) with no character behind it.
 
 Published codes that don't work as printed (wrong buttons, missing presses, codes that do nothing) are corrected on
 their cards.
@@ -151,7 +163,7 @@ python tools/nbajam_te_password.py RAT BZZ6DZ37KY
 | `tools/disasm.py`, `tools/reasm.py` | SNES disassembler and reassembler |
 | `tools/dis/` | Small disassemblers (68000, SH-2, Z80, SM83, MIPS), a DOS/4GW LE reader, and Game Boy / Game Gear pad-check scanners (need `capstone` for 68000, SH-2 and MIPS) |
 | `tools/emu/` | Scripted runners for BizHawk, MAME, Mesen 2 and DOSBox-X (set `EMUHAWK`, `MAME`, `MESEN`, `DOSBOX`) |
-| `tools/tests/` | The tests run for the codes page: match-up codes (Super Nintendo, Genesis, 32X, PlayStation, Saturn, Jaguar, arcade), the PlayStation cut characters, the Super Nintendo 27-team juice mode, the Genesis hidden screens, the Jaguar's BLARG, the arcade's unused DIP switches, and NBA Hangtime's names and match-up codes |
+| `tools/tests/` | The emulator tests behind the codes page: match-up codes on most versions, cut characters, hidden screens, unused DIP switches, and NBA Hangtime's names, match-up and joystick codes |
 | `disasm/snes/` | 65816 listings of the original ROM, one file per 32 KB bank |
 | `disasm/names.txt`, `disasm/entries.txt` | Names for routines and RAM; code addresses seen running in Mesen |
 | [CHANGELOG.md](CHANGELOG.md) | What changed in each version |
@@ -168,8 +180,9 @@ python tools/reasm.py disasm/snes "roms/NBA Jam (USA).sfc"
 ## Credits
 
 *NBA Jam* and *NBA Jam Tournament Edition* are by Midway; Acclaim published the home versions. *NBA Hangtime* and
-*Maximum Hangtime* are by Midway; its Super Nintendo and Genesis versions are Funcom's. Screenshots, portraits and clips are from the games running in Mesen 2, BizHawk, MAME and
-DOSBox-X. The ROMs are not included in this repo.
+*Maximum Hangtime* are by Midway; Funcom made the Super Nintendo and Genesis versions of NBA Hangtime. Screenshots,
+portraits and clips are from the games running in Mesen 2, BizHawk, MAME and DOSBox-X. The ROMs are not included in
+this repo.
 
 ## License
 
