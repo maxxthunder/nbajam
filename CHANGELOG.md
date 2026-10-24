@@ -2,6 +2,10 @@
 
 Changes to the [password checker](https://maxxthunder.github.io/nbajam/) and [secret codes page](https://maxxthunder.github.io/nbajam/codes.html). The version is shown at the bottom of the page.
 
+## 1.3.4 (2026-10-24)
+- Secret codes page: pick a game from three large logo cards (NBA Jam, Tournament Edition, Hangtime), then a version
+  from one row of chips. The header logo follows the chosen game, and each game remembers the version last picked.
+
 ## 1.3.3 (2026-10-24)
 - Secret codes page: screenshots on the new finds (Hangtime trivia password, hot spots caption, Genesis courts, ABA
   ball and credits, Super Nintendo ball flash; NBA Jam's tank reward, copyright screen, stats menus, Jaguar codes,
