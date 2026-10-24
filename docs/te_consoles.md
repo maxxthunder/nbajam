@@ -190,6 +190,12 @@ The same initials with the wrong buttons give a normal player. They match the pu
 ([chaptercheats.com](https://www.chaptercheats.com/cheats/gameboy/578/nba-jam-tournament-edition-cheat-codes)) exactly.
 `RPR` is RP Rodent, the Torus Games mascot from the boot screen.
 
+The rest of the Game Boy's button tests (held `$FFDE`, new presses `$FFDD`/`$FFDF`) are menus and play, plus a pause
+menu at `$13E00`: in a game, Select pauses, Select again resumes, and holding A + B sets the main mode (`$D58E`) to 10,
+which fades out and restarts at the title (`$0A6E`). The Game Gear (held `$C69C`, new presses `$C69D`) has the same
+idea at `$29966`: 1 + 2 + Start together pauses, Start resumes, and 1 + 2 quits to the title (`$C69A` = 10). Read
+from the code. Neither has other button codes.
+
 ## Saturn
 
 The Saturn version (Iguana) checks initials and a birthday, like the arcade TE. I read the table from high work RAM

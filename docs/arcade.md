@@ -23,9 +23,36 @@ The initials and birthday table at `FF963740` (rev 3.01) has 13 entries, 5 words
 | `MJT` | Mar 22 | `TON` | Jul 3 |
 | `JWH` | Sep 20 | | |
 
-A second table at `FF97F300` (23 entries: MDP, DOZ, JCV, JMS, JFL, JRN, GET, TJC, GNP, JWH, CMM, MJT, RJR,
-SAL, TWG, JMC, SL_, WMN, DIE, EJB, CRL, SAN, SNO) holds initials, birthdays, a win-loss record and a
-teams-beaten mask. It looks like the default player records rather than unlocks.
+A second table at `FF97F300` (23 entries of 9 words: initials, month, day, games, wins, streak, teams-beaten
+mask) is the set of **preset records** the game writes into its CMOS when it's set up. Entering one of them at
+the initials and birthday screens opens that record instead of a new one. Ten belong to the secret characters
+above (same initials and birthday); the other 13 are plain records:
+
+| Initials | Birthday | Record | Streak | Teams beaten |
+|----------|----------|--------|--------|--------------|
+| `MDP` | Jan 13 | 8–12 | 1 | 2 |
+| `DOZ` | Dec 31 | 9–7 | 1 | 2 |
+| `JCV` | Jun 27 | 4–5 | 2 | 1 |
+| `JMS` | Feb 22 | 6–10 | 1 | 3 |
+| `JFL` | Apr 16 | 7–8 | 1 | 2 |
+| `GET` | Oct 19 | 9–11 | 2 | 6 |
+| `TJC` | Oct 12 | 9–6 | 4 | 1 |
+| `CMM` | Jul 2 | 5–6 | 1 | 3 |
+| `WMN` | Nov 11 | 8–7 | 4 | 6 |
+| `DIE` | Feb 23 | 2–10 | 1 | 2 |
+| `EJB` | Feb 23 | 8–11 | 2 | 6 |
+| `CRL` | Jan 1 | 5–0 | 5 | 5 |
+| `SAN` | Jan 1 | 5–0 | 2 | 5 |
+
+All 13 checked in MAME on rev 3.01 from a freshly set-up CMOS: each opens its record (every one shows a last match of
+Chicago over Detroit, 137–86). Rev 1.00 and Tournament Edition rev 4.0 3/23 have the same 23, and every other revision of both
+games has a 23-entry table in the same format (on TE rev 4.0 3/23, MDP and the seven that aren't TE secret characters, JCV, GET, TJC, DIE, EJB, CRL
+and SAN, were checked: each opens its record). On a real cabinet a record is only there until the operator clears the CMOS or the
+player overwrites it.
+
+<p align="center">
+  <img src="images/arcade_preset_record.png" alt="The stats screen after entering MDP, January 13: rank 14, 8 wins and 12 losses" width="400">
+</p>
 
 ## The tank game's reward (rev 3)
 
@@ -91,6 +118,18 @@ exactly 8 presses (defense, `FF8FBBB0`, also read in play at `FF87A6A0`) and Up 
 heads, `FF850900`). It prints no messages. Checked in MAME (`nbajamr2`, `nbajamr1`): on rev 2.00 defense, intercept,
 big heads and shot % all set their flags and show their messages; on rev 1.00 defense and big heads set theirs, and
 the intercept hold does nothing. This agrees with the FAQ, which says assistance off needs version 3.0.
+
+**Prototypes.** Prototypes 1.01 (1/23/93) and 2.00 (1/24/93) have only the big-heads check (and the first step of the
+hidden menu code): no press counter, no tank game, no copyright screen. Big heads checked in MAME on 1.01 (`nbajamp1`).
+They also have an operator head-size setting ("SMALLEST SIZE: 1" to "LARGEST SIZE: 5") that the releases replace with
+the big-head adjustment.
+
+## Other input checks
+
+Every read of the input ports (`@1600000h`-`@1600030h`) and of the per-player switch words (`@10E5350h` + 16 ×
+player) in rev 3.01 was listed, with the test that follows. Apart from the codes on this page they are coin and
+start handling, the operator test screens (holding both Starts leaves the switch test) and ordinary play. TE rev 4.0
+3/23 (`@10E62E0h`) gives the same result. So there are no other button codes in either game.
 
 ## Hidden copyright message
 

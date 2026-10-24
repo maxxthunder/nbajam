@@ -2,6 +2,12 @@
 
 Changes to the [password checker](https://maxxthunder.github.io/nbajam/) and [secret codes page](https://maxxthunder.github.io/nbajam/codes.html). The version is shown at the bottom of the page.
 
+## 1.2.1 (2026-10-23)
+- Secret codes page: the arcade games' preset records (13 on the original, 7 more on Tournament Edition), all tested;
+  the arcade prototypes' big heads. Notes: no other hidden inputs in either arcade game, a pause-quit on the
+  Tournament Edition handhelds, the Tournament Edition prototype's location-test message, and corrected Super
+  Nintendo and Sega CD input notes.
+
 ## 1.2.0 (2026-10-23)
 - Desktop layout: on the secret codes page each row of version tabs has a small logo beside it, the page is wider,
   and the tabs and search stay at the top while scrolling; the password checker shows the password and the record

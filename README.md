@@ -1,6 +1,6 @@
 # NBA Jam — Password Checker and Secret Codes
 
-**[Password checker →](https://maxxthunder.github.io/nbajam/)** &nbsp; **[Secret codes →](https://maxxthunder.github.io/nbajam/codes.html)** &nbsp;[![v1.2.0](https://img.shields.io/badge/version-1.2.0-e8742c)](CHANGELOG.md)
+**[Password checker →](https://maxxthunder.github.io/nbajam/)** &nbsp; **[Secret codes →](https://maxxthunder.github.io/nbajam/codes.html)** &nbsp;[![v1.2.1](https://img.shields.io/badge/version-1.2.1-e8742c)](CHANGELOG.md)
 
 <p align="center"><img src="docs/images/stats_screen.png" alt="The stats screen for LJP / Z443C1WY434S2J: rank 1, 27 W 0 L, streak 27 wins" width="384"></p>
 
@@ -17,7 +17,7 @@ Both pages work offline too: save [`tools/nbajam_password_checker.html`](tools/n
 
 ## What's new here
 
-The codes page marks 64 codes that no published list had with **★ New**. Among them:
+The codes page marks 84 codes that no published list had with **★ New**. Among them:
 
 - **Sega CD match-up codes.** The Sega CD uses its own seven button sequences for the power-ups; none were on any
   list.
@@ -32,6 +32,8 @@ The codes page marks 64 codes that no published list had with **★ New**. Among
 - **Hidden title-menu codes** for Tournament Edition: a record one team short of the All-Stars on Super Nintendo and
   Genesis, and the 32X's own All-Star and one-short codes.
 - **Genesis announcer codes**: initials that play a speech clip, with the clips on the page to listen to.
+- **Arcade preset records**: 23 records the arcade games write into memory when set up; entering one of the 13
+  that aren't secret characters opens its record.
 - **Arcade**: the Secret Midway Menu (an operator stats screen), the tank game's reward, a hidden copyright
   message, Dennis Rodman in two TE revisions, and the prototype and revision 2.1 birthdays.
 

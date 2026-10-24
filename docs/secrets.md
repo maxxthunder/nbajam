@@ -122,7 +122,8 @@ when entered with the Start code on the last letter (`$1D4ED0`). The SNES doesn'
 | `SNK` with Start on S and K | `$26` | "Nail in the coffin!"; the published all-power-ups code; also sets `$FF1D6C` |
 
 `GAP`, `SNK`, `JAZ` and `ZOB` are also on the Genesis default high-score table (with SL, GON, JWH and DAZ),
-which suggests they're the developers' initials. `SAM`, `GAP`, `CHR`, `JAZ` and `ZOB` aren't on the published
+which suggests they're the developers' initials. Unlike the arcade's preset records, entering them (or SL, GON, JWH, DAZ) on a
+fresh save gives "No record" (checked in BizHawk): the table is just the default record-keeper names. `SAM`, `GAP`, `CHR`, `JAZ` and `ZOB` aren't on the published
 lists. All of them were checked in BizHawk: each one triggers the clip ID shown. Recordings are in `tools/audio/genesis_<id>.mp3`.
 
 Tournament Edition on Genesis and 32X still holds the same table and lookup routine (Genesis `$2A8C52` / `$2A6910`,
@@ -171,11 +172,13 @@ The original's home versions were checked the same way as Tournament Edition (se
 [te_consoles.md](te_consoles.md#other-button-codes)): every load of the pad variables followed by a button test, and
 every "table entry against the new presses" loop.
 
-- **Super Nintendo** (held `$0008`-`$000E`, new presses `$1669`-`$166F`): only Start and menu-navigation tests. No
-  title-menu sequence, no pause quit.
+- **Super Nintendo** (held `$0008`-`$000E`, new presses `$1669`-`$166F`): only Start and menu-navigation tests, plus the
+  match-up power-ups (below). No title-menu sequence, no pause quit.
 - **Genesis** (pads `$FF02B4`-`$FF02BA`, new presses `$FF02BE`-`$FF02C4`) and **Sega CD** (pads `$AB3E`-`$AB44`, new
-  presses `$AB48`-`$AB4E`, in `FRONT.BIN` and `GAME.BIN`): no button combinations or sequences. The Genesis has the
-  same unused sound test as Tournament Edition (`$1C3E16`, nothing calls it).
+  presses `$AB48`-`$AB4E`, in `FRONT.BIN` and `GAME.BIN`): no button combinations or sequences apart from the match-up
+  power-ups (below). On the Sega CD those are in `MAIN.BIN`, the main CPU's program, which only reads the pads, passes
+  them to the sub CPU (`$A12012`-`$A1201A`) and runs the match-up sequences. The Genesis has the same unused sound test
+  as Tournament Edition (`$1C3E16`, nothing calls it).
 - **Game Boy** and **Game Gear**: the usual reset, and the Tonight's Match-Up power-ups (below).
 
 ## Game Boy and Game Gear: match-up power-ups
