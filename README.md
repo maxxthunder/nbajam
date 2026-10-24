@@ -1,6 +1,6 @@
 # NBA Jam and NBA Hangtime: Password Checker and Secret Codes
 
-**[Password checker →](https://maxxthunder.github.io/nbajam/)** &nbsp; **[Secret codes →](https://maxxthunder.github.io/nbajam/codes.html)** &nbsp;[![v1.3.8](https://img.shields.io/badge/version-1.3.8-e8742c)](CHANGELOG.md)
+**[Password checker →](https://maxxthunder.github.io/nbajam/)** &nbsp; **[Secret codes →](https://maxxthunder.github.io/nbajam/codes.html)** &nbsp;[![v1.3.9](https://img.shields.io/badge/version-1.3.9-e8742c)](CHANGELOG.md)
 
 <p align="center"><img src="docs/images/stats_screen.png" alt="The stats screen for LJP / Z443C1WY434S2J: rank 1, 27 W 0 L, streak 27 wins" width="384"></p>
 
@@ -71,6 +71,7 @@ Codes that no published list had are marked **★ New** on the page. A few terms
 - Maximum Hangtime: 21 extra NBA players.
 - N64 and PlayStation: the arcade's joystick codes work there too; M-DOC works on the European N64 cartridge.
 - Super Nintendo: two joystick codes no list had, and all eight codes together play the cheat ending.
+- Super Nintendo: a bug where entering no match-up number gives your team goaltending and stealth turbo.
 - Genesis: an options-screen code that plays the credits, and a published no-arrows code that never takes effect.
 
 **Leftovers** (in the [research notes](docs/secrets.md)): Iguana's crash screen and the Team Player error screen on

@@ -142,3 +142,23 @@ PROGRAMMED-BY-SHAWN-LIPTAK-&-MARK-TURMELL-&-JAMIE-RIVETT
 TE has no tank game, which is where the original's message was triggered. Nothing in the program points at
 the text, and a MAME read watch saw no reads during boot, attract mode or the start of a game. It looks like
 a dormant ownership mark.
+
+## Unused commentary
+
+A published list reports a "Get that (beep) outta here" line, and an uncensored one, that the NBA turned down.
+The pieces are in the sound ROMs (`u12`/`u13`), in the OKI phrase table of the fifth 128 KB bank (bank 5 counting from
+0; the published "bank 6" counts from 1). The phrase table is 8 bytes per phrase (start and end, 3 bytes each), the samples
+OKI 4-bit ADPCM at about 7.6 kHz:
+
+| Phrase | What it says | Length |
+|--------|--------------|--------|
+| `$39` | "Get that sh—", cut off | 0.87 s |
+| `$3A` | a loud beep | 0.41 s |
+| `$3B` | "outta here" | 1.01 s |
+| `$3C` | "shit" | 0.26 s |
+
+Decoded with a short script and joined as `$39` + `$3A` + `$3B` (censored) and `$39` + `$3C` + `$3B` (uncensored);
+the clips are on the codes page. Sending the published commands (7A B5, 7A C9) to the sound board from MAME's Lua, one byte
+at a time to `$1D01030`, played player-name calls instead, so the board's two-byte command protocol differs from
+that; the samples themselves were identified by ear.
+

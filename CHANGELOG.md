@@ -2,6 +2,14 @@
 
 Changes to the [password checker](https://maxxthunder.github.io/nbajam/) and [secret codes page](https://maxxthunder.github.io/nbajam/codes.html). The version is shown at the bottom of each page. **Codes page** and **Checker** are what visitors see; **Notes** are the [research notes](docs/); **README** is this repo's front page.
 
+## 1.3.9 (2026-10-24)
+- **Codes page:** the Hangtime match-up numbers tested on N64, PlayStation, Super Nintendo and Genesis (every one sets
+  its flag; N64 and PlayStation show the arcade's captions, now pictured), and all ten PlayStation joystick codes.
+- **Codes page:** a Super Nintendo Hangtime bug: entering no number gives your team goaltending and stealth turbo.
+- **Codes page:** the arcade Tournament Edition's unused "Get that (beep) outta here" commentary, censored and
+  uncensored, decoded from the sound ROM as playable clips; the PlayStation Tournament Edition's four unused portraits.
+- **Notes:** the TE Genesis unused music couldn't be reproduced.
+
 ## 1.3.8 (2026-10-24)
 - **Codes page:** checked against Dan Amrich's Hangtime list (bunnyears.net): every name and PIN matches. The Down
   press that locks the match-up numbers is on his list, so it's no longer marked ★ New. His spelling "ERHLICH" is a

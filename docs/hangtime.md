@@ -176,7 +176,12 @@ ASCII "0000" PIN:
 - **PlayStation:** `NOBUD`, `MUNDAY`, `NORTH` and `JIGGET` blanked; `MARIUS` renamed `OLDBOY` 0505; `MDOC` fixed to
   2000.
 
-Both also keep the arcade's 13 match-up numbers (N64 `0xA0148`, PlayStation `PRES.BIN` `0x13598`), not checked in play.
+Both also keep the arcade's 13 match-up numbers (N64 `0xA0148`, PlayStation `PRES.BIN` `0x13598`). All 13 were entered
+in BizHawk on each. Every number sets its own flag (N64: halfwords at RDRAM `0xA6EC6` + 2 per code, set by `0x80048F70`;
+PlayStation: words around `0x73300`-`0x735F4`). Nine show the arcade's tip-off caption (goaltending, quick hands, max
+power, max speed, hyper speed, stealth turbo, unlimited turbo, no pushing, fast passing). Tournament mode is refused in
+a one-player game, as on the arcade, and on N64 nothing reads 6-1-6's flag (`0x800A6ECE`), so it does nothing there
+too.
 `OLDBOY` 0505 was typed on the PlayStation in BizHawk: the old bearded head from the arcade's `MARIUS`, with hidden
 attributes.
 
@@ -186,7 +191,8 @@ Both also keep the arcade's joystick detectors, entered in BizHawk at the match-
   (lock, big heads, huge heads, shot %, no arrows, no drift, no assistance, ABA ball, rooftop). All ten codes, the
   four-at-once code included, set their flags. Turns need the control stick: the same circle on the D-pad didn't count.
 - **PlayStation:** Square (or any shoulder button) is Turbo, X or Triangle Shoot, Circle Pass. Big heads (`0x7320C`),
-  shot % (`0x7322C`, D-pad turn), ABA ball (`0x732EC`), rooftop (`0x735DC`) and four at once (all four) were checked.
+  huge heads (`0x73314`), shot % (`0x7322C`, D-pad turn), no arrows (`0x735A4`), no drift (`0x732B8`), no assistance
+  (`0x732D4`), ABA ball (`0x732EC`), rooftop (`0x735DC`), four at once and the Down lock (`0x734A0`): all ten checked.
 
 Neither has Maximum Hangtime's hot spots code.
 
@@ -206,12 +212,16 @@ Funcom's 16-bit ports have no secret players. The names published for them are p
   `ENRICO` 0666. `KUNGEN`, `CENSOR` and `ENRICO` typed in BizHawk each bring up their "TOP 5 DEFENSIVE PLAYER" record.
   The save is marked valid by the signature "NITEMARE" (`$300004` and `$3033C4`).
 
-Their match-up numbers (read from the games, not entered):
+Their match-up numbers:
 
 - **Super Nintendo** (presses of Y, B, A; table at file offset `0x57771`): the arcade's numbers except 0-2-5 and
-  0-4-8, so 11 codes.
+  0-4-8, so 11 codes, all entered in Mesen 2 and checked by their flags (`$7E58`, `$7E5E`-`$7E70`). **A bug:** the
+  lookup (`$C576C5`) compares a player's numbers with each entry before checking for the 0-0-0 end marker, so a player
+  who enters nothing matches the end marker and takes the next two bytes of code (`$C208`) as a power-up mask: bits
+  for goaltending and stealth turbo. With no code entered, those two flags are set (checked in Mesen 2).
 - **Genesis** (presses of A, B, C at `$FF4B7A`-`$FF4B7C`, checked after every press against `$12A2E`): 12 codes, no
-  0-2-5, and fast passing is 1-2-7 instead of 1-2-0, as published.
+  0-2-5, and fast passing is 1-2-7 instead of 1-2-0, as published. All 12 entered in BizHawk and checked by their
+  flags (`$FF11A0` + 2 per code); tournament mode works in a one-player game, and entering nothing sets nothing.
 
 ### Super Nintendo joystick codes
 

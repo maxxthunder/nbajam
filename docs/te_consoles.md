@@ -384,6 +384,16 @@ Claims from published lists that could be tested here, and what came of them:
 
   <img src="images/tegb_debug.png" alt="The Game Boy memory viewer and character viewer" width="326">
 
+- **PlayStation: four unused portraits.** `PRESQUAT.GFX` holds RNC-packed portraits (a 256-colour 15-bit palette,
+  then 64 × 56 8-bit pixels) of B.J. Armstrong, Gerald Wilkins, Monty Williams and James Worthy at `0x28266`,
+  `0x2B6D9`, `0x41B11` and `0x461CC`. None has a roster record. Unpacked here with `tools/rnc.py`.
+
+  <img src="images/teps_unused_portraits.png" alt="Unused PlayStation portraits: Armstrong, Wilkins, Williams, Worthy" width="512">
+
+- **Genesis: unused music (not reproduced).** A published list gives tracks 80, 88 and 89. The game plays sounds by ID through a
+  table at `$28B476` (8 bytes per ID; the last word is the song number for the GEMS-style driver at `$1F65DA`). Song
+  numbers 80 and 88 put in every entry replaced only the logo jingle, with nothing musical (judged by ear); 89 crashed
+  the emulator. Its numbers are probably counted differently, so the tracks weren't found.
 - **Developer messages**, all present: "Snake Woz Ere!" (32X `0x341F8`), "I Love Emma Wadrop" (32X `0x3B9DC`), "I Luv
   Claire Reily" (Genesis `0x2AB374`), and the Super Nintendo's "SLICK/Audio v1.01 Copyright(C)1994 Bitmasters,Inc."
   (`0x17861B`) and leftover NBA Jam ending text (`0xD6A7A`).
