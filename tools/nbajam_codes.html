@@ -73,6 +73,7 @@ h2 { font: 400 22px var(--display); letter-spacing: .04em; text-transform: upper
 .pic-snes { width: 96px; height: 112px; justify-self: center; }
 .code-card:has(.pic-genesis, .pic-segacd, .pic-32x, .pic-jaguar, .pic-saturn, .pic-playstation, .pic-pc, .pic-hangtime) { grid-template-columns: 128px minmax(0, 1fr); }
 .pic-hangtime { width: 112px; height: 112px; }
+.pic-shots { image-rendering: auto; }
 .pic-genesis, .pic-segacd, .pic-jaguar, .pic-saturn, .pic-playstation, .pic-pc { width: 128px; height: 112px; }
 .pic-32x { width: 124px; height: 112px; justify-self: center; }
 .pic-gameboy, .pic-gamegear { width: 96px; height: 96px; }
@@ -160,7 +161,7 @@ footer a { color: var(--orange); text-decoration: none; display: inline-flex; al
       <a href="https://github.com/maxxthunder/nbajam/tree/main/docs">research notes</a>.</p>
   </details>
 
-  <footer><a href="https://github.com/maxxthunder/nbajam"><svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg>maxxthunder/nbajam</a><a href="https://github.com/maxxthunder/nbajam/blob/main/CHANGELOG.md">v1.2.2</a></footer>
+  <footer><a href="https://github.com/maxxthunder/nbajam"><svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg>maxxthunder/nbajam</a><a href="https://github.com/maxxthunder/nbajam/blob/main/CHANGELOG.md">v1.3.3</a></footer>
 </main>
 <script>
 // Card: [title, where, input, new?, note]. Input: "ini:MJT|Mar 22" = initials (and birthday);
@@ -436,8 +437,8 @@ const HT_JOY = [['Big heads', 'Up + Pass + Turbo together', 'Caption "BIG HEAD".
   ['Rooftop court', 'Hold Left, Turbo, Turbo', 'An outdoor court on a city rooftop at night.'],
   ['Four at once', 'Shoot, Shoot, Hold Shoot and turn the joystick once clockwise from Up', 'Big heads, shot percentage, ABA ball and the rooftop court together. Fast: the whole turn has about 1⅓ seconds.'],
   ['Lock in the numbers', 'Down', "Any Down press stops your three digits counting and flashes them, which is why some published codes end in Down."],
-  ['Unused code: hot spots', 'No input sets it', '"HOTSPOTS ON" is already in NBA Hangtime: its caption and its flag (@1136C10h). Nothing sets the flag and only the caption code reads it, so hot spots never applies. Forced on in MAME, the caption shows. Maximum Hangtime adds the code.']];
-const htJoy = (list, newOnes) => list.map(([n, k, note]) => [n, `${MU}, about two seconds in`, k, newOnes.includes(n), note]);
+  ['Unused code: hot spots', 'No input sets it', '"HOTSPOTS ON" is already in NBA Hangtime: its caption and its flag (@1136C10h). Nothing sets the flag and only the caption code reads it, so hot spots never applies. Forced on in MAME, the caption shows. Maximum Hangtime adds the code.', 'hangtime/ht_hotspots']];
+const htJoy = (list, newOnes) => list.map(([n, k, note, pic]) => [n, `${MU}, about two seconds in`, k, newOnes.includes(n), note, pic]);
 // N64 and PlayStation keep the arcade's detectors; buttons renamed, and only some checked on PlayStation
 const HT_JOY_HOME = { htn64: { Turbo: 'A', Shoot: 'C-Down', Pass: 'C-Right', stick: 'the control stick', checked: null },
   htps: { Turbo: 'Square', Shoot: 'X', Pass: 'Circle', stick: 'the D-pad', checked: ['Big heads', 'Shot percentage', 'ABA ball', 'Rooftop court', 'Four at once'] } };
@@ -471,20 +472,20 @@ const HT16_JOY = {
   htsnes: [['No tag arrows', 'Left, Left, B, R', false, ''],
     ['Jungle court', 'L, R, Select, Start, Up, Down, A, B, Y, X', false, 'Its A, B and Y presses also leave the numbers on 1, 1, 1 (tournament mode).'],
     ['No CPU assistance', 'Hold Right, B, B', false, ''],
-    ['Ball flash', 'Hold Right, R, Y, B', true, "The ball flashes white three times in the referee's hands at tip-off; nothing else changed that we saw. Same shape as the arcade's ABA ball code."],
+    ['Ball flash', 'Hold Right, R, Y, B', true, "The ball flashes white three times in the referee's hands at tip-off; nothing else changed that we saw. Same shape as the arcade's ABA ball code.", 'hangtime/snes_ball_flash'],
     ['Three at once', 'B, B, Hold B and turn the pad once counter-clockwise from Up', true, "The ball flash, the rooftop court and a per-player flag that zeroes four movement values (like the arcade's no drift). The arcade's four-at-once code turns clockwise."],
     ['Rooftop court', 'Hold Left, Y, Y', false, ''],
     ['Nine cheats at once', 'Up, Right, Down, Left, Start, A, B, Y, X, Select', false, 'Published as four effects. It sets nine: goaltending, max block, max steal, max power, max speed, hyper speed, stealth turbo, unlimited turbo and fast passing. Its A, B and Y also leave the numbers on 1, 1, 1: tournament mode, which clears number codes but not these.'],
     ['City court', 'Hold Down, B, A, X, Y', false, 'Keep Down held as you let go of Y: the code ends on Down alone.'],
     ['Cheat ending', 'Start, Y, Right, A, B, Up, Start, Up, Down, Down, Start, L, A, Down, Down', false, 'It switches on all eight codes above at once, and the game plays the cheat ending whenever all eight are on.'],
     ['All eight codes', 'Enter the eight codes above, on any players', true, "After the match-up the game adds up every player's codes and plays the cheat ending if all eight are on, so the long code isn't the only way. Checked: all eight entered on one pad in a single match-up in Mesen 2 played the cheat ending."]],
-  htgen: [['Rooftop court', 'Hold Left, B, B', false, 'Published as "outdoor court". The published rooftop code (hold Left, A three times) isn\'t in the game: the only other court is Hawaii.'],
-    ['Hawaii court', 'B, A, Right, Right, A, C, Up, Down, A', false, ''],
+  htgen: [['Rooftop court', 'Hold Left, B, B', false, 'Published as "outdoor court". The published rooftop code (hold Left, A three times) isn\'t in the game: the only other court is Hawaii.', 'hangtime/gen_rooftop'],
+    ['Hawaii court', 'B, A, Right, Right, A, C, Up, Down, A', false, '', 'hangtime/gen_hawaii'],
     ['No tag arrows', 'Left, Left, C, A', false, 'Sets its flag ($FF1194), but the game never reads it; the arrows still show.'],
     ['No drift', 'Down, Down, B, A', false, ''],
     ['No CPU assistance', 'Hold Right, C, C', false, ''],
-    ['ABA ball', 'Hold Right, A, B, C', false, 'Published as "A, B six times, and C"; one press each is enough.']] };
-const htJoy16 = plat => HT16_JOY[plat].map(([n, k, isNew, note]) => [n, MU, k, isNew, note]);
+    ['ABA ball', 'Hold Right, A, B, C', false, 'Published as "A, B six times, and C"; one press each is enough.', 'hangtime/gen_aba']] };
+const htJoy16 = plat => HT16_JOY[plat].map(([n, k, isNew, note, pic]) => [n, MU, k, isNew, note, pic]);
 const GROUPS = {
   snes: [
     ['Secret characters', 'Type the first two initials as usual. On the third, hold the buttons shown and press A. Which buttons depends on the first initial. Original and Rev 1 are the same.',
@@ -555,13 +556,13 @@ const GROUPS = {
     ['Hidden games and screens', '', [
       ['Tank game', "Tonight's Match-Up", 'Hold P1 Down and all three buttons on both sides', false, 'Once per game.'],
       ['Tank game reward: all players powered up', 'Tank game', 'Survive until it ends (about a minute)', true,
-        'Shows "ALL PLAYERS POWERUP!": at tip-off all four players get big heads, powerup intercept and powerup defense, and the shot percentage display comes on. Rev 3.01 only; rev 1.00 just says "YOU SURVIVED!".'],
+        'Shows "ALL PLAYERS POWERUP!": at tip-off all four players get big heads, powerup intercept and powerup defense, and the shot percentage display comes on. Rev 3.01 only; rev 1.00 just says "YOU SURVIVED!".', 'shots/arcade_tank_reward'],
       ['Hidden copyright screen', 'As the tank game starts', 'Also hold P1 Right, P2 Right, P2 Shoot and P2 Turbo', true,
-        'Replaces the tank game with an encrypted message: NBA-JAM, COPYRIGHT-1993, MIDWAY-MANUFACTURING-COMPANY, ALL-RIGHTS-RESERVED. No reward.'],
+        'Replaces the tank game with an encrypted message: NBA-JAM, COPYRIGHT-1993, MIDWAY-MANUFACTURING-COMPANY, ALL-RIGHTS-RESERVED. No reward.', 'shots/arcade_copyright'],
       ['Hidden stats menu: step 1', 'Attract mode, after any button press', 'Hold P1 and P2 Up and all buttons, then switch to only P1 and P2 Down', true,
         'Keep both Downs held for about a second; the credits start.'],
       ['Hidden stats menu: step 2', 'During those credits', 'P1 Turbo, P1 Turbo, P2 Shoot, P2 Shoot, P2 Shoot, P2 Pass, P2 Pass, P1 Shoot, P1 Pass, P2 Turbo, P2 Turbo', true,
-        'After the credits: "NBA JAM REV 3.01 4/07/93", jam counts, audits, team stats and the records table. Any button pages through. Rev 3.01 only.']]],
+        'After the credits: "NBA JAM REV 3.01 4/07/93", jam counts, audits, team stats and the records table. Any button pages through. Rev 3.01 only.', 'shots/arcade_stats_menu']]],
     ['Preset records', "Enter these initials and birthday instead of your own: the game opens a record that's already there. It writes the same 23 records into its memory when it's set up; the other 10 belong to the secret characters above. Checked on rev 3.01; rev 1.00 has the same table.", ARC_PRESETS.map(arcPreset)],
   ],
   tesnes: [
@@ -574,7 +575,7 @@ const GROUPS = {
       ['All-Star team', 'Title menu (Head to Head, Team Game...)', 'Y, Up, Down, B, Left, A, Right, Down, then keep a record as JAM', false,
         'Up and Down also move the menu cursor; put it back on Head to Head. The new JAM record is 27-0 with every team beaten, so ALL-STARS replaces ROOKIES on the team list.'],
       ['One team short', 'Title menu', 'Y, Up, Down, B, Left, A, Right, Down, then keep a record as END', true,
-        'The new END record is 26-0, last played Chicago: one win short of the All-Stars.'],
+        'The new END record is 26-0, last played Chicago: one win short of the All-Stars.', 'shots/tesnes_one_team_short'],
       ['Quit to the title screen', 'During a game', 'Hold Start to pause, then press L + R', false,
         'Back to the title screen.']]],
     ['Match-up codes', "At Tonight's Match-Up, on any player's pad.", teMu(MU_SNES_NOTE)],
@@ -680,9 +681,9 @@ const GROUPS = {
     ['Match-up codes', "At Tonight's Match-Up, on any player's pad; start as soon as the screen comes up: it's short. The Jaguar has its own 24 sequences.", JAG_MU.map(([n, k]) => [n, MU, k, false, JAG_MU_NOTE[n] || ''])],
     ['Hidden codes', '', [
       ['Clear cartridge memory', 'Any time', 'Hold * + # to reset, and keep holding them with Option', true,
-        'The game restarts on "CARTRIDGE MEMORY CLEARED" with the saved options back at their defaults.'],
+        'The game restarts on "CARTRIDGE MEMORY CLEARED" with the saved options back at their defaults.', 'shots/jag_memory_cleared'],
       ['Random secret character', 'Team select', 'Bring a record that has beaten all 27 teams', true,
-        "Each player slot not already a secret character gets a 1-in-5 (or 1-in-8) chance of a random one, and the All-Stars team appears. Checked with the record set to 27 teams in memory, since the emulator can't press the keypad's 4: both slots came up secret (Gorilla and Morty)."]]],
+        "Each player slot not already a secret character gets a 1-in-5 (or 1-in-8) chance of a random one, and the All-Stars team appears. Checked with the record set to 27 teams in memory, since the emulator can't press the keypad's 4: both slots came up secret (Gorilla and Morty).", 'shots/jag_random_secret']]],
   ],
   te32x: [
     ['Secret characters', 'At the initials screen, on each letter marked Start, hold Start and press the button. Enter the other letters as usual. The buttons run the other way from the Genesis codes.',
@@ -714,7 +715,7 @@ const GROUPS = {
       ['Quick hands', MU, 'Press any button 4 times; then hold Down + Shoot until tip-off', false, '5 or more presses in all.'],
       ['Baby-size players', MU + ', holding Down-Right', 'Turbo, Shoot, Pass, Turbo, Shoot, Pass, Turbo, Shoot, Pass', false],
       ['All computer assistance off', MU, 'Press any button exactly 10 times', true,
-        'Needs a human player on each team. Shows "ALL COMPUTER ASSISTANCE TURNED OFF!" Not on any published TE list; the original game had a similar Turbo ×10 code.']]],
+        'Needs a human player on each team. Shows "ALL COMPUTER ASSISTANCE TURNED OFF!" Not on any published TE list; the original game had a similar Turbo ×10 code.', 'shots/te_assist_off']]],
     ['Other codes', '', [
       ['Fatalities', 'Team select', 'Hold Up and press Pass 20 times', false, 'Revs 1.00, 2.0 and 2.1 only; 3.0 2/26 and both 4.0s don\'t have it. Shows "FATALITIES ENABLED!"'],
       ['Team swap', 'Halftime substitution screen', 'Hold Right + Pass', false, 'Shows "TEAM SWAP ENABLED!" Per GameFAQs, Pass then changes team, Turbo swaps players and Shoot confirms.']]],
@@ -737,13 +738,13 @@ const GROUPS = {
       ['Secret Midway Menu: step 1', 'Attract mode, after any button press', 'Hold P1 and P2 Up and all buttons, then switch to only P1 and P2 Down', true,
         'Keep both Downs held for about a second; the credits start.'],
       ['Secret Midway Menu: step 2', 'During those credits', 'P1 Turbo, P1 Turbo, P2 Shoot, P2 Shoot, P2 Shoot, P2 Pass, P2 Pass, P1 Shoot, P1 Pass, P2 Turbo, P2 Turbo', true,
-        'After the credits: a hidden operator screen with jam counts, audits, team stats and the records table. Any button pages through. Revs 2.0 to 4.0.']]],
+        'After the credits: a hidden operator screen with jam counts, audits, team stats and the records table. Any button pages through. Revs 2.0 to 4.0.', 'shots/te_secret_menu']]],
   ],
   ht: [
     ['Secret players', "Create a new player and enter the name, then the PIN. Every typed digit counts, SPC included; names shorter than six letters end with END. All 61 checked in MAME by writing each entry into the name check (TURMEL and JC also typed). Titles are the names published for Maximum Hangtime.",
       HT.map(htCard)],
     ['Trivia contest', "A 1996 sweepstakes built into the game (the TRIVIA CONTEST setting, on from the factory). Attract mode shows the prizes; the questions come at game over.",
-      [['Trivia password', 'Game over, after a full four-quarter game with a created player', 'Answer the questions (2 points each) until you have 100 points', false, 'The game then shows "CONTEST DRAWING QUALIFIER" and an 8-letter password to mail in with your name and PIN (AAAAAA 0000 gets EOFTCSJN). Reached in MAME by setting the points to 98 and answering one question; entries closed September 13, 1996.']]],
+      [['Trivia password', 'Game over, after a full four-quarter game with a created player', 'Answer the questions (2 points each) until you have 100 points', false, 'The game then shows "CONTEST DRAWING QUALIFIER" and an 8-letter password to mail in with your name and PIN (AAAAAA 0000 gets EOFTCSJN). Reached in MAME by setting the points to 98 and answering one question; entries closed September 13, 1996.', 'hangtime/ht_trivia_password']]],
     ['Match-up codes', "At Tonight's Match-Up, press Turbo, Shoot and Pass the number of times shown. Holding the joystick counts a digit down instead of up, and each digit wraps from 9 to 0. All 13 checked in MAME by their flags and tip-off captions. The published \"2, 0, 0 + Left\" outdoor court is really the joystick code below.", HT_MU.map(htMu)],
     ['Match-up joystick codes', "Also at Tonight's Match-Up, on any player's controls, once the screen has been up for a moment (the codes are watched a little after it appears). \"Hold\" means keep it held through the rest of the code. All checked in MAME by their flags and in play. ★ New: on no published list.", htJoy(HT_JOY, ['Four at once', 'Lock in the numbers', 'Unused code: hot spots'])],
   ],
@@ -769,7 +770,7 @@ const GROUPS = {
     ['Match-up codes', "12 numbers as presses of A, B and C (table $12A2E, checked after every press): no baby size, and fast passing is 1, 2, 7. Read from the game; not checked in play.", htMuPort('htgen', 'A, B, C')],
     ['Match-up joystick codes', "Six detectors, all entered in BizHawk and checked by their flags; both courts and the ABA ball seen in play. The published big heads, huge heads, shot percentage and A-button rooftop codes aren't in this version. Tournament mode (1, 1, 1) switches every joystick code off at tip-off, and since the numbers are checked after every press, the A, B and C presses in these codes can land on it.", htJoy16('htgen')],
     ['Options screen', "On the Options screen (Right from the main menu, then A), on player 1's pad. Three sequences, found in the code at $BACA-$BB62 and entered in BizHawk. ★ New: on no published list.",
-      [['Credits', 'Options screen', 'C, A, Right, Left, Right, Up, Left, A, Right', true, 'Plays the credits roll that attract mode sometimes shows ("FUNCOM HOME VERSION", "MIDWAY COIN OP VERSION", "ORIGINAL MUSIC" and on).'],
+      [['Credits', 'Options screen', 'C, A, Right, Left, Right, Up, Left, A, Right', true, 'Plays the credits roll that attract mode sometimes shows ("FUNCOM HOME VERSION", "MIDWAY COIN OP VERSION", "ORIGINAL MUSIC" and on).', 'hangtime/gen_credits'],
         ['Unused code: Hawaii flag', 'Options screen', 'B, A, Right, Right, A, C, Up, Down, A', true, 'The Hawaii court code again, but here it sets only the Hawaii half of the court setting, which never applies without the court flag; the match-up court codes reset it anyway.'],
         ['Unused code: A, B, A, C', 'Options screen', 'A, B, A, C, Up, Start', true, 'Sets a flag ($FF0C52) the game never reads. The Start also leaves the screen.']]]],
 };

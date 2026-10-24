@@ -1,16 +1,20 @@
-# NBA Jam — Password Checker and Secret Codes
+# NBA Jam and NBA Hangtime: Password Checker and Secret Codes
 
-**[Password checker →](https://maxxthunder.github.io/nbajam/)** &nbsp; **[Secret codes →](https://maxxthunder.github.io/nbajam/codes.html)** &nbsp;[![v1.2.2](https://img.shields.io/badge/version-1.2.2-e8742c)](CHANGELOG.md)
+**[Password checker →](https://maxxthunder.github.io/nbajam/)** &nbsp; **[Secret codes →](https://maxxthunder.github.io/nbajam/codes.html)** &nbsp;[![v1.3.3](https://img.shields.io/badge/version-1.3.3-e8742c)](CHANGELOG.md)
 
 <p align="center"><img src="docs/images/stats_screen.png" alt="The stats screen for LJP / Z443C1WY434S2J: rank 1, 27 W 0 L, streak 27 wins" width="384"></p>
 
 - **Check a password**: type your initials and the password (14 characters for NBA Jam, 10 for Tournament Edition),
   and it tells you whether the game will take them.
 - **See what it holds**: wins, losses, percentage, win streak, and which of the 27 NBA teams you've beaten.
-- **Secret codes**: every secret character and hidden code, read straight from the games, for Super Nintendo,
-  Genesis, arcade, Game Boy, Game Gear, Sega CD, Tournament Edition on arcade, Super Nintendo, Genesis, 32X,
-  Saturn, PlayStation, PC, Jaguar, Game Boy and Game Gear, and NBA Hangtime and Maximum Hangtime on arcade, N64,
-  PlayStation, Super Nintendo and Genesis.
+- **Secret codes**: every secret character and hidden code, read straight from the games:
+  - NBA Jam: arcade, Super Nintendo, Genesis, Sega CD, Game Boy, Game Gear.
+  - Tournament Edition: arcade, Super Nintendo, Genesis, 32X, Saturn, PlayStation, PC, Jaguar, Game Boy, Game Gear.
+  - NBA Hangtime and Maximum Hangtime: arcade, N64, PlayStation, Super Nintendo, Genesis.
+
+Contents: [What's on the codes page](#whats-on-the-codes-page) · [What's new here](#whats-new-here) ·
+[Passwords by version](#passwords-by-version) · [If a password won't work](#if-a-password-wont-work) ·
+[Known passwords](#known-passwords) · [Credits](#credits) · [License](#license)
 
 Both pages work offline too: save [`tools/nbajam_password_checker.html`](tools/nbajam_password_checker.html) or
 [`tools/nbajam_codes.html`](tools/nbajam_codes.html) and open it in a browser (the codes page needs `tools/img/` and
@@ -51,12 +55,14 @@ The codes page marks 130 codes that no published list had with **★ New**:
 - **Leftovers in the research notes**: Iguana's crash screen and the Team Player error screen on Genesis, the Genesis
   Rev 1 region lock, the Super Nintendo's controller warnings, the Sega CD's cut advert breaks, a Saturn dunk clip
   nothing plays, and the Jaguar's BLARG, a player ID with too little behind it to be shown.
-- **NBA Hangtime**: M-DOC, which can't be entered in NBA Hangtime or on N64; the published 6-1-6 that does nothing;
-  a four-at-once joystick code and the Down press that locks the numbers; the "HOTSPOTS ON" flag already in NBA
-  Hangtime with nothing to set it; Maximum Hangtime's 21 extra NBA players; two unpublished Super Nintendo joystick
-  codes, and that all eight codes together play its cheat ending; the Genesis options-screen credits code, and
-  the Genesis no-arrows code that never applies; the arcade trivia contest's password, reached only after a full
-  game; the European N64 cartridge's working M-DOC.
+- **NBA Hangtime and Maximum Hangtime**:
+  - Arcade: M-DOC, which can't be entered; the published 6-1-6 that does nothing; a four-at-once joystick code and the
+    Down press that locks the numbers; a "HOTSPOTS ON" flag with nothing to set it; the trivia contest's password,
+    reached only after a full game.
+  - Maximum Hangtime: 21 extra NBA players.
+  - N64 and PlayStation: the arcade's joystick codes, four-at-once included; M-DOC works on the European N64 cartridge.
+  - Super Nintendo: two unpublished joystick codes, and all eight codes together play the cheat ending.
+  - Genesis: an options-screen code that plays the credits, and a published no-arrows code that never applies.
 - **Betas**: the Japanese NBA Jam beta's 11 secret characters, four of them dinosaurs (in the
   [research notes](docs/variants.md)).
 - **Genesis announcer codes**: initials that play a speech clip, with the clips on the page.

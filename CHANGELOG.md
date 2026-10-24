@@ -2,6 +2,28 @@
 
 Changes to the [password checker](https://maxxthunder.github.io/nbajam/) and [secret codes page](https://maxxthunder.github.io/nbajam/codes.html). The version is shown at the bottom of the page.
 
+## 1.3.3 (2026-10-24)
+- Secret codes page: screenshots on the new finds (Hangtime trivia password, hot spots caption, Genesis courts, ABA
+  ball and credits, Super Nintendo ball flash; NBA Jam's tank reward, copyright screen, stats menus, Jaguar codes,
+  assistance-off caption and one-team-short record). README: new title, contents line and a split Hangtime list.
+
+## 1.3.2 (2026-10-24)
+- Secret codes page: the arcade NBA Hangtime trivia contest and its sweepstakes password; the arcade joystick codes on
+  N64 (all ten tested) and PlayStation; OLDBOY tested on PlayStation; M-DOC works on the European N64 cartridge; all
+  eight Super Nintendo joystick codes together play the cheat ending (tested). Notes: Maximum Hangtime flag scan,
+  the European Hangtime versions, Genesis default records and unused text, the PlayStation disc's leftover build map.
+
+## 1.3.1 (2026-10-24)
+- Secret codes page: Super Nintendo and Genesis Hangtime joystick codes (two unpublished on Super Nintendo; on
+  Genesis the no-arrows code never applies and four published codes aren't in the game), the Genesis options-screen
+  codes (one plays the credits), and the "HOTSPOTS ON" flag already in arcade NBA Hangtime with nothing to set it.
+
+## 1.3.0 (2026-10-24)
+- Secret codes page: NBA Hangtime and Maximum Hangtime on arcade, N64, PlayStation, Super Nintendo and Genesis:
+  every name and PIN (tested in MAME), the match-up numbers and arcade joystick codes, with portraits. A "★ New only /
+  Cut or unused" filter. Notes: betas and regional versions, the Genesis error and region-lock screens, and a check
+  that every password on the page decodes to its record.
+
 ## 1.2.2 (2026-10-24)
 - Secret codes page: three cut PlayStation Tournament Edition characters (Wright, Kita, Sprite Boy) with their
   portraits; a Super Nintendo juice-mode password, since beating all 27 teams turns juice mode on. Notes: Arcade
