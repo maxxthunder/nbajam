@@ -2,6 +2,11 @@
 
 Changes to the [password checker](https://maxxthunder.github.io/nbajam/) and [secret codes page](https://maxxthunder.github.io/nbajam/codes.html). The version is shown at the bottom of the page.
 
+## 1.2.0 (2026-10-23)
+- Desktop layout: on the secret codes page each row of version tabs has a small logo beside it, the page is wider,
+  and the tabs and search stay at the top while scrolling; the password checker shows the password and the record
+  side by side. Phones look the same as before.
+
 ## 1.1.9 (2026-10-23)
 - Secret codes page: match-up power-ups for the original NBA Jam on Super Nintendo and Genesis (all seven tested;
   two published slips corrected) and the Sega CD's own seven button sequences (all new). The Jaguar's random secret
