@@ -115,6 +115,18 @@ Turbo presses also count up the first digit.
 
 All NBA Hangtime revisions (L1.1, L1.2, L1.3, M1.1, M1.2, M1.3) have the same two tables.
 
+### Which flags the game reads
+
+A MAME read/write tap over `@1136A00h`-`@1136EFFh` through a whole game (and a scan of the program for every
+`MOVE` to or from the block) accounts for every word. Each joystick and match-up flag has a setter and a reader, with
+two exceptions:
+
+- `@1136C60h` (6-1-6) is read only by the match-up check that sets it.
+- `@1136C10h` is the **hot spots** flag. NBA Hangtime already has the "HOTSPOTS ON" caption (the caption routine at
+  `FF9EBEE0h` reads the word), but nothing sets it: the only writes are the clears at `FF89F4F0h` and `FF8DA910h`, and
+  no gameplay code reads it. Forced on at the match-up in MAME, the caption shows at tip-off and nothing else happens.
+  Maximum Hangtime adds the code and the hot spots themselves.
+
 ## Maximum Hangtime
 
 Same name check and the same 13 match-up numbers. The joystick codes are rewritten (`FF8C4930h` on): the court becomes
@@ -148,6 +160,10 @@ ASCII "0000" PIN:
 Both also keep the arcade's 13 match-up numbers (N64 `0xA0148`, PlayStation `PRES.BIN` `0x13598`). Neither was
 checked in play.
 
+All 63 files in the PlayStation `BIGLUMP.BIN` are named in the program, so none is orphaned. The disc also carries
+`HANGTIME.MAP`, the mastering tool's log (BuildCD 2.39.b, 27 April 1997, paths under `D:\HANGTIME\VERSION\PSX\RELEASE\CD`).
+It lists an earlier layout that has no `SLUS_003.29` and puts the files at other sectors.
+
 ## Super Nintendo and Genesis
 
 Funcom's 16-bit ports have no secret players. The names published for them are preset saved records:
@@ -167,9 +183,75 @@ Their match-up numbers (read from the games, not entered):
 - **Genesis** (presses of A, B, C at `$FF4B7A`-`$FF4B7C`, checked after every press against `$12A2E`): 12 codes, no
   0-2-5, and fast passing is 1-2-7 instead of 1-2-0, as published.
 
-The Genesis also has button sequences on its options screen (`$BAF0` and nearby) that weren't followed up, and the
-published joystick codes for both 16-bit versions (courts, ABA ball, the Super Nintendo's "FUNCOM" / 1993 photo) weren't
-checked.
+### Super Nintendo joystick codes
+
+Nine sequences, listed at `$C5B3B0` (pointer, bank) and checked every frame of the 360-frame match-up loop
+(`$C574AB`) by `$C5B31B`. Each step is compared with the whole pad word (`$1602` + 2 per player). A step that doesn't
+match is skipped rather than resetting the code, so extra presses in between don't matter, but held buttons do: "hold
+Left, Y" means the pad reads exactly Left + Y. A finished code sets its bit in `$B9CE` + 2 per player, and the match-up
+then applies them (`$C5779F`):
+
+| Bit | Inputs | Sets | Published |
+|-----|--------|------|-----------|
+| 0 | Left, Left, B, R | `$7E4C` (no tag arrows) | yes |
+| 1 | L, R, Select, Start, Up, Down, A, B, Y, X | `$16AE` = 3 (jungle court) | yes |
+| 2 | hold Right, B, B | `$7E50` (no CPU assistance) | yes |
+| 3 | hold Right, R, Y, B | `$7E52` | **no** |
+| 4 | B, B, then hold B through a counter-clockwise turn from Up | `$7E52`, `$7E4E`, `$16AE` = 1 | **no** |
+| 5 | hold Left, Y, Y | `$16AE` = 1 (rooftop court) | yes |
+| 6 | Up, Right, Down, Left, Start, A, B, Y, X, Select | nine cheats | yes, as four |
+| 7 | hold Down, B, A, X, Y, then let go of Y | `$16AE` = 2 (city court) | yes, without the last step |
+| 8 | Start, Y, Right, A, B, Up, Start, Up, Down, Down, Start, L, A, Down, Down | all eight bits | yes (cheat ending) |
+
+- `$7E52` starts a task at tip-off that flashes the ball white three times in the referee's hands (screenshots
+  compared frame by frame in BizHawk); nothing else differed. Bit 3 has the shape of the arcade's ABA ball code.
+- `$7E4E` is a per-player bit that zeroes four of the player's movement values (`$C47E9E`), like the arcade's no drift.
+  Bit 4 is the 16-bit version of the arcade's four-at-once code, turning the other way.
+- Bit 6 sets the flags of nine number codes: goaltending, max block, max steal, max power, max speed, hyper speed,
+  stealth turbo, unlimited turbo and fast passing.
+- After the match-up the game ORs every player's bits together and plays the cheat ending (`JML $C800E9`) if all eight
+  are set (`$C5753E`). The long code is one way to get there; the other eight codes, split across any players, are another.
+- Bits 1 and 6 press A, B and Y once each, which also leaves the numbers on 1-1-1, tournament mode. Tournament mode
+  clears the number-code flags (`$C311C5`) before the joystick bits are applied, so it cancels number codes typed earlier
+  but not these.
+
+All nine were entered in Mesen 2 and checked by `$B9CE` and the flags above; the cheat ending code reached
+`$C800E9`. The window is short: the loop runs 360 frames, starting about two and a half seconds after Start.
+
+### Genesis joystick codes
+
+Six detectors, listed at `$12B10`, each a chain of states that waits for a pad state and then for the buttons to be
+let go. In pad bits, A is Turbo, B is Shoot and C is Pass:
+
+| Inputs | Sets | Notes |
+|--------|------|-------|
+| hold Left, B, B | `$FF297D` | rooftop (street) court, published as "outdoor court" |
+| B, A, Right, Right, A, C, Up, Down, A | `$FF297D` and `$FF297F` | Hawaii court |
+| Left, Left, C, A | `$FF1194` | no tag arrows: **never read**, the arrows still show |
+| Down, Down, B, A | `$FF1196` | no drift (read at `$25DAA`) |
+| hold Right, C, C | `$FF1198` | no CPU assistance (read at `$25836`) |
+| hold Right, A, B, C | `$FF119A` | ABA ball, published as "A, B six times, and C" |
+
+All six entered in BizHawk and checked by their flags; both courts and the ABA ball were seen in play. The published
+Genesis big heads, huge heads, shot percentage and "hold Left, A three times" rooftop codes have no detector. Only two
+courts exist (the ROM's feature list says "ROOFTOP COURT", "HAWAII COURT").
+
+Tournament mode (1-1-1, `$FF11A0`) makes the tip-off code (`$1C1A8`) clear every joystick flag. The numbers are checked
+after every press, so a code's A, B and C presses (or presses after it) can pass through 1-1-1 and cancel it: our first
+no-arrows test did exactly that.
+
+### Genesis options screen
+
+The options screen (`$B91C`; Right on the main menu, then A) starts three more sequence checkers (`$BB6C`, comparing
+each new press with a list):
+
+| Inputs | Effect |
+|--------|--------|
+| C, A, Right, Left, Right, Up, Left, A, Right | plays the credits roll ("FUNCOM HOME VERSION", "MIDWAY COIN OP VERSION", "ORIGINAL MUSIC", "ACTORS", ...), the same one attract mode picks half the time after its demo game (`$ABA0`) |
+| B, A, Right, Right, A, C, Up, Down, A | sets `$FF297F`, the Hawaii half of the court setting, which is only read when the court flag `$FF297D` is set; the match-up court codes set or clear it anyway, so it does nothing |
+| A, B, A, C, Up, Start | sets `$FF0C52`, which nothing reads (checked in code and with a read watch through attract mode). The Start also leaves the screen |
+
+All three entered in BizHawk.
 
 ## The logo
 
@@ -184,3 +266,5 @@ pixels that don't change when it's switched back on.
 - `tools/tests/hangtime_names.lua` (MAME): writes each table entry into the name check, shoots team select and the
   tip-off scoreboard.
 - `tools/tests/hangtime_matchup.lua` (MAME): enters each match-up code and logs the 13 flag words.
+- `tools/tests/genesis_hangtime_joystick.lua` (BizHawk): enters the six Genesis joystick codes and logs their flags at
+  the match-up and in play.

@@ -24,7 +24,7 @@ run = OUT + "_run.lua"
 open(run, "w").write(PRE + open(body_path).read() + tail)
 args = [EXE, "--lua=" + run]
 if dump: args += ["--dump-type=wave", "--dump-name=" + dump, "--dump-length=" + os.environ.get("DUMPLEN", "2700"), "--dump-close"]
-p = subprocess.run(args + [sys.argv[2]], capture_output=True, text=True, timeout=3600, cwd=os.path.dirname(EXE))
+p = subprocess.run(args + [os.path.abspath(sys.argv[2])], capture_output=True, text=True, timeout=3600, cwd=os.path.dirname(EXE))
 out = "\n".join(l for l in (p.stdout + p.stderr).splitlines() if "opcode" not in l and "DEVICE" not in l)
 print(out[-1500:])
 print(open(OUT + "log.txt").read() if os.path.exists(OUT + "log.txt") else "no log")

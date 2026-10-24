@@ -435,9 +435,10 @@ const HT_JOY = [['Big heads', 'Up + Pass + Turbo together', 'Caption "BIG HEAD".
   ['ABA ball', 'Hold Right, Shoot, Turbo, Pass', 'A red, white and blue ball.'],
   ['Rooftop court', 'Hold Left, Turbo, Turbo', 'An outdoor court on a city rooftop at night.'],
   ['Four at once', 'Shoot, Shoot, Hold Shoot and turn the joystick once clockwise from Up', 'Big heads, shot percentage, ABA ball and the rooftop court together. Fast: the whole turn has about 1⅓ seconds.'],
-  ['Lock in the numbers', 'Down', "Any Down press stops your three digits counting and flashes them, which is why some published codes end in Down."]];
+  ['Lock in the numbers', 'Down', "Any Down press stops your three digits counting and flashes them, which is why some published codes end in Down."],
+  ['Unused code: hot spots', 'No input sets it', '"HOTSPOTS ON" is already in NBA Hangtime: its caption and its flag (@1136C10h). Nothing sets the flag and only the caption code reads it, so hot spots never applies. Forced on in MAME, the caption shows. Maximum Hangtime adds the code.']];
 const htJoy = (list, newOnes) => list.map(([n, k, note]) => [n, `${MU}, about two seconds in`, k, newOnes.includes(n), note]);
-const MHT_JOY = [...HT_JOY.filter(([n]) => !['Rooftop court', 'Four at once'].includes(n)),
+const MHT_JOY = [...HT_JOY.filter(([n]) => !['Rooftop court', 'Four at once', 'Unused code: hot spots'].includes(n)),
   ['Outdoor court', 'Right', 'Shows "COURT: STADIUM / OUTDOOR" on the match-up screen; Right picks the rooftop court and Left goes back. Published as "press Left", which leaves it on Stadium.'],
   ['Hot spots', 'Hold Up, Shoot, Shoot', 'Caption "HOTSPOTS ON".'],
   ['Four at once', 'Shoot, Shoot, Hold Shoot and turn the joystick once clockwise from Up', 'Big heads, shot percentage, ABA ball and the outdoor court.']];
@@ -456,6 +457,25 @@ const htPort = plat => HT.filter(([n]) => !HT_GONE[plat].includes(n)).map(c => {
 // Super Nintendo and Genesis (Funcom): no secret players; these names and PINs open preset records
 const HT16 = { htsnes: [['CHE', '6581'], ['KUNGEN', '1414'], ['HENRIK', '6502'], ['JOHAN', '1911'], ['OLAV', '2509'], ['CHRIS', '0912'], ['NILS', '5555'], ['TORE', '1505'], ['TURMEL', '0000'], ['DIVITA', '0000']],
   htgen: [['KUNGEN', '7209'], ['JOHAN', '1911'], ['CENSOR', '1700'], ['ENRICO', '0666']] };
+// 16-bit match-up joystick codes: SNES table at $C5B3B0 (whole pad word, wrong presses are skipped), Genesis detectors listed at $12B10
+const HT16_JOY = {
+  htsnes: [['No tag arrows', 'Left, Left, B, R', false, ''],
+    ['Jungle court', 'L, R, Select, Start, Up, Down, A, B, Y, X', false, 'Its A, B and Y presses also leave the numbers on 1, 1, 1 (tournament mode).'],
+    ['No CPU assistance', 'Hold Right, B, B', false, ''],
+    ['Ball flash', 'Hold Right, R, Y, B', true, "The ball flashes white three times in the referee's hands at tip-off; nothing else changed that we saw. Same shape as the arcade's ABA ball code."],
+    ['Three at once', 'B, B, Hold B and turn the pad once counter-clockwise from Up', true, "The ball flash, the rooftop court and a per-player flag that zeroes four movement values (like the arcade's no drift). The arcade's four-at-once code turns clockwise."],
+    ['Rooftop court', 'Hold Left, Y, Y', false, ''],
+    ['Nine cheats at once', 'Up, Right, Down, Left, Start, A, B, Y, X, Select', false, 'Published as four effects. It sets nine: goaltending, max block, max steal, max power, max speed, hyper speed, stealth turbo, unlimited turbo and fast passing. Its A, B and Y also leave the numbers on 1, 1, 1: tournament mode, which clears number codes but not these.'],
+    ['City court', 'Hold Down, B, A, X, Y', false, 'Keep Down held as you let go of Y: the code ends on Down alone.'],
+    ['Cheat ending', 'Start, Y, Right, A, B, Up, Start, Up, Down, Down, Start, L, A, Down, Down', false, 'It switches on all eight codes above at once, and the game plays the cheat ending whenever all eight are on.'],
+    ['All eight codes', 'Enter the eight codes above, on any players', true, "After the match-up the game adds up every player's codes and plays the cheat ending if all eight are on, so the long code isn't the only way. Checked by that condition, not by entering all eight."]],
+  htgen: [['Rooftop court', 'Hold Left, B, B', false, 'Published as "outdoor court". The published rooftop code (hold Left, A three times) isn\'t in the game: the only other court is Hawaii.'],
+    ['Hawaii court', 'B, A, Right, Right, A, C, Up, Down, A', false, ''],
+    ['No tag arrows', 'Left, Left, C, A', false, 'Sets its flag ($FF1194), but the game never reads it; the arrows still show.'],
+    ['No drift', 'Down, Down, B, A', false, ''],
+    ['No CPU assistance', 'Hold Right, C, C', false, ''],
+    ['ABA ball', 'Hold Right, A, B, C', false, 'Published as "A, B six times, and C"; one press each is enough.']] };
+const htJoy16 = plat => HT16_JOY[plat].map(([n, k, isNew, note]) => [n, MU, k, isNew, note]);
 const GROUPS = {
   snes: [
     ['Secret characters', 'Type the first two initials as usual. On the third, hold the buttons shown and press A. Which buttons depends on the first initial. Original and Rev 1 are the same.',
@@ -714,7 +734,7 @@ const GROUPS = {
     ['Secret players', "Create a new player and enter the name, then the PIN. Every typed digit counts, SPC included; names shorter than six letters end with END. All 61 checked in MAME by writing each entry into the name check (TURMEL and JC also typed). Titles are the names published for Maximum Hangtime.",
       HT.map(htCard)],
     ['Match-up codes', "At Tonight's Match-Up, press Turbo, Shoot and Pass the number of times shown. Holding the joystick counts a digit down instead of up, and each digit wraps from 9 to 0. All 13 checked in MAME by their flags and tip-off captions. The published \"2, 0, 0 + Left\" outdoor court is really the joystick code below.", HT_MU.map(htMu)],
-    ['Match-up joystick codes', "Also at Tonight's Match-Up, on any player's controls, once the screen has been up for a moment (the codes are watched a little after it appears). \"Hold\" means keep it held through the rest of the code. All checked in MAME by their flags and in play. ★ New: on no published list.", htJoy(HT_JOY, ['Four at once', 'Lock in the numbers'])],
+    ['Match-up joystick codes', "Also at Tonight's Match-Up, on any player's controls, once the screen has been up for a moment (the codes are watched a little after it appears). \"Hold\" means keep it held through the rest of the code. All checked in MAME by their flags and in play. ★ New: on no published list.", htJoy(HT_JOY, ['Four at once', 'Lock in the numbers', 'Unused code: hot spots'])],
   ],
   mht: [
     ['Added in Maximum Hangtime', "Entered the same way. Maximum Hangtime keeps NBA Hangtime's 61 entries except WEBB (and fixes MDOC and JASON), and adds the rest. These were typed in MAME or checked by writing the table's values in. The 13 match-up numbers are the same.",
@@ -729,10 +749,16 @@ const GROUPS = {
     ['Match-up codes', "The arcade's 13 numbers, read from PRES.BIN; not checked in play.", htMuPort('htps', 'Turbo, Shoot, Pass')]],
   htsnes: [['Preset records', "Funcom's port has no secret players. These names and PINs, published as secret characters, open preset records. KUNGEN 1414 checked in BizHawk: a 2-3 record with a custom character.",
     HT16.htsnes.map(([n, p]) => [n, NP, `pw:${n}|${p}`, false, ''])],
-    ['Match-up codes', "Funcom's version keeps 11 of the arcade's numbers (no baby size, no music), as presses of Y, B and A; table at file offset 0x57771, not checked in play.", htMuPort('htsnes', 'Y, B, A')]],
+    ['Match-up codes', "Funcom's version keeps 11 of the arcade's numbers (no baby size, no music), as presses of Y, B and A; table at file offset 0x57771, not checked in play.", htMuPort('htsnes', 'Y, B, A')],
+    ['Match-up joystick codes', "Within six seconds of Tonight's Match-Up appearing, on any player's pad. Each step is the whole pad (\"hold\" means keep it held), and wrong presses in between are skipped, not counted against you. All nine entered in Mesen 2 and checked by their flags. ★ New: on no published list.", htJoy16('htsnes')]],
   htgen: [['Preset records', "No secret players here either. These four open preset records (\"TOP 5 DEFENSIVE PLAYER\"). KUNGEN, CENSOR and ENRICO checked in BizHawk.",
     HT16.htgen.map(([n, p]) => [n, NP, `pw:${n}|${p}`, true, n === 'JOHAN' ? 'Not checked.' : ''])],
-    ['Match-up codes', "12 numbers as presses of A, B and C (table $12A2E, checked after every press): no baby size, and fast passing is 1, 2, 7. Read from the game; not checked in play.", htMuPort('htgen', 'A, B, C')]],
+    ['Match-up codes', "12 numbers as presses of A, B and C (table $12A2E, checked after every press): no baby size, and fast passing is 1, 2, 7. Read from the game; not checked in play.", htMuPort('htgen', 'A, B, C')],
+    ['Match-up joystick codes', "Six detectors, all entered in BizHawk and checked by their flags; both courts and the ABA ball seen in play. The published big heads, huge heads, shot percentage and A-button rooftop codes aren't in this version. Tournament mode (1, 1, 1) switches every joystick code off at tip-off, and since the numbers are checked after every press, the A, B and C presses in these codes can land on it.", htJoy16('htgen')],
+    ['Options screen', "On the Options screen (Right from the main menu, then A), on player 1's pad. Three sequences, found in the code at $BACA-$BB62 and entered in BizHawk. ★ New: on no published list.",
+      [['Credits', 'Options screen', 'C, A, Right, Left, Right, Up, Left, A, Right', true, 'Plays the credits roll that attract mode sometimes shows ("FUNCOM HOME VERSION", "MIDWAY COIN OP VERSION", "ORIGINAL MUSIC" and on).'],
+        ['Unused code: Hawaii flag', 'Options screen', 'B, A, Right, Right, A, C, Up, Down, A', true, 'The Hawaii court code again, but here it sets only the Hawaii half of the court setting, which never applies without the court flag; the match-up court codes reset it anyway.'],
+        ['Unused code: A, B, A, C', 'Options screen', 'A, B, A, C, Up, Start', true, 'Sets a flag ($FF0C52) the game never reads. The Start also leaves the screen.']]]],
 };
 
 const esc = t => t.replace(/[&<>"]/g, c => `&#${c.charCodeAt(0)};`);
