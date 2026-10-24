@@ -138,6 +138,16 @@ validator, 2 or 4 players, coin counters, country, coinage and coinage source. T
 the other three switches (raw `0x04`, `0x08`, `0x10`) "UNUSED", and nothing else reads them. TE rev 4.0 3/23 has
 the same callers without the video check, so four switches are unused there. These match MAME's names.
 
+A read tap in MAME on rev 3.01 finds two more reads, neither one a setting. The input interrupt (`FF826BB0h`) copies
+`@1600000h`-`@160003Fh` into its current/previous/newly-pressed tables at `@10755B0h`, `@1075570h` and `@10755F0h`,
+so the switch word rides along in the upper half of each, but nothing reads that half. `FF837370h` reads a bit field
+starting at `@1600029h` that only overlaps the switch word. The operator's switch screen also reads the whole word
+(`FF9BAFC0h` stores it, `FF9BB450h` redraws when it changes). Tested: each of the three switches on from power-on,
+gives screens identical pixel for pixel to the default run from the same NVRAM, and flicking each on for 30 frames
+during attract mode (`0x04` also for 3, 8 and 900 frames) does nothing either. Runs have to start from the same
+NVRAM: on fresh NVRAM the board stops on "CMOS INVALID -- FACTORY SETTINGS RESTORED", and comparing against such a
+run first looked like the switches gave a free credit.
+
 ## Hidden copyright message
 
 If you also hold **P1 Right, P2 Right, P2 Shoot and P2 Turbo** (MAME's names; `IN0` mask `0x5808`) as the

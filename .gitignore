@@ -1,4 +1,6 @@
-# ROMs: never commit them (README.md and CHANGELOG.md are the only .md files in the root)
+# ROMs and disc images live in roms/; never commit them. The patterns below catch any left elsewhere
+# (README.md and CHANGELOG.md are the only .md files in the root)
+roms/
 *.sfc
 *.smc
 *.32x
@@ -6,6 +8,8 @@
 *.gb
 *.gg
 *.chd
+*.z64
+*.iso
 *.bin
 /*.md
 !/README.md
@@ -13,7 +17,6 @@
 __pycache__/
 .claude/
 *.zip
-NBAJamTo/
 
 # emulator test output
 tools/tests/_run.lua

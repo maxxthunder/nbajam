@@ -1,5 +1,5 @@
 -- NBA Jam (Genesis): the seven match-up power-ups, tapping B until the press counter ($FF1D28) reaches the target.
--- python tools/emu/bizhawk.py tools/tests/genesis_matchup.lua "NBA Jam (USA, Europe).md"  -> one log line per code with its flag set.
+-- python tools/emu/bizhawk.py tools/tests/genesis_matchup.lua "roms/NBA Jam (USA, Europe).md"  -> one log line per code with its flag set.
 local L="ABCDEFGHIJKLMNOPQRSTUVWXYZ "
 local cur=0
 local function moveto(idx)

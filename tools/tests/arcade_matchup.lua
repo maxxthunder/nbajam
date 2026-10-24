@@ -1,5 +1,5 @@
 -- NBA Jam arcade rev 3.01: Tonight's Match-Up codes. Set CODE (def, int, bighead, shot, assist) at the top.
--- python tools/emu/mame.py nbajam tools/tests/arcade_matchup.lua <rompath>  -> log and tip-off shots.
+-- python tools/emu/mame.py nbajam tools/tests/arcade_matchup.lua roms  -> log and tip-off shots.
 local function flags(tag) run(function() log(string.format("%s pw=%d %d %d %d 59C0=%04X 59D0=%04X 1290=%d 12A0=%d 5340=%04X 83C0=%04X", tag, rd16(0x10F1250), rd16(0x10F1260), rd16(0x10F1270), rd16(0x10F1280), rd16(0x10E59C0), rd16(0x10E59D0), rd16(0x10F1290), rd16(0x10F12A0), rd16(0x10E5340), rd16(0x10F83C0))) end) end
 function taps(b,n) for i=1,n do hold({b},3) wait(3) end end
 function start(two)

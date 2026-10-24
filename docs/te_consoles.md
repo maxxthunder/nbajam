@@ -273,8 +273,15 @@ The Saturn roster has none of them (it drops `JAX` and `GRAY` too, and adds `KIT
 end names exactly the 53 characters its table holds. Super Nintendo, Genesis and 32X: the only name without a code is
 Steven Tyler (above). Jaguar: the name table (16 bytes per ID, from `0x1D06E`) has one entry nothing else explains,
 **`BLARG`** (ID `$8D`), sitting among the extra NBA players (`$82`-`$97`) between Strickland and Dumas. No code points
-to it. Forcing the ID into the player slot freezes the game at team select, but so does a real extra player's ID
-(`$93`, Rozier), so that doesn't tell us whether BLARG is a placeholder or a dropped player.
+to it. Forcing the ID into the secret-player slot freezes the game at team select, but so does a real extra player's
+ID (`$93`, Rozier), so that test says nothing. A cleaner one: the ROOKIES team's player pairs are a word list at
+`$81D01A` (Dumas, Montross, Kidd, Rose and Hill), and B on player select steps through them. With Dumas's `$8E`
+replaced by `$8D` in cartridge memory (BizHawk; a patched ROM file fails the Jaguar's boot check), the emulator hangs
+on the press that would show BLARG, while the same press on the unpatched game shows Dumas and Montross and plays
+normally. BLARG does have its own entry in a 202-entry per-player table at `$A71508` (2,532 bytes at `$ABBE1C`, no
+other entry is the same), but that table isn't the player-select portraits or the heads on court: pointing Dumas's
+entry at BLARG's data changes nothing on screen. So BLARG is a name and an ID with some data behind it, but not
+enough to be shown; most likely a placeholder for a player who was never finished.
 
 ## PC (MS-DOS)
 
@@ -412,4 +419,9 @@ Every file on both discs was checked against the names the programs use (PlaySta
   with tracks 2-9. The game plays music by track number. `END.RAW` (track 9) is the same length as `NEW1.RAW`
   (track 2), so it may be a repeat; the audio wasn't decoded.
 
-Neither mismatch was checked in play.
+The PlayStation clips play after a game: `MOVIE.EXE` (loaded at `$800A8000`) picks the winner's clip from a table of
+55 names at `$800C7C64`, two per team, alternating between the two (`$800A93EC`), or a random one for the secret
+teams. So a Clippers win asks for one of the two missing files. Its opener (`$800A9C48`) looks the name up on the
+disc up to 10 times and, if it isn't there, cleans up and returns without playing anything, so a Clippers win just
+skips the clip instead of crashing. The Japanese disc has `LC2HALF.STR` and `LC3.STR`, the names `MOVIE.EXE` asks for
+(see [variants.md](variants.md)), so the US names are a mastering slip. Neither mismatch was checked in play.

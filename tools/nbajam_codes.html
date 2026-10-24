@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>NBA Jam Secret Codes: SNES, Genesis, Arcade and Tournament Edition</title>
-<meta name="description" content="Every NBA Jam secret character and hidden code found in the games' own code: Super Nintendo, Genesis, arcade, Game Boy, Game Gear, Sega CD and Tournament Edition (arcade, Super Nintendo, Genesis, 32X, Saturn, PlayStation, PC, Jaguar, Game Boy and Game Gear), including codes no published list had.">
+<title>NBA Jam Secret Codes: SNES, Genesis, Arcade, Tournament Edition and Hangtime</title>
+<meta name="description" content="Every NBA Jam secret character and hidden code found in the games' own code: Super Nintendo, Genesis, arcade, Game Boy, Game Gear, Sega CD and Tournament Edition (arcade, Super Nintendo, Genesis, 32X, Saturn, PlayStation, PC, Jaguar, Game Boy and Game Gear), plus NBA Hangtime and Maximum Hangtime, including codes no published list had.">
 <link rel="canonical" href="https://maxxthunder.github.io/nbajam/codes.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -37,8 +37,11 @@ h1 span { color: var(--orange); }
 .seg label:has(input:checked) { background: var(--orange-soft); color: var(--orange); }
 .seg label:has(input:focus-visible) { outline: 2px solid var(--orange); outline-offset: -2px; }
 @media (max-width: 520px) { .seg label { padding: 6px 9px; font-size: 15px; } }
-@media (max-width: 600px) { .games, input[type=search] { flex: 1 1 100%; } .games { justify-items: stretch; } .game { justify-items: stretch; } .seg { display: grid; grid-template-columns: repeat(var(--cols, 2), 1fr); gap: 1px; background: var(--line); }
+@media (max-width: 600px) { .games, .find { flex: 1 1 100%; } .find input { flex: 1; width: auto; } .games { justify-items: stretch; } .game { justify-items: stretch; } .seg { display: grid; grid-template-columns: repeat(var(--cols, 2), 1fr); gap: 1px; background: var(--line); }
   .seg label { padding: 6px 8px; font-size: 14px; border-left: 0; text-align: center; } }
+.find { display: flex; gap: 8px; }
+.find select { background: var(--plate); color: var(--ink); border: 1px solid var(--line); border-radius: 6px; padding: 8px 6px; font: 16px var(--body); }
+.find select:focus-visible { outline: 2px solid var(--orange); outline-offset: 1px; }
 input[type=search] { background: var(--plate); color: var(--ink); border: 1px solid var(--line); border-radius: 6px; padding: 8px 11px; font: 16px var(--body); width: min(100%, 240px); }
 input[type=search]:focus-visible { outline: 2px solid var(--orange); outline-offset: 1px; }
 .hint { color: var(--muted); font-size: 15px; margin: 0; }
@@ -68,12 +71,13 @@ h2 { font: 400 22px var(--display); letter-spacing: .04em; text-transform: upper
 .code-card:has(.pic) > :not(.pic, .badge) { grid-column: 2; }
 .pic { grid-row: 1 / span 5; width: 146px; height: 128px; object-fit: contain; image-rendering: pixelated; justify-self: center; }
 .pic-snes { width: 96px; height: 112px; justify-self: center; }
-.code-card:has(.pic-genesis, .pic-segacd, .pic-32x, .pic-jaguar, .pic-saturn, .pic-playstation, .pic-pc) { grid-template-columns: 128px minmax(0, 1fr); }
+.code-card:has(.pic-genesis, .pic-segacd, .pic-32x, .pic-jaguar, .pic-saturn, .pic-playstation, .pic-pc, .pic-hangtime) { grid-template-columns: 128px minmax(0, 1fr); }
+.pic-hangtime { width: 112px; height: 112px; }
 .pic-genesis, .pic-segacd, .pic-jaguar, .pic-saturn, .pic-playstation, .pic-pc { width: 128px; height: 112px; }
 .pic-32x { width: 124px; height: 112px; justify-self: center; }
 .pic-gameboy, .pic-gamegear { width: 96px; height: 96px; }
 @media (max-width: 400px) { .code-card:has(.pic) { grid-template-columns: 110px minmax(0, 1fr); } .pic { width: 110px; height: 96px; } .pic-snes { width: 72px; height: 84px; }
-  .code-card:has(.pic-genesis, .pic-segacd, .pic-32x, .pic-jaguar, .pic-saturn, .pic-playstation, .pic-pc) { grid-template-columns: 96px minmax(0, 1fr); } .pic-genesis, .pic-segacd, .pic-jaguar, .pic-saturn, .pic-playstation, .pic-pc { width: 96px; height: 84px; } .pic-32x { width: 93px; height: 84px; } .pic-gameboy, .pic-gamegear { width: 64px; height: 64px; } }
+  .code-card:has(.pic-genesis, .pic-segacd, .pic-32x, .pic-jaguar, .pic-saturn, .pic-playstation, .pic-pc, .pic-hangtime) { grid-template-columns: 96px minmax(0, 1fr); } .pic-hangtime { width: 84px; height: 84px; } .pic-genesis, .pic-segacd, .pic-jaguar, .pic-saturn, .pic-playstation, .pic-pc { width: 96px; height: 84px; } .pic-32x { width: 93px; height: 84px; } .pic-gameboy, .pic-gamegear { width: 64px; height: 64px; } }
 details { color: var(--muted); font-size: 15px; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; }
 summary { cursor: pointer; color: var(--ink); font-weight: 700; }
 code { font-family: var(--mono); color: var(--ink); }
@@ -89,7 +93,7 @@ footer a { color: var(--orange); text-decoration: none; display: inline-flex; al
   .bar { display: grid; grid-template-columns: 1fr auto; align-items: start; position: sticky; top: 0; z-index: 5;
     background: var(--bg); padding: 10px 0; border-bottom: 1px solid var(--line); }
   .games { grid-column: 1 / -1; grid-row: 1; }
-  #q { grid-column: 2; grid-row: 1; margin-top: 4px; }
+  .find { grid-column: 2; grid-row: 1; margin-top: 4px; }
 }
 </style>
 </head>
@@ -98,7 +102,7 @@ footer a { color: var(--orange); text-decoration: none; display: inline-flex; al
   <header>
     <div class="brand"><img src="img/logo_nbajam.png" width="209" height="190" alt=""><h1>NBA Jam <span>Secret Codes</span></h1></div>
     <p class="sub">Every secret character and hidden code in the games' own code, for Super Nintendo, Genesis, the arcade game, Game Boy, Game Gear, Sega CD
-      and Tournament Edition (arcade, Super Nintendo, Genesis, 32X, Saturn, PlayStation, PC, Jaguar, Game Boy and Game Gear). <b>★ New</b> marks codes that no published list had.
+      and Tournament Edition (arcade, Super Nintendo, Genesis, 32X, Saturn, PlayStation, PC, Jaguar, Game Boy and Game Gear), plus NBA Hangtime and Maximum Hangtime (arcade, N64, PlayStation, Super Nintendo and Genesis). <b>★ New</b> marks codes that no published list had.
       Got a Super Nintendo password? <a href="./">Check it here</a>.</p>
   </header>
 
@@ -126,8 +130,24 @@ footer a { color: var(--orange); text-decoration: none; display: inline-flex; al
           <label><input type="radio" name="plat" value="tegb" aria-label="Tournament Edition, Game Boy"><span>Game Boy</span></label>
           <label><input type="radio" name="plat" value="tegg" aria-label="Tournament Edition, Game Gear"><span>Game Gear</span></label>
         </div></div>
+      <div class="game"><img class="game-logo" src="img/logo_hangtime.png" width="311" height="154" alt="NBA Hangtime">
+        <div class="seg">
+          <label><input type="radio" name="plat" value="ht" aria-label="NBA Hangtime, Arcade"><span>Arcade</span></label>
+          <label><input type="radio" name="plat" value="mht" aria-label="Maximum Hangtime, Arcade"><span>Maximum</span></label>
+          <label><input type="radio" name="plat" value="htn64" aria-label="NBA Hangtime, Nintendo 64"><span>N64</span></label>
+          <label><input type="radio" name="plat" value="htps" aria-label="NBA Hangtime, PlayStation"><span>PlayStation</span></label>
+          <label><input type="radio" name="plat" value="htsnes" aria-label="NBA Hang Time, Super Nintendo"><span>Super Nintendo</span></label>
+          <label><input type="radio" name="plat" value="htgen" aria-label="NBA Hang Time, Genesis"><span>Genesis</span></label>
+        </div></div>
     </div>
-    <input type="search" id="q" placeholder="Search name or initials" aria-label="Search codes">
+    <div class="find">
+      <input type="search" id="q" placeholder="Search name or initials" aria-label="Search codes">
+      <select id="only" aria-label="Show">
+        <option value="">All codes</option>
+        <option value="new">★ New only</option>
+        <option value="cut">Cut or unused</option>
+      </select>
+    </div>
   </div>
   <p class="hint" id="sum" aria-live="polite"></p>
   <div id="codes"></div>
@@ -365,6 +385,77 @@ const NOTE = { VLK: 'Looks like Larry DeMar; VLK is Vicki Kamm.',
 const RANDOM_CLIPS = [['1B', 'Boomshakalaka!'], ['0F', 'Is it the shoes?'], ['13', 'Ugly shot!'], ['17', 'Oh my!']];  // Genesis clip IDs, recorded in BizHawk with the music subtracted
 const JUICE27 = 'With all 27 teams beaten, the second stats page says "You have defeated all 27 NBA teams!" and turns juice mode on for the next game.';
 const MK = 'Revs 1.00 and 2.0 only; removed from rev 3.0 on.';
+// NBA Hangtime (arcade L1.3): the name/PIN table at FFAB9200h, as [name, PIN, published name, note]
+const HT = [['JAPPLE', '6660', 'Jeff Johnson', 'Scoreboard: JAPPLE.'], ['DIVITA', '0201', 'Sal DiVita', 'Scoreboard: DIVITA.'], ['TURMEL', '0322', 'Mark Turmell', 'Scoreboard: TURMELL.'], ['DANIEL', '0604', 'Dan Thompson', 'Scoreboard: THOMPSON.'],
+  ['EUGENE', '6767', 'Eugene Geer', 'Scoreboard: GEER.'], ['JC', '0000', 'John Carlton', 'Scoreboard: CARLTON.'], ['JFER', '0503', 'Jennifer Hedrick', 'Scoreboard: HEDRICK.'], ['JONHEY', '6000', 'Jon Hey', 'Scoreboard: HEY.'], ['MORRIS', '6000', 'Willie Morris', 'Scoreboard: AIR MORRIS.'],
+  ['BARDO', '6000', 'Steve Bardo', 'Scoreboard: BARDO.'], ['MINIFE', '6000', 'Marcus Minifee', 'Scoreboard: MINIFEE.'], ['MARTY', '1010', 'Marty Martinez', 'Scoreboard: MARTINEZ.'], ['CARLOS', '1010', 'Carlos Pesina', 'Scoreboard: PESINA.'], ['SHAWN', '0123', 'Shawn Liptak', 'Scoreboard: LIPTAK.'],
+  ['EDDIE', '6213', 'Eddie Ferrier', 'Scoreboard: FERRIER.'], ['MXV', '1014', 'Mike Vinikour', 'Scoreboard: VINIKOUR.'], ['JAMIE', '1000', 'Jamie Rivett', 'Scoreboard: RIVETT.'], ['NICK', '7000', 'Nick Ehrlich', 'Scoreboard: EHRLICH.'], ['ROOT', '6000', 'John Root', 'Scoreboard: ROOT.'],
+  ['MEDNIK', '6000', 'Cary Mednick', 'Scoreboard: MEDNICK.'], ['DANR', '0000', 'Dan Roan', 'Scoreboard: ROAN.'], ['PATF', '2000', 'Pat Fitzgerald', 'Scoreboard: FITZGERALD.'], ['KOMBAT', '0004', 'Ed Boon', 'Scoreboard: BOON.'], ['MORTAL', '0004', 'John Tobias', 'Scoreboard: TOBIAS.'],
+  ['SNO', '0103', 'Sheridan Oursler', 'Scoreboard: OURSLER.'], ['JASON', '0729', 'Jason Skiles', 'Scoreboard: AIR MORRIS. A different head from MORRIS, with the same scoreboard name.'],
+  ['QUIN', '0330', 'Kevin Quinn', 'Scoreboard: QUINN.'], ['PERRY', '3500', 'Matthew Perry', 'Scoreboard: PERRY.'], ['NFUNK', '0101', 'Neil Funk', 'Scoreboard: FUNK.'],
+  ['MDOC', '20', 'Marc Williams (M-Doc)', "Scoreboard: M-DOC. Can't be entered: its last two PIN digits are stored as 0, and every typed digit (or SPC) is stored as 1 or more; letting the timer run out doesn't fill them in either. Maximum Hangtime fixes it to 2000 (published that way for Maximum Hangtime). Shown here by writing the table's values into the entry in MAME."],
+  ['NOBUD', '1010', 'Bud Fletcher', 'Scoreboard: FUNK. A different head from NFUNK, with the same scoreboard name.'],
+  ['MARIUS', '1005', 'Marius Enge', "Scoreboard: MURESAN. An old man's head."], ['MUNDAY', '5432', 'Larry Munday', 'Scoreboard: MUNDAY.'], ['NORTH', '5050', 'Mike North', 'Scoreboard: NORTH.'],
+  ['AMRICH', '2020', 'Dan Amrich', 'Scoreboard: AMRICH.'], ['JIGGET', '1010', 'Dan Jiggetts', 'Scoreboard: JIGGETTS.'],
+  ['PIPPEN', '0000', 'Scottie Pippen'], ['RODMAN', '0000', 'Dennis Rodman'], ['JOHNSN', '0000', 'Larry Johnson'], ['RICE', '0000', 'Glen Rice'],
+  ['KIDD', '0000', 'Jason Kidd'], ['MOTUMB', '0000', 'Dikembe Mutombo'], ['GHILL', '0000', 'Grant Hill'], ['DREAM', '0000', 'Hakeem Olajuwon'],
+  ['MILLER', '0000', 'Reggie Miller'], ['SMITS', '0000', 'Rik Smits'], ['MOURNG', '0000', 'Alonzo Mourning'], ['GLENNR', '0000', 'Glenn Robinson'],
+  ['WEBB', '0000', 'Spud Webb'], ['EWING', '0000', 'Patrick Ewing'], ['STARKS', '0000', 'John Starks'], ['AHRDWY', '0000', 'Anfernee Hardaway'],
+  ['HGRANT', '0000', 'Horace Grant'], ['STACKH', '0000', 'Jerry Stackhouse'], ['CLIFFR', '0000', 'Clifford Robinson'], ['DAVIDR', '0000', 'David Robinson'],
+  ['ELLIOT', '0000', 'Sean Elliott'], ['KEMP', '0000', 'Shawn Kemp'], ['MALONE', '0000', 'Karl Malone'], ['WEBBER', '0000', 'Chris Webber'],
+  ['MURSAN', '0000', 'Gheorghe Muresan']];
+const HT_NEW = [];
+const NP = 'Create a player: name, then PIN';
+const htCard = ([name, pin, who, note]) => [who, NP, `pw:${name}|${name === 'MDOC' ? '2, 0, ?, ?' : pin}`, HT_NEW.includes(name),
+  note || '', `hangtime/ht_${name.toLowerCase()}`];
+// Maximum Hangtime adds these 25 and drops WEBB (Spud Webb moves to SPUD); MDOC becomes 2000 and JASON 0, 7, 2, SPC
+const MHT = [['ZIRIN', '1010', 'Jonathan Zirin', 'Scoreboard: ZIRIN.'], ['HEITH', '1079', 'Heith Bettleman', 'Scoreboard: BETTLEMAN.'], ['MATT B', '0184', 'Matt Bettleman', 'Scoreboard: BETTLEMAN. Type SPC between MATT and B.'],
+  ['K DAY', '4242', 'Kevin Day', 'A cartoon basketball mascot head; the scoreboard says FUNK. Type SPC between K and DAY.'],
+  ['MCLOUD', '0000', 'George McCloud'], ['TMILLS', '0000', 'Terry Mills'], ['KSMITH', '0000', 'Kenny Smith'], ['MCKEE', '0000', 'Derrick McKey'],
+  ['CHAPMN', '0000', 'Rex Chapman'], ['BENJMN', '0000', 'Benoit Benjamin'], ['DOUGLS', '0000', 'Sherman Douglas'], ['SPUD', '0000', 'Spud Webb', 'Webb was WEBB in NBA Hangtime.'],
+  ['GILIAM', '0000', 'Armon Gilliam'], ['KEVINE', '0000', 'Kevin Edwards'], ['OAKLEY', '0000', 'Charles Oakley'], ['RUFFIN', '0000', 'Trevor Ruffin'],
+  ['WESLEY', '0000', 'Wesley Person'], ['FINLEY', '0000', 'Michael Finley'], ['BUCK', '0000', 'Buck Williams'], ['PERSON', '0000', 'Chuck Person'],
+  ['ALVINR', '0000', 'Alvin Robertson'], ['OMILLR', '0000', 'Oliver Miller'], ['MURRAY', '0000', 'Lamond Murray'], ['BENOIT', '0000', 'David Benoit'],
+  ['BSCOTT', '0000', 'Brian Scott'], ['MURDCK', '0000', 'Eric Murdock']];
+const HT_MU = [['Tournament mode', '1, 1, 1', 'Every human player has to enter it; in a one-player game it is refused with a sound and nothing is set.'],
+  ['Baby-sized players', '0, 2, 5', 'Tip-off shows "BABY SIZED PLAYERS!"'], ['No music', '0, 4, 8', "No caption: the flag switches the game's music calls. Not checked by ear."],
+  ['No goaltending', '9, 3, 7', 'Caption "GOAL TENDING".'],
+  ['Max shot blocking (does nothing)', '6, 1, 6', 'Published as max blocking. The code is accepted and sets its flag, but the game never reads that flag.'],
+  ['Quick hands', '7, 0, 9', 'Caption "QUICK HANDS".'], ['Max power', '8, 0, 2', 'Caption "MAX. POWER".'], ['Max speed', '2, 8, 4', 'Caption "MAX. SPEED".'],
+  ['Hyper speed', '5, 5, 2', 'Caption "HYPER SPEED".'], ['Stealth turbo', '2, 7, 3', 'Caption "STEALTH TURBO".'], ['Unlimited turbo', '4, 6, 1', 'Caption "UNLIM. TURBO".'],
+  ['No pushing', '3, 9, 0', 'Caption "NO PUSHING".'], ['Fast passing', '1, 2, 0', 'Caption "FAST PASSING".']];
+const htMu = ([n, k, note]) => [n, `${MU}: presses of Turbo, Shoot, Pass`, k, false, note];
+// Match-up joystick codes: each detector watches the player's whole input state on the frames it changes
+const HT_JOY = [['Big heads', 'Up + Pass + Turbo together', 'Caption "BIG HEAD".'],
+  ['Huge heads', 'Up, Up, Pass, Turbo', 'Bigger still; caption "BIG HEAD".'],
+  ['Shot percentage', 'Turn the joystick once clockwise from Up', 'Caption "SHOT % ON".'],
+  ['No tag arrows', 'Left, Left, Pass, Turbo', 'Caption "NO ARROWS".'],
+  ['No drift', 'Down, Down, Shoot, Turbo', ''],
+  ['No CPU assistance', 'Hold Right, Pass, Pass', ''],
+  ['ABA ball', 'Hold Right, Shoot, Turbo, Pass', 'A red, white and blue ball.'],
+  ['Rooftop court', 'Hold Left, Turbo, Turbo', 'An outdoor court on a city rooftop at night.'],
+  ['Four at once', 'Shoot, Shoot, Hold Shoot and turn the joystick once clockwise from Up', 'Big heads, shot percentage, ABA ball and the rooftop court together. Fast: the whole turn has about 1⅓ seconds.'],
+  ['Lock in the numbers', 'Down', "Any Down press stops your three digits counting and flashes them, which is why some published codes end in Down."]];
+const htJoy = (list, newOnes) => list.map(([n, k, note]) => [n, `${MU}, about two seconds in`, k, newOnes.includes(n), note]);
+const MHT_JOY = [...HT_JOY.filter(([n]) => !['Rooftop court', 'Four at once'].includes(n)),
+  ['Outdoor court', 'Right', 'Shows "COURT: STADIUM / OUTDOOR" on the match-up screen; Right picks the rooftop court and Left goes back. Published as "press Left", which leaves it on Stadium.'],
+  ['Hot spots', 'Hold Up, Shoot, Shoot', 'Caption "HOTSPOTS ON".'],
+  ['Four at once', 'Shoot, Shoot, Hold Shoot and turn the joystick once clockwise from Up', 'Big heads, shot percentage, ABA ball and the outdoor court.']];
+// three-digit tables in the home versions (read from the games, not entered)
+const HT_MU_PORT = { htn64: HT_MU.map(([n, k]) => [n, k]), htps: HT_MU.map(([n, k]) => [n, k]),
+  htsnes: HT_MU.filter(([n]) => !['Baby-sized players', 'No music'].includes(n)).map(([n, k]) => [n, k]),
+  htgen: HT_MU.filter(([n]) => n !== 'Baby-sized players').map(([n, k]) => [n, n === 'Fast passing' ? '1, 2, 7' : k]) };
+const htMuPort = (plat, btn) => HT_MU_PORT[plat].map(([n, k]) => [n, `${MU}: presses of ${btn}`, k, false, n === 'Fast passing' && plat === 'htgen' ? 'The Genesis uses 1, 2, 7 instead of 1, 2, 0.' : ''] );
+// N64 and PlayStation keep the arcade table with some entries blanked (an impossible name, or a PIN stored as ASCII "0000")
+const HT_GONE = { htn64: ['NOBUD', 'MARIUS', 'NORTH', 'JIGGET'], htps: ['NOBUD', 'MARIUS', 'MUNDAY', 'NORTH', 'JIGGET'] };
+const htPort = plat => HT.filter(([n]) => !HT_GONE[plat].includes(n)).map(c => {
+  const card = htCard(c);
+  if (c[0] === 'MDOC' && plat === 'htps') return [card[0], NP, 'pw:MDOC|2000', true, 'Fixed to 2000 on PlayStation.', card[5]];
+  return [...card.slice(0, 4), c[0] === 'MDOC' ? 'Still unreachable: the same stored zeros as the arcade.' : (c[3] || ''), card[5]];
+});
+// Super Nintendo and Genesis (Funcom): no secret players; these names and PINs open preset records
+const HT16 = { htsnes: [['CHE', '6581'], ['KUNGEN', '1414'], ['HENRIK', '6502'], ['JOHAN', '1911'], ['OLAV', '2509'], ['CHRIS', '0912'], ['NILS', '5555'], ['TORE', '1505'], ['TURMEL', '0000'], ['DIVITA', '0000']],
+  htgen: [['KUNGEN', '7209'], ['JOHAN', '1911'], ['CENSOR', '1700'], ['ENRICO', '0666']] };
 const GROUPS = {
   snes: [
     ['Secret characters', 'Type the first two initials as usual. On the third, hold the buttons shown and press A. Which buttons depends on the first initial. Original and Rev 1 are the same.',
@@ -619,6 +710,29 @@ const GROUPS = {
       ['Secret Midway Menu: step 2', 'During those credits', 'P1 Turbo, P1 Turbo, P2 Shoot, P2 Shoot, P2 Shoot, P2 Pass, P2 Pass, P1 Shoot, P1 Pass, P2 Turbo, P2 Turbo', true,
         'After the credits: a hidden operator screen with jam counts, audits, team stats and the records table. Any button pages through. Revs 2.0 to 4.0.']]],
   ],
+  ht: [
+    ['Secret players', "Create a new player and enter the name, then the PIN. Every typed digit counts, SPC included; names shorter than six letters end with END. All 61 checked in MAME by writing each entry into the name check (TURMEL and JC also typed). Titles are the names published for Maximum Hangtime.",
+      HT.map(htCard)],
+    ['Match-up codes', "At Tonight's Match-Up, press Turbo, Shoot and Pass the number of times shown. Holding the joystick counts a digit down instead of up, and each digit wraps from 9 to 0. All 13 checked in MAME by their flags and tip-off captions. The published \"2, 0, 0 + Left\" outdoor court is really the joystick code below.", HT_MU.map(htMu)],
+    ['Match-up joystick codes', "Also at Tonight's Match-Up, on any player's controls, once the screen has been up for a moment (the codes are watched a little after it appears). \"Hold\" means keep it held through the rest of the code. All checked in MAME by their flags and in play. ★ New: on no published list.", htJoy(HT_JOY, ['Four at once', 'Lock in the numbers'])],
+  ],
+  mht: [
+    ['Added in Maximum Hangtime', "Entered the same way. Maximum Hangtime keeps NBA Hangtime's 61 entries except WEBB (and fixes MDOC and JASON), and adds the rest. These were typed in MAME or checked by writing the table's values in. The 13 match-up numbers are the same.",
+      [['Marc Williams (M-Doc)', NP, 'pw:MDOC|2000', false, 'Unreachable in NBA Hangtime. Typed in MAME.', 'hangtime/ht_mdoc'], ['Jason Skiles', NP, 'pw:JASON|0, 7, 2, SPC', false, 'The PIN now ends with the SPC key. Typed in MAME.', 'hangtime/ht_jason'],
+        ...MHT.map(([name, pin, who, note]) => [who, NP, `pw:${name}|${pin}`, !['ZIRIN', 'HEITH', 'MATT B', 'K DAY'].includes(name), note || '', `hangtime/mht_${name.toLowerCase().replace(' ', '_')}`])]],
+    ['Match-up joystick codes', "Maximum Hangtime moves the court to a Stadium/Outdoor selector and adds hot spots. Checked in MAME: outdoor court, hot spots, big heads; the rest are the same detectors as NBA Hangtime.", htJoy(MHT_JOY, ['Four at once', 'Lock in the numbers'])],
+  ],
+  htn64: [['Secret players', "The arcade table, read from the cartridge (not checked in play). NOBUD, MARIUS, NORTH and JIGGET are blanked out, and MDOC is still unreachable.", htPort('htn64')],
+    ['Match-up codes', "The arcade's 13 numbers, read from the cartridge (`0xA0148`); not checked in play.", htMuPort('htn64', 'Turbo, Shoot, Pass')]],
+  htps: [['Secret players', "The arcade table, read from PRES.BIN on the disc (not checked in play). NOBUD, MUNDAY, NORTH and JIGGET are blanked out, MARIUS becomes OLDBOY 0505, and MDOC is fixed to 2000.",
+    [...htPort('htps'), ['Marius Enge', NP, 'pw:OLDBOY|0505', true, 'MARIUS 1005 in the arcade; renamed on PlayStation.', 'hangtime/ht_marius']]],
+    ['Match-up codes', "The arcade's 13 numbers, read from PRES.BIN; not checked in play.", htMuPort('htps', 'Turbo, Shoot, Pass')]],
+  htsnes: [['Preset records', "Funcom's port has no secret players. These names and PINs, published as secret characters, open preset records. KUNGEN 1414 checked in BizHawk: a 2-3 record with a custom character.",
+    HT16.htsnes.map(([n, p]) => [n, NP, `pw:${n}|${p}`, false, ''])],
+    ['Match-up codes', "Funcom's version keeps 11 of the arcade's numbers (no baby size, no music), as presses of Y, B and A; table at file offset 0x57771, not checked in play.", htMuPort('htsnes', 'Y, B, A')]],
+  htgen: [['Preset records', "No secret players here either. These four open preset records (\"TOP 5 DEFENSIVE PLAYER\"). KUNGEN, CENSOR and ENRICO checked in BizHawk.",
+    HT16.htgen.map(([n, p]) => [n, NP, `pw:${n}|${p}`, true, n === 'JOHAN' ? 'Not checked.' : ''])],
+    ['Match-up codes', "12 numbers as presses of A, B and C (table $12A2E, checked after every press): no baby size, and fast passing is 1, 2, 7. Read from the game; not checked in play.", htMuPort('htgen', 'A, B, C')]],
 };
 
 const esc = t => t.replace(/[&<>"]/g, c => `&#${c.charCodeAt(0)};`);
@@ -635,15 +749,18 @@ function card([title, where, input, isNew, note, pic, clips], plat) {
   el.dataset.text = (title + ' ' + input).toLowerCase();
   return el;
 }
+// codes that are in the game but do nothing, or content with no code at all
+const CUT = /^Unused code|never (applies|reads)|never true|can't be entered/i;
 const $ = id => document.getElementById(id);
 function show() {
-  const plat = document.querySelector('#plat input:checked').value, q = $('q').value.trim().toLowerCase();
+  const plat = document.querySelector('#plat input:checked').value, q = $('q').value.trim().toLowerCase(), only = $('only').value;
   let total = 0, fresh = 0, shown = 0;
   $('codes').replaceChildren(...GROUPS[plat].map(([name, hint, list]) => {
     const g = document.createElement('section');
     g.className = 'group';
     g.innerHTML = `<h2>${esc(name)}</h2>${hint ? `<p class="hint">${esc(hint)}</p>` : ''}`;
-    const cards = list.map(c => card(c, plat)).filter(el => !q || el.dataset.text.includes(q));
+    const cards = list.filter(c => !only || (only === 'new' ? c[3] : name === 'Cut characters' || CUT.test(c[0] + ' ' + c[4])))
+      .map(c => card(c, plat)).filter(el => !q || el.dataset.text.includes(q));
     total += list.length; fresh += list.filter(c => c[3]).length; shown += cards.length;
     const box = document.createElement('div');
     box.className = 'code-list';
@@ -651,7 +768,7 @@ function show() {
     if (cards.length) g.append(box); else g.hidden = true;
     return g;
   }));
-  $('sum').textContent = q ? `${shown} of ${total} codes match.` : `${total} codes, ${fresh ? fresh + ' of them new' : 'all already published'}.`;
+  $('sum').textContent = q || only ? `${shown} of ${total} codes match.` : `${total} codes, ${fresh ? fresh + ' of them new' : 'all already published'}.`;
 }
 $('plat').addEventListener('change', () => {
   show();
@@ -671,6 +788,7 @@ $('codes').addEventListener('click', e => {
   clip.play().catch(() => b.classList.remove('on'));
 });
 $('q').addEventListener('input', show);
+$('only').addEventListener('change', show);
 show();
 </script>
 </body>

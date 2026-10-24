@@ -1,5 +1,5 @@
 -- NBA Jam (Super Nintendo): a 27-team password turns juice mode ($1D39) on at the second stats page.
--- python tools/emu/mesen.py tools/tests/snes_juice27.lua "NBA Jam (USA).sfc"  (prints J1-J8: $1D39 after each step)
+-- python tools/emu/mesen.py tools/tests/snes_juice27.lua "roms/NBA Jam (USA).sfc"  (prints J1-J8: $1D39 after each step)
 INI_S=INI_S or 'HRY' PW_S=PW_S or 'QF3B43TQJY55TF'
 function w8(a,v) emu.write(a,v,emu.memType.snesWorkRam) end
 wait(1900) press({start = true}) wait(60) press({start = true}) wait(90)

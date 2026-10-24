@@ -1,5 +1,5 @@
 -- NBA Jam (Super Nintendo): the seven match-up power-ups and the published shot % slip.
--- python tools/emu/mesen.py tools/tests/snes_matchup.lua "NBA Jam (USA).sfc"  -> RES lines with the flags ($0AC6-$0AF0, $1D39).
+-- python tools/emu/mesen.py tools/tests/snes_matchup.lua "roms/NBA Jam (USA).sfc"  -> RES lines with the flags ($0AC6-$0AF0, $1D39).
 local W=emu.memType.snesWorkRam
 local function rd16(a) return emu.read(a,W)|emu.read(a+1,W)<<8 end
 local DIRS={{up=true},{up=true,right=true},{right=true},{down=true,right=true},{down=true},{down=true,left=true},{left=true},{up=true,left=true}}

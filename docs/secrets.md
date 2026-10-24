@@ -272,11 +272,13 @@ from bank `$8D` (it disables interrupts, so only a reset gets out):
 Both forced in Mesen 2 (`$1CCB` = `$10`; `$1D3D` = `$80` at `$8AA86B`). Neither is a code, but neither appears on any
 list we found.
 
-**Code that never ran.** A Mesen 2 run with an execute callback on all of ROM (attract mode, the menus, a password,
-Tonight's Match-Up and a stretch of play) ran 19,403 of the 81,072 instructions the disassembler decodes. Among the
-code that didn't run, the blocks that read the pads are the multitap reader (`$80B0E2`), the screens above, pause
-handling and screens the run didn't reach (stats, records). No unknown button check turned up, but one run can't
-reach everything, so this is not a proof.
+**Code that never ran.** Mesen 2's code/data log, merged over many runs (attract mode, the menus and every options
+setting, passwords, a team game, pausing, and a game played through halftime with the timer on its fastest setting),
+covers 66,110 of the 81,072 instructions the disassembler traces (81.5%). An earlier single run with an execute callback
+only watched banks `$80` and up and missed code running from the mirrored low banks, so it counted 19,403. Of the code
+that never ran, the parts that read the pads are the multitap reader (`$80B0E2`), the screens above, and players 2-4
+joining a game in progress (`$8A8FBE`-`$8A9444`, `$8AEB6C`-`$8AEBEF`), which these one-pad runs couldn't reach. No
+unknown button check turned up, but this still isn't a proof.
 
 ## Sega CD: disc files
 
@@ -303,4 +305,25 @@ Tournament Edition on Genesis sends every vector to one handler and has no such 
 
 The Genesis also has a device-error screen like the Super Nintendo's ("An error has occured with a device connected
 to the control pad connectors..."). The Team Player reader (`$1D9E28`) shows it when the adapter's header isn't
-`$030F0000` for 36 reads in a row (`$FF1D5C`). It only runs with a Team Player detected, so it wasn't forced.
+`$030F0000` for 36 reads in a row (`$FF1D5C`). It only runs when the pad port's ID reads 3, a Team Player
+(`$1D9DA6`); with an ordinary pad patched through that check, the adapter handshake times out and the reader just
+clears the pads (`$1D9F12`), so the screen needs a real, misbehaving adapter. Forced in BizHawk by sending that path
+straight to the screen's routine (`$1D9F24`):
+
+![Genesis device-error screen](images/genesis_device_error.png)
+
+The same reader has one more dead end: a Team Player that reports a device type other than none, a 3-button pad or a
+6-button pad loops forever writing blue to the backdrop colour (`$1D9E80`).
+
+**Genesis Rev 1: region lock.** Rev 1 adds Sega's standard region check at boot (`$2FA`): it reads the console's
+region from `$A10001`, looks it up in a J/U/E table (`$42A`, with no letter for a domestic PAL console) and compares
+it with the header's region field, which Rev 1 changes from `EU` to `UE`. On a Japanese Mega Drive it stops on this
+screen; the original has no check and runs anywhere. Shown in BizHawk by making the table treat a US console as
+unknown and pressing reset:
+
+![Genesis Rev 1 region screen](images/genesis_rev1_region.png)
+
+Apart from that, the two Genesis revisions have the same text. The Super Nintendo revisions have the same text too,
+except Nintendo's multitap library: Rev 1 rebuilds it (its markers change from `END OF MULTI5 BIOS` to a
+`START OF MULTI5 BIOS` / `END OF MULTI5 BIOS` pair). The rest of the Super Nintendo differences sit in code banks
+`$80`-`$82`, `$8A` and `$A6`-`$A7`, mostly as moved addresses; they weren't gone through one by one.

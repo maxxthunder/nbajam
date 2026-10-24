@@ -8,8 +8,9 @@
   and it tells you whether the game will take them.
 - **See what it holds**: wins, losses, percentage, win streak, and which of the 27 NBA teams you've beaten.
 - **Secret codes**: every secret character and hidden code, read straight from the games, for Super Nintendo,
-  Genesis, arcade, Game Boy, Game Gear, Sega CD, and Tournament Edition on arcade, Super Nintendo, Genesis, 32X,
-  Saturn, PlayStation, PC, Jaguar, Game Boy and Game Gear.
+  Genesis, arcade, Game Boy, Game Gear, Sega CD, Tournament Edition on arcade, Super Nintendo, Genesis, 32X,
+  Saturn, PlayStation, PC, Jaguar, Game Boy and Game Gear, and NBA Hangtime and Maximum Hangtime on arcade, N64,
+  PlayStation, Super Nintendo and Genesis.
 
 Both pages work offline too: save [`tools/nbajam_password_checker.html`](tools/nbajam_password_checker.html) or
 [`tools/nbajam_codes.html`](tools/nbajam_codes.html) and open it in a browser (the codes page needs `tools/img/` and
@@ -27,12 +28,15 @@ Both pages work offline too: save [`tools/nbajam_password_checker.html`](tools/n
 | Tournament Edition: Saturn, PlayStation | ✓ | ✓ | preset records, three cut PlayStation characters |
 | Tournament Edition: PC, Jaguar | ✓ | ✓ | Jaguar keypad codes |
 | Tournament Edition: Game Boy, Game Gear | ✓ | | |
+| NBA Hangtime, Maximum Hangtime: arcade | ✓ (name and PIN) | ✓ | joystick codes |
+| NBA Hangtime: N64, PlayStation | ✓ (read from the game) | ✓ (read from the game) | |
+| NBA Hangtime: Super Nintendo, Genesis | | ✓ (read from the game) | preset records |
 
 Every code was entered in an emulator unless its card says otherwise.
 
 ## What's new here
 
-The codes page marks 87 codes that no published list had with **★ New**:
+The codes page marks 119 codes that no published list had with **★ New**:
 
 - **Match-up codes nobody had listed**: the Sega CD's seven button sequences, 12 of the 32X's 18, 8 of the PC's 19,
   and a code on Super Nintendo, Genesis and 32X that the game recognises but never applies (probably a cut power-up).
@@ -44,8 +48,14 @@ The codes page marks 87 codes that no published list had with **★ New**:
 - **Cut characters**: three finished PlayStation characters with no code (Wright, Kita, Sprite Boy).
 - **Characters**: Dennis Rodman in two arcade Tournament Edition revisions, and the prototype and revision 2.1
   birthdays.
-- **Leftovers in the research notes**: Iguana's crash screen on Genesis, the Super Nintendo's controller warnings, the
-  Sega CD's cut advert breaks and a Saturn dunk clip nothing plays.
+- **Leftovers in the research notes**: Iguana's crash screen and the Team Player error screen on Genesis, the Genesis
+  Rev 1 region lock, the Super Nintendo's controller warnings, the Sega CD's cut advert breaks, a Saturn dunk clip
+  nothing plays, and the Jaguar's BLARG, a player ID with too little behind it to be shown.
+- **NBA Hangtime**: M-DOC, which can't be entered in NBA Hangtime or on N64; the published 6-1-6 that does nothing;
+  a four-at-once joystick code and the Down press that locks the numbers; Maximum Hangtime's 21 extra NBA players;
+  and which players the N64 and PlayStation versions drop.
+- **Betas**: the Japanese NBA Jam beta's 11 secret characters, four of them dinosaurs (in the
+  [research notes](docs/variants.md)).
 - **Genesis announcer codes**: initials that play a speech clip, with the clips on the page.
 
 Published codes that don't work as printed (wrong buttons, missing presses, codes that do nothing) are corrected on
@@ -100,6 +110,8 @@ DOSBox-X (PC).
 | [docs/te_consoles.md](docs/te_consoles.md) | Tournament Edition on every home version, including the match-up tables |
 | [docs/arcade.md](docs/arcade.md) | The original arcade game |
 | [docs/arcade_te.md](docs/arcade_te.md) | Arcade Tournament Edition, all nine revisions |
+| [docs/hangtime.md](docs/hangtime.md) | NBA Hangtime and Maximum Hangtime, arcade and home |
+| [docs/variants.md](docs/variants.md) | Betas, prototypes and regional versions |
 
 </details>
 
@@ -125,27 +137,29 @@ python tools/nbajam_te_password.py RAT BZZ6DZ37KY
 | `tools/nbajam_codes.html` | The secret codes page |
 | `tools/img/`, `tools/audio/` | Portraits, logos and announcer clips for the codes page |
 | `tools/check_checker.py` | Checks that the page's JavaScript agrees with both Python tools (needs Node.js) |
+| `tools/check_codes.py` | Decodes every password on the codes page and in the README and checks it against the record it's listed with |
 | `tools/nbajam_romcheck.py` | Checks `nbajam_password.py` against the game's own code in Mesen 2 (needs the ROM) |
 | `tools/disasm.py`, `tools/reasm.py` | SNES disassembler and reassembler |
 | `tools/dis/` | Small disassemblers (68000, SH-2, Z80, SM83, MIPS), a DOS/4GW LE reader, and Game Boy / Game Gear pad-check scanners (need `capstone` for 68000, SH-2 and MIPS) |
 | `tools/emu/` | Scripted runners for BizHawk, MAME, Mesen 2 and DOSBox-X (set `EMUHAWK`, `MAME`, `MESEN`, `DOSBOX`) |
-| `tools/tests/` | The tests run for the codes page: match-up codes (Super Nintendo, Genesis, 32X, PlayStation, Saturn, Jaguar, arcade), the PlayStation cut characters and the Super Nintendo 27-team juice mode |
+| `tools/tests/` | The tests run for the codes page: match-up codes (Super Nintendo, Genesis, 32X, PlayStation, Saturn, Jaguar, arcade), the PlayStation cut characters, the Super Nintendo 27-team juice mode, the Genesis hidden screens, the Jaguar's BLARG, the arcade's unused DIP switches, and NBA Hangtime's names and match-up codes |
 | `disasm/snes/` | 65816 listings of the original ROM, one file per 32 KB bank |
 | `disasm/names.txt`, `disasm/entries.txt` | Names for routines and RAM; code addresses seen running in Mesen |
 | [CHANGELOG.md](CHANGELOG.md) | What changed in each version |
 
-To rebuild the listings, put `NBA Jam (USA).sfc` in the repo root (`.gitignore` keeps ROMs out of commits):
+To rebuild the listings, put `NBA Jam (USA).sfc` in `roms/` (`.gitignore` keeps that folder out of commits):
 
 ```bash
-python tools/disasm.py "NBA Jam (USA).sfc" disasm/snes
-python tools/reasm.py disasm/snes "NBA Jam (USA).sfc"
+python tools/disasm.py "roms/NBA Jam (USA).sfc" disasm/snes
+python tools/reasm.py disasm/snes "roms/NBA Jam (USA).sfc"
 ```
 
 </details>
 
 ## Credits
 
-*NBA Jam* and *NBA Jam Tournament Edition* are by Midway; Acclaim published the home versions. Screenshots, portraits and clips are from the games running in Mesen 2, BizHawk, MAME and
+*NBA Jam* and *NBA Jam Tournament Edition* are by Midway; Acclaim published the home versions. *NBA Hangtime* and
+*Maximum Hangtime* are by Midway; its Super Nintendo and Genesis versions are Funcom's. Screenshots, portraits and clips are from the games running in Mesen 2, BizHawk, MAME and
 DOSBox-X. The ROMs are not included in this repo.
 
 ## License

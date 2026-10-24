@@ -22,6 +22,8 @@ jobs:
         run: python tools/nbajam_te_password.py
       - name: Web checker matches nbajam_password.py
         run: python tools/check_checker.py
+      - name: Every password on the codes page and in the README decodes to its record
+        run: python tools/check_codes.py
       - name: Page footer and README badge match the CHANGELOG version
         run: |
           v=$(grep -m1 -oP '^## \K[0-9.]+' CHANGELOG.md)
