@@ -2,6 +2,14 @@
 
 Changes to the [secret codes page](https://maxxthunder.github.io/nbajam/codes.html) and [password checker](https://maxxthunder.github.io/nbajam/). The version is shown at the bottom of each page. **Codes page** and **Checker** are what visitors see; **Notes** are the [research notes](docs/); **README** is this repo's front page.
 
+## 1.5.7 (2026-10-25)
+- **Codes page:** the arcade NBA Jam powerup defense, shot percentage and computer-assistance-off screenshots now show
+  their messages.
+- **Codes page:** a screenshot of Tournament Edition's baby-size players on arcade, and the code's buttons in the order
+  the game checks them: Pass, Turbo, Shoot (published lists give Turbo, Shoot, Pass).
+- **Codes page:** the note "Plays with the stats of the player it replaces" only on arcade Tournament Edition secret
+  characters, not on its match-up codes.
+
 ## 1.5.6 (2026-10-25)
 - **Notes:** the notes folder opens with a guide to each file, by game, with links to their main sections.
 

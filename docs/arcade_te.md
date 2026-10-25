@@ -80,8 +80,12 @@ the results (`FF939390`). All checked in MAME on rev 4.0 3/23.
 | Tournament Mode | hold Right + all three buttons | sets `@10EB1C0`, clears secret characters, cancels everything else |
 | Big Head / Huge Head | hold Up + Turbo + Pass at tip-off (`FF876220`); Huge with exactly 6 presses | |
 | Quick Hands | 5+ presses, hold Down + Shoot at tip-off | |
-| Baby size | hold Down-Right; Turbo, Shoot, Pass ×3 (table `FF93E180`) | |
+| Baby size | hold Down-Right; Pass, Turbo, Shoot ×3 (table `FF93E180`) | the table holds button bits 4, 1, 2 three times (Turbo = 1, Shoot = 2, Pass = 4, read at `FF9DA700`); published lists give Turbo, Shoot, Pass. Success sets `@10EAAA0`, and tip-off shows "BABY SIZE PLAYERS" |
 | **All computer assistance off** | **exactly 10 presses, with a human on each team** (`FF93A640`) | not on any published TE list |
+
+Baby size wasn't completed in MAME: the check (`FF93DEE0`) matched the first eight presses in order, but the ninth
+never reached the game's input state. The codes page's screenshot was taken with `@10EAAA0` set during Tonight's
+Match-Up, which is what the check sets on success.
 
 Also checked: **Fatalities** (team select, hold Up and press Pass 20 times) works on revs 1.00, 2.0 and 2.1 but
 not 3.0 2/26, 4.0 3/03 or 4.0 3/23. **Team Swap** (halftime substitutions, hold Right + Pass) shows

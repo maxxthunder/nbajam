@@ -184,7 +184,7 @@ footer a { color: var(--orange); text-decoration: none; display: inline-flex; al
       <a href="https://github.com/maxxthunder/nbajam/tree/main/docs">research notes</a>.</p>
   </details>
 
-  <footer><a href="https://github.com/maxxthunder/nbajam"><svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg>maxxthunder/nbajam</a><a href="https://github.com/maxxthunder/nbajam/blob/main/CHANGELOG.md">v1.5.6</a></footer>
+  <footer><a href="https://github.com/maxxthunder/nbajam"><svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg>maxxthunder/nbajam</a><a href="https://github.com/maxxthunder/nbajam/blob/main/CHANGELOG.md">v1.5.7</a></footer>
 </main>
 <script>
 // Card: [title, where, input, new?, note]. Input: "ini:MJT|Mar 22" = initials (and birthday);
@@ -773,7 +773,7 @@ const GROUPS = {
       ['Big heads', MU, 'Hold Up + Turbo + Pass until tip-off', false, '', 'shots/temu_bighead'],
       ['Huge heads', MU, 'Press any button 5 times; then hold Up + Turbo + Pass until tip-off', false, 'Big heads with exactly 6 presses in all.', 'shots/temu_huge'],
       ['Quick hands', MU, 'Press any button 4 times; then hold Down + Shoot until tip-off', false, '5 or more presses in all.'],
-      ['Baby-size players', MU + ', holding Down-Right', 'Turbo, Shoot, Pass, Turbo, Shoot, Pass, Turbo, Shoot, Pass', false],
+      ['Baby-size players', MU + ', holding Down-Right', 'Pass, Turbo, Shoot, Pass, Turbo, Shoot, Pass, Turbo, Shoot', false, 'Shows "BABY SIZE PLAYERS". Published lists give Turbo, Shoot, Pass; the game wants Pass first.', 'shots/temu_baby'],
       ['All computer assistance off', MU, 'Press any button exactly 10 times', true,
         'Needs a human player on each team. Shows "ALL COMPUTER ASSISTANCE TURNED OFF!" Not on any published TE list; the original game had a similar Turbo ×10 code.', 'shots/te_assist_off']]],
     ['Unused commentary', "Recorded, then left unused after the NBA turned it down. The samples are still in the sound ROM (bank 5, phrases $39, $3A, $3B and $3C); decoded here and joined in the published order.", [
@@ -878,7 +878,7 @@ function card([title, where, input, isNew, note, pic, clips], plat) {
     : input.includes(', ') ? chips(input.split(', ')) : chips([input], 'words');
   el.innerHTML = `${isNew ? '<span class="badge">★ New</span>' : ''}${pic ? `<img class="pic${pic.includes('/') ? ' pic-' + pic.split('/')[0] : ''}${shotOf(pic) ? ' zoomable' : ''}" src="img/${pic.includes('/') ? pic : 'arcade/' + pic}.png" ${shotOf(pic) ? `data-full="img/${shotOf(pic)}.png" tabindex="0" role="button" alt="Enlarge screenshot: ${esc(title)}"` : 'alt=""'} loading="lazy">` : ''}<h3>${esc(title)}</h3>
     <p class="where">${esc(where)}</p>${how}${clips ? `<div class="clips">${clips.map(([c, label]) =>
-      `<button type="button" class="play" data-src="audio/${c.includes('_') ? c : 'genesis_' + c.toLowerCase()}.mp3">▶ ${esc(label)}</button>`).join('')}</div>` : ''}${note || plat === 'te' && pic ? `<p class="note">${esc([note, plat === 'te' && pic ? 'Plays with the stats of the player it replaces.' : ''].filter(Boolean).join(' '))}</p>` : ''}`;
+      `<button type="button" class="play" data-src="audio/${c.includes('_') ? c : 'genesis_' + c.toLowerCase()}.mp3">▶ ${esc(label)}</button>`).join('')}</div>` : ''}${note || plat === 'te' && pic && !pic.startsWith('shots/') ? `<p class="note">${esc([note, plat === 'te' && pic && !pic.startsWith('shots/') ? 'Plays with the stats of the player it replaces.' : ''].filter(Boolean).join(' '))}</p>` : ''}`;
   el.dataset.text = (title + ' ' + input).toLowerCase();
   return el;
 }
