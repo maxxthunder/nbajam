@@ -1,6 +1,6 @@
 # NBA Jam and NBA Hangtime: Password Checker and Secret Codes
 
-**[Password checker →](https://maxxthunder.github.io/nbajam/)** &nbsp; **[Secret codes →](https://maxxthunder.github.io/nbajam/codes.html)** &nbsp;[![v1.5.1](https://img.shields.io/badge/version-1.5.1-e8742c)](CHANGELOG.md)
+**[Password checker →](https://maxxthunder.github.io/nbajam/)** &nbsp; **[Secret codes →](https://maxxthunder.github.io/nbajam/codes.html)** &nbsp;[![v1.5.2](https://img.shields.io/badge/version-1.5.2-e8742c)](CHANGELOG.md)
 
 <p align="center"><img src="docs/images/stats_screen.png" alt="The stats screen for LJP / Z443C1WY434S2J: rank 1, 27 W 0 L, streak 27 wins" width="384"></p>
 
@@ -59,6 +59,7 @@ Codes that no published list had are marked **★ New** on the page. A few terms
 **Tournament Edition**
 - Title-menu codes on Super Nintendo, Genesis and 32X (a record one team short of the All-Stars, and the 32X's own).
 - Super Nintendo: six unused in-game heads besides seven already published.
+- Genesis: fourteen unused in-game heads, a set of its own.
 - 32X and PC: 12 of the 32X's 18 match-up codes and 8 of the PC's 19 were on no list.
 - Super Nintendo, Genesis and 32X: a match-up code the game recognizes and then never uses, probably a cut power-up.
 - Jaguar: a keypad code that clears the cartridge memory, and a random secret character for records that have beaten
@@ -73,6 +74,8 @@ Codes that no published list had are marked **★ New** on the page. A few terms
   "HOTSPOTS ON" setting with no code to turn it on.
 - Arcade: new 1996 Pistons, Timberwolves and Jazz logos that only Maximum Hangtime uses, and an unused DCS Sound
   System logo.
+- Arcade: seven red rule captions ("NO PUSHING ALLOWED!", "TOURNAMENT MODE" and others) and two shorter
+  "WINNER STAYS ON FREE" notices that no revision draws.
 - Maximum Hangtime: 21 extra NBA players.
 - N64 and PlayStation: the arcade's joystick codes work there too; M-DOC works on the European N64 cartridge.
 - Super Nintendo: two joystick codes no list had, and all eight codes together play the cheat ending.
@@ -172,7 +175,7 @@ python tools/nbajam_te_password.py RAT BZZ6DZ37KY
 | `tools/iguana_unpack.py` | Unpacker for the original Super Nintendo NBA Jam's packed graphics, with a scan for every block |
 | `tools/dis/` | Small disassemblers (68000, SH-2, Z80, SM83, MIPS), a DOS/4GW LE reader, and Game Boy / Game Gear pad-check scanners (need `capstone` for 68000, SH-2 and MIPS) |
 | `tools/emu/` | Scripted runners for BizHawk, MAME, Mesen 2 and DOSBox-X (set `EMUHAWK`, `MAME`, `MESEN`, `DOSBOX`) |
-| `tools/tests/` | The emulator tests behind the codes page: match-up codes on most versions, cut characters, hidden screens, unused DIP switches, Super Nintendo TE courtside ads and heads, and NBA Hangtime's names, match-up and joystick codes |
+| `tools/tests/` | The emulator tests behind the codes page: match-up codes on most versions, cut characters, hidden screens, unused DIP switches, Super Nintendo TE courtside ads and heads, Genesis TE heads, and NBA Hangtime's names, match-up and joystick codes |
 | `disasm/snes/` | 65816 listings of the original ROM, one file per 32 KB bank |
 | `disasm/names.txt`, `disasm/entries.txt` | Names for routines and RAM; code addresses seen running in Mesen |
 | [CHANGELOG.md](CHANGELOG.md) | What changed in each version |

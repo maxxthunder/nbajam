@@ -2,6 +2,15 @@
 
 Changes to the [password checker](https://maxxthunder.github.io/nbajam/) and [secret codes page](https://maxxthunder.github.io/nbajam/codes.html). The version is shown at the bottom of each page. **Codes page** and **Checker** are what visitors see; **Notes** are the [research notes](docs/); **README** is this repo's front page.
 
+## 1.5.2 (2026-10-25)
+- **Codes page:** the Genesis Tournament Edition's 14 unused in-game heads, pictured; none is on a published list.
+- **Codes page:** arcade NBA Hangtime's seven unused red rule captions and two shorter "WINNER STAYS ON FREE" notices.
+- **Notes:** every packed block in the original Super Nintendo NBA Jam is used (the ending's trophy screen and the
+  halftime dunk footage were the last two found); the red captions settled; MAME can't run the 32X version, so its
+  crash screen stays unconfirmed.
+- **Repo:** `tools/iguana_unpack.py` now unpacks blocks with an empty first byte of bits and finds all 24; a Genesis TE
+  head test.
+
 ## 1.5.1 (2026-10-24)
 - **Codes page:** the Super Nintendo Tournament Edition's 13 unused in-game heads, pictured; six aren't on any
   published list.

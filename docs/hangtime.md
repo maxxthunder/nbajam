@@ -372,15 +372,30 @@ frames of attract mode from power-on.
   <img src="images/ht_unused_logos.png" alt="Old and new Pistons, Timberwolves and Jazz logos, and the DCS Sound System logo" width="740">
 </p>
 
+Nine 9-to-15-pixel captions after `FFC44470` have no pointer in any of the ten revisions above, and nothing points to
+their graphics offsets either:
+
+- seven red ones with their own palette (`FFC757E0`, `FFC44620`-`FFC44980`): "ALL COMPUTER ASSISTANCE TURNED OFF!",
+  "NO PUSHING ALLOWED!", "SHOT PERCENTAGE TURNED ON", "BABY SIZED PLAYERS!", "TOURNAMENT MODE" and "NO CPU
+  ASSISTANCE, POWER-UPS, OR SECRETS ALLOWED!!";
+- "WINNER STAYS ON FREE" twice (`FFC44500`, `FFC44590`), shorter forms of the yellow attract-mode notice "WINNERS STAY
+  ON FREE IN 4 PLAYER GAME!" (`FFC44470`).
+
+That notice is picked at `FFADA370` by operator setting 1Bh from a two-entry table at `FFADA800`: nothing, or
+`FFC44470`. The match-up codes announce themselves with the purple badges loaded at `FF9EBEE0h`-`FF9ECA80h` ("NO
+PUSHING", "SHOT % ON", "BABY MODE"). With 025, 390, 120 and 552 entered in MAME, a log of every blitter command showed
+none of the nine drawn. The red palette is still used, by the font text records at `FFABDB70`, `FFADA5A0` and
+`FFB2BED0`.
+
+<p align="center">
+  <img src="images/ht_unused_captions.png" alt="The red rule captions and the two shorter WINNER STAYS ON FREE notices" width="548">
+</p>
+
 ## Not covered
 
 - The rest of the arcade's unreferenced images. A log of every blitter offset over 36,000 frames of attract mode and
-  two games with random inputs drew only 2,000 of the 7,145 pointed-to images, too few to call anything unused. One
-  set stands out: 9-pixel red captions (`FFC44620`-`FFC44980`: "ALL COMPUTER ASSISTANCE TURNED OFF!", "NO PUSHING
-  ALLOWED!", "SHOT PERCENTAGE TURNED ON", "BABY SIZED PLAYERS!", "TOURNAMENT MODE", "NO CPU ASSISTANCE, POWER-UPS, OR
-  SECRETS ALLOWED!!") have no pointer and weren't drawn. The tip-off captions are other, purple images (the caption
-  routine at `FF9EBEE0h` loads them directly, `FFC2FCE0` for hot spots), so these may be unused, or drawn on the
-  tournament-mode screens, which a one-player game can't reach.
+  two games with random inputs drew only 2,000 of the 7,145 pointed-to images, too few to call anything unused. The
+  red captions are settled above; the rest of the 558 unreferenced headers aren't.
 - Arcade code coverage: MAME's Lua can't see every instruction fetch at a usable speed, so there's no list of routines
   that never run.
 

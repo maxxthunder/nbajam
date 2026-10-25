@@ -31,7 +31,7 @@ def unpack(rom, addr):
     nbits, buf = rom[base + n - 1], rom[base + n - 2]
     pos = base + n - 3                                   # next stream byte (moves down)
     carry = 0
-    if not nbits:                                        # $F432: an empty partial byte, and a literal run first
+    if not nbits:                                        # $F432: an empty partial byte; the first flag comes from the stream
         buf = 0x80
     else:                                            # ASL, ORA mask, ROR: marks where the partial byte ends
         a = (buf << 1 & 0xFF) | masks[nbits - 1]
@@ -60,11 +60,9 @@ def unpack(rom, addr):
         return v
 
     done = 0
-    first = True
+    first = bool(nbits)
     while True:
-        if first and not nbits:
-            c, first = 1, False
-        elif first:                                      # the first flag bit comes from the ROL at $F44E
+        if first:                                      # the first flag bit comes from the ROL at $F44E
             b = state['buf']
             c = b >> 7
             state['buf'] = (b << 1 | carry) & 0xFF
@@ -116,7 +114,7 @@ def scan(rom):
         n = rom[off] | rom[off + 1] << 8
         if 8 <= n < 0x8000 and off + n + 2 <= len(rom) and rom[off + n - 1] <= 8:
             size = rom[off + n] | rom[off + n + 1] << 8
-            if n <= size <= 0xC000:
+            if n <= size <= 0xFFFF:
                 try:
                     data, end = unpack(rom, to_addr(off))
                     if end in (1, 2):

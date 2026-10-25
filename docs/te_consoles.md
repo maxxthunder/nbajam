@@ -423,6 +423,20 @@ Claims from published lists that could be tested here, and what came of them:
 
   <img src="images/tesnes_unused_heads.png" alt="The thirteen unused heads, 16 frames each: 0, 10, 12, 13, 17, 28, 29, 63, 65, 67, 72, 73, 77" width="542">
 
+- **Genesis: fourteen unused heads** (not on any published list). The same scheme with its own numbering. Each player
+  struct (`$FF4446` + `$14A` per player) holds a pointer at `+$58` into the frame table at `0x29C144`: 79 heads of 16
+  long pointers (head × 64 + facing × 4), each to `0x8C` bytes whose first 128 are the uncompressed 2 × 2-tile sprite.
+  Team pairs come from the word table at `0x2DC314`, through the team's offset at `0x2DC2DA` (code at `0x2A8A40`);
+  Phoenix's first pair is at `0x2DC8CC`. `tools/tests/genesis_te_heads.lua` wrote every ID (`$00`-`$A9`) over Phoenix's
+  first player in cartridge memory and read the pointer at tip-off. IDs from `$AA` read junk. Tyler, the cut IDs and
+  the junk IDs get head 78. **Fourteen heads have no player: 10, 12, 13, 20, 23, 24, 26, 28, 33, 34, 42, 43, 44 and
+  45.** The special heads pair up one-to-one with Super Nintendo heads through the shared IDs (Genesis 36-41 are
+  Super Nintendo 18, 31, 19, 32, 20, 21, for example). The stock heads don't: Genesis heads 5, 7, 8 and 15-19 each
+  cover more than one Super Nintendo head. So the two unused sets can't be matched up through the IDs. Drawn with the
+  sprite palette at tip-off.
+
+  <img src="images/tegen_unused_heads.png" alt="The fourteen unused Genesis heads, 16 frames each" width="542">
+
 - **Genesis: unused music (not reproduced).** A published list gives tracks 80, 88 and 89. The game plays sounds by ID through a
   table at `$28B476` (8 bytes per ID; the last word is the song number for the GEMS-style driver at `$1F65DA`). Song
   numbers 80 and 88 put in every entry replaced only the logo jingle, with nothing musical (judged by ear); 89 crashed

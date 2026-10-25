@@ -304,8 +304,11 @@ finished game only reaches it if the CPU faults. Forced in BizHawk by putting an
 Tournament Edition on Genesis sends every vector to one handler and has no such screen. The 32X version has one
 for its two SH-2 processors, though: "SH2 MASTER/SLAVE PROCESSOR EXCEPTION" with the error (illegal instruction,
 invalid slot, CPU or DMA address error, NMI, user break, trap) and every register (text at `0x309DC3`). BizHawk's
-32X core reached it during the attract-mode game, on the slave SH-2 at `PC=$06000CE8`; that's most likely the
-emulator rather than the game, and there's no other 32X emulator with BIOS files here to compare.
+32X core reached it during the attract-mode game (between frames 3,750 and 3,900 from power-on), on the slave SH-2
+at `PC=$06000CE8`; that's most likely the emulator rather than the game. MAME 0.282 with the 32X BIOS files can't
+settle it: its software list marks the game unsupported ("Missing [I2C] hookup so POST fails with blue/black vertical
+stripes"), and that's all it shows. ares runs 32X without BIOS files but has no scripting, so it wasn't watched
+through the attract game.
 
 ![The 32X SH-2 exception screen in BizHawk](images/te32x_crash.png)
 
@@ -342,7 +345,13 @@ count and a partial byte of bits, and the bit stream runs backwards from there, 
 Flags pick literal runs or matches (lengths and offsets from a four-entry table at `$29:F678`), and the output is
 built from its end. Checked against the game: the court block (`$158000`, 31,584 bytes) unpacks to exactly what
 Mesen shows in WRAM at `$7F1000` before it goes to VRAM, and the other five blocks the attract mode unpacks end their
-streams at the right place. A scan of the cart for blocks that unpack cleanly finds 21 (414,760 bytes).
+streams at the right place. A block whose bit count is 0 reads its first flag from the stream like any other.
+
+A scan of the cart for blocks that unpack cleanly finds 24 (552,172 bytes), and the code has exactly 24 calls to the
+unpacker, one for each. A Mesen log of the calls through attract mode and a random-input game (chained savestates)
+reached 22 of them. The other two are the ending: `$31:B025` is the full-screen "CONGRATULATIONS!" trophy (8 bpp,
+with its tile map at +`A7C4`) and `$03:CEAE` is drawn over it. `$29:8DC0` is 16 frames of digitised dunk footage for
+the halftime report's TV wall. So no packed block is unused.
 
 The scorer's-table ads are in the court tile set (`$838020`, file `0x18020`): the NBA and JAM boards and nothing else,
-so the original has no spare ads like Tournament Edition's. The other blocks haven't been looked through.
+so the original has no spare ads like Tournament Edition's.
