@@ -121,8 +121,9 @@ starts (Genesis `$266762`, 32X `$12D82`; SNES packs them into a mask at `$07EE`,
   player is drawn normally. The code listed as huge heads makes every player bigger, not just the heads: its message
   is "HUGE MODE!". The 32X prints nothing at tip-off. Its global codes print a line once play starts ("SHOT %
   DISPLAY ACTIVATED", "BABY MODE!"), and a power-up's name ("QUICK HANDS", "PWRUP G.T.", "PWRUP PUSH") replaces the
-  player's name only when it comes into play, so a random-input game catches some and not others. All 17 32X codes
-  were confirmed set in player 1's struct.
+  player's name only when it comes into play, so a random-input game catches some and not others. The other six
+  show the same way a few seconds into play: "MAX POWER", "PWRUP FIRE", "PWRUP TRBO", "PWRUP OFF", "PWRUP 3PTS" and
+  "PWRUP DUNK". All 17 32X codes were confirmed set in player 1's struct.
 
 ## Jaguar
 

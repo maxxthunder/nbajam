@@ -2,6 +2,20 @@
 
 Changes to the [secret codes page](https://maxxthunder.github.io/nbajam/codes.html) and [password checker](https://maxxthunder.github.io/nbajam/). The version is shown at the bottom of each page. **Codes page** and **Checker** are what visitors see; **Notes** are the [research notes](docs/); **README** is this repo's front page.
 
+## 1.6.0 (2026-10-25)
+- **Codes page:** 80 more screenshots. Hangtime: the match-up numbers and joystick codes on N64 (9) and PlayStation (8),
+  Maximum Hangtime's joystick codes (6), the arcade's three numbers without a caption, and three Super Nintendo
+  joystick codes; most taken with a random secret character.
+- **Codes page:** arcade extras: the tank game, the credits that open the hidden stats menu and the Secret Midway Menu,
+  and Tournament Edition's fatalities and team swap messages.
+- **Codes page:** preset record screens for arcade NBA Jam (13) and Tournament Edition (7), Hangtime Super Nintendo (9)
+  and Genesis (3), and the Tournament Edition PlayStation and Saturn champion and one-team-short records.
+- **Codes page:** the three Super Nintendo NBA Jam passwords, the Tournament Edition Super Nintendo All-Star team, and
+  the six 32X power-ups whose names replace player 1's name in play.
+- **Codes page:** Hangtime N64 and PlayStation show ten match-up captions at tip-off, not nine (baby size has one);
+  Hangtime Genesis JOHAN needs a space after the name.
+- **Notes:** the 32X power-up names, the N64 and PlayStation joystick captions, and the record checks.
+
 ## 1.5.9 (2026-10-25)
 - **Codes page:** match-up screenshots for NBA Jam on Super Nintendo (2), Genesis (2), Sega CD (2), Game Boy (7) and
   Game Gear (7), Tournament Edition on Super Nintendo (10), Genesis (10) and PC (12), and Hangtime on Super Nintendo

@@ -178,10 +178,10 @@ ASCII "0000" PIN:
 
 Both also keep the arcade's 13 match-up numbers (N64 `0xA0148`, PlayStation `PRES.BIN` `0x13598`). All 13 were entered
 in BizHawk on each. Every number sets its own flag (N64: halfwords at RDRAM `0xA6EC6` + 2 per code, set by `0x80048F70`;
-PlayStation: words around `0x73300`-`0x735F4`). Nine show the arcade's tip-off caption (goaltending, quick hands, max
-power, max speed, hyper speed, stealth turbo, unlimited turbo, no pushing, fast passing). Tournament mode is refused in
-a one-player game, as on the arcade, and on N64 nothing reads 6-1-6's flag (`0x800A6ECE`), so it does nothing there
-too.
+PlayStation: words around `0x73300`-`0x735F4`). Ten show the arcade's tip-off caption (baby-sized players, goaltending,
+quick hands, max power, max speed, hyper speed, stealth turbo, unlimited turbo, no pushing, fast passing).
+Tournament mode is refused in a one-player game, as on the arcade, and on N64 nothing reads 6-1-6's flag
+(`0x800A6ECE`), so it does nothing there too.
 `OLDBOY` 0505 was typed on the PlayStation in BizHawk: the old bearded head from the arcade's `MARIUS`, with hidden
 attributes.
 
@@ -194,7 +194,9 @@ Both also keep the arcade's joystick detectors, entered in BizHawk at the match-
   huge heads (`0x73314`), shot % (`0x7322C`, D-pad turn), no arrows (`0x735A4`), no drift (`0x732B8`), no assistance
   (`0x732D4`), ABA ball (`0x732EC`), rooftop (`0x735DC`), four at once and the Down lock (`0x734A0`): all ten checked.
 
-Neither has Maximum Hangtime's hot spots code.
+Neither has Maximum Hangtime's hot spots code. At tip-off both print the arcade's captions for these codes ("BIG HEAD"
+for big and huge heads, "SHOT % ON", "NO ARROWS"); the ABA ball has no caption but shows its colours in the air.
+On the N64, the D-pad turn for shot % and four at once also worked in this run.
 
 All 63 files in the PlayStation `BIGLUMP.BIN` are named in the program, so none is orphaned. The disc also carries
 `HANGTIME.MAP`, the mastering tool's log (BuildCD 2.39.b, 27 April 1997, paths under `D:\HANGTIME\VERSION\PSX\RELEASE\CD`).
@@ -207,9 +209,12 @@ Funcom's 16-bit ports have no secret players. The names published for them are p
 - **Super Nintendo** (file offset `0xB516`): `CHE` 6581, `KUNGEN` 1414, `HENRIK` 6502, `JOHAN` 1911, `OLAV` 2509,
   `CHRIS` 0912, `NILS` 5555, `TORE` 1505, `TURMEL` 0000, `DIVITA` 0000, mostly Funcom staff (the credits list
   Henrik Holmdahl, Che Lalic, Olav Mørkrid, Tore Blystad, Johan Andersson, Nils Erik Hatlem). `KUNGEN` 1414 typed in
-  BizHawk opens a 2-3 record with a custom character.
+  BizHawk opens a 2-3 record with a custom character; all ten were typed for the codes-page screenshots and each opens
+  its record.
 - **Genesis** (`$37832`, copied to the cartridge save at `$303220`): `KUNGEN` 7209, `JOHAN` 1911, `CENSOR` 1700,
   `ENRICO` 0666. `KUNGEN`, `CENSOR` and `ENRICO` typed in BizHawk each bring up their "TOP 5 DEFENSIVE PLAYER" record.
+  `JOHAN` needs a space typed after it: ending the name with the end key gives NO RECORD, with the space it opens a
+  3-1 record.
   The save is marked valid by the signature "NITEMARE" (`$300004` and `$3033C4`).
 
 Their match-up numbers:
