@@ -2,6 +2,13 @@
 
 Changes to the [password checker](https://maxxthunder.github.io/nbajam/) and [secret codes page](https://maxxthunder.github.io/nbajam/codes.html). The version is shown at the bottom of each page. **Codes page** and **Checker** are what visitors see; **Notes** are the [research notes](docs/); **README** is this repo's front page.
 
+## 1.5.4 (2026-10-25)
+- **Codes page:** notes no longer name other sites; things already published are simply not marked ★ New.
+- **README:** every game's versions and finds listed in the codes page's order; the Tournament Edition heads, Hangtime
+  graphics and 32X crash screen added to the summary tables; Iguana Entertainment credited for the Super Nintendo and
+  Genesis versions.
+- **Notes:** other sites referred to as published lists.
+
 ## 1.5.3 (2026-10-25)
 - **Codes page:** the 32X Tournament Edition's four unused in-game heads, pictured in stand-in colours.
 - **Codes page:** arcade NBA Hangtime's unused player animation, five portraits, ten name labels and four badges.
@@ -30,7 +37,7 @@ Changes to the [password checker](https://maxxthunder.github.io/nbajam/) and [se
 ## 1.5.0 (2026-10-24)
 - **Codes page:** every game lists its versions in the same order (arcade, then Super Nintendo, Genesis, Sega CD, 32X,
   Saturn, PlayStation, N64, PC, Jaguar, Game Boy, Game Gear), and NBA Jam opens on arcade.
-- **Codes page:** unused Tournament Edition name labels for Shaquille O'Neal and Derrick McKey, in no revision.
+- **Codes page:** unused arcade Tournament Edition name labels for Shaquille O'Neal and Derrick McKey, in no revision.
 - **Codes page:** NBA Hangtime's unused 1996 Pistons, Timberwolves and Jazz logos (Maximum Hangtime uses them) and
   DCS Sound System logo.
 - **Notes:** every arcade NBA Jam ad on the list can come up; the other home versions have no ad list to cut from; 13
