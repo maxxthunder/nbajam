@@ -2,6 +2,14 @@
 
 Changes to the [password checker](https://maxxthunder.github.io/nbajam/) and [secret codes page](https://maxxthunder.github.io/nbajam/codes.html). The version is shown at the bottom of each page. **Codes page** and **Checker** are what visitors see; **Notes** are the [research notes](docs/); **README** is this repo's front page.
 
+## 1.5.3 (2026-10-25)
+- **Codes page:** the 32X Tournament Edition's four unused in-game heads, pictured in stand-in colours.
+- **Codes page:** arcade NBA Hangtime's unused player animation, five portraits, ten name labels and four badges.
+- **Notes:** the red Hangtime captions also stay undrawn in tournament mode; the rest of Hangtime's unreferenced images
+  sorted, after taking out the ones Maximum Hangtime uses; the original Super Nintendo NBA Jam's packed tiles traced to
+  the screen, with nothing unused found.
+- **Repo:** a 32X TE head test.
+
 ## 1.5.2 (2026-10-25)
 - **Codes page:** the Genesis Tournament Edition's 14 unused in-game heads, pictured; none is on a published list.
 - **Codes page:** arcade NBA Hangtime's seven unused red rule captions and two shorter "WINNER STAYS ON FREE" notices.

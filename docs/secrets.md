@@ -353,5 +353,21 @@ reached 22 of them. The other two are the ending: `$31:B025` is the full-screen 
 with its tile map at +`A7C4`) and `$03:CEAE` is drawn over it. `$29:8DC0` is 16 frames of digitised dunk footage for
 the halftime report's TV wall. So no packed block is unused.
 
+Tiles inside the blocks were checked too. A Mesen script logged every unpack, every DMA into VRAM (source, size,
+VRAM address; through `$420B` in banks `$00` and `$80`) and every tile the BG maps and sprite table pointed to on
+screen, over 12 chained runs of attract mode and random-input games. Replaying the log gives each VRAM byte's origin,
+so each block byte that reached the screen is known. Results:
+- 15 blocks reach VRAM by DMA, and 12 of them are shown in full (the 8 bpp title screens keep their 32 × 28 map after
+  the tiles, which isn't tile data).
+- `958000` (59% shown) is the record screens' set, and its unshown part is the large chiselled font: letters the
+  captions don't use.
+- `8BD666` (87%) leaves out the part at the front of the block that doesn't decode as tiles, probably map or table
+  data.
+- `BDA60A` (45%) doesn't decode as graphics in any tile format.
+- The ending's two blocks weren't reached. `918000`, `94F30D`, `AEFC46`, `BFAECA` and `BFC376` never go to VRAM by DMA,
+  so the game reworks them first and this method can't follow them.
+
+No unused graphics turned up.
+
 The scorer's-table ads are in the court tile set (`$838020`, file `0x18020`): the NBA and JAM boards and nothing else,
 so the original has no spare ads like Tournament Edition's.

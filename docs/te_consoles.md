@@ -437,6 +437,21 @@ Claims from published lists that could be tested here, and what came of them:
 
   <img src="images/tegen_unused_heads.png" alt="The fourteen unused Genesis heads, 16 frames each" width="542">
 
+- **32X: four unused heads** (not on any published list). The 32X draws heads on its SH-2s from packed frames. Player 1's
+  struct (`$FF6730`) holds a pointer at `+$58` into a table at cartridge `0x324F0` (`$8B24F0` to the 68000): 1,168
+  SH-2 addresses (`$02xxxxxx`), 73 heads of 16 frames. Each frame is a width and height byte (`1F 1F`), then per row
+  either `FF` (blank) or a start x, a count and that many 8-bit pixels. `tools/tests/32x_te_heads.lua` wrote every ID
+  (`$00`-`$A9`) into team select's first slot (`$FF1F24`) and read the pointer at tip-off; IDs from `$AA` give a null
+  pointer. 59 heads have a player. Of the other 14:
+  - head 11 repeats head 0's pointers;
+  - heads 10, 12-18 and 22 repeat a used head's first frames, and their later pointers lead to no frame (some land
+    exactly 10 bytes before one), so they're broken entries, not heads;
+  - **heads 9, 25, 32 and 72** are complete heads, 16 frames each, used by no ID.
+
+  BizHawk doesn't show the 32X palette, so they're drawn with stand-in brown ramps (higher index darker).
+
+  <img src="images/te32x_unused_heads.png" alt="The four unused 32X heads, 16 frames each, in stand-in colours" width="542">
+
 - **Genesis: unused music (not reproduced).** A published list gives tracks 80, 88 and 89. The game plays sounds by ID through a
   table at `$28B476` (8 bytes per ID; the last word is the song number for the GEMS-style driver at `$1F65DA`). Song
   numbers 80 and 88 put in every entry replaced only the logo jingle, with nothing musical (judged by ear); 89 crashed

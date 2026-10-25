@@ -384,18 +384,45 @@ their graphics offsets either:
 That notice is picked at `FFADA370` by operator setting 1Bh from a two-entry table at `FFADA800`: nothing, or
 `FFC44470`. The match-up codes announce themselves with the purple badges loaded at `FF9EBEE0h`-`FF9ECA80h` ("NO
 PUSHING", "SHOT % ON", "BABY MODE"). With 025, 390, 120 and 552 entered in MAME, a log of every blitter command showed
-none of the nine drawn. The red palette is still used, by the font text records at `FFABDB70`, `FFADA5A0` and
+none of the nine drawn. Nor in tournament mode: in a two-player game with both players on 1-1-1 (flag word `6`), none
+was drawn from the match-up screen through tip-off and into the first quarter. The red palette is still used, by the font text records at `FFABDB70`, `FFADA5A0` and
 `FFB2BED0`.
 
 <p align="center">
   <img src="images/ht_unused_captions.png" alt="The red rule captions and the two shorter WINNER STAYS ON FREE notices" width="548">
 </p>
 
+**The rest of L1.3's unreferenced headers.** Of its 578 headers with no pointer, 107 are pointed to by some other
+revision (mostly Maximum Hangtime's extra players' name labels and heads, and the 3 × 2 markers before each head set),
+matched by graphics offset and size. That leaves 471 that no revision of either game points to, 258 of a usable size.
+Not having a pointer doesn't prove an image unused, since code can reach one by adding to another's address. None of
+the 258 was drawn in the attract-mode and random-game logs, or from the match-up screen through tip-off with each of
+the 13 match-up codes entered (MAME, a tap on the blitter's offset registers). What they are:
+
+- **A player animation** (`FFD4D570`-`FFD4E9B0`): 19 headless frames of a player in a turquoise kit, a high kick, then
+  a run-up and a leap; plus a standing frame in the same palette (`FFF89920`, `FFDC5220`).
+- **Five portrait photos** (`FFC11840`, `FFC173F0`, `FFC175A0`, `FFC18A70`, `FFF8BF70`), the size of the secret
+  characters' pictures.
+- **Ten team-select name labels** (`FFF58560`-`FFF58F80`): MARCIULIONIS, ANZALONE, BENSON, BUTATA, HAEGER, KELLER,
+  LAWMAN, LEE, MIKE and SEAN. None is on either game's roster.
+- **Badges:** "BIG BALL" (`FFC301F0`) and "BABY MODE" (`FFC30430`) in the purple tip-off style, and "AUTO REBOUND"
+  (`FFC2EDB0`) and "BREAK BACKBOARD" (`FFC2EED0`). With 0-2-5 entered, tip-off shows a purple "BABY SIZED PLAYERS!"
+  banner, not the badge.
+- 28 head frames in partial sets (`FFBE63F0`-`FFDC3FF0`), the other colours of the trivia contest's boxes
+  ("TOURNAMENT MODE DISABLED", "CORRECT ANSWER", "INCORRECT ANSWER", "INVALID NAME ENTERED", "CONTEST DRAWING
+  QUALIFIER"; the code points to one colour each), older copies of labels the game draws from other headers ("PRESS
+  START", "INSERT COIN", "OVERTIME", "CHALLENGE ACCEPTED"), team-colour bars and ovals, arrows and 58 images under
+  200 pixels.
+
+<p align="center">
+  <img src="images/ht_unused_more.png" alt="The unused player animation, standing frame and five portraits" width="740">
+</p>
+
 ## Not covered
 
 - The rest of the arcade's unreferenced images. A log of every blitter offset over 36,000 frames of attract mode and
   two games with random inputs drew only 2,000 of the 7,145 pointed-to images, too few to call anything unused. The
-  red captions are settled above; the rest of the 558 unreferenced headers aren't.
+  unreferenced headers are sorted above; they could still be reached by address arithmetic in code no test ran.
 - Arcade code coverage: MAME's Lua can't see every instruction fetch at a usable speed, so there's no list of routines
   that never run.
 
