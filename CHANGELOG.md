@@ -2,6 +2,13 @@
 
 Changes to the [secret codes page](https://maxxthunder.github.io/nbajam/codes.html) and [password checker](https://maxxthunder.github.io/nbajam/). The version is shown at the bottom of each page. **Codes page** and **Checker** are what visitors see; **Notes** are the [research notes](docs/); **README** is this repo's front page.
 
+## 1.5.9 (2026-10-25)
+- **Codes page:** match-up screenshots for NBA Jam on Super Nintendo (2), Genesis (2), Sega CD (2), Game Boy (7) and
+  Game Gear (7), Tournament Edition on Super Nintendo (10), Genesis (10) and PC (12), and Hangtime on Super Nintendo
+  (11) and Genesis (12), each with a random secret character where the game has them. Codes that print nothing show
+  their effect in play; those with no visible effect have none.
+- **Notes:** what the screen shows for each code on these versions.
+
 ## 1.5.8 (2026-10-25)
 - **Codes page:** match-up screenshots for Tournament Edition on PlayStation (14), Saturn (14), Jaguar (18) and 32X (5),
   each taken with a random secret character and showing the code's message or effect; the codes that print nothing

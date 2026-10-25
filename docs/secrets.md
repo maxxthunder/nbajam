@@ -258,6 +258,15 @@ the players exactly as the Genesis does (`$010A28`-`$010AE4` in PRG RAM), which 
 All 7 checked in BizHawk: each completes its sequence, and after tip-off the flag is set in the game (none of the
 others are). None are on any list we found; Sega Retro's Mega-CD section is empty.
 
+**What the screen shows.** The Super Nintendo, Genesis and Sega CD print nothing for a match-up code: no caption at
+tip-off and none in play (each code's flag checked set; a random-input quarter watched for text). Two codes show in
+play, and the codes page has screenshots of them, each taken with a secret character. Shot percentage adds a
+shooting-percentage box at the bottom right whenever player 1 shoots (Genesis shows it while `$FF4678` is set). Fire
+gives player 1's shots a flaming trail. Defense, intercept or steals, dunks and turbo change only how the game plays.
+Juice mode speeds the game up. On Genesis and Sega CD the shot flag is the byte after the one listed above (`$FF1D39`,
+PRG RAM `$817B`). The Game Boy and Game Gear print each code on the match-up screen as it's entered ("POWER UP" and
+the power-up's name), and those screens are on the page for all 14.
+
 ## Super Nintendo: controller warning screens
 
 Every frame the pad routine (`$8AA86B`) checks two things, and either one stops the game with a full-screen message

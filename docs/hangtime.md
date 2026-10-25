@@ -222,6 +222,9 @@ Their match-up numbers:
 - **Genesis** (presses of A, B, C at `$FF4B7A`-`$FF4B7C`, checked after every press against `$12A2E`): 12 codes, no
   0-2-5, and fast passing is 1-2-7 instead of 1-2-0, as published. All 12 entered in BizHawk and checked by their
   flags (`$FF11A0` + 2 per code); tournament mode works in a one-player game, and entering nothing sets nothing.
+- Neither 16-bit version prints a caption for a number code (9-3-7 checked at tip-off on both, flag set). The codes
+  page's screenshots for them show the match-up screen with the numbers entered. The codes must be entered quickly:
+  presses spaced more than a few frames apart run past the end of the screen.
 
 ### Super Nintendo joystick codes
 

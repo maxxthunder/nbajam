@@ -108,6 +108,11 @@ starts (Genesis `$266762`, 32X `$12D82`; SNES packs them into a mask at `$07EE`,
   from the PlayStation's (turbo and push) were published by 32bits. Sega Retro's Saturn page has 17 of the 19, all
   matching (its baby mode and head codes are longer than needed, which still works); it lacks Y, Y, Y, B, Down, Down, Up, Left and
   Down, Right, C, Y, C, Right, Down.
+- **Super Nintendo and Genesis at tip-off.** Super Nintendo prints the code's name under the jump circle for the
+  first ten codes ("QUICK HANDS", "MAX POWER", "POWERUP G.T."...), and "SHOT % DISPLAY ACTIVATED" across the table.
+  Genesis shows shot percentage the same way, and the power-up names replace player 1's name above the court at
+  tip-off. On both, the two push codes, super speed, teleport pass, slippery court, the unused code and rainbow arc
+  print nothing. Screenshots on the codes page, each with a random secret character (BizHawk).
 - **What tip-off shows** (codes-page screenshots, each with a random secret character, BizHawk). PlayStation and
   Saturn: player 1's power-up name at the bottom left ("QUICK HANDS", "MAXPOWER", "POWERUP FIRE"...) while the player
   flashes white, and the global codes' message at the top ("SHOT PERCENT DISPLAY!", "BABY MODE!", "HUGE MODE!", "BIG
@@ -330,6 +335,12 @@ that is ORed into the player's mask (`$9B402` + 4 × player). A wrong press rest
 
 The per-player bits are the PlayStation's (`1`-`100`, `8000000`-`80000000` in the same order), so the effects follow
 from its list. All 19 checked in DOSBox-X: each sets its flag in the front end.
+
+At tip-off the PC prints the power-up under player 1's name for the first nine table entries ("QUICK HANDS", "MAX
+POWER", "GOAL TEND", "ON FIRE", "TURBO", "OFFENSE", "3 POINTERS", "MEGA DUNKS", "HARD PUSH"). Both push codes,
+teleport pass, rainbow arc, super speed, shot percentage and big-body mode print nothing. Baby mode, big heads and huge
+heads change the players instead. The codes page's screenshots were taken this way, each with a random secret
+character, in a muted DOSBox-X window driven by `drv.py`.
 
 | Effect | Keys | Flag | GG Mania |
 |--------|------|------|----------|
