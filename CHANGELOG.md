@@ -2,6 +2,13 @@
 
 Changes to the [secret codes page](https://maxxthunder.github.io/nbajam/codes.html) and [password checker](https://maxxthunder.github.io/nbajam/). The version is shown at the bottom of each page. **Codes page** and **Checker** are what visitors see; **Notes** are the [research notes](docs/); **README** is this repo's front page.
 
+## 1.6.1 (2026-10-25)
+- **Codes page:** a screenshot of Hangtime's four-at-once code on PlayStation, which only works when entered in under a
+  second; its card now says so, and that its Shoot presses can also set fast passing.
+- **Codes page:** the 32X unused players' cards say whose head each one wears in play; Worthy shares Grant's head.
+- **Notes:** Hangtime N64 turns work on the D-pad as well as the stick; the PlayStation four-at-once timing; the 32X
+  unused players' heads.
+
 ## 1.6.0 (2026-10-25)
 - **Codes page:** 80 more screenshots. Hangtime: the match-up numbers and joystick codes on N64 (9) and PlayStation (8),
   Maximum Hangtime's joystick codes (6), the arcade's three numbers without a caption, and three Super Nintendo

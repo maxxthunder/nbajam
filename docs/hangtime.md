@@ -189,14 +189,18 @@ Both also keep the arcade's joystick detectors, entered in BizHawk at the match-
 
 - **N64:** A is Turbo, C-Down Shoot, C-Right Pass. The flags are 16-bit words at RDRAM `0xA6EB2` in the arcade's order
   (lock, big heads, huge heads, shot %, no arrows, no drift, no assistance, ABA ball, rooftop). All ten codes, the
-  four-at-once code included, set their flags. Turns need the control stick: the same circle on the D-pad didn't count.
+  four-at-once code included, set their flags. The turns work on the D-pad as well as the control stick: a second run
+  watching these flags got the same shot % flag, and big heads, shot %, ABA ball and rooftop for four at once, from
+  either.
 - **PlayStation:** Square (or any shoulder button) is Turbo, X or Triangle Shoot, Circle Pass. Big heads (`0x7320C`),
   huge heads (`0x73314`), shot % (`0x7322C`, D-pad turn), no arrows (`0x735A4`), no drift (`0x732B8`), no assistance
-  (`0x732D4`), ABA ball (`0x732EC`), rooftop (`0x735DC`), four at once and the Down lock (`0x734A0`): all ten checked.
+  (`0x732D4`), ABA ball (`0x732EC`), rooftop (`0x735DC`) and the Down lock (`0x734A0`): all ten checked. Four at once
+  sets big heads, shot %, ABA ball and rooftop, but only when entered fast: at 5 frames a step (about 0.9 seconds for
+  the whole code) it worked, at 6 frames a step nothing was set. Its two Shoot presses also count as match-up
+  numbers, so entered alone it can leave 1, 2, 0 (fast passing); an extra Shoot press first avoids that.
 
 Neither has Maximum Hangtime's hot spots code. At tip-off both print the arcade's captions for these codes ("BIG HEAD"
 for big and huge heads, "SHOT % ON", "NO ARROWS"); the ABA ball has no caption but shows its colours in the air.
-On the N64, the D-pad turn for shot % and four at once also worked in this run.
 
 All 63 files in the PlayStation `BIGLUMP.BIN` are named in the program, so none is orphaned. The disc also carries
 `HANGTIME.MAP`, the mastering tool's log (BuildCD 2.39.b, 27 April 1997, paths under `D:\HANGTIME\VERSION\PSX\RELEASE\CD`).

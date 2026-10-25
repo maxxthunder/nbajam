@@ -405,6 +405,10 @@ Claims from published lists that could be tested here, and what came of them:
 - **32X: eight unused players.** Writing a player ID into a slot (`$FF1F24` + 2 per slot) on team select brings them
   up: James Worthy ($04, with his own portrait), Scooter Pie ($6B), Kid Silk ($6C), Steven Tyler ($7A), Juwan Howard
   ($83), Shaquille O'Neal's slot, named Green ($8D), Clifford Rozier ($93) and Greg Fischbach ($9A). Checked in BizHawk.
+  None has a head of its own: `tools/tests/32x_te_heads.lua` gives Worthy head 6 (shared with Grant, `$1F`), Scooter
+  Pie head 51 (Warren Moon, `$80`), Kid Silk head 1 (the stock head of twelve IDs), Fischbach head 54 (Blaze, `$73`), and
+  Tyler, Howard, Green and Rozier head 70 (Jazzy Jeff, `$A3`). Worthy's portrait is the only art of their own; the four
+  unused heads below belong to none of them.
 
   <img src="images/te32x_unused_players.png" alt="The eight unused 32X players on team select" width="640">
 
