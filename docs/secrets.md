@@ -301,7 +301,13 @@ finished game only reaches it if the CPU faults. Forced in BizHawk by putting an
 
 ![Iguana debug screen after an address error](images/genesis_iguana_debug.png)
 
-Tournament Edition on Genesis sends every vector to one handler and has no such screen.
+Tournament Edition on Genesis sends every vector to one handler and has no such screen. The 32X version has one
+for its two SH-2 processors, though: "SH2 MASTER/SLAVE PROCESSOR EXCEPTION" with the error (illegal instruction,
+invalid slot, CPU or DMA address error, NMI, user break, trap) and every register (text at `0x309DC3`). BizHawk's
+32X core reached it during the attract-mode game, on the slave SH-2 at `PC=$06000CE8`; that's most likely the
+emulator rather than the game, and there's no other 32X emulator with BIOS files here to compare.
+
+![The 32X SH-2 exception screen in BizHawk](images/te32x_crash.png)
 
 The Genesis also has a device-error screen like the Super Nintendo's ("An error has occured with a device connected
 to the control pad connectors..."). The Team Player reader (`$1D9E28`) shows it when the adapter's header isn't
@@ -327,3 +333,16 @@ Apart from that, the two Genesis revisions have the same text. The Super Nintend
 except Nintendo's multitap library: Rev 1 rebuilds it (its markers change from `END OF MULTI5 BIOS` to a
 `START OF MULTI5 BIOS` / `END OF MULTI5 BIOS` pair). The rest of the Super Nintendo differences sit in code banks
 `$80`-`$82`, `$8A` and `$A6`-`$A7`, mostly as moved addresses; they weren't gone through one by one.
+
+## Super Nintendo: packed graphics
+
+The original Super Nintendo NBA Jam packs most of its graphics with its own scheme, unpacked by `$29:F3F0` (US Rev 1).
+`tools/iguana_unpack.py` is a port of it: a block starts with a word N; at block + N are the unpacked size, a bit
+count and a partial byte of bits, and the bit stream runs backwards from there, interleaved with raw literal bytes.
+Flags pick literal runs or matches (lengths and offsets from a four-entry table at `$29:F678`), and the output is
+built from its end. Checked against the game: the court block (`$158000`, 31,584 bytes) unpacks to exactly what
+Mesen shows in WRAM at `$7F1000` before it goes to VRAM, and the other five blocks the attract mode unpacks end their
+streams at the right place. A scan of the cart for blocks that unpack cleanly finds 21 (414,760 bytes).
+
+The scorer's-table ads are in the court tile set (`$838020`, file `0x18020`): the NBA and JAM boards and nothing else,
+so the original has no spare ads like Tournament Edition's. The other blocks haven't been looked through.

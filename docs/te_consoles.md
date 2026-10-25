@@ -406,19 +406,23 @@ Claims from published lists that could be tested here, and what came of them:
 
   <img src="images/tesnes_unused_ads.png" alt="The five unused Super Nintendo courtside ads" width="752">
 
-- **Super Nintendo: unused heads (partly settled).** A published list shows seven heads with no description. The on-court head
+- **Super Nintendo: thirteen unused heads.** A published list shows seven heads with no description. The on-court head
   comes from the player struct (`$7E07C0` + `$100` per player; `+$D8` is the player ID, `+$DA` the head number × 32).
-  The drawing code (`$80:B61C`, file `0x361C`) adds the animation frame to `+$DA` and reads a 16-bit frame pointer from
-  the table at `$AA:AD82` (file `0x152D82`): 1,280 pointers, 80 heads of 16 turning frames, `0x8B` bytes per frame. The
-  bank and base come from the player's own record, not the table, and heads 0-13 share their frame offsets with 62-75
-  (and 0-3 with 16, 17, 25, 28 and 76-79), so the same offsets point at different heads in different banks.
+  The drawing code (`$80:B61C`, file `0x361C`) adds the animation frame to `+$DA` and reads a 16-bit frame address from
+  the table at `$AA:AD82` (file `0x152D82`): 1,280 entries, 80 heads of 16 turning frames, `0x8B` bytes per frame. The
+  DMA (`$80:DAFF`) takes the bank from `$0D23`, which follows the head: heads 0-13 are in bank `$3A`, 16, 17 and 25 in
+  `$08`, 28 in `$1C`, 62-75 in `$46`, 76-79 in `$47`, and the rest each in their own place (19 in `$2B`, 33 in `$59`,
+  46 and 50 in `$28`, 61 in `$58`). Heads 0-13 share their frame offsets with 62-75 (and 0-3 with 16, 17, 25, 28 and
+  76-79), each copy in its own bank. Banks were read off `$0D23` in play for eight heads and fit that pattern.
   `tools/tests/snes_te_heads.lua` forced every player ID (`$00`-`$A9`; IDs from `$AA` read past the roster) into slot
   1 and read the head number at tip-off. Ordinary NBA players share stock heads (head 5 has 30 players, head 8 has 28);
   the secret characters and some players have their own. **Thirteen heads have no player: 0, 10, 12, 13, 17, 28, 29,
-  63, 65, 67, 72, 73 and 77.** Three of the published frames turn up raw in bank `$46` at `0x2310E0`, `0x232240` and
-  `0x2333A0`, in the frame-offset groups of heads 1/17/63/77, 3/65/79 and 5/67. Not done: which bank each unused head is
-  drawn from. Writing an unused number into `+$DA` in a game draws that head's frames from the current player's bank,
-  which comes out garbled, so the heads aren't pictured here.
+  63, 65, 67, 72, 73 and 77.** The published seven are 28, 63, 65, 67, 72, 73 and 77 (all 16 frames of each match its
+  picture); 0, 10, 12, 13, 17 and 29 are new. Drawn here from the cart with the game's last sprite palette, the one
+  the published picture uses; their skin tones in a game would come from whichever player wore them.
+
+  <img src="images/tesnes_unused_heads.png" alt="The thirteen unused heads, 16 frames each: 0, 10, 12, 13, 17, 28, 29, 63, 65, 67, 72, 73, 77" width="542">
+
 - **Genesis: unused music (not reproduced).** A published list gives tracks 80, 88 and 89. The game plays sounds by ID through a
   table at `$28B476` (8 bytes per ID; the last word is the song number for the GEMS-style driver at `$1F65DA`). Song
   numbers 80 and 88 put in every entry replaced only the logo jingle, with nothing musical (judged by ear); 89 crashed

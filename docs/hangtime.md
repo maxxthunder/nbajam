@@ -374,8 +374,13 @@ frames of attract mode from power-on.
 
 ## Not covered
 
-- The rest of the arcade's unreferenced images: some (the match-up captions, for one) are drawn without a direct
-  pointer, so having none doesn't mean unused here.
+- The rest of the arcade's unreferenced images. A log of every blitter offset over 36,000 frames of attract mode and
+  two games with random inputs drew only 2,000 of the 7,145 pointed-to images, too few to call anything unused. One
+  set stands out: 9-pixel red captions (`FFC44620`-`FFC44980`: "ALL COMPUTER ASSISTANCE TURNED OFF!", "NO PUSHING
+  ALLOWED!", "SHOT PERCENTAGE TURNED ON", "BABY SIZED PLAYERS!", "TOURNAMENT MODE", "NO CPU ASSISTANCE, POWER-UPS, OR
+  SECRETS ALLOWED!!") have no pointer and weren't drawn. The tip-off captions are other, purple images (the caption
+  routine at `FF9EBEE0h` loads them directly, `FFC2FCE0` for hot spots), so these may be unused, or drawn on the
+  tournament-mode screens, which a one-player game can't reach.
 - Arcade code coverage: MAME's Lua can't see every instruction fetch at a usable speed, so there's no list of routines
   that never run.
 

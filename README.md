@@ -1,6 +1,6 @@
 # NBA Jam and NBA Hangtime: Password Checker and Secret Codes
 
-**[Password checker →](https://maxxthunder.github.io/nbajam/)** &nbsp; **[Secret codes →](https://maxxthunder.github.io/nbajam/codes.html)** &nbsp;[![v1.5.0](https://img.shields.io/badge/version-1.5.0-e8742c)](CHANGELOG.md)
+**[Password checker →](https://maxxthunder.github.io/nbajam/)** &nbsp; **[Secret codes →](https://maxxthunder.github.io/nbajam/codes.html)** &nbsp;[![v1.5.1](https://img.shields.io/badge/version-1.5.1-e8742c)](CHANGELOG.md)
 
 <p align="center"><img src="docs/images/stats_screen.png" alt="The stats screen for LJP / Z443C1WY434S2J: rank 1, 27 W 0 L, streak 27 wins" width="384"></p>
 
@@ -31,7 +31,7 @@ Both pages work offline too: save [`tools/nbajam_password_checker.html`](tools/n
 | NBA Jam: Super Nintendo, Genesis | ✓ | ✓ | passwords (Super Nintendo), announcer codes (Genesis) |
 | NBA Jam: Sega CD, Game Boy, Game Gear | ✓ | ✓ | |
 | Tournament Edition: arcade | ✓ | ✓ | hidden menu, preset records, other codes |
-| Tournament Edition: Super Nintendo, Genesis, 32X | ✓ | ✓ | hidden title-menu codes, unused courtside ads (Super Nintendo) |
+| Tournament Edition: Super Nintendo, Genesis, 32X | ✓ | ✓ | hidden title-menu codes, unused courtside ads and heads (Super Nintendo) |
 | Tournament Edition: Saturn, PlayStation | ✓ | ✓ | preset records, three cut PlayStation characters |
 | Tournament Edition: PC, Jaguar | ✓ | ✓ | Jaguar keypad codes |
 | Tournament Edition: Game Boy, Game Gear | ✓ | | |
@@ -58,6 +58,7 @@ Codes that no published list had are marked **★ New** on the page. A few terms
 
 **Tournament Edition**
 - Title-menu codes on Super Nintendo, Genesis and 32X (a record one team short of the All-Stars, and the 32X's own).
+- Super Nintendo: six unused in-game heads besides seven already published.
 - 32X and PC: 12 of the 32X's 18 match-up codes and 8 of the PC's 19 were on no list.
 - Super Nintendo, Genesis and 32X: a match-up code the game recognizes and then never uses, probably a cut power-up.
 - Jaguar: a keypad code that clears the cartridge memory, and a random secret character for records that have beaten
@@ -168,6 +169,7 @@ python tools/nbajam_te_password.py RAT BZZ6DZ37KY
 | `tools/nbajam_romcheck.py` | Checks `nbajam_password.py` against the game's own code in Mesen 2 (needs the ROM) |
 | `tools/disasm.py`, `tools/reasm.py` | SNES disassembler and reassembler |
 | `tools/arcade_gfx.py` | Arcade image decoder for NBA Jam, Tournament Edition and NBA Hangtime: every image in the graphics chips, and which ones nothing points to |
+| `tools/iguana_unpack.py` | Unpacker for the original Super Nintendo NBA Jam's packed graphics, with a scan for every block |
 | `tools/dis/` | Small disassemblers (68000, SH-2, Z80, SM83, MIPS), a DOS/4GW LE reader, and Game Boy / Game Gear pad-check scanners (need `capstone` for 68000, SH-2 and MIPS) |
 | `tools/emu/` | Scripted runners for BizHawk, MAME, Mesen 2 and DOSBox-X (set `EMUHAWK`, `MAME`, `MESEN`, `DOSBOX`) |
 | `tools/tests/` | The emulator tests behind the codes page: match-up codes on most versions, cut characters, hidden screens, unused DIP switches, Super Nintendo TE courtside ads and heads, and NBA Hangtime's names, match-up and joystick codes |

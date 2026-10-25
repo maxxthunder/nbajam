@@ -2,6 +2,14 @@
 
 Changes to the [password checker](https://maxxthunder.github.io/nbajam/) and [secret codes page](https://maxxthunder.github.io/nbajam/codes.html). The version is shown at the bottom of each page. **Codes page** and **Checker** are what visitors see; **Notes** are the [research notes](docs/); **README** is this repo's front page.
 
+## 1.5.1 (2026-10-24)
+- **Codes page:** the Super Nintendo Tournament Edition's 13 unused in-game heads, pictured; six aren't on any
+  published list.
+- **Notes:** where the Super Nintendo TE heads and their banks are; the 32X version's own SH-2 crash screen; the
+  original Super Nintendo NBA Jam's packing scheme (its only table ads are NBA and JAM); unsettled red captions in
+  arcade NBA Hangtime.
+- **Repo:** `tools/iguana_unpack.py`, an unpacker for the original Super Nintendo NBA Jam's graphics.
+
 ## 1.5.0 (2026-10-24)
 - **Codes page:** every game lists its versions in the same order (arcade, then Super Nintendo, Genesis, Sega CD, 32X,
   Saturn, PlayStation, N64, PC, Jaguar, Game Boy, Game Gear), and NBA Jam opens on arcade.
