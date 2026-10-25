@@ -1,6 +1,10 @@
 # Changelog
 
-Changes to the [password checker](https://maxxthunder.github.io/nbajam/) and [secret codes page](https://maxxthunder.github.io/nbajam/codes.html). The version is shown at the bottom of each page. **Codes page** and **Checker** are what visitors see; **Notes** are the [research notes](docs/); **README** is this repo's front page.
+Changes to the [secret codes page](https://maxxthunder.github.io/nbajam/codes.html) and [password checker](https://maxxthunder.github.io/nbajam/). The version is shown at the bottom of each page. **Codes page** and **Checker** are what visitors see; **Notes** are the [research notes](docs/); **README** is this repo's front page.
+
+## 1.5.5 (2026-10-25)
+- **README:** leads with the secret codes: the title, links and summary put them first, the three game logos head the
+  page, and the password checker, its formats and the known passwords sit together in one section.
 
 ## 1.5.4 (2026-10-25)
 - **Codes page:** notes no longer name other sites; things already published are simply not marked ★ New.

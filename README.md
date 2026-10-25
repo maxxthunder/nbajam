@@ -1,25 +1,27 @@
-# NBA Jam and NBA Hangtime: Password Checker and Secret Codes
+# NBA Jam and NBA Hangtime: Secret Codes and Password Checker
 
-**[Password checker →](https://maxxthunder.github.io/nbajam/)** &nbsp; **[Secret codes →](https://maxxthunder.github.io/nbajam/codes.html)** &nbsp;[![v1.5.4](https://img.shields.io/badge/version-1.5.4-e8742c)](CHANGELOG.md)
+**[Secret codes →](https://maxxthunder.github.io/nbajam/codes.html)** &nbsp; **[Password checker →](https://maxxthunder.github.io/nbajam/)** &nbsp;[![v1.5.5](https://img.shields.io/badge/version-1.5.5-e8742c)](CHANGELOG.md)
 
-<p align="center"><img src="docs/images/stats_screen.png" alt="The stats screen for LJP / Z443C1WY434S2J: rank 1, 27 W 0 L, streak 27 wins" width="384"></p>
+<p align="center">
+  <img src="tools/img/logo_nbajam.png" alt="NBA Jam" height="96">
+  <img src="tools/img/logo_te.png" alt="NBA Jam Tournament Edition" height="96">
+  <img src="tools/img/logo_hangtime.png" alt="NBA Hangtime" height="96">
+</p>
 
-- **Check a password** (NBA Jam, and Tournament Edition on Game Boy and Game Gear): type your initials and the
-  password (14 characters for NBA Jam, 10 for Tournament Edition), and it tells you whether the game will take them.
-  NBA Hangtime has no passwords.
-- **See what it holds**: wins, losses, percentage, win streak, and which of the 27 NBA teams you've beaten.
-- **Secret codes**: every secret character and hidden code, read straight from the games:
+- **Secret codes**: every secret character and hidden code, read straight from the games and entered in emulators,
+  with the ones no published list had marked ★ New:
   - NBA Jam: arcade, Super Nintendo, Genesis, Sega CD, Game Boy, Game Gear.
   - Tournament Edition: arcade, Super Nintendo, Genesis, 32X, Saturn, PlayStation, PC, Jaguar, Game Boy, Game Gear.
   - NBA Hangtime and Maximum Hangtime: arcade, Super Nintendo, Genesis, PlayStation, N64.
+- **Password checker** (NBA Jam, and Tournament Edition on Game Boy and Game Gear): type your initials and the
+  password, and it tells you whether the game will take them and what record it holds. NBA Hangtime has no passwords.
 
 Contents: [What's on the codes page](#whats-on-the-codes-page) · [What's new here](#whats-new-here) ·
-[Passwords by version](#passwords-by-version) · [If a password won't work](#if-a-password-wont-work) ·
-[Known passwords](#known-passwords) · [Credits](#credits) · [License](#license)
+[Password checker](#password-checker) · [Credits](#credits) · [License](#license)
 
-Both pages work offline too: save [`tools/nbajam_password_checker.html`](tools/nbajam_password_checker.html) or
-[`tools/nbajam_codes.html`](tools/nbajam_codes.html) and open it in a browser (the codes page needs `tools/img/` and
-`tools/audio/` next to it for pictures and sound).
+Both pages work offline too: save [`tools/nbajam_codes.html`](tools/nbajam_codes.html) or
+[`tools/nbajam_password_checker.html`](tools/nbajam_password_checker.html) and open it in a browser (the codes page
+needs `tools/img/` and `tools/audio/` next to it for pictures and sound).
 
 ## What's on the codes page
 
@@ -94,7 +96,22 @@ leftover entry, the beta's dinosaurs) aren't marked new.
 Published codes that don't work as printed (wrong buttons, missing presses, codes that do nothing) are corrected on
 their cards.
 
-## Passwords by version
+## Password checker
+
+**[Open the checker →](https://maxxthunder.github.io/nbajam/)** Type the initials and password from a game's stats
+screen, and it checks them the way the game does and shows wins, losses, percentage, win streak and which of the 27
+NBA teams are beaten.
+
+<p align="center"><img src="docs/images/stats_screen.png" alt="The stats screen for LJP / Z443C1WY434S2J: rank 1, 27 W 0 L, streak 27 wins" width="384"></p>
+
+- **NBA Jam password.** 14 characters hold wins, losses and win streak (8 bits each), the 27 teams beaten, and a
+  4-bit checksum, scrambled with a key made from the initials. The Game Boy and Game Gear use the same scheme.
+- **Tournament Edition password** (Game Boy, Game Gear). 10 characters hold wins, losses, streak and how far
+  along the 27-team ladder you are, with the same initials key. [Both formats →](docs/nbajam_password.md)
+- **Why passwords.** The Super Nintendo keeps its 88 records in RAM: they survive a reset but not power-off. The
+  Genesis cartridge has an EEPROM, so its stats screen shows `LAST PLAYED` instead of a password.
+
+### Passwords by version
 
 | Game | Passwords |
 |------|-----------|
@@ -103,7 +120,7 @@ their cards.
 | Tournament Edition: Game Boy, Game Gear | Yes, 10 characters, a scheme of their own, shared by both |
 | Tournament Edition: every other version | None: records are saved |
 
-## If a password won't work
+### If a password won't work
 
 - **Initials.** A password only works with the initials it was made for. The initials are part of its key.
 - **Typo.** NBA Jam passwords use `BCDFGHJKLMNPQRSTVWXYZ12345` (no vowels, digits 1 to 5); Tournament Edition uses
@@ -111,7 +128,7 @@ their cards.
 - **All the characters.** The game checks the password when you type the last one. Choosing EX
   before that starts a new record.
 
-## Known passwords
+### Known passwords
 
 All are valid in the game and decode to the record they were made with.
 
@@ -129,22 +146,15 @@ Everything here comes from disassembling the games and checking the results in e
 Nintendo), BizHawk (Super Nintendo, Genesis, 32X, Sega CD, Game Boy, Game Gear, Saturn, PlayStation, N64, Jaguar),
 MAME (arcade) and DOSBox-X (PC).
 
-- **NBA Jam password.** 14 characters hold wins, losses and win streak (8 bits each), the 27 teams beaten, and a
-  4-bit checksum, scrambled with a key made from the initials. The Game Boy and Game Gear use the same scheme.
-- **Tournament Edition password** (Game Boy, Game Gear). 10 characters hold wins, losses, streak and how far
-  along the 27-team ladder you are, with the same initials key. [Both formats →](docs/nbajam_password.md)
-- **Why passwords.** The Super Nintendo keeps its 88 records in RAM: they survive a reset but not power-off. The
-  Genesis cartridge has an EEPROM, so its stats screen shows `LAST PLAYED` instead of a password.
-
 | Notes | Covers |
 |-------|--------|
-| [docs/nbajam_password.md](docs/nbajam_password.md) | Both password formats, key, encoder and decoder |
-| [docs/secrets.md](docs/secrets.md) | NBA Jam on Super Nintendo, Genesis, Game Boy, Game Gear and Sega CD, and the leftovers above |
-| [docs/te_consoles.md](docs/te_consoles.md) | Tournament Edition on every home version, including the match-up tables |
 | [docs/arcade.md](docs/arcade.md) | The original arcade game |
+| [docs/secrets.md](docs/secrets.md) | NBA Jam on Super Nintendo, Genesis, Game Boy, Game Gear and Sega CD, and the leftovers above |
 | [docs/arcade_te.md](docs/arcade_te.md) | Arcade Tournament Edition, all nine revisions |
+| [docs/te_consoles.md](docs/te_consoles.md) | Tournament Edition on every home version, including the match-up tables |
 | [docs/hangtime.md](docs/hangtime.md) | NBA Hangtime and Maximum Hangtime, arcade and home |
 | [docs/variants.md](docs/variants.md) | Betas, prototypes and regional versions |
+| [docs/nbajam_password.md](docs/nbajam_password.md) | Both password formats, key, encoder and decoder |
 
 </details>
 
@@ -164,11 +174,11 @@ python tools/nbajam_te_password.py RAT BZZ6DZ37KY
 
 | Path | Contents |
 |------|----------|
-| `tools/nbajam_password.py` | NBA Jam password decoder and encoder |
-| `tools/nbajam_te_password.py` | Tournament Edition (Game Boy, Game Gear) password decoder and encoder |
-| `tools/nbajam_password_checker.html` | The checker web page |
 | `tools/nbajam_codes.html` | The secret codes page |
 | `tools/img/`, `tools/audio/` | Portraits, logos and announcer clips for the codes page |
+| `tools/nbajam_password_checker.html` | The checker web page |
+| `tools/nbajam_password.py` | NBA Jam password decoder and encoder |
+| `tools/nbajam_te_password.py` | Tournament Edition (Game Boy, Game Gear) password decoder and encoder |
 | `tools/check_checker.py` | Checks that the page's JavaScript agrees with both Python tools (needs Node.js) |
 | `tools/check_codes.py` | Decodes every password on the codes page and in the README and checks it against the record it's listed with |
 | `tools/nbajam_romcheck.py` | Checks `nbajam_password.py` against the game's own code in Mesen 2 (needs the ROM) |
