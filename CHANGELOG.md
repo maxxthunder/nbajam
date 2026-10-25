@@ -2,6 +2,15 @@
 
 Changes to the [secret codes page](https://maxxthunder.github.io/nbajam/codes.html) and [password checker](https://maxxthunder.github.io/nbajam/). The version is shown at the bottom of each page. **Codes page** and **Checker** are what visitors see; **Notes** are the [research notes](docs/); **README** is this repo's front page.
 
+## 1.5.8 (2026-10-25)
+- **Codes page:** match-up screenshots for Tournament Edition on PlayStation (14), Saturn (14), Jaguar (18) and 32X (5),
+  each taken with a random secret character and showing the code's message or effect; the codes that print nothing
+  and change nothing visible have none.
+- **Codes page:** arcade Tournament Edition screenshots for powerup goaltending, maximum power and quick hands.
+- **Codes page:** the PlayStation and Saturn "huge heads" code is now "Huge players": it makes every player bigger.
+- **Notes:** what each version shows at tip-off; Jaguar shots taken in BigPEmu, whose ad boards draw correctly; a new
+  Doom mode picture.
+
 ## 1.5.7 (2026-10-25)
 - **Codes page:** the arcade NBA Jam powerup defense, shot percentage and computer-assistance-off screenshots now show
   their messages.

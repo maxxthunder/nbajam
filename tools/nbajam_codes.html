@@ -184,7 +184,7 @@ footer a { color: var(--orange); text-decoration: none; display: inline-flex; al
       <a href="https://github.com/maxxthunder/nbajam/tree/main/docs">research notes</a>.</p>
   </details>
 
-  <footer><a href="https://github.com/maxxthunder/nbajam"><svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg>maxxthunder/nbajam</a><a href="https://github.com/maxxthunder/nbajam/blob/main/CHANGELOG.md">v1.5.7</a></footer>
+  <footer><a href="https://github.com/maxxthunder/nbajam"><svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg>maxxthunder/nbajam</a><a href="https://github.com/maxxthunder/nbajam/blob/main/CHANGELOG.md">v1.5.8</a></footer>
 </main>
 <script>
 // Card: [title, where, input, new?, note]. Input: "ini:MJT|Mar 22" = initials (and birthday);
@@ -301,6 +301,8 @@ const MU_SNES_NOTE = { 'Power-up three pointers': 'One published list leaves off
   'Rainbow arc shots': 'One published list leaves off the first Up; that version does nothing.' };
 const UNUSED_NOTE = "The game recognizes it and sets its flag, but never applies it: probably a power-up that was cut. It has no effect.";
 const teMu = notes => TE_MU.map(([n, k]) => [n, MU, k, n === 'Unused code', n === 'Unused code' ? UNUSED_NOTE : notes[n] || '']);
+// screenshots at tip-off, each taken with a secret character; codes that print nothing and change nothing visible have none
+const MU_PIC = {'te32x': {'Display shot percentage': 'shots/te32xmu_display_shot_percentage', 'Baby mode': 'shots/te32xmu_baby_mode', 'Quick hands': 'shots/te32xmu_quick_hands', 'Power-up goaltending': 'shots/te32xmu_power_up_goaltending', 'Power-up push': 'shots/te32xmu_power_up_push'}, 'teps': {'Display shot percentage': 'shots/tepsmu_display_shot_percentage', 'Quick hands': 'shots/tepsmu_quick_hands', 'Maximum power': 'shots/tepsmu_maximum_power', 'Power-up goaltending': 'shots/tepsmu_power_up_goaltending', 'Power-up on fire': 'shots/tepsmu_power_up_on_fire', 'Power-up turbo': 'shots/tepsmu_power_up_turbo', 'Power-up offense': 'shots/tepsmu_power_up_offense', 'Power-up three pointers': 'shots/tepsmu_power_up_three_pointers', 'Power-up dunks': 'shots/tepsmu_power_up_dunks', 'Power-up push': 'shots/tepsmu_power_up_push', 'Baby mode': 'shots/tepsmu_baby_mode', 'Big heads': 'shots/tepsmu_big_heads', 'Mammoth heads': 'shots/tepsmu_mammoth_heads', 'Huge players': 'shots/tepsmu_huge_players'}, 'tesat': {'Display shot percentage': 'shots/tesatmu_display_shot_percentage', 'Quick hands': 'shots/tesatmu_quick_hands', 'Maximum power': 'shots/tesatmu_maximum_power', 'Power-up goaltending': 'shots/tesatmu_power_up_goaltending', 'Power-up on fire': 'shots/tesatmu_power_up_on_fire', 'Power-up turbo': 'shots/tesatmu_power_up_turbo', 'Power-up offense': 'shots/tesatmu_power_up_offense', 'Power-up three pointers': 'shots/tesatmu_power_up_three_pointers', 'Power-up dunks': 'shots/tesatmu_power_up_dunks', 'Power-up push': 'shots/tesatmu_power_up_push', 'Baby mode': 'shots/tesatmu_baby_mode', 'Big heads': 'shots/tesatmu_big_heads', 'Mammoth heads': 'shots/tesatmu_mammoth_heads', 'Huge players': 'shots/tesatmu_huge_players'}, 'tejag': {'CD-ROM mode': 'shots/tejagmu_cd_rom_mode', 'Baby mode': 'shots/tejagmu_baby_mode', 'Display shot percentage': 'shots/tejagmu_display_shot_percentage', 'Quick hands': 'shots/tejagmu_quick_hands', 'Power-up goaltending': 'shots/tejagmu_power_up_goaltending', 'Power-up on fire': 'shots/tejagmu_power_up_on_fire', 'Power-up turbo': 'shots/tejagmu_power_up_turbo', 'Power-up offense': 'shots/tejagmu_power_up_offense', 'Power-up three pointers': 'shots/tejagmu_power_up_three_pointers', 'Power-up dunks': 'shots/tejagmu_power_up_dunks', 'Power-up push': 'shots/tejagmu_power_up_push', 'Big heads': 'shots/tejagmu_big_heads', 'Small heads': 'shots/tejagmu_small_heads', 'Small ball': 'shots/tejagmu_small_ball', 'Small players': 'shots/tejagmu_small_players', 'All players on fire': 'shots/tejagmu_all_players_on_fire', 'Doom mode': 'shots/tejagmu_doom_mode', 'Maximum power': 'shots/tejagmu_maximum_power'}};
 // TE 32X: its own table ($8BD67C), same effects in the same order plus baby mode
 const TE32X_MU = [['Baby mode', 'B, A, B, Up, Down, Left, Right', false], ['Display shot percentage', 'Down, Up, Down, B, Up', false],
   ['Quick hands', 'Left, Right, A, B, Right, Left', true], ['Maximum power', 'Right, Up, Left, Right, B, Down, A', true],
@@ -312,7 +314,7 @@ const TE32X_MU = [['Baby mode', 'B, A, B, Up, Down, Left, Right', false], ['Disp
   ['Push one opponent, teammate falls', 'Down, Left, Right, Up, Left, Left, Left, Left, A, B', true],
   ['Super speed', 'Up, Up, Down, Down, Left, Right, Left, Left, B, A', true], ['Teleport pass', 'Down, Right, Right, A, A, Down, Left, Left, Right, B', false],
   ['Slippery court', 'B, A, Down, A, B, Right, Right, Right, Right, Right', false], ['Unused code', 'Down, Up, Down, Up, Down, Up, Left, Left, B, B', true, UNUSED_NOTE],
-  ['Rainbow arc shots', 'Up, Left, Left, Down, Right, Up, A, B, A, A, Down', true]].map(([n, k, isNew, note]) => [n, MU, k, isNew, note || '']);
+  ['Rainbow arc shots', 'Up, Left, Left, Down, Right, Up, A, B, A, A, Down', true]].map(([n, k, isNew, note]) => [n, MU, k, isNew, note || '', MU_PIC.te32x[n] || '']);
 // TE PlayStation / Saturn: the same 19 effects in the same order (PS OVERLAY.BIN 0x2AD88, Saturn 0 0x578A4)
 const PS_MU = [
   ["Display shot percentage", "Up, Up, Down, Down, Triangle", "Up, Up, Down, Down, A"],
@@ -331,11 +333,14 @@ const PS_MU = [
   ["Rainbow arc shots", "Up, Down, Up, Down, Right, Up, Circle, Circle, Circle, Circle, Down", "Up, Down, Up, Down, Right, Up, Y, Y, Y, Y, Down"],
   ["Super speed", "Up, Up, Up, Up, Left, Left, Left, Left, X, Triangle", "Up, Up, Up, Up, Left, Left, Left, Left, C, A"],
   ["Baby mode", "Circle, Square, Circle, Square, Circle, Square", "Y, B, Y, B, Y, B"],
-  ["Huge heads", "Triangle, X, Triangle, X, Triangle, X, Triangle, X, Triangle, X, Triangle, X, Triangle, X", "A, C, A, C, A, C, A, C, A, C, A, C, A, C"],
+  ["Huge players", "Triangle, X, Triangle, X, Triangle, X, Triangle, X, Triangle, X, Triangle, X, Triangle, X", "A, C, A, C, A, C, A, C, A, C, A, C, A, C"],
   ["Big heads", "Triangle, Square, X, Circle, Triangle, Square, X, Circle", "A, B, C, Y, A, B, C, Y"],
   ["Mammoth heads", "Circle, X, Square, Triangle, Circle, X, Square, Triangle, Circle, X, Square, Triangle, Circle, X, Square, Triangle", "Y, C, B, A, Y, C, B, A, Y, C, B, A, Y, C, B, A"]];
-const GLOBAL_MU = ['Display shot percentage', 'Baby mode', 'Huge heads', 'Big heads', 'Mammoth heads'];
-const psMu = col => PS_MU.map(r => [r[0], MU, r[col], false, GLOBAL_MU.includes(r[0]) ? 'For everyone.' : '']);
+const GLOBAL_MU = ['Display shot percentage', 'Baby mode', 'Huge players', 'Big heads', 'Mammoth heads'];
+const MU_NOTE_PS = { 'Huge players': 'Shows "HUGE MODE!": every player is drawn bigger, not just the heads.',
+  'Power-up push': '', 'Push one opponent, both fall': 'No message at tip-off.', 'Push one opponent, teammate falls': 'No message at tip-off.',
+  'Teleport pass': 'No message at tip-off.', 'Rainbow arc shots': 'No message at tip-off.', 'Super speed': 'No message at tip-off.' };
+const psMu = (col, plat) => PS_MU.map(r => [r[0], MU, r[col], false, [GLOBAL_MU.includes(r[0]) ? 'For everyone.' : '', MU_NOTE_PS[r[0]] || ''].filter(Boolean).join(' '), MU_PIC[plat][r[0]] || '']);
 // TE Jaguar: its own 24 sequences, pointer table $81C36C; sequence n sets bit n of the player's mask ($6922 + 4 x player)
 const JAG_MU = [
   ["CD-ROM mode", "C, Down, C, Down, C, Down, C, Down, C, Down"],
@@ -670,7 +675,7 @@ const GROUPS = {
   tesat: [
     ['Secret characters', 'Answer Yes to keep a record, then enter the initials and birthday, holding L + R as you pick each letter; without them the game shows NO RECORD. The game shows "SECRET PLAYER" before team select.',
       TE_SAT.map(c => tesat(c, ''))],
-    ['Match-up codes', "At Tonight's Match-Up, on any player's pad. The game checks each player's presses when the screen ends. The same 19 as the PlayStation, with Saturn buttons.", psMu(2)],
+    ['Match-up codes', "At Tonight's Match-Up, on any player's pad. The game checks each player's presses when the screen ends. The same 19 as the PlayStation, with Saturn buttons.", psMu(2, 'tesat')],
     ['Preset records', 'Answer Yes to keep a record and enter these with no buttons held. A new save already holds them.', [
       ['Champion record', 'Keep-record screen', 'FIN, January 1', false,
         'Opens a 27-9 record, rank 1st: "You have defeated all 27 NBA teams!"'],
@@ -689,7 +694,7 @@ const GROUPS = {
       ['Gerald Wilkins', 'No record', 'none', false, 'Injured for the 1994-95 season, then taken by Vancouver.', 'playstation/unused_wilkins'],
       ['Monty Williams', 'No record', 'none', false, 'The Knicks have five players without him.', 'playstation/unused_williams'],
       ['James Worthy', 'No record', 'none', false, 'Retired in November 1994.', 'playstation/unused_worthy']]],
-    ['Match-up codes', "At Tonight's Match-Up, on any player's pad. The game checks each player's presses when the screen ends.", psMu(1).map(c => c[0] === 'Mammoth heads' ? [...c.slice(0, 4), 'Four rounds are enough; Cheat Code Central gives five.'] : c)],
+    ['Match-up codes', "At Tonight's Match-Up, on any player's pad. The game checks each player's presses when the screen ends.", psMu(1, 'teps').map(c => c[0] === 'Mammoth heads' ? [...c.slice(0, 4), 'Four rounds are enough; Cheat Code Central gives five.', c[5]] : c)],
     ['Preset records', 'Answer Yes to keep a record and enter these with no buttons held. A new save already holds them.', [
       ['Champion record', 'Keep-record screen', 'FIN, January 1', false,
         'Opens a 27-9 record, rank 1st: "You have defeated all 27 NBA teams!"'],
@@ -732,7 +737,7 @@ const GROUPS = {
   tejag: [
     ['Secret characters', 'At the initials screen, on each letter marked Option, hold Option and press the button. Enter the other letters as usual, with A, B or C.',
       TE_JAG.map(c => tejag(c, false, JAG_NOTE[c[1]]))],
-    ['Match-up codes', "At Tonight's Match-Up, on any player's pad; start as soon as the screen comes up: it's short. The Jaguar has its own 24 sequences.", JAG_MU.map(([n, k]) => [n, MU, k, false, JAG_MU_NOTE[n] || ''])],
+    ['Match-up codes', "At Tonight's Match-Up, on any player's pad; start as soon as the screen comes up: it's short. The Jaguar has its own 24 sequences.", JAG_MU.map(([n, k]) => [n, MU, k, false, JAG_MU_NOTE[n] || '', MU_PIC.tejag[n] || ''])],
     ['Hidden codes', '', [
       ['Clear cartridge memory', 'Any time', 'Hold * + # to reset, and keep holding them with Option', true,
         'The game restarts on "CARTRIDGE MEMORY CLEARED" with the saved options back at their defaults.', 'shots/jag_memory_cleared'],
@@ -765,14 +770,14 @@ const GROUPS = {
       ['Sub-Zero', 'SUB', 'Dec 5'], ['Raiden', 'RAD', 'Jul 9'], ['Grim Reaper', 'GRM', 'Oct 31'], ['Tim Coman', 'TJC', 'Oct 11'],
       ['Kongo', 'KNG', 'Jan 16'], ['Elviscious', 'ELV', 'Jan 8'], ['Scorpion', 'SCO', 'Jul 6'], ['Reptile', 'RPT', 'Nov 11']].map(c => te(c, false))],
     ["Tonight's Match-Up codes", "Enter these while the Tonight's Match-Up screen is up. The game counts each player's presses of any button; codes with a count need exactly that many. The message shows at tip-off. Tournament Mode turns all of them off.", [
-      ['Powerup goaltending', MU, 'Press any button 24 times', false, 'Exactly 24. Shows "POWERUP G.T."'],
+      ['Powerup goaltending', MU, 'Press any button 24 times', false, 'Exactly 24. Shows "POWERUP G.T."', 'shots/temu_gt'],
       ['Shot percentage display', MU, 'Press any button 15 or more times while turning the stick Up → Right → Down → Left', false,
         "GameFAQs says press all three buttons together 7 times, which doesn't work.", 'shots/temu_shot'],
-      ['Maximum power', MU, 'Hold Down + Turbo + Shoot + Pass', false, "Start isn't needed."],
+      ['Maximum power', MU, 'Hold Down + Turbo + Shoot + Pass', false, "Start isn't needed. Shows \"MAX POWER\".", 'shots/temu_maxpower'],
       ['Tournament mode', MU, 'Hold Right + Turbo + Shoot + Pass', false, 'Turns off power-ups, computer assistance and hidden features, including secret characters.', 'shots/temu_tournament'],
       ['Big heads', MU, 'Hold Up + Turbo + Pass until tip-off', false, '', 'shots/temu_bighead'],
       ['Huge heads', MU, 'Press any button 5 times; then hold Up + Turbo + Pass until tip-off', false, 'Big heads with exactly 6 presses in all.', 'shots/temu_huge'],
-      ['Quick hands', MU, 'Press any button 4 times; then hold Down + Shoot until tip-off', false, '5 or more presses in all.'],
+      ['Quick hands', MU, 'Press any button 4 times; then hold Down + Shoot until tip-off', false, '5 or more presses in all. Shows "QUICK HANDS".', 'shots/temu_quick'],
       ['Baby-size players', MU + ', holding Down-Right', 'Pass, Turbo, Shoot, Pass, Turbo, Shoot, Pass, Turbo, Shoot', false, 'Shows "BABY SIZE PLAYERS". Published lists give Turbo, Shoot, Pass; the game wants Pass first.', 'shots/temu_baby'],
       ['All computer assistance off', MU, 'Press any button exactly 10 times', true,
         'Needs a human player on each team. Shows "ALL COMPUTER ASSISTANCE TURNED OFF!" Not on any published TE list; the original game had a similar Turbo ×10 code.', 'shots/te_assist_off']]],

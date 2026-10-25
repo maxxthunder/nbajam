@@ -108,6 +108,16 @@ starts (Genesis `$266762`, 32X `$12D82`; SNES packs them into a mask at `$07EE`,
   from the PlayStation's (turbo and push) were published by 32bits. Sega Retro's Saturn page has 17 of the 19, all
   matching (its baby mode and head codes are longer than needed, which still works); it lacks Y, Y, Y, B, Down, Down, Up, Left and
   Down, Right, C, Y, C, Right, Down.
+- **What tip-off shows** (codes-page screenshots, each with a random secret character, BizHawk). PlayStation and
+  Saturn: player 1's power-up name at the bottom left ("QUICK HANDS", "MAXPOWER", "POWERUP FIRE"...) while the player
+  flashes white, and the global codes' message at the top ("SHOT PERCENT DISPLAY!", "BABY MODE!", "HUGE MODE!", "BIG
+  HEAD MODE ON!", "MAMMOTH HEAD MODE ON!"). Both push codes, teleport pass, rainbow arc shots and super speed print
+  nothing. The flash alternates every few frames while the caption stays up, so the screenshots are frames where the
+  player is drawn normally. The code listed as huge heads makes every player bigger, not just the heads: its message
+  is "HUGE MODE!". The 32X prints nothing at tip-off. Its global codes print a line once play starts ("SHOT %
+  DISPLAY ACTIVATED", "BABY MODE!"), and a power-up's name ("QUICK HANDS", "PWRUP G.T.", "PWRUP PUSH") replaces the
+  player's name only when it comes into play, so a random-input game catches some and not others. All 17 32X codes
+  were confirmed set in player 1's struct.
 
 ## Jaguar
 
@@ -152,6 +162,14 @@ Both checked in BizHawk.
   <img src="images/jag_cdrom_mode.png" alt="The fake CD-ROM loading screen" width="326">
   <img src="images/jag_doom_mode.png" alt="Doom mode: all four players with the same head" width="326">
 </p>
+
+**Screenshots.** BizHawk's Jaguar core (Virtual Jaguar) draws the scorer's-table ads as stripes, so the Jaguar
+match-up screenshots on the codes page come from BigPEmu. Its scripting (C compiled to a `.bigpcvm` module) can set
+the pad each frame and save and load states. The script entered each code with a random secret character and
+signalled a window capture at fixed frames. Tip-off prints "CHEATS ACTIVATED" and the code's name for 18 of the 24.
+The push, teleport, high shots, super speed and slippery court codes print nothing; CD-ROM mode, small heads, small
+ball, small players and Doom mode change the picture instead. The ad boards are the NBA and NBA Jam Session pair, as on
+the other consoles.
 
 ### Jaguar keypad
 
