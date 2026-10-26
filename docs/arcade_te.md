@@ -60,7 +60,8 @@ All checked in MAME.
 - **Prototype 2.00 placeholders.** The December 1993 prototype has 56 entries. It has none of the 13 NBA
   players. Several staff are in it under placeholder initials with a Jan 1 birthday:
   `JZG` (Gentile), `RZM` (Macika), `WZD` (Davis), `BZD` (Dabelstein), `JZL` (Linhoff), `KER` (Hoskins) and
-  `LOR` (Olivia, not checked).
+  `LOR` (Olivia). `LOR` and `KER` were typed in MAME on `nbajamtep2`: team select shows Olivia and Hoskins with
+  their portraits.
 
 <p align="center">
   <img src="images/te_codes.png" alt="Rodman (ROD, rev 4.0 3/03), the Grim Reaper (BIG, rev 2.1) and Payton (GEE, Nani Edition)" width="546">

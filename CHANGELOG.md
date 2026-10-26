@@ -2,6 +2,13 @@
 
 Changes to the [secret codes page](https://maxxthunder.github.io/nbajam/codes.html) and [password checker](https://maxxthunder.github.io/nbajam/). The version is shown at the bottom of each page. **Codes page** and **Checker** are what visitors see; **Notes** are the [research notes](docs/); **README** is this repo's front page.
 
+## 1.6.2 (2026-10-25)
+- **Codes page:** 146 screenshots stored as palette PNGs, 3.8 MB down to 2.1 MB with every pixel unchanged.
+- **Codes page:** Hangtime's no-music code (0, 4, 8) says what it does: the music is gone in play, the effects and
+  commentary stay.
+- **Notes:** the Tournament Edition prototype's LOR placeholder checked (Lorraine Olivia); the no-music code checked
+  from recorded audio.
+
 ## 1.6.1 (2026-10-25)
 - **Codes page:** a screenshot of Hangtime's four-at-once code on PlayStation, which only works when entered in under a
   second; its card now says so, and that its Shoot presses can also set fast passing.

@@ -81,8 +81,10 @@ instead of up, and digits wrap from 9 to 0 (`FFB60BB0h`). When the screen ends, 
 
 Checked in MAME: each code (entered on player 1's buttons) sets its flag, and tip-off shows its caption ("BABY SIZED
 PLAYERS!", "GOAL TENDING", "QUICK HANDS", "MAX. POWER", "MAX. SPEED", "HYPER SPEED", "STEALTH TURBO", "UNLIM.
-TURBO", "NO PUSHING", "FAST PASSING"). 0-4-8 has no caption: its flag is only read where the game picks music, so
-it was not checked by ear. 1-1-1 is turned down with a sound in a one-player game, as the in-game tip says ("all
+TURBO", "NO PUSHING", "FAST PASSING"). 0-4-8 has no caption: its flag is only read where the game picks music.
+Recorded with MAME's `-wavwrite` against a run without it, the first 40 seconds of play fall from a steady level of
+about 35-60 (RMS, 3-second windows) to about 11-35, with only short peaks left: the music is off and the effects and
+commentary stay. 1-1-1 is turned down with a sound in a one-player game, as the in-game tip says ("all
 players must enter the same combination").
 
 **6-1-6 does nothing.** It's published as max shot blocking, and the game accepts it and sets `@1136C60h`, but
