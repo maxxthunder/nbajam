@@ -286,8 +286,11 @@ setting, passwords, a team game, pausing, and a game played through halftime wit
 covers 66,110 of the 81,072 instructions the disassembler traces (81.5%). An earlier single run with an execute callback
 only watched banks `$80` and up and missed code running from the mirrored low banks, so it counted 19,403. Of the code
 that never ran, the parts that read the pads are the multitap reader (`$80B0E2`), the screens above, and players 2-4
-joining a game in progress (`$8A8FBE`-`$8A9444`, `$8AEB6C`-`$8AEBEF`), which these one-pad runs couldn't reach. No
-unknown button check turned up, but this still isn't a proof.
+joining a game in progress (`$8A8FBE`-`$8A9444`, `$8AEB6C`-`$8AEBEF`), which these one-pad runs couldn't reach. A
+later run with a multitap in port 2 (Mesen 2, all four pads pressing Start and A from the title screen, then random
+input in play) ran the whole multitap reader, so every read of the pad registers in the game has now run, and 20 of
+the 59 instructions at `$8AEB6C`; `$8A8FBE`-`$8A9444` still never ran. No unknown button check turned up, but this
+still isn't a proof.
 
 ## Sega CD: disc files
 

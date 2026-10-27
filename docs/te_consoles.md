@@ -96,6 +96,12 @@ starts (Genesis `$266762`, 32X `$12D82`; SNES packs them into a mask at `$07EE`,
 - **The copy loops, checked in play.** After tip-off, each per-player code's flag shows up as 1 in its own field of
   player 1's struct (Genesis `$FF4446` + `$12C`-`$146`, 32X `$FF6730` + `$12E`-`$14A`); the unused code sets none.
   Shot percentage and baby mode are global, not per player. Checked in BizHawk on both.
+- **Rainbow arc shots, measured.** On Genesis the flag (player field `+$13A`) is read once, when a shot is set up
+  (`$273678`): it adds 30 frames to the ball's flight time (`$FF290A`), and the vertical speed is worked out from that,
+  so the ball goes much higher to arrive on time. Logged in BizHawk from one save state with the flag set on all four
+  players and then clear, the same shot leaves the hand on the same frame and differs only in its flight:
+
+  ![Ball height in one shot with and without rainbow arc](images/genesis_te_rainbow_arc.png)
 - **The 32X has its own 18 sequences**, for the same effects in the same order plus baby mode (a global flag,
   `$FF4610`). All 18 checked in BizHawk: each sets its flag. RQ87's list has six of them, and gives turbo without
   its second Down, which does nothing (checked); the other twelve, including the unused code, weren't on any 32X
@@ -486,10 +492,15 @@ Claims from published lists that could be tested here, and what came of them:
 
   <img src="images/te32x_unused_heads.png" alt="The four unused 32X heads, 16 frames each, in stand-in colours" width="542">
 
-- **Genesis: unused music (not reproduced).** A published list gives tracks 80, 88 and 89. The game plays sounds by ID through a
-  table at `$28B476` (8 bytes per ID; the last word is the song number for the GEMS-style driver at `$1F65DA`). Song
-  numbers 80 and 88 put in every entry replaced only the logo jingle, with nothing musical (judged by ear); 89 crashed
-  the emulator. Its numbers are probably counted differently, so the tracks weren't found.
+- **Genesis: unused music.** The sound driver (GEMS, banks set up at `$2642AA`: patches `$13B7CA`, envelopes
+  `$13CAE9`, sequences `$13CEBB`, samples `$141901`) has 128 sequences. The game starts them in two ways: by sound ID
+  through the table at `$28B476` (8 bytes per ID; the last word is the sequence), and by number through eleven calls to
+  the start routine `$1F65DA`, which play 1, 2, 3, 5 or 6, 7, 10 and 127 (front-end music). Nothing starts sequences
+  0, 4, 8 and 9, and they are full songs (4, 9, 9 and 8 tracks): recorded in MAME by patching a copy of the ROM to play
+  each one at boot, each plays a minute of continuous music that differs from the others and from the used songs (compared by
+  loudness over time, not by ear). Sequences `$2F`, `$30` and
+  `$4D`, also never started, are silent or a blip. A published list gives the unused tracks as 80, 88 and 89, which
+  don't match the driver's numbers.
 - **Developer messages**, all present: "Snake Woz Ere!" (32X `0x341F8`), "I Love Emma Wadrop" (32X `0x3B9DC`), "I Luv
   Claire Reily" (Genesis `0x2AB374`), and the Super Nintendo's "SLICK/Audio v1.01 Copyright(C)1994 Bitmasters,Inc."
   (`0x17861B`) and leftover NBA Jam ending text (`0xD6A7A`).
@@ -544,8 +555,8 @@ Every file on both discs was checked against the names the programs use (PlaySta
 - **PlayStation: `HIDDEN.BIN`** holds the secret-player portraits, including the three cut characters above.
 - The PlayStation's `NEW1.RAW`-`NEW7.RAW` and `END.RAW` aren't named by any program because they're the CD audio
   tracks: the disc's track list puts track 2 at sector 70,731, where `NEW1.RAW` starts, and the eight files line up
-  with tracks 2-9. The game plays music by track number. `END.RAW` (track 9) is the same length as `NEW1.RAW`
-  (track 2), so it may be a repeat; the audio wasn't decoded.
+  with tracks 2-9. The game plays music by track number. `END.RAW` (track 9) is a copy of `NEW1.RAW` (track 2): after
+  each track's two-second gap the decoded audio is the same, sample for sample.
 
 The PlayStation clips play after a game: `MOVIE.EXE` (loaded at `$800A8000`) picks the winner's clip from a table of
 55 names at `$800C7C64`, two per team, alternating between the two (`$800A93EC`), or a random one for the secret

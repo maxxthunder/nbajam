@@ -2,6 +2,16 @@
 
 Changes to the [secret codes page](https://maxxthunder.github.io/nbajam/codes.html) and [password checker](https://maxxthunder.github.io/nbajam/). The version is shown at the bottom of each page. **Codes page** and **Checker** are what visitors see; **Notes** are the [research notes](docs/); **README** is this repo's front page.
 
+## 1.6.3 (2026-10-27)
+- **Codes page:** Genesis Tournament Edition's rainbow arc code says what it does: every shot stays in the air half a
+  second longer, on a much higher arc.
+- **Codes page:** phones no longer autocorrect the search box; the page behind an open screenshot no longer scrolls;
+  on a computer, / jumps to the search box.
+- **Checker:** phones no longer autocorrect the initials and password boxes, and start the keyboard in capitals.
+- **Notes:** Genesis Tournament Edition's four unused songs found in the sound driver; PlayStation `END.RAW` shown to
+  be a copy of `NEW1.RAW`; the rainbow arc measured, with a chart of the ball's height; the Super Nintendo multitap
+  reader run in Mesen 2.
+
 ## 1.6.2 (2026-10-25)
 - **Codes page:** 146 screenshots stored as palette PNGs, 3.8 MB down to 2.1 MB with every pixel unchanged.
 - **Codes page:** Hangtime's no-music code (0, 4, 8) says what it does: the music is gone in play, the effects and
