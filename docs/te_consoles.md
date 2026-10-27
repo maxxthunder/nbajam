@@ -253,13 +253,18 @@ The main program (file `0`, loaded at `$06010000`) was disassembled to look for 
   to the button config at `$0606A00C`.
 - **Sequences.** The press-history matcher (`$0604A348`) has a single caller, the match-up screen (`$0604A0A4`),
   which checks exactly the 19 sequences in the table. There are no other sequence codes.
-- **Combinations.** Nothing compares a pad word with an exact multi-button value. The L + R bits are stored with
+- **Combinations.** Two places compare a pad word with an exact multi-button value, and neither is a secret. The
+  pause loop (`$06018014`) quits the game when a player holds A + B + C (`$06018088` sets `$0607E380`); the pause
+  screen says "PRESS A, B AND C TO QUIT" (checked in BizHawk). `$06031E66` checks Start + A + B + C, Sega's standard
+  reset to the system menu (`$060120F4` jumps through the BIOS vector at `$0600026C`). The L + R bits are stored with
   each initial (`$06043788`) for the secret check, and R and Z presses are counted per team in one game phase
   (`$06022376`), which looks like jump-ball tapping.
 - **Tournament Mode** (`$0606B564`, saved with the options) switches off both secret players and match-up codes.
 
-Not covered: functions that read the pad through a computed pointer were only skimmed, and BizHawk's Saturn core
-can't log which code reads memory, so they weren't traced live.
+To cover code that reads the pad through a computed pointer, every exact comparison with a multi-button value in the
+whole program was listed, whatever the value came from: 11 with a 16-bit value (the two above, and nine that compare
+sizes and offsets such as `$0140` and `$0208`, not pad words) and 29 with an 8-bit value, none of them after a pad
+read.
 
 ## PlayStation
 

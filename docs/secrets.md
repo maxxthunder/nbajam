@@ -291,9 +291,14 @@ later run with a multitap in port 2 (Mesen 2, all four pads pressing Start and A
 input in play) ran the whole multitap reader, so every read of the pad registers in the game has now run, and 20 of
 the 59 instructions at `$8AEB6C`; `$8A8FBE`-`$8A9444` still never ran. A later run started the game from pad 2
 instead of pad 1: the screen at `$8A8B7D` then takes the branch for player 1 not having joined (`$8A8FBE`), so 156 of
-the 484 instructions in that range have now run, and 23 of the 59 at `$8AEB6C`. What's left is `$8A91BD`-`$8A9444`
-(265 instructions), the same screen's branch for when `$1C5D` isn't 0, which no run reached. No unknown button check
-turned up, but this still isn't a proof.
+the 484 instructions in that range have now run, and 23 of the 59 at `$8AEB6C`. The rest is `$8A91BD`-`$8A9444`, the
+same screen's branch for when `$1C5D` isn't 0. `$1C5D` belongs to the title menu (START GAME / OPTIONS): Up and Down
+change it (`$8A85DE`-`$8A8624`) and `$8A8466` turns it into 2 once a game starts. Two more multitap runs moved the
+menu cursor before starting from pad 2, and both took that branch, so 302 of the 484 instructions have now run, 130
+of the 265 in the branch, and 53 of the 59 at `$8AEB6C`. The code that never ran there is the rest of the join
+handling: the sound and flags when a player presses Start to join (`$8A8FCB`-`$8A8FF8`) and that player's set-up
+in the second branch. Over all the merged runs, 70,298 of the 81,072 instructions (86.7%) have run. No unknown button
+check turned up, but this still isn't a proof.
 
 ## Sega CD: disc files
 
@@ -349,8 +354,23 @@ unknown and pressing reset:
 
 Apart from that, the two Genesis revisions have the same text. The Super Nintendo revisions have the same text too,
 except Nintendo's multitap library: Rev 1 rebuilds it (its markers change from `END OF MULTI5 BIOS` to a
-`START OF MULTI5 BIOS` / `END OF MULTI5 BIOS` pair). The rest of the Super Nintendo differences sit in code banks
-`$80`-`$82`, `$8A` and `$A6`-`$A7`, mostly as moved addresses; they weren't gone through one by one.
+`START OF MULTI5 BIOS` / `END OF MULTI5 BIOS` pair). Both Super Nintendo revisions were disassembled and their
+instructions compared with code addresses masked out. Almost every difference is a shifted address: Rev 1 inserts 14
+bytes of RAM at `$1D3D`, so everything from the old `$1D3D` on moves up by `$0E`. What's left is small:
+
+- **Palette uploads move into vblank.** The original sends some palette changes to CGRAM straight away (`JSR $8AA9AD`
+  from `$8A9AF0`-`$8A9B6F`, in the middle of a frame). Rev 1 queues them instead (size `$1D3D`/`$1D3F`, source
+  `$1D41`/`$1D44`, colour `$1D47`/`$1D49`) and its NMI handler sends them (`$8AA855`). Screen set-ups also keep the
+  screen off: `$8AEEB6` adds a write of `$8F` to `$2100`, and five writes of 0 to `$2100` become `$80` (`$8A8469`,
+  `$8ABA39`, `$8AEB71`, `$8AF0F7`, `$8AF88E`).
+- **Player logic.** The four copies of the per-player code (banks `$81`, `$82`, `$A6`, `$A7`) get the same three
+  changes: a new check that `$0BE9` is between -7 and 7 before a move that uses the random number (`$8196EA`), a
+  constant changed from 252 to 220 (`$81ABA4`), and an early exit when `$0C19` is this player's number
+  (`$81C83F`). `$9A8088` now clears `$0BE9` at ±20 instead of ±10, and the start-of-game set-up stores 38 in `$0AA2`
+  instead of 120 (`$A7FB05`).
+- A routine that clears `$7F:C2C0` moves from bank `$80` to bank `$A6` (`$80AAA7` becomes a `JSL`).
+
+None of it is a new code or a removed one.
 
 ## Genesis and Super Nintendo: music
 

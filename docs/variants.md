@@ -40,6 +40,22 @@ table's bytes, or for a table of the same shape), the text in the ROM or on the 
 - **Rev 1** adds a region lock (see [secrets.md](secrets.md)).
 - **NBA Jam (Japan)** on Game Gear is Rev 1 with a Japanese header and two players' ratings changed (file offset
   `0x57CE7`); text and codes are the same.
+- **Game Gear Rev 1** reads the console's region at boot (port `$00` bit 6, `$084B`) and leaves the ™ off the SEGA
+  logo on a Japanese console. That's all it changes: with the check forced the other way in BizHawk, the logo loses
+  its ™ and the legal screen after it is the same. The original Game Gear cart reads the same bit only at `$1E07E`,
+  to pick one of two screen positions.
+
+## Region checks
+
+Every cartridge was searched for reads of the console's region: `$213F` on the Super Nintendo, `$A10001` on the
+Genesis and 32X, port `$00` bit 6 on the Game Gear.
+
+- **Super Nintendo:** NBA Jam and Tournament Edition (every revision and beta) never read it. Both Hang Time carts
+  do; the US one shows its NTSC lockout screen on a PAL console (see [hangtime.md](hangtime.md#not-covered)).
+- **Genesis and 32X:** NBA Jam Rev 1 has the lockout described in [secrets.md](secrets.md). Tournament Edition on
+  Genesis (`$302`) and 32X (`$804`) runs the same standard check, but their headers list every region (`JUE`, and
+  `F` on 32X), so it always passes. The original NBA Jam and both Tournament Edition carts also read the region to
+  set a flag on European consoles (`$FF1D70` in NBA Jam). Hang Time on Genesis never reads it.
 
 ## Tournament Edition, Super Nintendo
 

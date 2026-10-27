@@ -2,6 +2,16 @@
 
 Changes to the [secret codes page](https://maxxthunder.github.io/nbajam/codes.html) and [password checker](https://maxxthunder.github.io/nbajam/). The version is shown at the bottom of each page. **Codes page** and **Checker** are what visitors see; **Notes** are the [research notes](docs/); **README** is this repo's front page.
 
+## 1.6.5 (2026-10-27)
+- **Notes:** Super Nintendo Hangtime hides a packed sound-test program with its own sound driver and song; nothing in
+  the game loads it. `tools/htsnes_soundtest.py` rebuilds it as a ROM that plays.
+- **Notes:** Super Nintendo Hangtime's code coverage raised to 53.1%, with its multitap warning screen; the Super
+  Nintendo NBA Jam multitap join code reached from the title menu; Hangtime arcade image coverage raised by 80.
+- **Notes:** "MIDWAY sucks!" found unused in Genesis Hangtime; Saturn Tournament Edition's button combinations
+  explained (A+B+C quits from pause, Start+A+B+C resets).
+- **Notes:** what Super Nintendo NBA Jam Rev 1 changes; region checks on every cartridge; Game Gear Rev 1 leaves the
+  ™ off the SEGA logo on Japanese consoles.
+
 ## 1.6.4 (2026-10-27)
 - **Notes:** music checked on six more versions (Genesis and Super Nintendo NBA Jam and Hangtime, Super Nintendo
   Tournament Edition, 32X): none has unused songs.

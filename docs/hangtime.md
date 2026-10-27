@@ -319,11 +319,13 @@ All three entered in BizHawk.
 
   <img src="images/genesis_hangtime_default_records.png" alt="Genesis attract mode: Greatest Players and Experienced Players, listing the 13 names" width="648">
 - "SVEN-BERTIL", "EVERT", "KROKODILEN" and "CARL-HENRIK" sit after "PRESS  START" at `$5A30` with nothing pointing at them.
+- "MIDWAY sucks!" sits between two routines at `$CE12` in both carts. No absolute pointer or PC-relative `LEA`/`PEA`
+  reaches it.
 
 ### Music
 
-Neither cart has unused music, apart from the Super Nintendo's Alfatech song (see
-[Checked against published lists](#checked-against-published-lists)).
+Neither cart has unused music in its own sound driver. The Super Nintendo cart also carries a second driver with a
+song of its own, packed away as a separate program (below).
 
 - **Genesis.** The sound driver is GEMS (banks set up from `$A34`: patches `$AC81C`, envelopes `$ACF27`, sequences
   `$55040`, samples `$56F09`), with 131 sequences. The songs are 30-35 (4 to 7 tracks); the rest are one-track sounds
@@ -331,6 +333,24 @@ Neither cart has unused music, apart from the Super Nintendo's Alfatech song (se
   by `$37DDE` and `$19D44`.
 - **Super Nintendo.** The music comes in two sets, each loaded by `$C5B49C` from its tables at `$C5B559`, and the game
   loads both (with 0 and with 1).
+
+### Super Nintendo: the packed sound test
+
+The RNC block at file offset `0x2192A2` (`$E192A2`) is a whole program. Every other block is unpacked by `$C2FDAB`,
+whose callers load the address as two immediates (`LDX #low`, `LDA #bank`) or from a table. This one has no caller, and
+no pointer in any form. It unpacks to 32 KB: a LoROM image with its reset vector at `$8000`. The packed copy has one
+stray byte in front (`$18`) and is missing the `E` from its hex-digit table, so the code before that table is one
+byte off.
+
+The program sets up its own sound chip code: it waits for the IPL handshake and uploads `$559F` bytes from `$7E:8282` to
+`$0400` in the sound chip. Those bytes aren't SLICK/Audio, the game's driver at `$C5:C5DA`, and the two share
+almost nothing. The rest is a test screen: it prints the APU ports `$2140`-`$2142` as six hex digits and turns the
+bits of `$2143` into eight channel meters. It never loads a font, so the screen stays blank. Rebuilt as its own
+cartridge in BizHawk, it plays a song. A published list credits a second driver and song in this cart to Alfatech,
+and this is the only other sound chip code in the ROM.
+
+`tools/htsnes_soundtest.py` makes a playable `.sfc` from the US or European cart. It fixes the two bytes, points the
+upload at the ROM copy of the data, and lets the reset entry run on into the test loop.
 
 ### European versions
 
@@ -366,11 +386,12 @@ Claims from published lists, checked here:
   ("OLAV MOERKRID: MILK OVER ROAD", "NILS ERIK HATLEM: THIS LAME LINKER"), "THIS SCREEN MADE BY OLAV & TORE" and "THANK
   YOU FOR PLAYING NBA HANGTIME!".
 - **Genesis: SVEN-BERTIL, EVERT, KROKODILEN, CARL-HENRIK** at `$5A30`: confirmed unused.
-- **Super Nintendo: the "Fourth Dimension" music.** A published list asks whether anything plays it. Nothing does: the only code in
-  the ROM that writes to the sound chip's ports is the SLICK/Audio uploader (`$C5:C080`, run once at boot with the
+- **Super Nintendo: the "Fourth Dimension" music.** A published list asks whether anything plays it. Nothing in the game does: the only
+  unpacked code in the ROM that writes to the sound chip's ports is the SLICK/Audio uploader (`$C5:C080`, run once at boot with the
   driver at `$C5:C5DA`) and a second, uncalled copy of an upload loop (`$C5:B7FD`/`$C5:B810`) that sends the same SLICK
   driver. Pointing the boot upload at that second copy in BizHawk gave silence, as a driver waiting for commands would.
-  No routine decompresses or uploads the Alfatech driver, so the song can't be heard without patching the game.
+  The second driver and its song are in an RNC block that nothing points at (see
+  [Super Nintendo: the packed sound test](#super-nintendo-the-packed-sound-test)), so the game itself can't play it.
 - **N64: the "unused" credits play.** A published list says there's no way to show them. Attract mode (`0x80044120`) counts its
   loops in `0x800A76BC` and calls the credits routine (`0x80044AC8`, the only code that loads those strings) whenever
   the count is 2 mod 4: the third loop, about 8 minutes after power-on, and every fourth after that. Checked in BizHawk
@@ -450,18 +471,30 @@ tip-off with each of the 13 match-up codes entered (MAME, a tap on the blitter's
 - The rest of the arcade's unreferenced images. A log of every blitter offset over 36,000 frames of attract mode and
   18 runs of random-input play (16 of them four-player, 8 of those stepping each player to a random team at team
   select) drew 3,693 of the 7,145 pointed-to images, still too few to call anything unused: the last runs each added
-  about 35. The unreferenced headers are sorted above; they could still be reached by address arithmetic in code no
-  test ran.
+  about 35. Two directed runs added 80 more: one played a game as each of the 61 name-and-PIN entries, the other
+  picked each of the 29 teams in turn. Grouped by the pointer tables that hold them, 3,206 of the images not yet
+  drawn sit in tables where other entries were drawn (frames and team or player sets), and 271 sit only in the 108
+  tables none of whose entries was drawn. The unreferenced headers are sorted above; they could still be reached by
+  address arithmetic in code no test ran.
 - Arcade code coverage: MAME's Lua can't see every instruction fetch at a usable speed, so there's no list of routines
   that never run.
 - Super Nintendo code coverage. Three 90,000-frame Mesen 2 runs with random input on a pad and a multitap ran 52,477
-  of the 110,988 instructions the disassembler traces (47.3%). Most of the rest is the front end in bank `$C6`
-  (menus, name entry, records), which random input doesn't get far into, so there's no list of unused routines yet.
-  One part that never ran is a region check: on a PAL console (`$213F` bit 4) the US cart shows "This NTSC game pak
-  is not designed for your Super NES/Super Famicom" (`$C30DF8`; seen in Mesen set to PAL).
-- Super Nintendo graphics. The cart has 248 RNC-packed blocks, and 171 were read in the Mesen runs. 13 of the other 77
-  have no 24-bit pointer; unpacked, they look like team logos and name labels, probably reached through split
-  bank/address tables for teams the runs didn't pick.
+  of the 110,988 instructions the disassembler traces (47.3%). Most of the rest was the front end in bank `$C6`
+  (menus, name entry, records), which plain random input doesn't get far into. Three more 300,000-frame runs kept a
+  save state each time new code ran and restarted from those states with random taps, which keeps the input in the
+  menus. That brought it to 58,903 (53.1%). 145 of the 153 calls to the graphics unpacker have now run; the other eight
+  are the multitap warning below (four), two team-table loads (`$C6A705`, `$C6A724`) and a branch at `$C7014F`. Large
+  parts of bank `$C6` still haven't run (`$C673A2`-`$C6862A`, `$C695D9`-`$C6A40E`), so there's no list of unused
+  routines yet. Two screens that need a particular console set-up never ran in those runs:
+  - On a PAL console (`$213F` bit 4) the US cart shows "This NTSC game pak is not designed for your Super NES/Super
+    Famicom" (`$C30DF8`; seen in Mesen set to PAL).
+  - With a multitap in port 1, Nintendo's connect check (`$C1C627`, marked "MODIFIED FROM SHVC MULTI5 CONNECT CHECK
+    Ver1.00") sends the game to `$C30BEA`, a warning that the adapter must go in socket 2 (seen in Mesen).
+- Super Nintendo graphics. The cart has 248 RNC-packed blocks. The unpacker (`$C2FDAB`) takes each block's address
+  as two immediates or from a table, and every block but one has a caller. The Mesen runs have now read 228 of
+  them. Of the other 20, 18 are in the 29-entry per-team tables (`$C0A08D`, `$C0A680`, `$C56619`, `$C5B75C`), for
+  teams the runs didn't pick. One is the multitap warning's picture (`$E9FCB0`). The last is the packed sound test
+  (above), which has no caller.
 
 ## Tests
 
