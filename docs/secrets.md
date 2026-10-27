@@ -289,8 +289,11 @@ that never ran, the parts that read the pads are the multitap reader (`$80B0E2`)
 joining a game in progress (`$8A8FBE`-`$8A9444`, `$8AEB6C`-`$8AEBEF`), which these one-pad runs couldn't reach. A
 later run with a multitap in port 2 (Mesen 2, all four pads pressing Start and A from the title screen, then random
 input in play) ran the whole multitap reader, so every read of the pad registers in the game has now run, and 20 of
-the 59 instructions at `$8AEB6C`; `$8A8FBE`-`$8A9444` still never ran. No unknown button check turned up, but this
-still isn't a proof.
+the 59 instructions at `$8AEB6C`; `$8A8FBE`-`$8A9444` still never ran. A later run started the game from pad 2
+instead of pad 1: the screen at `$8A8B7D` then takes the branch for player 1 not having joined (`$8A8FBE`), so 156 of
+the 484 instructions in that range have now run, and 23 of the 59 at `$8AEB6C`. What's left is `$8A91BD`-`$8A9444`
+(265 instructions), the same screen's branch for when `$1C5D` isn't 0, which no run reached. No unknown button check
+turned up, but this still isn't a proof.
 
 ## Sega CD: disc files
 
@@ -348,6 +351,18 @@ Apart from that, the two Genesis revisions have the same text. The Super Nintend
 except Nintendo's multitap library: Rev 1 rebuilds it (its markers change from `END OF MULTI5 BIOS` to a
 `START OF MULTI5 BIOS` / `END OF MULTI5 BIOS` pair). The rest of the Super Nintendo differences sit in code banks
 `$80`-`$82`, `$8A` and `$A6`-`$A7`, mostly as moved addresses; they weren't gone through one by one.
+
+## Genesis and Super Nintendo: music
+
+Neither cart has unused music.
+
+- **Genesis.** The sound driver is GEMS, as on Tournament Edition (banks set up from `$386`: patches `$16E6CE`,
+  envelopes `$16F9C6`, sequences `$16FD98`, samples `$171B41`), with 95 sequences. The start routine `$1C6A44` is
+  called with 1, 2, 3 and 4, and with 5 or 6 (a flag at `$FF1E3E` toggles between them). The sound table at
+  `$1C6F98` (8 bytes per ID, sequence in the last word) starts 11-40, 50-65, 80-89 and 91-94. Of the 31 sequences
+  nothing starts, 29 are empty, and 47 and 48 are half-second sounds (recorded in MAME from a patched copy).
+- **Super Nintendo.** The music routine `$BDFD8F` unpacks one of four songs from the table at `$BDFDE3` and sends it
+  to the sound chip. The game calls it with 0 (`$808076`), 1 and 3 (`$80857B`, `$808576`) and 2 (`$8AE992`).
 
 ## Super Nintendo: packed graphics
 

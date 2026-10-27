@@ -2,6 +2,14 @@
 
 Changes to the [secret codes page](https://maxxthunder.github.io/nbajam/codes.html) and [password checker](https://maxxthunder.github.io/nbajam/). The version is shown at the bottom of each page. **Codes page** and **Checker** are what visitors see; **Notes** are the [research notes](docs/); **README** is this repo's front page.
 
+## 1.6.4 (2026-10-27)
+- **Notes:** music checked on six more versions (Genesis and Super Nintendo NBA Jam and Hangtime, Super Nintendo
+  Tournament Edition, 32X): none has unused songs.
+- **Notes:** the Super Nintendo multitap join code mostly reached by starting from pad 2; Super Nintendo Hangtime's
+  code coverage and its PAL lockout screen; Super Nintendo Hangtime's packed graphics checked.
+- **Notes:** Hangtime arcade image coverage raised from 2,000 to 3,693 of 7,145; one image with no pointer (a dark
+  88 × 5 strip) turns out to be drawn.
+
 ## 1.6.3 (2026-10-27)
 - **Codes page:** Genesis Tournament Edition's rainbow arc code says what it does: every shot stays in the air half a
   second longer, on a much higher arc.

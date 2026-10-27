@@ -320,6 +320,18 @@ All three entered in BizHawk.
   <img src="images/genesis_hangtime_default_records.png" alt="Genesis attract mode: Greatest Players and Experienced Players, listing the 13 names" width="648">
 - "SVEN-BERTIL", "EVERT", "KROKODILEN" and "CARL-HENRIK" sit after "PRESS  START" at `$5A30` with nothing pointing at them.
 
+### Music
+
+Neither cart has unused music, apart from the Super Nintendo's Alfatech song (see
+[Checked against published lists](#checked-against-published-lists)).
+
+- **Genesis.** The sound driver is GEMS (banks set up from `$A34`: patches `$AC81C`, envelopes `$ACF27`, sequences
+  `$55040`, samples `$56F09`), with 131 sequences. The songs are 30-35 (4 to 7 tracks); the rest are one-track sounds
+  or empty. A MAME run of attract mode and a random-input game started 30, 31, 32 and 34, and 33 and 35 are started
+  by `$37DDE` and `$19D44`.
+- **Super Nintendo.** The music comes in two sets, each loaded by `$C5B49C` from its tables at `$C5B559`, and the game
+  loads both (with 0 and with 1).
+
 ### European versions
 
 The European Super Nintendo and Genesis cartridges have the same name tables, match-up numbers, joystick sequences,
@@ -409,9 +421,10 @@ was drawn from the match-up screen through tip-off and into the first quarter. T
 **The rest of L1.3's unreferenced headers.** Of its 578 headers with no pointer, 107 are pointed to by some other
 revision (mostly Maximum Hangtime's extra players' name labels and heads, and the 3 × 2 markers before each head set),
 matched by graphics offset and size. That leaves 471 that no revision of either game points to, 258 of a usable size.
-Not having a pointer doesn't prove an image unused, since code can reach one by adding to another's address. None of
-the 258 was drawn in the attract-mode and random-game logs, or from the match-up screen through tip-off with each of
-the 13 match-up codes entered (MAME, a tap on the blitter's offset registers). What they are:
+Not having a pointer doesn't prove an image unused, since code can reach one by adding to another's address. One of
+the 258 is reached that way: a dark 88 × 5 strip (`FFC2A640`) whose graphics address shows up in every game log. None
+of the other 257 was drawn in the attract-mode and random-game logs (18 runs), or from the match-up screen through
+tip-off with each of the 13 match-up codes entered (MAME, a tap on the blitter's offset registers). What they are:
 
 - **A player animation** (`FFD4D570`-`FFD4E9B0`): 19 headless frames of a player in a turquoise kit, a high kick, then
   a run-up and a leap; plus a standing frame in the same palette (`FFF89920`, `FFDC5220`).
@@ -435,10 +448,20 @@ the 13 match-up codes entered (MAME, a tap on the blitter's offset registers). W
 ## Not covered
 
 - The rest of the arcade's unreferenced images. A log of every blitter offset over 36,000 frames of attract mode and
-  two games with random inputs drew only 2,000 of the 7,145 pointed-to images, too few to call anything unused. The
-  unreferenced headers are sorted above; they could still be reached by address arithmetic in code no test ran.
+  18 runs of random-input play (16 of them four-player, 8 of those stepping each player to a random team at team
+  select) drew 3,693 of the 7,145 pointed-to images, still too few to call anything unused: the last runs each added
+  about 35. The unreferenced headers are sorted above; they could still be reached by address arithmetic in code no
+  test ran.
 - Arcade code coverage: MAME's Lua can't see every instruction fetch at a usable speed, so there's no list of routines
   that never run.
+- Super Nintendo code coverage. Three 90,000-frame Mesen 2 runs with random input on a pad and a multitap ran 52,477
+  of the 110,988 instructions the disassembler traces (47.3%). Most of the rest is the front end in bank `$C6`
+  (menus, name entry, records), which random input doesn't get far into, so there's no list of unused routines yet.
+  One part that never ran is a region check: on a PAL console (`$213F` bit 4) the US cart shows "This NTSC game pak
+  is not designed for your Super NES/Super Famicom" (`$C30DF8`; seen in Mesen set to PAL).
+- Super Nintendo graphics. The cart has 248 RNC-packed blocks, and 171 were read in the Mesen runs. 13 of the other 77
+  have no 24-bit pointer; unpacked, they look like team logos and name labels, probably reached through split
+  bank/address tables for teams the runs didn't pick.
 
 ## Tests
 

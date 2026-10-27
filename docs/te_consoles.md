@@ -501,6 +501,14 @@ Claims from published lists that could be tested here, and what came of them:
   loudness over time, not by ear). Sequences `$2F`, `$30` and
   `$4D`, also never started, are silent or a blip. A published list gives the unused tracks as 80, 88 and 89, which
   don't match the driver's numbers.
+- **32X: no unused music.** The same GEMS driver (sequences at `$986584`, cartridge `0x86584`) has 127 sequences, and
+  only 5 and 6 are songs. The start routine (`$8E7164`) is called with 5 or 6 and through the sound table at cartridge
+  `0x28E3E`. Of the sequences that hold anything, only 47, 48 and 77 are never started, and they're one- and
+  two-track sounds. The slots that hold the Genesis's four unused songs (0, 4, 8 and 9) are empty here.
+- **Super Nintendo: no unused music.** The songs are in bank `$39` (`$39:8B1E`, `$9FFE`, `$AC86` and `$BC32`, the
+  last also holding six short pieces, 4-9), and code loads each block. Songs 0-7 and 9 are played by number through
+  `$BBF63F`, `$BBF5F4`, `$BBF5FE` and `$BBF606`. Only 8 has no caller; played from a patched copy in BizHawk, it's a
+  sound about a second long, like 4 and 9.
 - **Developer messages**, all present: "Snake Woz Ere!" (32X `0x341F8`), "I Love Emma Wadrop" (32X `0x3B9DC`), "I Luv
   Claire Reily" (Genesis `0x2AB374`), and the Super Nintendo's "SLICK/Audio v1.01 Copyright(C)1994 Bitmasters,Inc."
   (`0x17861B`) and leftover NBA Jam ending text (`0xD6A7A`).
