@@ -95,7 +95,8 @@ not 3.0 2/26, 4.0 3/03 or 4.0 3/23. **Team Swap** (halftime substitutions, hold 
 The code for Fatalities is still there in the later revisions; jumps were added to skip it. Each side of team select
 has its own check, and both lead to "FATALITIES ENABLED!" (`FFAA3FA0` in rev 2.1). Rev 3.0 2/26 adds a jump over one
 of them (`FF9C2460`) but not the other (`FF9C51A0`-`FF9C5250`), and rev 3.0 3/04 skips both. In MAME, entering the
-code on either side of 3.0 2/26 reached neither check, so whether the other side still works there wasn't confirmed.
+code on either side of 3.0 2/26 reached neither check: the per-player process that holds them (`FF9C1000` on) left
+its loop before the button count, so whether the other side still works there wasn't confirmed.
 
 ## Backboard shatter (revs 1.00 to 2.1)
 
@@ -192,10 +193,15 @@ OKI 4-bit ADPCM at about 7.6 kHz:
 | `$3C` | "shit" | 0.26 s |
 
 Decoded with a short script and joined as `$39` + `$3A` + `$3B` (censored) and `$39` + `$3C` + `$3B` (uncensored);
-the clips are on the codes page. The published commands (7A B5, 7A C9) are sent the way the game sends them (see
-[arcade.md](arcade.md#sound-board)), but from a freshly reset board in MAME they play player-name calls instead. The
-four pieces have speech records (`$4015` list entries `$49`, `$5B`, `$5C`, `$62`), but no command was found that
-plays them. The samples themselves were identified by ear.
+the clips are on the codes page. The published commands are the sound program's own: `7A B5` plays the pieces in the
+censored order and `7A C9` the uncensored one ([arcade.md](arcade.md#sound-board)). No release revision sends either:
+the program has no sound script with command `$1B5` or `$1C9`.
+
+**The Nani Edition plays the uncensored line.** Its two random comment lists (`FF9ADCD0`, 12 scripts, picked by
+`FF9ADB80`; `FF9ADFA0`, 8 scripts, picked by `FF9ADE50`) each end with a script that sends `$1C9` (`FF9A1EC0`). Rev
+4.0's matching list (`FF9ACB90`) has eight scripts and no such entry. The random routine returns 0 to n, so each list
+can pick it. In MAME, four runs of random play on the Nani Edition sent `7A C9` once, during play after a blocked
+shot.
 
 ## Unused graphics
 

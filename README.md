@@ -1,6 +1,6 @@
 # NBA Jam and NBA Hangtime: Secret Codes and Password Checker
 
-**[Secret codes →](https://maxxthunder.github.io/nbajam/codes.html)** &nbsp; **[Password checker →](https://maxxthunder.github.io/nbajam/)** &nbsp;[![v1.6.6](https://img.shields.io/badge/version-1.6.6-e8742c)](CHANGELOG.md)
+**[Secret codes →](https://maxxthunder.github.io/nbajam/codes.html)** &nbsp; **[Password checker →](https://maxxthunder.github.io/nbajam/)** &nbsp;[![v1.6.7](https://img.shields.io/badge/version-1.6.7-e8742c)](CHANGELOG.md)
 
 <p align="center">
   <img src="tools/img/logo_nbajam.png" alt="NBA Jam" height="96">
@@ -32,12 +32,12 @@ needs `tools/img/` and `tools/audio/` next to it for pictures and sound).
 | NBA Jam: arcade | ✓ | ✓ | tank game, hidden menu and copyright screen, preset records, unused graphics |
 | NBA Jam: Super Nintendo, Genesis | ✓ | ✓ | passwords (Super Nintendo), announcer codes (Genesis) |
 | NBA Jam: Sega CD, Game Boy, Game Gear | ✓ | ✓ | |
-| Tournament Edition: arcade | ✓ | ✓ | hidden menu, preset records, other codes |
+| Tournament Edition: arcade | ✓ | ✓ | hidden menu, preset records, other codes, unused commentary, removed features |
 | Tournament Edition: Super Nintendo, Genesis, 32X | ✓ | ✓ | hidden title-menu codes, unused heads, unused courtside ads (Super Nintendo) |
 | Tournament Edition: Saturn, PlayStation | ✓ | ✓ | preset records, three cut PlayStation characters |
 | Tournament Edition: PC, Jaguar | ✓ | ✓ | Jaguar keypad codes |
 | Tournament Edition: Game Boy, Game Gear | ✓ | | |
-| NBA Hangtime, Maximum Hangtime: arcade | ✓ | ✓ | joystick codes, trivia contest, unused graphics |
+| NBA Hangtime, Maximum Hangtime: arcade | ✓ | ✓ | joystick codes, trivia contest, rooftop extras, unused graphics |
 | NBA Hangtime: Super Nintendo, Genesis | | ✓ | preset records, joystick codes ✓, Genesis options screen ✓ |
 | NBA Hangtime: PlayStation, N64 | ○ | ✓ | joystick codes ✓ |
 
@@ -61,6 +61,8 @@ Codes that no published list had are marked **★ New** on the page. A few terms
 **Tournament Edition**
 - Arcade: Dennis Rodman in two revisions, and the prototype and revision 2.1 birthdays.
 - Arcade: name labels for Shaquille O'Neal and Derrick McKey that no revision uses.
+- Arcade: the uncensored "Get that shit outta here" plays in the Nani Edition prototype; two announcer calls, "It's
+  good!" and "Need to score!", that nothing can play; revisions 1.00 to 2.1 can shatter the backboard.
 - Title-menu codes on Super Nintendo, Genesis and 32X (a record one team short of the All-Stars, and the 32X's own).
 - Super Nintendo: six unused in-game heads besides seven already published.
 - Genesis: fourteen unused in-game heads, a set of its own; 32X: four more.
@@ -79,6 +81,8 @@ Codes that no published list had are marked **★ New** on the page. A few terms
 - Arcade: seven red rule captions ("NO PUSHING ALLOWED!", "TOURNAMENT MODE" and others) and two shorter
   "WINNER STAYS ON FREE" notices that no revision draws.
 - Arcade: a player animation, five portraits, ten name labels and four badges that no revision points to.
+- Arcade: every 100th attract demo is played on the rooftop court, and holding Up + Right at a rooftop tip-off plays
+  a "boing" heard nowhere else.
 - Maximum Hangtime: 21 extra NBA players.
 - Super Nintendo: two joystick codes no list had, and all eight codes together play the cheat ending.
 - Super Nintendo: a bug where entering no match-up number gives your team goaltending and stealth turbo.
@@ -148,7 +152,7 @@ MAME (arcade) and DOSBox-X (PC).
 
 | Notes | Covers |
 |-------|--------|
-| [docs/arcade.md](docs/arcade.md) | The original arcade game |
+| [docs/arcade.md](docs/arcade.md) | The original arcade game, plus the arcade sound board, operator menus and code coverage of all three |
 | [docs/secrets.md](docs/secrets.md) | NBA Jam on Super Nintendo, Genesis, Game Boy, Game Gear and Sega CD, and the leftovers above |
 | [docs/arcade_te.md](docs/arcade_te.md) | Arcade Tournament Edition, all nine revisions |
 | [docs/te_consoles.md](docs/te_consoles.md) | Tournament Edition on every home version, including the match-up tables |
@@ -185,6 +189,7 @@ python tools/nbajam_te_password.py RAT BZZ6DZ37KY
 | `tools/disasm.py`, `tools/reasm.py` | SNES disassembler and reassembler |
 | `tools/arcade_gfx.py` | Arcade image decoder for NBA Jam, Tournament Edition and NBA Hangtime: every image in the graphics chips, and which ones nothing points to |
 | `tools/iguana_unpack.py` | Unpacker for the original Super Nintendo NBA Jam's packed graphics, with a scan for every block |
+| `tools/rnc.py`, `tools/htsnes_soundtest.py` | RNC unpacker for Super Nintendo NBA Hangtime, and a rebuild of its hidden sound-test program as a playable ROM |
 | `tools/dis/` | Small disassemblers (68000, SH-2, Z80, SM83, MIPS), a DOS/4GW LE reader, and Game Boy / Game Gear pad-check scanners (need `capstone` for 68000, SH-2 and MIPS) |
 | `tools/emu/` | Scripted runners for BizHawk, MAME, Mesen 2 and DOSBox-X (set `EMUHAWK`, `MAME`, `MESEN`, `DOSBOX`) |
 | `tools/tests/` | The emulator tests behind the codes page: match-up codes on most versions, cut characters, hidden screens, unused DIP switches, Super Nintendo TE courtside ads and heads, Genesis and 32X TE heads, and NBA Hangtime's names, match-up and joystick codes |

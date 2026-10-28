@@ -12,8 +12,11 @@ proof.
   [the tank game's reward](arcade.md#the-tank-games-reward-rev-3),
   [match-up codes](arcade.md#match-up-codes-rev-301),
   [the hidden copyright message](arcade.md#hidden-copyright-message),
-  [the hidden stats menu](arcade.md#hidden-stats-menu-rev-301) and
-  [unused graphics](arcade.md#unused-graphics).
+  [the hidden stats menu](arcade.md#hidden-stats-menu-rev-301),
+  [unused graphics](arcade.md#unused-graphics), and for all three arcade games
+  [operator-menu leftovers](arcade.md#operator-menu-leftovers),
+  [the sound board](arcade.md#sound-board) and
+  [code and image coverage](arcade.md#code-and-image-coverage).
 - **[secrets.md](secrets.md)**: Super Nintendo, Genesis, Sega CD, Game Boy and Game Gear.
   [Secret characters](secrets.md#secret-characters),
   [Genesis speech initials](secrets.md#genesis-speech-initials),
@@ -28,6 +31,7 @@ proof.
 - **[arcade_te.md](arcade_te.md)**: the arcade game, all nine revisions.
   [Secret characters](arcade_te.md#secret-characters),
   [match-up codes](arcade_te.md#match-up-codes),
+  [the backboard shatter](arcade_te.md#backboard-shatter-revs-100-to-21),
   [the Secret Midway menu](arcade_te.md#secret-midway-menu),
   [unused commentary](arcade_te.md#unused-commentary) and
   [unused graphics](arcade_te.md#unused-graphics).
@@ -45,6 +49,7 @@ proof.
   [Secret players](hangtime.md#arcade-secret-players),
   [Tonight's Match-Up codes](hangtime.md#arcade-tonights-match-up-codes),
   [joystick codes](hangtime.md#arcade-match-up-joystick-codes),
+  [the rooftop court outside the code](hangtime.md#the-rooftop-court-outside-the-code),
   [the trivia contest](hangtime.md#arcade-the-trivia-contest),
   [Maximum Hangtime](hangtime.md#maximum-hangtime),
   [N64 and PlayStation](hangtime.md#n64-and-playstation),
@@ -53,7 +58,8 @@ proof.
 
 ## Other versions and the passwords
 
-- **[variants.md](variants.md)**: betas, prototypes and regional versions.
+- **[variants.md](variants.md)**: betas, prototypes and regional versions,
+  [region checks](variants.md#region-checks) and [what changed between arcade revisions](variants.md#arcade-revisions).
 - **[nbajam_password.md](nbajam_password.md)**: both password formats, the key made from the initials, and the
   encoder and decoder.
 

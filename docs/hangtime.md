@@ -135,11 +135,12 @@ two exceptions:
 - **Every 100th attract-mode demo is played on the rooftop.** `FFA0A830h` counts demos in `@1138D00h`; when the count
   reaches 100 it starts over and sets the rooftop and ABA-ball flags (`@1136C00h`, `@1136BF0h`) for that one demo.
   Checked in MAME by setting the count to 99: the next demo was a night rooftop game.
-- **Holding Up + Right at the start of a rooftop game plays a sound used nowhere else.** At the start of every rooftop
+- **Holding Up + Right at the start of a rooftop game plays a "boing" used nowhere else.** At the start of every rooftop
   game, `FF8C0BE0h` reads each player's input word (`@11322A0h` + 16 × player). If any player is holding exactly Up +
   Right (`9`), it plays sound script `FF9F85A0h` (DCS command `$0BA2`, used nowhere else in the program) instead of
   calling `FF8A7D80h`. Checked in MAME: with Up + Right held through the tip-off of a rooftop game, `$0BA2` goes to the
-  sound board, and without it, it doesn't; the screen is the same either way. What the sound is hasn't been identified.
+  sound board, and without it, it doesn't; the screen is the same either way. The sound is a cartoon "boing"; a
+  recording is on the codes page.
 
 ## Arcade: the trivia contest
 
@@ -489,9 +490,16 @@ tip-off with each of the 13 match-up codes entered (MAME, a tap on the blitter's
   other entries were drawn (frames and team or player sets), and 271 sit only in the 108 tables none of whose entries
   was drawn. The unreferenced headers are sorted above; they could still be reached by address arithmetic in code no
   test ran.
+- Arcade sound (DCS). The main CPU sends each command as two bytes to `@1680000h`, high then low, waiting for the
+  board's acknowledge between them (`FF9F9920h`); `$55AA` followed by `$FF00` sets full volume. Sent one by one in
+  MAME, 1,182 of the commands `$0000`-`$0FFF` make a sound. 776 of those appear in no fixed sound script in the
+  program. Most fall in regular runs (`$04B3`-`$0757` in threes, for instance) that look like calls the game works out
+  from a base number, such as player names, so which sounds are unused isn't settled.
 - Arcade code coverage: those four runs ran 607 of the 1,198 call and jump targets (see
-  [arcade.md](arcade.md#code-and-image-coverage)). What didn't run is operator menus, tests, the credits, and the
-  create-player, trivia and sweepstakes screens.
+  [arcade.md](arcade.md#code-and-image-coverage)). Four more 120,000-frame runs in MAME kept a save state each time new
+  code ran and restarted from those states with random input, which stays in the menus. They added 83, the
+  create-player, record and name-notice screens, for 690 in all (58%). What still hasn't run is operator menus, tests,
+  the credits, and the trivia and sweepstakes screens; nothing in either list is an unknown feature.
 - Super Nintendo code coverage. Three 90,000-frame Mesen 2 runs with random input on a pad and a multitap ran 52,477
   of the 110,988 instructions the disassembler traces (47.3%). Most of the rest was the front end in bank `$C6`
   (menus, name entry, records), which plain random input doesn't get far into. Three more 300,000-frame runs kept a

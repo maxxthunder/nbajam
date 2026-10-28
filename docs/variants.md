@@ -117,7 +117,8 @@ data; the changes below are the ones that mean something. Secret characters and 
 - **TE Nani Edition (5.2 8/11/95):** adds network play ("Enter your scores in national tournaments via NANI Network
   for cash and prizes !"), a NANI UART test, nine game-speed settings instead of five, and six names to the credits
   (Dave DiGiorgio, Gary Pahlow, Mark Holobach, Matt Bolcer, Mike Lynch, Steve Benoit); Jamie Rivett is no longer in
-  them. The backboard shatter is back on.
+  them. The backboard shatter is back on, and the uncensored "Get that shit outta here" is one of its random
+  comments ([arcade_te.md](arcade_te.md#unused-commentary)).
 - **NBA Hangtime L1.1 → L1.2:** L1.1 carries a "TOTAL CARNAGE TEAM:" list (Mark Turmell, John Tobias, Jim Gentile,
   Shawn Liptak, Jon Hey) that nothing points to, probably left over from Total Carnage's operator code. It also has
   text for a high-score reset option and for LOCKUPS and GAMES NOT FINISHED audits. L1.2 drops all of it and renames

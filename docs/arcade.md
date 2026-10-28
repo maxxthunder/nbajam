@@ -248,15 +248,23 @@ register at `$3400`, where the values 3, 2, 1, 0, 7, 6, 5, 4 select the 128 KB b
 The sound program (`u3`) keeps its tables behind pointers at `$4001`-`$401F`. Speech goes through two lists of 5-byte
 records (`$4015` and `$401F`): OKI bank, a type byte (below 2 means switch banks first), phrase number and length. NBA
 Jam has 361 records and Tournament Edition 288. Between them they point to every sample in the OKI phrase tables
-except two, which are the same two in both games: bank 2 phrase `$3A` in NBA Jam (`$38` in TE, 1.11 s) and bank 4
-phrase `$28` (`$27` in TE, 1.30 s). Nothing can play a sample that has no record.
+except two, which are the same two in both games: **"It's good!"** (bank 2 phrase `$3A` in NBA Jam, `$38` in TE,
+1.11 s) and **"Need to score!"** (bank 4 phrase `$28`, `$27` in TE, 1.30 s). Nothing can play a sample that has no
+record, so the announcer never says either.
 
-Which samples the game actually plays is harder to settle. Each of the 512 commands sent eight times to a freshly reset
-board in MAME plays the same phrases every time (130 distinct samples on NBA Jam, 116 on TE). So the program has no
-randomness: what a call plays depends on earlier commands, such as which player's name comes up. Three games of random
-play raise that to 183 of 297 samples (NBA Jam) and 176 of 275 (TE). The rest weren't reached, so they can't be called
-unused from these runs. TE's known unused line ([arcade_te.md](arcade_te.md#unused-commentary)) has records too
-(`$4015` list entries `$49`, `$5B`, `$5C` and `$62`).
+Commands are listed at `$400F` (and `$4019` for the `$7A` page) as a type and a parameter. Types 7 and 18 start
+speech: the parameter picks a script from `$400B` or `$401D`, a channel byte followed by (record, volume) pairs ending
+in `$FF`, which play records from the `$4015` or `$401F` list in turn. Following every command's script shows which
+samples a command can play: all of TE's except the two above, and all of NBA Jam's except those two and a 0.04 s
+sample (bank 5 phrase `$34`). TE's published commands for its unused "Get that…" line are real: `7A B5` plays
+records `$49`, `$5B`, `$5C` (the censored version) and `7A C9` plays `$49`, `$62`, `$5C` (uncensored); see
+[arcade_te.md](arcade_te.md#unused-commentary).
+
+Testing commands from MAME's Lua needs both bytes of a `$7A` command sent within a few milliseconds: the sound program
+waits only that long for the second byte (`$FA2D` in the sound program), and Lua can only write once per frame, so in such a test the second
+byte runs as an ordinary command. Sent that way, all 512 commands, eight times each, played the same phrases every
+time (130 distinct samples on NBA Jam, 116 on TE), so the program has no randomness. Three games of random play raised
+that to 183 of 297 samples (NBA Jam) and 176 of 275 (TE), all of them among the ones the scripts can reach.
 
 ## Code and image coverage
 
@@ -269,7 +277,7 @@ per game logged every fetch and every blitter offset:
 |------|--------------------------------|-------------------------|
 | NBA Jam rev 3.01 | 498 of 869 (57%) | 1,787 of 3,079 (58%) |
 | Tournament Edition rev 4.0 3/23 | 525 of 848 (62%) | 1,816 of 4,207 (43%) |
-| NBA Hangtime L1.3 | 607 of 1,198 (51%) | 155 more than all the earlier runs ([hangtime.md](hangtime.md#not-covered)) |
+| NBA Hangtime L1.3 | 607 of 1,198 (51%); 690 (58%) with save-state runs | 155 more than all the earlier runs ([hangtime.md](hangtime.md#not-covered)) |
 
 The routines that never ran are the operator menus and hardware tests, the CMOS error screens, the beat-all-27-teams
 ending, the credits, and in NBA Hangtime the create-player, trivia and sweepstakes screens. None of them is an unknown

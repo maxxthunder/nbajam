@@ -2,6 +2,16 @@
 
 Changes to the [secret codes page](https://maxxthunder.github.io/nbajam/codes.html) and [password checker](https://maxxthunder.github.io/nbajam/). The version is shown at the bottom of each page. **Codes page** and **Checker** are what visitors see; **Notes** are the [research notes](docs/); **README** is this repo's front page.
 
+## 1.6.7 (2026-10-28)
+- **Codes page:** arcade Tournament Edition: the uncensored "Get that shit outta here" turns out to play in the Nani
+  Edition prototype, as one of its random comments; two announcer calls nothing can play, "It's good!" and "Need to
+  score!" (with recordings); a "Removed features" group with the backboard shatter.
+- **Codes page:** arcade NBA Hangtime: a "Rooftop court extras" group, with every 100th attract demo played on the
+  rooftop and the "boing" that plays when someone holds Up + Right at a rooftop tip-off (with a recording).
+- **Notes:** the arcade sound program's command scripts decoded; NBA Hangtime's DCS sound commands mapped; NBA
+  Hangtime arcade code coverage raised to 58% with save-state runs.
+- **README:** the new finds listed; `tools/htsnes_soundtest.py` added to the tools table.
+
 ## 1.6.6 (2026-10-28)
 - **Notes:** arcade Tournament Edition revs 1.00 to 2.1 could shatter the backboard; rev 3.0 jumps over it. How the
   later revisions skip Fatalities.
