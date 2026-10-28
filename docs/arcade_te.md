@@ -92,6 +92,35 @@ Also checked: **Fatalities** (team select, hold Up and press Pass 20 times) work
 not 3.0 2/26, 4.0 3/03 or 4.0 3/23. **Team Swap** (halftime substitutions, hold Right + Pass) shows
 "TEAM SWAP ENABLED!" on rev 4.0 3/23.
 
+The code for Fatalities is still there in the later revisions; jumps were added to skip it. Each side of team select
+has its own check, and both lead to "FATALITIES ENABLED!" (`FFAA3FA0` in rev 2.1). Rev 3.0 2/26 adds a jump over one
+of them (`FF9C2460`) but not the other (`FF9C51A0`-`FF9C5250`), and rev 3.0 3/04 skips both. In MAME, entering the
+code on either side of 3.0 2/26 reached neither check, so whether the other side still works there wasn't confirmed.
+
+## Backboard shatter (revs 1.00 to 2.1)
+
+Revs 1.00, 2.0 and 2.1 can shatter the backboard; so can the December prototype and the Nani Edition. Rev 3.0 2/26
+added a jump (`FF8A3FD0`) that skips the check, and both 3.0s and both 4.0s have it. In rev 2.1 (`FF8A41A0`-`FF8A4800`,
+run after a made basket):
+
+- Each team keeps a count (`@10EAC80`, `@10EAC90`) that rises on some of its baskets. At a checkpoint between periods
+  (`FF890E10`), a count of 3 or more becomes a countdown of count − 2 baskets.
+- In the 4th quarter or overtime (`@10EAE80` ≥ 3), the basket that ends the countdown breaks the backboard if all of
+  these hold:
+  - it's one of 15 dunks (list at `FF8A4810`);
+  - the dunker is a human player (`@10E62D0` holds the players who pressed Start);
+  - no backboard has been broken yet (`@10EAC20`);
+  - the dunker's rating at +`$40` is 9 or more.
+- The glass then breaks (process `FF8AA9F0`, sound `$2300`), a `$20` timer is set on two players (+`$430`) and
+  `@10EAC20` records the team.
+
+Checked in MAME on rev 2.1 by forcing the quarter, the countdown, the human-player test and the rating: the next dunk
+from the list broke the backboard and players fell. It wasn't seen in unforced play.
+
+<p align="center">
+  <img src="images/te_backboard_shatter.png" alt="Rev 2.1: the backboard breaks on a dunk and the glass falls" width="806">
+</p>
+
 <p align="center">
   <img src="images/te_assist_off.png" alt="ALL COMPUTER ASSISTANCE TURNED OFF! at tip-off" width="400">
 </p>
@@ -163,9 +192,10 @@ OKI 4-bit ADPCM at about 7.6 kHz:
 | `$3C` | "shit" | 0.26 s |
 
 Decoded with a short script and joined as `$39` + `$3A` + `$3B` (censored) and `$39` + `$3C` + `$3B` (uncensored);
-the clips are on the codes page. Sending the published commands (7A B5, 7A C9) to the sound board from MAME's Lua, one byte
-at a time to `$1D01030`, played player-name calls instead, so the board's two-byte command protocol differs from
-that; the samples themselves were identified by ear.
+the clips are on the codes page. The published commands (7A B5, 7A C9) are sent the way the game sends them (see
+[arcade.md](arcade.md#sound-board)), but from a freshly reset board in MAME they play player-name calls instead. The
+four pieces have speech records (`$4015` list entries `$49`, `$5B`, `$5C`, `$62`), but no command was found that
+plays them. The samples themselves were identified by ear.
 
 ## Unused graphics
 

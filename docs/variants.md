@@ -91,3 +91,39 @@ Same secret table as the US disc (file `0`), and `DUK.BIN` still leaves out `PH2
 
 Same 21 files and the same 28-entry secret table, dinosaurs included. `FRONT.BIN` and `QUARTER.BIN` are each 11,032
 bytes larger, and `MAIN.BIN` 16 bytes larger; their English text is unchanged.
+
+## Arcade revisions
+
+Every arcade revision in MAME was compared with the next one: their text, and a disassembly diff (MAME 0.282's `dasm`)
+narrowed to the routines whose code changed. Code and data move between revisions, so most of the raw diff is moved
+data; the changes below are the ones that mean something. Secret characters and codes per revision are in
+[arcade.md](arcade.md), [arcade_te.md](arcade_te.md) and [hangtime.md](hangtime.md).
+
+- **NBA Jam prototypes (1.01 1/23/93, 2.00 1/24/93):** the same text apart from the version line. Their special
+  thanks include Larry DeMar and spell "STEVEN HOWARD"; rev 1.00 drops DeMar and spells Stephen.
+- **NBA Jam 1.00 → 2.00:** the end-of-game text for beating all 27 teams is rewritten (2.00 adds "stay in school!"),
+  "YOUR DEAD!" becomes "YOU ARE DEAD!", and Tim Kitzrow, Tony Scott and Willie Morris Jr. join the credits.
+- **NBA Jam 2.00 → 3.01:** adds the computer-assistance and drone-difficulty settings, the hidden JAM INFO menu, and
+  the power-up test switch setting; Michelle Brown leaves the credits and Frank Suareo joins.
+- **TE prototype 2.00 → 1.00:** besides the location-test message ([arcade_te.md](arcade_te.md#match-up-codes)), the
+  prototype's ending for beating every team is a placeholder: "Whoops, this is a test game and the end has not been
+  programmed in yet. sorry!", then "We'll have a new challenge for you soon. We are updating this game every few
+  days."
+- **TE 2.1 → 3.0 2/26:** the backboard shatter and one side's Fatalities check are jumped over
+  ([arcade_te.md](arcade_te.md#backboard-shatter-revs-100-to-21)). The sound test's "RAIDEN (U13)" becomes "SHOES?
+  (U13)", and the attract text "disallows any special guests" becomes "disallows any hidden features".
+- **TE 3.0 2/26 → 3/04:** the challenge screen's "I DON'T THINK SO." becomes "WE DON'T THINK SO.", its "IT WASN'T
+  THE SHOES." line is dropped, and the other Fatalities check is jumped over too.
+- **TE Nani Edition (5.2 8/11/95):** adds network play ("Enter your scores in national tournaments via NANI Network
+  for cash and prizes !"), a NANI UART test, nine game-speed settings instead of five, and six names to the credits
+  (Dave DiGiorgio, Gary Pahlow, Mark Holobach, Matt Bolcer, Mike Lynch, Steve Benoit); Jamie Rivett is no longer in
+  them. The backboard shatter is back on.
+- **NBA Hangtime L1.1 → L1.2:** L1.1 carries a "TOTAL CARNAGE TEAM:" list (Mark Turmell, John Tobias, Jim Gentile,
+  Shawn Liptak, Jon Hey) that nothing points to, probably left over from Total Carnage's operator code. It also has
+  text for a high-score reset option and for LOCKUPS and GAMES NOT FINISHED audits. L1.2 drops all of it and renames
+  the test DIP switch from "UJ2 # 8" to "SW1 # 1".
+- **NBA Hangtime and Maximum Hangtime, L and M:** each M revision has the same text as the L revision of the same
+  date. The only code change is the number of saved player records: 195 instead of 410 (`$1E0` bits each from CMOS
+  `@1408000h`). The M revisions are probably for boards with less CMOS memory; that's a guess from the numbers.
+- **Maximum Hangtime L0.9 → L1.0:** "CUSTOMISE" becomes "CUSTOMIZE", Dimitri leaves the thanks list and Kevin Day
+  joins it, and "ALL NBA TEAM ROSTERS ACCURATE AS OF 11/1/96" is added.

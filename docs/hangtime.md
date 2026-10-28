@@ -115,7 +115,8 @@ play. The Down lock explains why some published codes end in Down; [Dan Amrich's
 mentions it. The four-at-once code is on no list we found; the published "2-0-0 + Left" outdoor court is really the rooftop code (hold Left, Turbo, Turbo), since
 Turbo presses also count up the first digit.
 
-All NBA Hangtime revisions (L1.1, L1.2, L1.3, M1.1, M1.2, M1.3) have the same two tables.
+All NBA Hangtime revisions (L1.1, L1.2, L1.3, M1.1, M1.2, M1.3) have the same two tables. The M revisions keep
+195 saved player records instead of 410 (see [variants.md](variants.md#arcade-revisions)).
 
 ### Which flags the game reads
 
@@ -128,6 +129,17 @@ two exceptions:
   `FF9EBEE0h` reads the word), but nothing sets it: the only writes are the clears at `FF89F4F0h` and `FF8DA910h`, and
   no gameplay code reads it. Forced on at the match-up in MAME, the caption shows at tip-off and nothing else happens.
   Maximum Hangtime adds the code and the hot spots themselves.
+
+### The rooftop court outside the code
+
+- **Every 100th attract-mode demo is played on the rooftop.** `FFA0A830h` counts demos in `@1138D00h`; when the count
+  reaches 100 it starts over and sets the rooftop and ABA-ball flags (`@1136C00h`, `@1136BF0h`) for that one demo.
+  Checked in MAME by setting the count to 99: the next demo was a night rooftop game.
+- **Holding Up + Right at the start of a rooftop game plays a sound used nowhere else.** At the start of every rooftop
+  game, `FF8C0BE0h` reads each player's input word (`@11322A0h` + 16 × player). If any player is holding exactly Up +
+  Right (`9`), it plays sound script `FF9F85A0h` (DCS command `$0BA2`, used nowhere else in the program) instead of
+  calling `FF8A7D80h`. Checked in MAME: with Up + Right held through the tip-off of a rooftop game, `$0BA2` goes to the
+  sound board, and without it, it doesn't; the screen is the same either way. What the sound is hasn't been identified.
 
 ## Arcade: the trivia contest
 
@@ -472,12 +484,14 @@ tip-off with each of the 13 match-up codes entered (MAME, a tap on the blitter's
   18 runs of random-input play (16 of them four-player, 8 of those stepping each player to a random team at team
   select) drew 3,693 of the 7,145 pointed-to images, still too few to call anything unused: the last runs each added
   about 35. Two directed runs added 80 more: one played a game as each of the 61 name-and-PIN entries, the other
-  picked each of the 29 teams in turn. Grouped by the pointer tables that hold them, 3,206 of the images not yet
-  drawn sit in tables where other entries were drawn (frames and team or player sets), and 271 sit only in the 108
-  tables none of whose entries was drawn. The unreferenced headers are sorted above; they could still be reached by
-  address arithmetic in code no test ran.
-- Arcade code coverage: MAME's Lua can't see every instruction fetch at a usable speed, so there's no list of routines
-  that never run.
+  picked each of the 29 teams in turn. Four more 170,000-frame four-player runs added another 155. Grouped by the
+  pointer tables that hold them (before those last four runs), 3,206 of the images not yet drawn sit in tables where
+  other entries were drawn (frames and team or player sets), and 271 sit only in the 108 tables none of whose entries
+  was drawn. The unreferenced headers are sorted above; they could still be reached by address arithmetic in code no
+  test ran.
+- Arcade code coverage: those four runs ran 607 of the 1,198 call and jump targets (see
+  [arcade.md](arcade.md#code-and-image-coverage)). What didn't run is operator menus, tests, the credits, and the
+  create-player, trivia and sweepstakes screens.
 - Super Nintendo code coverage. Three 90,000-frame Mesen 2 runs with random input on a pad and a multitap ran 52,477
   of the 110,988 instructions the disassembler traces (47.3%). Most of the rest was the front end in bank `$C6`
   (menus, name entry, records), which plain random input doesn't get far into. Three more 300,000-frame runs kept a

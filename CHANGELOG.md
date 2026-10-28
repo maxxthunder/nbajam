@@ -2,6 +2,16 @@
 
 Changes to the [secret codes page](https://maxxthunder.github.io/nbajam/codes.html) and [password checker](https://maxxthunder.github.io/nbajam/). The version is shown at the bottom of each page. **Codes page** and **Checker** are what visitors see; **Notes** are the [research notes](docs/); **README** is this repo's front page.
 
+## 1.6.6 (2026-10-28)
+- **Notes:** arcade Tournament Edition revs 1.00 to 2.1 could shatter the backboard; rev 3.0 jumps over it. How the
+  later revisions skip Fatalities.
+- **Notes:** arcade NBA Hangtime plays every 100th attract demo on the rooftop court, and plays a sound found nowhere
+  else when someone holds Up + Right at the start of a rooftop game; its M revisions keep 195 saved records instead
+  of 410.
+- **Notes:** what changed between every arcade revision; NBA Jam's hidden "LIVES PER PLAY" adjustment and other
+  operator-menu leftovers; how the arcade sound board takes commands, and the two samples nothing can play.
+- **Notes:** arcade code and image coverage measured for all three games (the earlier note said it couldn't be done).
+
 ## 1.6.5 (2026-10-27)
 - **Notes:** Super Nintendo Hangtime hides a packed sound-test program with its own sound driver and song; nothing in
   the game loads it. `tools/htsnes_soundtest.py` rebuilds it as a ROM that plays.

@@ -222,3 +222,55 @@ pointers (`FF8458F0`, `FF8459F0`), then a random 0-6 for the right boards and tw
 `FF845BD0`). The random routine (`FF82DE00`) multiplies a 32-bit random number by n + 1 and keeps the high word, so it
 returns 0 to n and every entry can be picked. MAME's debugger (`-debug -debugger none`, then `dasm` from Lua) gave the
 listing.
+
+## Operator-menu leftovers
+
+NBA Jam, Tournament Edition and NBA Hangtime share Midway's operator code, and some of it belongs to other games.
+
+- **NBA Jam has a "LIVES PER PLAY" adjustment** (2 to 7 lives, factory setting 3; record at `FFB782C0`, help text "THE
+  NUMBER OF LIVES A PLAYER RECEIVES EACH TIME HE STARTS OR CONTINUES A GAME"). The adjustment list skips its record,
+  so the GAME ADJUSTMENT screen never offers it (checked in MAME on rev 3.01). The "AUTO H.S. RESET" record isn't in
+  the list either.
+- All three games keep help text for a graphic-violence setting ("THIS ALLOWS THE GRAPHIC VIOLENCE SHOWN ON SCREEN TO
+  BE ADJUSTED", with NORMAL and LESS VIOLENT choices in NBA Jam), and nothing points to it. Tournament Edition and NBA
+  Hangtime also keep the lives help text with nothing pointing to it.
+- NBA Jam keeps a LOCKUPS audit name. Neither audit page shows it (checked in MAME), and neither does the hidden
+  menu's audit page.
+
+## Sound board
+
+The sound board (a 6809 with a YM2151, a DAC and an OKI6295) is the same in NBA Jam and Tournament Edition. The main
+CPU sends one byte at a time to `@1D01030h`, as a word with `$FF` in the high byte: bit 8 low holds the board in reset.
+Commands from `$100` up are sent as `$7A` and then the low byte (`FF952320h` in TE rev 2.1); `$7A` switches to a second
+command table, and other prefix bytes are ignored. In the sound CPU's space the OKI chip is at `$2C00` and its bank
+register at `$3400`, where the values 3, 2, 1, 0, 7, 6, 5, 4 select the 128 KB banks 0 to 7 of `u12`/`u13`.
+
+The sound program (`u3`) keeps its tables behind pointers at `$4001`-`$401F`. Speech goes through two lists of 5-byte
+records (`$4015` and `$401F`): OKI bank, a type byte (below 2 means switch banks first), phrase number and length. NBA
+Jam has 361 records and Tournament Edition 288. Between them they point to every sample in the OKI phrase tables
+except two, which are the same two in both games: bank 2 phrase `$3A` in NBA Jam (`$38` in TE, 1.11 s) and bank 4
+phrase `$28` (`$27` in TE, 1.30 s). Nothing can play a sample that has no record.
+
+Which samples the game actually plays is harder to settle. Each of the 512 commands sent eight times to a freshly reset
+board in MAME plays the same phrases every time (130 distinct samples on NBA Jam, 116 on TE). So the program has no
+randomness: what a call plays depends on earlier commands, such as which player's name comes up. Three games of random
+play raise that to 183 of 297 samples (NBA Jam) and 176 of 275 (TE). The rest weren't reached, so they can't be called
+unused from these runs. TE's known unused line ([arcade_te.md](arcade_te.md#unused-commentary)) has records too
+(`$4015` list entries `$49`, `$5B`, `$5C` and `$62`).
+
+## Code and image coverage
+
+A single MAME read tap over the whole program ROM sees every instruction fetch: about 5 million per second of game
+time, at about 100 frames per second of real time. (Installing several narrow taps in the same address space doesn't
+work: they never fire, so use one wide tap and filter by address.) Four 170,000-frame runs of random four-player input
+per game logged every fetch and every blitter offset:
+
+| Game | Call and jump targets that ran | Pointed-to images drawn |
+|------|--------------------------------|-------------------------|
+| NBA Jam rev 3.01 | 498 of 869 (57%) | 1,787 of 3,079 (58%) |
+| Tournament Edition rev 4.0 3/23 | 525 of 848 (62%) | 1,816 of 4,207 (43%) |
+| NBA Hangtime L1.3 | 607 of 1,198 (51%) | 155 more than all the earlier runs ([hangtime.md](hangtime.md#not-covered)) |
+
+The routines that never ran are the operator menus and hardware tests, the CMOS error screens, the beat-all-27-teams
+ending, the credits, and in NBA Hangtime the create-player, trivia and sweepstakes screens. None of them is an unknown
+feature.
