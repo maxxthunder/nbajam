@@ -1,6 +1,6 @@
 # NBA Jam and NBA Hangtime: Secret Codes and Password Checker
 
-**[Secret codes →](https://maxxthunder.github.io/nbajam/codes.html)** &nbsp; **[Password checker →](https://maxxthunder.github.io/nbajam/)** &nbsp;[![v1.6.7](https://img.shields.io/badge/version-1.6.7-e8742c)](CHANGELOG.md)
+**[Secret codes →](https://maxxthunder.github.io/nbajam/codes.html)** &nbsp; **[Password checker →](https://maxxthunder.github.io/nbajam/)** &nbsp;[![v1.6.8](https://img.shields.io/badge/version-1.6.8-e8742c)](CHANGELOG.md)
 
 <p align="center">
   <img src="tools/img/logo_nbajam.png" alt="NBA Jam" height="96">
@@ -62,7 +62,8 @@ Codes that no published list had are marked **★ New** on the page. A few terms
 - Arcade: Dennis Rodman in two revisions, and the prototype and revision 2.1 birthdays.
 - Arcade: name labels for Shaquille O'Neal and Derrick McKey that no revision uses.
 - Arcade: the uncensored "Get that shit outta here" plays in the Nani Edition prototype; two announcer calls, "It's
-  good!" and "Need to score!", that nothing can play; revisions 1.00 to 2.1 can shatter the backboard.
+  good!" and "Need to score!", that nothing can play; revisions 1.00 to 2.1 can shatter the backboard; Fatalities
+  still works on revision 3.0 2/26 from the right-hand side.
 - Title-menu codes on Super Nintendo, Genesis and 32X (a record one team short of the All-Stars, and the 32X's own).
 - Super Nintendo: six unused in-game heads besides seven already published.
 - Genesis: fourteen unused in-game heads, a set of its own; 32X: four more.
@@ -82,7 +83,7 @@ Codes that no published list had are marked **★ New** on the page. A few terms
   "WINNER STAYS ON FREE" notices that no revision draws.
 - Arcade: a player animation, five portraits, ten name labels and four badges that no revision points to.
 - Arcade: every 100th attract demo is played on the rooftop court, and holding Up + Right at a rooftop tip-off plays
-  a "boing" heard nowhere else.
+  a "boing" heard nowhere else (Maximum Hangtime keeps it, on its outdoor court).
 - Maximum Hangtime: 21 extra NBA players.
 - Super Nintendo: two joystick codes no list had, and all eight codes together play the cheat ending.
 - Super Nintendo: a bug where entering no match-up number gives your team goaltending and stealth turbo.

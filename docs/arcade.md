@@ -278,7 +278,8 @@ per game logged every fetch and every blitter offset:
 | NBA Jam rev 3.01 | 498 of 869 (57%) | 1,787 of 3,079 (58%) |
 | Tournament Edition rev 4.0 3/23 | 525 of 848 (62%) | 1,816 of 4,207 (43%) |
 | NBA Hangtime L1.3 | 607 of 1,198 (51%); 690 (58%) with save-state runs | 155 more than all the earlier runs ([hangtime.md](hangtime.md#not-covered)) |
+| Maximum Hangtime L1.03 | 630 of 1,185 (53%), save-state runs included | 2,896 of 7,062 (41%) |
 
 The routines that never ran are the operator menus and hardware tests, the CMOS error screens, the beat-all-27-teams
-ending, the credits, and in NBA Hangtime the create-player, trivia and sweepstakes screens. None of them is an unknown
+ending, the credits, and in the Hangtime games the create-player, record, trivia and sweepstakes screens. None of them is an unknown
 feature.

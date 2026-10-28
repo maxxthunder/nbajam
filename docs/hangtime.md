@@ -141,6 +141,12 @@ two exceptions:
   calling `FF8A7D80h`. Checked in MAME: with Up + Right held through the tip-off of a rooftop game, `$0BA2` goes to the
   sound board, and without it, it doesn't; the screen is the same either way. The sound is a cartoon "boing"; a
   recording is on the codes page.
+- **Maximum Hangtime** keeps the Up + Right check (`FF8B9190h`, same sound script; checked in MAME on L1.03, with
+  `$0BA2` sent only when Up + Right is held), started when its court flag `@1136C60h` is set; the match-up court selector sets that flag (Right) and clears it (Left). It drops the
+  every-100th demo. Instead `FFA0DA20h` steps a counter (`@1138DA0h`) through a 7-entry table (`FFA0E8F0h`: 1, 3, 1,
+  0, 3, 1, 2) and sets `@1136C60h` from bit 0 and `@1136C50h` from bit 1. `@1136C50h` is also set by a match-up input
+  (`FF8C7220h`, state `$28`, Right + Pass). In MAME the demo with both flags clear was in the stadium; the three
+  filmed with a flag set were all on the rooftop.
 
 ## Arcade: the trivia contest
 
@@ -488,8 +494,10 @@ tip-off with each of the 13 match-up codes entered (MAME, a tap on the blitter's
   picked each of the 29 teams in turn. Four more 170,000-frame four-player runs added another 155. Grouped by the
   pointer tables that hold them (before those last four runs), 3,206 of the images not yet drawn sit in tables where
   other entries were drawn (frames and team or player sets), and 271 sit only in the 108 tables none of whose entries
-  was drawn. The unreferenced headers are sorted above; they could still be reached by address arithmetic in code no
-  test ran.
+  was drawn. Decoded, those 270 or so are all things random play rarely reaches: rooftop scenery (skyline, moon, lamp
+  posts, brick walls), the trivia contest and create-player screens, the match-up code captions, record badges
+  ("WORLD RECORD HOLDER!", "TOP 10 PLAYER!"), fonts and the "VS" animation. None is new unused art. The unreferenced
+  headers are sorted above; they could still be reached by address arithmetic in code no test ran.
 - Arcade sound (DCS). The main CPU sends each command as two bytes to `@1680000h`, high then low, waiting for the
   board's acknowledge between them (`FF9F9920h`); `$55AA` followed by `$FF00` sets full volume. Sent one by one in
   MAME, 1,182 of the commands `$0000`-`$0FFF` make a sound. 776 of those appear in no fixed sound script in the

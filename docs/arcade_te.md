@@ -88,15 +88,17 @@ Baby size wasn't completed in MAME: the check (`FF93DEE0`) matched the first eig
 never reached the game's input state. The codes page's screenshot was taken with `@10EAAA0` set during Tonight's
 Match-Up, which is what the check sets on success.
 
-Also checked: **Fatalities** (team select, hold Up and press Pass 20 times) works on revs 1.00, 2.0 and 2.1 but
-not 3.0 2/26, 4.0 3/03 or 4.0 3/23. **Team Swap** (halftime substitutions, hold Right + Pass) shows
+Also checked: **Fatalities** (team select, hold Up and press Pass 20 times) works on revs 1.00, 2.0 and 2.1, on
+3.0 2/26 from the right-hand side only (below), and not on 3.0 3/04, 4.0 3/03 or 4.0 3/23. **Team Swap** (halftime substitutions, hold Right + Pass) shows
 "TEAM SWAP ENABLED!" on rev 4.0 3/23.
 
 The code for Fatalities is still there in the later revisions; jumps were added to skip it. Each side of team select
 has its own check, and both lead to "FATALITIES ENABLED!" (`FFAA3FA0` in rev 2.1). Rev 3.0 2/26 adds a jump over one
-of them (`FF9C2460`) but not the other (`FF9C51A0`-`FF9C5250`), and rev 3.0 3/04 skips both. In MAME, entering the
-code on either side of 3.0 2/26 reached neither check: the per-player process that holds them (`FF9C1000` on) left
-its loop before the button count, so whether the other side still works there wasn't confirmed.
+of them (`FF9C2460`, the left-hand team's) but not the other (`FF9C51A0`-`FF9C5250`, the right-hand team's), and rev
+3.0 3/04 skips both. **So Fatalities still works on rev 3.0 2/26 from players 3 and 4**, which the published lists
+don't say. Checked in MAME: from P3, holding Up and pressing Pass shows "FATALITIES ENABLED!"; from P1 the count
+reaches the check and the jump skips it. The count only starts once the team-select screen is fully up, so
+presses made while it's still appearing don't count.
 
 ## Backboard shatter (revs 1.00 to 2.1)
 

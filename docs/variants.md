@@ -109,7 +109,8 @@ data; the changes below are the ones that mean something. Secret characters and 
   prototype's ending for beating every team is a placeholder: "Whoops, this is a test game and the end has not been
   programmed in yet. sorry!", then "We'll have a new challenge for you soon. We are updating this game every few
   days."
-- **TE 2.1 → 3.0 2/26:** the backboard shatter and one side's Fatalities check are jumped over
+- **TE 2.1 → 3.0 2/26:** the backboard shatter and the left-hand side's Fatalities check are jumped over (the
+  right-hand side's still works)
   ([arcade_te.md](arcade_te.md#backboard-shatter-revs-100-to-21)). The sound test's "RAIDEN (U13)" becomes "SHOES?
   (U13)", and the attract text "disallows any special guests" becomes "disallows any hidden features".
 - **TE 3.0 2/26 → 3/04:** the challenge screen's "I DON'T THINK SO." becomes "WE DON'T THINK SO.", its "IT WASN'T

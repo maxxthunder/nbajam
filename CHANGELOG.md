@@ -2,6 +2,15 @@
 
 Changes to the [secret codes page](https://maxxthunder.github.io/nbajam/codes.html) and [password checker](https://maxxthunder.github.io/nbajam/). The version is shown at the bottom of each page. **Codes page** and **Checker** are what visitors see; **Notes** are the [research notes](docs/); **README** is this repo's front page.
 
+## 1.6.8 (2026-10-28)
+- **Codes page:** arcade Tournament Edition's Fatalities still works on rev 3.0 2/26 from the right-hand side
+  (players 3 and 4), with a screenshot; only the left-hand side's check was removed in that revision.
+- **Codes page:** Maximum Hangtime keeps NBA Hangtime's "boing" for Up + Right at the tip-off, on its outdoor court.
+- **Notes:** Maximum Hangtime's attract demos rotate through a 7-step court pattern instead of NBA Hangtime's every
+  100th rooftop demo; its code and image coverage measured. NBA Hangtime's images in never-drawn tables decoded:
+  none is new unused art.
+- **README:** the new finds listed.
+
 ## 1.6.7 (2026-10-28)
 - **Codes page:** arcade Tournament Edition: the uncensored "Get that shit outta here" turns out to play in the Nani
   Edition prototype, as one of its random comments; two announcer calls nothing can play, "It's good!" and "Need to
