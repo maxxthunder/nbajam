@@ -223,6 +223,28 @@ pointers (`FF8458F0`, `FF8459F0`), then a random 0-6 for the right boards and tw
 returns 0 to n and every entry can be picked. MAME's debugger (`-debug -debugger none`, then `dasm` from Lua) gave the
 listing.
 
+**The prototypes' images.** The two prototypes in MAME (nbajamp1 and nbajamp2) have a 512 KB program, mapped at
+`FFC00000`, and their own graphics chips, not the releases' (nbajamp2's set has only the program chips; its
+headers fit nbajamp1's graphics). Decoded and compared pixel for pixel
+(palette included), they point to 45 images that no release (1.00, 2.00, 3.01) points to. All but two have a release
+counterpart of the same size or shape: 27 team-select portraits in earlier edits of the same players' photos (paler,
+cropped differently), the numerals 25-31 and the letters K and L in an older shading, two 101 × 15 name plates
+and five 3 × 1 pieces. The other two are a 36 × 19 "CREDIT LOW" label and an 89 × 182 NBA logo (`FFDC3C10`,
+`FFDE4220` in the prototypes).
+
+## Title screen and attract mode
+
+The title screen is the same in all five revisions (the two prototypes, 1.00, 2.00 and 3.01; MAME, a frame every
+second through the first 5,500).
+
+<p align="center">
+  <img src="images/jam_title.png" alt="NBA Jam title screen" width="400">
+</p>
+
+An 80,000-frame attract run of rev 3.01 in MAME showed the title, the record tables, the STARRING pages, the team
+roster pages and demo games every loop, and the credits (DESIGN TEAM with photos, then SPECIAL THANKS and the rest)
+once, about 63,000 frames (17½ minutes) in.
+
 ## Operator-menu leftovers
 
 NBA Jam, Tournament Edition and NBA Hangtime share Midway's operator code, and some of it belongs to other games.
@@ -278,7 +300,7 @@ per game logged every fetch and every blitter offset:
 | NBA Jam rev 3.01 | 498 of 869 (57%); 526 (61%) with save-state runs | 1,787 of 3,079 (58%); 2,239 (73%) with save-state runs |
 | Tournament Edition rev 4.0 3/23 | 525 of 848 (62%); 575 (68%) with save-state runs | 1,816 of 4,207 (43%); 2,468 (59%) with save-state runs |
 | NBA Hangtime L1.3 | 607 of 1,198 (51%); 690 (58%) with save-state runs | 155 more than all the earlier runs ([hangtime.md](hangtime.md#not-covered)) |
-| Maximum Hangtime L1.03 | 630 of 1,185 (53%), save-state runs included | 2,896 of 7,062 (41%) |
+| Maximum Hangtime L1.03 | 630 of 1,185 (53%), save-state runs included; 759 (64%) with the test-menu and credits runs | 2,896 of 7,062 (41%); 3,298 (47%) with them |
 
 The routines that never ran are the operator menus and hardware tests, the CMOS error screens, the beat-all-27-teams
 ending, the credits, and in the Hangtime games the create-player, record, trivia and sweepstakes screens. None of them is an unknown
@@ -287,3 +309,7 @@ feature. The save-state runs keep a state whenever new code runs and restart fro
 reached a few more attract-mode screens (the copyright and legal screen, the "ATTENTION BALLPLAYERS" text, part of the credits). The images they
 added are dunk frames, player heads and team names and logos for teams the earlier runs didn't pick; nothing new
 either. One NBA Jam run jumped into data and was left out.
+
+On Maximum Hangtime, two runs of about 220,000 frames pressed the test button and then random player 1 input
+through the operator menus, and one 70,000-frame attract-mode run reached the credits, which play every fourth loop
+([hangtime.md](hangtime.md#maximum-hangtime)).

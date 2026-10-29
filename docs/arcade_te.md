@@ -220,3 +220,21 @@ game. O'Neal is also cut from the Super Nintendo version.
 Rev 4.0 also keeps the heads and name labels of the characters removed after revision 2 (Kongo, the Grim Reaper,
 Scorpion, Sub-Zero, Reptile, Raiden, Coman, Elviscious) and the burning-player frames from Fatalities, with nothing
 pointing to them.
+
+The 2.0 prototype points to 15 images no release points to (decoded and compared pixel for pixel, palette
+included): earlier versions of the player arrows, the side-on 1 to 4 arrows in each player's colour and the
+downward ones, in a different shading from the releases' (`FFC0F7F0`-`FFC10180` in the prototype).
+
+## Title screen and attract mode
+
+The title screen is the same in all nine revisions in MAME (1.00, 2.0, 2.1, both 3.0s, both 4.0s, the Nani Edition
+and the 2.0 prototype). The logo flies in over static and holds about six seconds.
+
+<p align="center">
+  <img src="images/te_title.png" alt="Tournament Edition title screen" width="400">
+</p>
+
+In an 80,000-frame attract run of rev 4.0, every other loop (about 24,500 frames apart) ends with the challenge
+crawl, "ATTENTION BALLPLAYERS: DO YOU THINK YOU'VE CONQUERED NBA JAM? WE DON'T THINK SO." through "STEP UP AND SHOW
+SOME SKILL." (text at `FF9E8C80h`), followed by the team roster pages. The credits didn't come up in that run;
+the Secret Midway menu's code reaches them.

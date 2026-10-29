@@ -165,6 +165,31 @@ choice, worth 2 points. At 100 points the game shows "CONTEST DRAWING QUALIFIER"
 to 4 and the points to 98, then answering "What is the name of the NBA franchise in Miami?" with Heat: AAAAAA 0000 got
 `EOFTCSJN`. A one-quarter game (two credits) never reaches the questions.
 
+## Arcade: title screen and attract mode
+
+The title screen is the same in all six NBA Hangtime revisions (L1.1, L1.2, L1.3, M1.1, M1.2, M1.3; MAME, a frame
+every second through the first 3,100).
+
+<p align="center">
+  <img src="images/ht_title.png" alt="NBA Hangtime title screen" width="400">
+</p>
+
+Each attract-mode loop shows one **"HANGTIME HIGHLIGHTS"** page, taking the next from a list of 11 (text at
+`FFA1EF18h` in L1.3): 150 NBA PLAYERS, CREATE PLAYER, ALLEY OOPS, DOUBLE DUNKS, ROOF TOP COURT, SPIN MOVES, DIGITAL
+SOUND, M DOC RAPS, TRIVIA CONTEST, MEGA SECRETS, AND MORE!. An 80,000-frame attract run in MAME showed M DOC RAPS,
+ALLEY OOPS, AND MORE!, DIGITAL SOUND and CREATE PLAYER, in that order. Every NBA Hangtime revision has the list; no
+Maximum Hangtime revision does.
+
+The same run reached the credits once, about 53,000 frames (15 minutes) in: DESIGN TEAM, ADDITIONAL DESIGN, SOUND
+AND MUSIC (Jon Hey, Kevin Quinn, Neil Funk), MUSIC, ACTORS, HARDWARE SUPPORT, NBA SUPPORT, ADDITIONAL TESTERS,
+SPECIAL THANKS and EXECUTIVE PRODUCERS. The MUSIC page names the two songs, "GET UP GET UP" and "HANGTIME - WHATCHA
+GONNA DO": music produced by M.Doc of Indasoul Productions, songs written by Rhyme, rap by Rhyme, backgrounds by
+M.Doc and Below Zero, with an Indasoul contact name and Chicago phone number.
+
+<p align="center">
+  <img src="images/ht_attract.png" alt="The M DOC RAPS highlights page and the MUSIC credits page" width="808">
+</p>
+
 ## Maximum Hangtime
 
 Same name check and the same 13 match-up numbers. The joystick codes are rewritten (`FF8C4930h` on): the court becomes
@@ -191,6 +216,58 @@ by writing them into the check. The prototype and the other two revisions have t
 The same read/write tap on Maximum Hangtime (and a full disassembly) finds no leftover flag like NBA Hangtime's hot
 spots: every joystick and match-up word has a setter and a gameplay reader except 6-1-6 (`@1136CC0h` here), which is
 again read only by its own check, so it does nothing in Maximum Hangtime either.
+
+**Title screen.** After the power-on screen the game shows its logo: one painted 400 × 254 picture, drawn as 14 tiles (a
+5 × 2 grid and four strips) that have no image headers of their own (MAME, a tap on the blitter).
+
+<p align="center">
+  <img src="images/mht_title.png" alt="The Maximum Hangtime title screen" width="400">
+</p>
+
+**K DAY** gets a portrait (`FFBD8AB0`) and a 16-frame head (`FFD7D8B0`-`FFD7E120`) of a cartoon basketball; NBA
+Hangtime's program points to the same images.
+
+<p align="center">
+  <img src="images/mht_kday.png" alt="K DAY's portrait and 16 head frames" width="469">
+</p>
+
+**What Maximum Hangtime dropped.** Its program has the same image headers as NBA Hangtime L1.3. Of the images NBA
+Hangtime points to, 38 have no pointer in any Maximum Hangtime revision: the three old team logos (below), the name
+labels of 21 players (George McCloud, Terry Mills, Kenny Smith ... Eric Murdock) who are name codes here, and the
+trivia contest's pieces (CORRECT ANSWER, INCORRECT ANSWER, CONTEST DRAWING QUALIFIER, the rules with the Phoenix
+P.O. box and the September 13, 1996 deadline, the password box and the four prize pictures). The contest is gone: no
+revision has any of its text, and the "HANGTIME HIGHLIGHTS" attract pages, which listed the contest, are gone too
+([below](#arcade-title-screen-and-attract-mode)). The credits still have a page for one, though, shown every fourth attract-mode loop
+(`@1138D90h`, `FFA00150h`; about 16½ minutes after power-on in MAME): "MAXIMUM SWEEPSTAKES: MAXIMUM NBA HANGTIME
+SWEEPSTAKES IS CO-SPONSORED BY EGM AND EGM²".
+
+<p align="center">
+  <img src="images/mht_sweepstakes.png" alt="MAXIMUM SWEEPSTAKES credits page" width="400">
+</p>
+
+**Revisions.** The L0.9 prototype's rosters have two entries the releases drop, both without a name label: a player in
+a maroon jersey after the 76ers' unlabeled entry, and one in Detroit's group between Grant Hill and Joe Dumars. Their
+portraits (`FFBDA250`, `FFBDA2E0` in L1.03) are still in every revision.
+
+<p align="center">
+  <img src="images/mht_proto_portraits.png" alt="The two portraits only the prototype points to" width="244">
+</p>
+
+A 112×12 **"BACK DOOR"** image with a bar after the words is in the graphics ROMs of NBA Hangtime and Maximum
+Hangtime, and no revision points to it. In L1.0 and M1.0 its header happens to sit at `FFBF0000`, the same value as
+the starting Y coordinate (`MOVI FFBF0000h,A1`) that every revision's tip-off **CPU** label process (`FF9D7060h` in
+Maximum Hangtime, started from `FF8B04C0h`) passes to the object-create call. That process draws the 21×11 CPU image
+(`FFC42400` in L1.0) over each computer player for 900 frames, skipping human players (bits in `@11322F0h`) and the
+attract mode (`@112F840h` = 1). The same routine (`FF8B0180h`) also puts up the human players' arrows, and it runs
+twice a game: at tip-off (from `FF8AEE20h`) and when play restarts after halftime, once the players' objects have been
+rebuilt for the change of ends (from `FF8F79F0h`). In MAME on L1.03 the labels came up at the start of the first and
+third quarters only. On L1.0 the process was created for both computer players at tip-off, and the blitter never
+drew the BACK DOOR graphics. A check of every arcade revision's header pointers for values like this one (round
+`FFxx0000` addresses) found no other case: the rest sit in pointer tables or point to images the releases draw anyway.
+
+<p align="center">
+  <img src="images/mht_backdoor.png" alt="The unused BACK DOOR image" width="224">
+</p>
 
 ## N64 and PlayStation
 
@@ -465,12 +542,12 @@ was drawn from the match-up screen through tip-off and into the first quarter. T
   <img src="images/ht_unused_captions.png" alt="The red rule captions and the two shorter WINNER STAYS ON FREE notices" width="548">
 </p>
 
-**The rest of L1.3's unreferenced headers.** Of its 578 headers with no pointer, 107 are pointed to by some other
+**The rest of L1.3's unreferenced headers.** Of its 578 headers with no pointer, 106 are pointed to by some other
 revision (mostly Maximum Hangtime's extra players' name labels and heads, and the 3 × 2 markers before each head set),
-matched by graphics offset and size. That leaves 471 that no revision of either game points to, 258 of a usable size.
+matched by graphics offset and size. That leaves 472 that no revision of either game points to, 259 of a usable size.
 Not having a pointer doesn't prove an image unused, since code can reach one by adding to another's address. One of
-the 258 is reached that way: a dark 88 × 5 strip (`FFC2A640`) whose graphics address shows up in every game log. None
-of the other 257 was drawn in the attract-mode and random-game logs (18 runs), or from the match-up screen through
+the 259 is reached that way: a dark 88 × 5 strip (`FFC2A640`) whose graphics address shows up in every game log. None
+of the other 258 was drawn in the attract-mode and random-game logs (18 runs), or from the match-up screen through
 tip-off with each of the 13 match-up codes entered (MAME, a tap on the blitter's offset registers). What they are:
 
 - **A player animation** (`FFD4D570`-`FFD4E9B0`): 19 headless frames of a player in a turquoise kit, a high kick, then
@@ -479,8 +556,8 @@ tip-off with each of the 13 match-up codes entered (MAME, a tap on the blitter's
   characters' pictures.
 - **Ten team-select name labels** (`FFF58560`-`FFF58F80`): MARCIULIONIS, ANZALONE, BENSON, BUTATA, HAEGER, KELLER,
   LAWMAN, LEE, MIKE and SEAN. None is on either game's roster.
-- **Badges:** "BIG BALL" (`FFC301F0`) and "BABY MODE" (`FFC30430`) in the purple tip-off style, and "AUTO REBOUND"
-  (`FFC2EDB0`) and "BREAK BACKBOARD" (`FFC2EED0`). With 0-2-5 entered, tip-off shows a purple "BABY SIZED PLAYERS!"
+- **Badges:** "BIG BALL" (`FFC301F0`) and "BABY MODE" (`FFC30430`) in the purple tip-off style, "AUTO REBOUND"
+  (`FFC2EDB0`) and "BREAK BACKBOARD" (`FFC2EED0`), and the "BACK DOOR" bar (see [Revisions](#maximum-hangtime)). With 0-2-5 entered, tip-off shows a purple "BABY SIZED PLAYERS!"
   banner, not the badge.
 - 28 head frames in partial sets (`FFBE63F0`-`FFDC3FF0`), the other colours of the trivia contest's boxes
   ("TOURNAMENT MODE DISABLED", "CORRECT ANSWER", "INCORRECT ANSWER", "INVALID NAME ENTERED", "CONTEST DRAWING

@@ -2,6 +2,15 @@
 
 Changes to the [secret codes page](https://maxxthunder.github.io/nbajam/codes.html) and [password checker](https://maxxthunder.github.io/nbajam/). The version is shown at the bottom of each page. **Codes page** and **Checker** are what visitors see; **Notes** are the [research notes](docs/); **README** is this repo's front page.
 
+## 1.6.11 (2026-10-29)
+- **Notes:** Maximum Hangtime's title screen, K DAY's portrait and head, the 38 NBA Hangtime images it dropped
+  (the trivia contest among them), the EGM sweepstakes credits page and the L0.9 prototype's two extra portraits;
+  its code and image coverage raised with test-menu and credits runs.
+- **Notes:** the "BACK DOOR" image is unused in every NBA Hangtime and Maximum Hangtime revision; the value that
+  looked like a pointer to it is the CPU label's screen position. The CPU label returns after halftime.
+- **Notes:** arcade title screens for NBA Jam, Tournament Edition and NBA Hangtime; NBA Hangtime's 11 "HANGTIME
+  HIGHLIGHTS" attract pages and its music credits; the NBA Jam and Tournament Edition prototypes' images.
+
 ## 1.6.10 (2026-10-29)
 - **Notes:** Super Nintendo code coverage rerun on renamed ROM copies, since Mesen had been adding its saved
   coverage from earlier sessions: NBA Jam 75.9%, Tournament Edition 61.5%, Hangtime 37.3% with save-state runs.
