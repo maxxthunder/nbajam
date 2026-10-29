@@ -27,7 +27,13 @@ correct for the 32X.
   which the grid can't enter. Snake is `SNK` there instead of `GOF`. Checked in BizHawk.
 - **Steven Tyler** (ID `$7A`, between Prince Charles and Chow-Chow) is cut from all three. His initials are letter
   values the grid doesn't have (Genesis 31/27/27, Super Nintendo 27/27/27 where 27 is the delete arrow). Forcing the ID
-  into the player slot on Genesis shows the name "TYLER" with a blank portrait.
+  into the player slot on Genesis shows the name "TYLER" with a blank portrait. The Super Nintendo cart still has all
+  of him: with `$7A` in player 1's slot (`$169F`), team select and Tonight's Match-Up show a "Steven Tyler" card with
+  his photo, his stats are all "?", and on court he's "TYLER" with a long-haired head (Mesen 2).
+
+  <p align="center">
+    <img src="images/tesnes_tyler.png" alt="Steven Tyler on Super Nintendo team select and Tonight's Match-Up" width="652">
+  </p>
 - On Super Nintendo, press Start before the button: when Start and B or Y go down on the same frame, the Start flag
   isn't recorded and the code fails (seen in Mesen 2).
 

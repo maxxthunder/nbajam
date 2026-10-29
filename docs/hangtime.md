@@ -515,23 +515,26 @@ tip-off with each of the 13 match-up codes entered (MAME, a tap on the blitter's
   code ran and restarted from those states with random input, which stays in the menus. They added 83, the
   create-player, record and name-notice screens, for 690 in all (58%). What still hasn't run is operator menus, tests,
   the credits, and the trivia and sweepstakes screens; nothing in either list is an unknown feature.
-- Super Nintendo code coverage. Three 90,000-frame Mesen 2 runs with random input on a pad and a multitap ran 52,477
-  of the 110,988 instructions the disassembler traces (47.3%). Most of the rest was the front end in bank `$C6`
+- Super Nintendo code coverage. Three 90,000-frame Mesen 2 runs with random input on a pad and a multitap ran 37,631
+  of the 110,988 instructions the disassembler traces (33.9%). Much of the rest is the front end in bank `$C6`
   (menus, name entry, records), which plain random input doesn't get far into. Three more 300,000-frame runs kept a
   save state each time new code ran and restarted from those states with random taps, which keeps the input in the
-  menus. That brought it to 58,903 (53.1%). 145 of the 153 calls to the graphics unpacker have now run; the other eight
-  are the multitap warning below (four), two team-table loads (`$C6A705`, `$C6A724`) and a branch at `$C7014F`. Large
-  parts of bank `$C6` still haven't run (`$C673A2`-`$C6862A`, `$C695D9`-`$C6A40E`), so there's no list of unused
-  routines yet. Two screens that need a particular console set-up never ran in those runs:
+  menus. That brought it to 41,411 (37.3%), with 91 of the 153 calls to the graphics unpacker run. Each run used its
+  own renamed copy of the ROM, since Mesen otherwise starts from the coverage file it keeps for that ROM name. That
+  file, the total from every Mesen session on this cart including the targeted ones on this page, has 145 of the 153
+  calls run; the other eight are the multitap warning below (four), two team-table loads (`$C6A705`, `$C6A724`) and a
+  branch at `$C7014F`. Large parts of bank `$C6` haven't run in any session (`$C673A2`-`$C6862A`,
+  `$C695D9`-`$C6A40E`), so there's no list of unused routines yet. Two screens that need a particular console set-up
+  never ran in the random runs:
   - On a PAL console (`$213F` bit 4) the US cart shows "This NTSC game pak is not designed for your Super NES/Super
     Famicom" (`$C30DF8`; seen in Mesen set to PAL).
   - With a multitap in port 1, Nintendo's connect check (`$C1C627`, marked "MODIFIED FROM SHVC MULTI5 CONNECT CHECK
     Ver1.00") sends the game to `$C30BEA`, a warning that the adapter must go in socket 2 (seen in Mesen).
 - Super Nintendo graphics. The cart has 248 RNC-packed blocks. The unpacker (`$C2FDAB`) takes each block's address
-  as two immediates or from a table, and every block but one has a caller. The Mesen runs have now read 228 of
-  them. Of the other 20, 18 are in the 29-entry per-team tables (`$C0A08D`, `$C0A680`, `$C56619`, `$C5B75C`), for
-  teams the runs didn't pick. One is the multitap warning's picture (`$E9FCB0`). The last is the packed sound test
-  (above), which has no caller.
+  as two immediates or from a table, and every block but one has a caller. The random runs read 106 of them,
+  and all Mesen sessions on this cart together 228. Of the other 20, 18 are in the 29-entry per-team tables
+  (`$C0A08D`, `$C0A680`, `$C56619`, `$C5B75C`), for teams no session picked. One is the multitap warning's picture
+  (`$E9FCB0`). The last is the packed sound test (above), which has no caller.
 
 ## Tests
 

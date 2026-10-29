@@ -390,16 +390,36 @@ Three 90,000-frame Mesen 2 runs of random input on a pad and a multitap, for the
 Edition, logged every instruction and ROM byte read, and every sample the sound chip started (DSP key-on, with the
 sample's directory slot and start address):
 
-- **Code.** NBA Jam ran 66,977 of the 81,072 instructions `tools/disasm.py` traces (82.6%), Tournament Edition 67,084
-  of 90,582 (74.1%). The largest unrun pieces in NBA Jam were the ending screen (`$BFCA70`, which unpacks the
-  "CONGRATULATIONS!" trophy at `$31:B025`, run separately below) and the code for character IDs `$36` and up, the secret characters
-  (`$B1FAB7`), which random input never types in.
+- **Code.** NBA Jam ran 61,503 of the 81,072 instructions `tools/disasm.py` traces (75.9%), Tournament Edition 55,719
+  of 90,582 (61.5%). Each run used its own renamed copy of the ROM, since Mesen otherwise starts from the coverage
+  file it keeps for that ROM name from earlier sessions. The unrun code in NBA Jam includes the ending screen
+  (`$BFCA70`, which unpacks the "CONGRATULATIONS!" trophy at `$31:B025`) and the code for character IDs `$36` and
+  up, the secret characters (`$B1FAB7`), which random input never types in; both were run separately below.
+  Tournament Edition's largest unrun piece, `$81D926`, is bank `$81`'s copy of the per-player code; the same code is
+  in banks `$82`, `$A6` and `$A7`, and parts of those copies ran.
 - **Ending.** The game state word at `$1665` picks the main loop's handler; state `$35` is the ending. The game
   sets it after the results screen (`$8AD656`) when a player's count of beaten teams (`$0AB4`-`$0ABA`) first
   reaches 27. Writing `$35` there from the title screen plays the whole ending: the trophy with "CONGRATULATIONS!
   ALL 27 NBA TEAMS YOU ARE AN NBA JAM GRAND CHAMPION PLAY ON FOR AN EVEN GREATER CHALLENGE!" scrolling up beside
-  it, then a fade-out (states `$36` and `$37`) that sets `$1665` to `$FFFF` to leave the loop. That ran 346 more
-  instructions, 83.0% in all. The ending code sends no sound command, and no sample started while it played.
+  it, then a fade-out (states `$36` and `$37`) that sets `$1665` to `$FFFF` to leave the loop. That ran 291 more
+  instructions, 76.2% in all. The ending code sends no sound command, and no sample started while it played.
+- **Tournament Edition's ending.** The same check (a player's beaten-team count first reaching 27, `$80829E`-`$808306`)
+  sets `$14CB`, and the next pass through `$808118` runs the ending (`$8983B7`). Forcing `$14CB` to 1 there plays it:
+  the trophy beside scrolling text, "YOU HAVE DEFEATED ALL 27 NBA TEAMS! YOU ARE THE NEW NBA JAM TOURNAMENT EDITION
+  GRAND CHAMPION! YOU ARE AN INCREDIBLE PLAYER AND ONE OF THE BEST NBA JAM STARS OF ALL TIME! HOWEVER THIS IS AN
+  ACCLAIM GAME! WHICH MEANS THAT THERE IS YET A GREATER CHALLENGE AWAITING YOU . . . PLAY ON . . . THANK YOU FOR
+  PLAYING NBA JAM TOURNAMENT EDITION!" Then come credits over the court, with photos on the hanging screen:
+  "DEVELOPED BY TEAM IGUANA" and the Acclaim staff, most with a joke quote (text at `$89:8DAE`):
+  producer Dan Feinstein, associate producer Asif Chaudhri, the support team, QA, special thanks, Williams'
+  "MARK, PAUL, SAL, JAMIE AND THE ENTIRE WILLIAMS TEAM" ("QUICK GIMME A QUARTER") and Greg Lassen of NBA
+  Properties ("WHAT PART OF 'NO' DON'T YOU UNDERSTAND?"). None of the random runs reached it. It ran 539 more
+  instructions (62.1% in all); its music uses only samples the random runs had already played.
+- **Secret characters' heads.** At tip-off, `$80A013` calls `$B1FAAF`, which checks the two character slots at
+  `$1CD9` and `$1CDB` (`$8A838B` clears them to `$FFFF`). For an ID of `$36` or more it loads that
+  character's head from the table at `$97:E5DC` (`$B1FAB7`). Writing the 12 IDs into those slots before a game
+  starts puts each one on court with their own head and name: Turmell, Weasel, Moon, P Funk, Clinton, Gore, Scruff,
+  Di Vita, Air Dog, Rivett, Kabuki and Chow-Chow. Entered for real, `MJT` with Start + R held on the T sets `$1CD9`
+  to `$36`; team select and Tonight's Match-Up then show Turmell's photo, and he plays with his own head.
 - **Samples.** In NBA Jam the directory at `$1F00` holds two sets (slots 0-25 and 0-8) and the speech slots 47-51.
   One sample was never started: slot 8 of the 26-entry set, `$3F77`, 90 BRR blocks (a 0.09-second one-shot), which
   sits between slot 7's end and slot 9's start, so it's a real entry, not a stray pointer. Played back, it sounds like

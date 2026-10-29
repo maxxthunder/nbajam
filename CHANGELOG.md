@@ -2,6 +2,12 @@
 
 Changes to the [secret codes page](https://maxxthunder.github.io/nbajam/codes.html) and [password checker](https://maxxthunder.github.io/nbajam/). The version is shown at the bottom of each page. **Codes page** and **Checker** are what visitors see; **Notes** are the [research notes](docs/); **README** is this repo's front page.
 
+## 1.6.10 (2026-10-29)
+- **Notes:** Super Nintendo code coverage rerun on renamed ROM copies, since Mesen had been adding its saved
+  coverage from earlier sessions: NBA Jam 75.9%, Tournament Edition 61.5%, Hangtime 37.3% with save-state runs.
+- **Notes:** Super Nintendo Tournament Edition's ending and credits, forced; NBA Jam's secret characters' heads
+  at tip-off, with the real `MJT` entry; Steven Tyler's full card and photo still in the Super Nintendo cart.
+
 ## 1.6.9 (2026-10-28)
 - **Notes:** Maximum Hangtime's outdoor-court and ABA-ball flags, its ABA ball code and the PLAYER HEAD SIZE
   adjustment's big-head flip, checked in MAME.
