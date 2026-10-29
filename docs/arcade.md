@@ -275,11 +275,15 @@ per game logged every fetch and every blitter offset:
 
 | Game | Call and jump targets that ran | Pointed-to images drawn |
 |------|--------------------------------|-------------------------|
-| NBA Jam rev 3.01 | 498 of 869 (57%) | 1,787 of 3,079 (58%) |
-| Tournament Edition rev 4.0 3/23 | 525 of 848 (62%) | 1,816 of 4,207 (43%) |
+| NBA Jam rev 3.01 | 498 of 869 (57%); 526 (61%) with save-state runs | 1,787 of 3,079 (58%); 2,239 (73%) with save-state runs |
+| Tournament Edition rev 4.0 3/23 | 525 of 848 (62%); 575 (68%) with save-state runs | 1,816 of 4,207 (43%); 2,468 (59%) with save-state runs |
 | NBA Hangtime L1.3 | 607 of 1,198 (51%); 690 (58%) with save-state runs | 155 more than all the earlier runs ([hangtime.md](hangtime.md#not-covered)) |
 | Maximum Hangtime L1.03 | 630 of 1,185 (53%), save-state runs included | 2,896 of 7,062 (41%) |
 
 The routines that never ran are the operator menus and hardware tests, the CMOS error screens, the beat-all-27-teams
 ending, the credits, and in the Hangtime games the create-player, record, trivia and sweepstakes screens. None of them is an unknown
-feature.
+feature. The save-state runs keep a state whenever new code runs and restart from kept states with random input
+(four runs per Hangtime game; eight each on NBA Jam and TE, of 100,000 to 250,000 frames). On NBA Jam and TE they
+reached a few more attract-mode screens (the copyright and legal screen, the "ATTENTION BALLPLAYERS" text, part of the credits). The images they
+added are dunk frames, player heads and team names and logos for teams the earlier runs didn't pick; nothing new
+either. One NBA Jam run jumped into data and was left out.

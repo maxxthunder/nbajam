@@ -144,9 +144,12 @@ two exceptions:
 - **Maximum Hangtime** keeps the Up + Right check (`FF8B9190h`, same sound script; checked in MAME on L1.03, with
   `$0BA2` sent only when Up + Right is held), started when its court flag `@1136C60h` is set; the match-up court selector sets that flag (Right) and clears it (Left). It drops the
   every-100th demo. Instead `FFA0DA20h` steps a counter (`@1138DA0h`) through a 7-entry table (`FFA0E8F0h`: 1, 3, 1,
-  0, 3, 1, 2) and sets `@1136C60h` from bit 0 and `@1136C50h` from bit 1. `@1136C50h` is also set by a match-up input
-  (`FF8C7220h`, state `$28`, Right + Pass). In MAME the demo with both flags clear was in the stadium; the three
-  filmed with a flag set were all on the rooftop.
+  0, 3, 1, 2) and sets `@1136C60h` from bit 0 and `@1136C50h` from bit 1. `@1136C60h` picks the outdoor court (one of
+  several, chosen at random at `FF8AE3B0h`); `@1136C50h` is Maximum Hangtime's ABA-ball flag, read only where the ball
+  and its images are set up (`FF901A00h`, `FF91BA40h`), and also set by the ABA code (hold Right, Shoot, Turbo,
+  Pass; `FF8C7220h` checks the last step). Checked in MAME by forcing each flag alone through a game: `@1136C60h` gives the outdoor court,
+  `@1136C50h` changes only the ball to red, white and blue, with the same sound commands; a demo with only
+  `@1136C50h` set was in the stadium.
 
 ## Arcade: the trivia contest
 
@@ -167,7 +170,11 @@ to 4 and the points to 98, then answering "What is the name of the NBA franchise
 Same name check and the same 13 match-up numbers. The joystick codes are rewritten (`FF8C4930h` on): the court becomes
 a "COURT: STADIUM / OUTDOOR" selector on the match-up screen (Right picks the rooftop court, Left goes back; published
 as "press Left", which leaves it on Stadium), and hot spots are added (Up, then Up + Shoot, twice: "HOTSPOTS ON").
-Outdoor court, hot spots and big heads were checked in MAME. The name table (`FFAAF360h`) grows to 86 entries: `WEBB` is dropped (Spud
+Outdoor court, hot spots and big heads were checked in MAME. The flag words move: big heads is `@1136BF0h`, the ABA
+ball `@1136C50h` (still hold Right, Shoot, Turbo, Pass; checked in MAME) and the outdoor court `@1136C60h`. The
+operator setting PLAYER HEAD SIZE (adjustment `1Ah`, "LARGE SIZE: 2") is applied at game start by flipping every
+player's big-head bit (`FF8D44B0h`, read from the code), so on a large-head cabinet the big-head code gives normal
+heads. The name table (`FFAAF360h`) grows to 86 entries: `WEBB` is dropped (Spud
 Webb becomes `SPUD`), `MDOC` is fixed to 2000, `JASON`'s PIN becomes 0, 7, 2, SPC, and 25 are added:
 
 | Name | PIN | In game |

@@ -2,6 +2,13 @@
 
 Changes to the [secret codes page](https://maxxthunder.github.io/nbajam/codes.html) and [password checker](https://maxxthunder.github.io/nbajam/). The version is shown at the bottom of each page. **Codes page** and **Checker** are what visitors see; **Notes** are the [research notes](docs/); **README** is this repo's front page.
 
+## 1.6.9 (2026-10-28)
+- **Notes:** Maximum Hangtime's outdoor-court and ABA-ball flags, its ABA ball code and the PLAYER HEAD SIZE
+  adjustment's big-head flip, checked in MAME.
+- **Notes:** arcade NBA Jam and Tournament Edition code and image coverage with save-state runs.
+- **Notes:** Super Nintendo NBA Jam and Tournament Edition code coverage and sound samples: NBA Jam's one
+  never-played sample sounds like a dribble; the ending, forced from the title screen, plays no sound.
+
 ## 1.6.8 (2026-10-28)
 - **Codes page:** arcade Tournament Edition's Fatalities still works on rev 3.0 2/26 from the right-hand side
   (players 3 and 4), with a screenshot; only the left-hand side's check was removed in that revision.

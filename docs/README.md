@@ -22,7 +22,8 @@ proof.
   [Genesis speech initials](secrets.md#genesis-speech-initials),
   [match-up power-ups](secrets.md#super-nintendo-genesis-and-sega-cd-match-up-power-ups),
   [controller warning screens](secrets.md#super-nintendo-controller-warning-screens),
-  [Iguana's crash screen](secrets.md#genesis-iguanas-crash-screen) and
+  [Iguana's crash screen](secrets.md#genesis-iguanas-crash-screen),
+  [Super Nintendo code coverage and sound samples](secrets.md#super-nintendo-code-coverage-and-sound-samples) and
   [the Super Nintendo's packed graphics](secrets.md#super-nintendo-packed-graphics). Also the leftovers from other
   games, such as the 32X Tournament Edition's crash screen.
 

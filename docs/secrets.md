@@ -384,6 +384,29 @@ Neither cart has unused music.
 - **Super Nintendo.** The music routine `$BDFD8F` unpacks one of four songs from the table at `$BDFDE3` and sends it
   to the sound chip. The game calls it with 0 (`$808076`), 1 and 3 (`$80857B`, `$808576`) and 2 (`$8AE992`).
 
+## Super Nintendo: code coverage and sound samples
+
+Three 90,000-frame Mesen 2 runs of random input on a pad and a multitap, for the US carts of NBA Jam and Tournament
+Edition, logged every instruction and ROM byte read, and every sample the sound chip started (DSP key-on, with the
+sample's directory slot and start address):
+
+- **Code.** NBA Jam ran 66,977 of the 81,072 instructions `tools/disasm.py` traces (82.6%), Tournament Edition 67,084
+  of 90,582 (74.1%). The largest unrun pieces in NBA Jam were the ending screen (`$BFCA70`, which unpacks the
+  "CONGRATULATIONS!" trophy at `$31:B025`, run separately below) and the code for character IDs `$36` and up, the secret characters
+  (`$B1FAB7`), which random input never types in.
+- **Ending.** The game state word at `$1665` picks the main loop's handler; state `$35` is the ending. The game
+  sets it after the results screen (`$8AD656`) when a player's count of beaten teams (`$0AB4`-`$0ABA`) first
+  reaches 27. Writing `$35` there from the title screen plays the whole ending: the trophy with "CONGRATULATIONS!
+  ALL 27 NBA TEAMS YOU ARE AN NBA JAM GRAND CHAMPION PLAY ON FOR AN EVEN GREATER CHALLENGE!" scrolling up beside
+  it, then a fade-out (states `$36` and `$37`) that sets `$1665` to `$FFFF` to leave the loop. That ran 346 more
+  instructions, 83.0% in all. The ending code sends no sound command, and no sample started while it played.
+- **Samples.** In NBA Jam the directory at `$1F00` holds two sets (slots 0-25 and 0-8) and the speech slots 47-51.
+  One sample was never started: slot 8 of the 26-entry set, `$3F77`, 90 BRR blocks (a 0.09-second one-shot), which
+  sits between slot 7's end and slot 9's start, so it's a real entry, not a stray pointer. Played back, it sounds like
+  a dribble. It isn't a copy of any sample the runs played, none of the short sounds the game started sounds like
+  a dribble, and the ending doesn't play it either, so it may be a dribble sound the game never uses. Every real
+  sample the runs loaded into Tournament Edition's directory (`$2300`) was started.
+
 ## Super Nintendo: packed graphics
 
 The original Super Nintendo NBA Jam packs most of its graphics with its own scheme, unpacked by `$29:F3F0` (US Rev 1).
