@@ -9,6 +9,8 @@ driving the inputs.
 Published lists compared against: GameFAQs, the arcadecontrols.com code thread and the Johnny Joystick Retrogaming list
 (both list the same 61 codes for the final revision, plus the 8 removed after revision 2).
 
+Contents: [Secret characters](#secret-characters) · [Match-up codes](#match-up-codes) · [Backboard shatter (revs 1.00 to 2.1)](#backboard-shatter-revs-100-to-21) · [Secret Midway menu](#secret-midway-menu) · [Hidden copyright text](#hidden-copyright-text) · [Unused commentary](#unused-commentary) · [Unused graphics](#unused-graphics) · [Title screen and attract mode](#title-screen-and-attract-mode)
+
 ## Secret characters
 
 The table at `FF9DF760` (rev 4.0 3/23/94) has 5-word entries: three letters (A = 0, `_` = 26), month and
@@ -204,6 +206,40 @@ the program has no sound script with command `$1B5` or `$1C9`.
 4.0's matching list (`FF9ACB90`) has eight scripts and no such entry. The random routine returns 0 to n, so each list
 can pick it. In MAME, four runs of random play on the Nani Edition sent `7A C9` once, during play after a blocked
 shot.
+
+**Other commands no script sends.** A sound script in the program is four words: priority and channel (top four
+bits set), a length, `$8000` plus the command, and a zero; `FF953ED0h` and three neighbours queue them. Scanned for
+that shape, rev 4.0 3/23's scripts use 391 of the 511 commands the sound program lists. That counts every script
+record, including leftover ones nothing points to, so the numbers below are a minimum. The test menu sends `$AA`
+itself, which leaves 119 that nothing sends. Of those:
+
+- 31 are speech. They are the only way to play 20 samples: the four "Get that" pieces above, three below, and 13
+  more that no revision plays.
+- Seven of the speech commands (`B0`, `E5`, `7A 96`, `7A 97`, `7A A1`, `7A A2`, `7A A5`) are in the scripts of every
+  revision from 1.00 to 3.0 2/26 and gone from 3.0 3/04 on. That's the revision that stops pointing to the removed
+  characters' heads and name labels. Long runs of rev 2.1 in MAME as each removed character, logging what was sent, matched all
+  seven: Sub-Zero `7A 96` and `7A A1`, Raiden `B0` and `E5`, Scorpion `7A 97` and `7A A2`, Reptile `7A A5`. Transcribed
+  with Whisper, the four samples say "Sub-zero", "Raiden!", "Scorpion" and "Reptile"; `7A A1` and `7A A2` put a short
+  "to" in front. Rev 4.0 still has three scripts for `7A A6` ("to" + "Reptile"), but nothing points to any of them. The commands come
+  from two tables indexed by character number (`FF9DD990` for 0-37 and `FF9DE350` from 39 in rev 2.1). The other
+  removed characters' slots hold commands rev 4.0 still sends: `7A F1` for the Grim Reaper and `7A 98` for Tim Coman
+  (both seen in the runs), and `7A C0` for Elviscious. So these have no call of their own. Kongo (38) falls between
+  the two tables. Whether the 13 never-played samples include any of their names isn't known, since those weren't
+  transcribed.
+- 13 are short FM sound effects, 0.2 to 0.8 s long when sent on their own from the test menu: `8D`, `94`-`96`,
+  `98`-`9F` and `A1`.
+- The other 31 below `$100` make no sound on their own. 23 showed no FM activity in the one-by-one sweep
+  ([arcade.md](arcade.md#sound-board)). The other eight (`8E`, `8F`, `AB`, `AC`, `AD`, `CA`, `D3`, `FD`) were silent
+  when sent from the test menu.
+- The 44 `$7A`-page commands that aren't speech are silent too. They were sent with the second byte written from a
+  read tap on the sound CPU, the moment it read the `$7A`, which gets it there in time; `7A B5` and `7A C9` play their
+  phrases that way.
+
+Transcribed with Whisper, the 13 never-played samples include "Beautiful! I love you!" (`7A B9`), "Off the
+rim!", "It's a close game!", "Throws up a brick!", "The steal!", "The second left!" and three gunshot effects; the
+four in the upper half of the sample space are single short words Whisper can't make out reliably. Eight of them are byte for byte the same recordings as samples in
+NBA Jam rev 3.01 that NBA Jam doesn't play either ([arcade.md](arcade.md#sound-board)), so they were already unused
+there.
 
 ## Unused graphics
 

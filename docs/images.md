@@ -33,17 +33,19 @@ Every picture in these notes, grouped by the page it appears on, with a link to 
 
 | Picture | Where | What it shows |
 |---|---|---|
+| <img src="images/ht_trivia.png" alt="" width="160"> | [hangtime.md: Arcade: the trivia contest](hangtime.md#arcade-the-trivia-contest) | A trivia question (What year was Otis Thorpe born?) and the CONGRATUATIONS !!! screen with the password EOFTCSJN |
+| <img src="images/ht_sweepstakes_rules.png" alt="" width="160"> | [hangtime.md: Arcade: the trivia contest](hangtime.md#arcade-the-trivia-contest) | The two pages of NBA HANGTIME SWEEPSTAKES OFFICIAL RULES |
 | <img src="images/ht_title.png" alt="" width="160"> | [hangtime.md: Arcade: title screen and attract mode](hangtime.md#arcade-title-screen-and-attract-mode) | NBA Hangtime title screen |
 | <img src="images/ht_attract.png" alt="" width="160"> | [hangtime.md: Arcade: title screen and attract mode](hangtime.md#arcade-title-screen-and-attract-mode) | The M DOC RAPS highlights page and the MUSIC credits page |
+| <img src="images/ht_unused_logos.png" alt="" width="160"> | [hangtime.md: Arcade: unused graphics](hangtime.md#arcade-unused-graphics) | Old and new Pistons, Timberwolves and Jazz logos, and the DCS Sound System logo |
+| <img src="images/ht_unused_captions.png" alt="" width="160"> | [hangtime.md: Arcade: unused graphics](hangtime.md#arcade-unused-graphics) | The red rule captions and the two shorter WINNER STAYS ON FREE notices |
+| <img src="images/ht_unused_more.png" alt="" width="160"> | [hangtime.md: Arcade: unused graphics](hangtime.md#arcade-unused-graphics) | The unused player animation, standing frame and five portraits |
 | <img src="images/mht_title.png" alt="" width="160"> | [hangtime.md: Maximum Hangtime](hangtime.md#maximum-hangtime) | The Maximum Hangtime title screen |
 | <img src="images/mht_kday.png" alt="" width="160"> | [hangtime.md: Maximum Hangtime](hangtime.md#maximum-hangtime) | K DAY's portrait and 16 head frames |
 | <img src="images/mht_sweepstakes.png" alt="" width="160"> | [hangtime.md: Maximum Hangtime](hangtime.md#maximum-hangtime) | MAXIMUM SWEEPSTAKES credits page |
 | <img src="images/mht_proto_portraits.png" alt="" width="160"> | [hangtime.md: Maximum Hangtime](hangtime.md#maximum-hangtime) | Ryan Minor and Ron Riley, the two portraits only the prototype points to |
 | <img src="images/mht_backdoor.png" alt="" width="160"> | [hangtime.md: Maximum Hangtime](hangtime.md#maximum-hangtime) | The unused BACK DOOR image |
 | <img src="images/genesis_hangtime_default_records.png" alt="" width="160"> | [hangtime.md: Other Genesis leftovers](hangtime.md#other-genesis-leftovers) | Genesis attract mode: Greatest Players and Experienced Players, listing the 13 names |
-| <img src="images/ht_unused_logos.png" alt="" width="160"> | [hangtime.md: Arcade: unused graphics](hangtime.md#arcade-unused-graphics) | Old and new Pistons, Timberwolves and Jazz logos, and the DCS Sound System logo |
-| <img src="images/ht_unused_captions.png" alt="" width="160"> | [hangtime.md: Arcade: unused graphics](hangtime.md#arcade-unused-graphics) | The red rule captions and the two shorter WINNER STAYS ON FREE notices |
-| <img src="images/ht_unused_more.png" alt="" width="160"> | [hangtime.md: Arcade: unused graphics](hangtime.md#arcade-unused-graphics) | The unused player animation, standing frame and five portraits |
 
 ## NBA Jam at home
 
@@ -80,6 +82,8 @@ Every picture in these notes, grouped by the page it appears on, with a link to 
 | Picture | Where | What it shows |
 |---|---|---|
 | <img src="images/snes_japan_beta_secrets.png" alt="" width="160"> | [variants.md: NBA Jam, Super Nintendo](variants.md#nba-jam-super-nintendo) | The 11 secret characters of the Japanese beta |
+| <img src="images/te_nani_attract.png" alt="" width="160"> | [variants.md: Arcade revisions](variants.md#arcade-revisions) | The Nani Edition's features page and its coin page with SORRY, NANI NETWORK INACTIVE |
+| <img src="images/te_nani_network.png" alt="" width="160"> | [variants.md: Arcade revisions](variants.md#arcade-revisions) | The coin page with NETWORK PLAY, forced in MAME |
 
 ## Passwords
 

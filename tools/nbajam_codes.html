@@ -185,7 +185,7 @@ footer a { color: var(--orange); text-decoration: none; display: inline-flex; al
       <a href="https://github.com/maxxthunder/nbajam/tree/main/docs">research notes</a>.</p>
   </details>
 
-  <footer><a href="https://github.com/maxxthunder/nbajam"><svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg>maxxthunder/nbajam</a><a href="https://github.com/maxxthunder/nbajam/blob/main/CHANGELOG.md">v1.6.13</a></footer>
+  <footer><a href="https://github.com/maxxthunder/nbajam"><svg viewBox="0 0 16 16" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg>maxxthunder/nbajam</a><a href="https://github.com/maxxthunder/nbajam/blob/main/CHANGELOG.md">v1.6.14</a></footer>
 </main>
 <script>
 // Card: [title, where, input, new?, note]. Input: "ini:MJT|Mar 22" = initials (and birthday);
@@ -414,6 +414,7 @@ const NOTE = { VLK: 'Looks like Larry DeMar; VLK is Vicki Kamm.',
 
 const RANDOM_CLIPS = [['1B', 'Boomshakalaka!'], ['0F', 'Is it the shoes?'], ['13', 'Ugly shot!'], ['17', 'Oh my!']];  // Genesis clip IDs, recorded in BizHawk with the music subtracted
 const JUICE27 = 'With all 27 teams beaten, the second stats page says "You have defeated all 27 NBA teams!" and turns juice mode on for the next game.';
+const CALL = { SUB: 'arcade_te_call_subzero', RAD: 'arcade_te_call_raiden', SCO: 'arcade_te_call_scorpion' };
 const MK = 'Revs 1.00 and 2.0 only; removed from rev 3.0 on.';
 // NBA Hangtime (arcade L1.3): the name/PIN table at FFAB9200h, as [name, PIN, published name, note]
 const HT = [['JAPPLE', '6660', 'Jeff Johnson', 'Scoreboard: JAPPLE.'], ['DIVITA', '0201', 'Sal DiVita', 'Scoreboard: DIVITA.'], ['TURMEL', '0322', 'Mark Turmell', 'Scoreboard: TURMELL.'], ['DANIEL', '0604', 'Dan Thompson', 'Scoreboard: THOMPSON.'],
@@ -604,7 +605,8 @@ const GROUPS = {
       ['NBA Jam Session logo', 'No code', 'none', false, 'An early name for the game.', 'shots/arcade_jam_session'],
       ['Front-on hoop', 'No code', 'none', false, 'A hoop seen head-on, with a shot clock and a MIDWAY stand, in three pieces that fit together. Tournament Edition uses a hoop like it on its Starring screen.', 'shots/arcade_hoop'],
       ['NBA Jam trophy', 'No code', 'none', true, 'A gold basketball trophy. Tournament Edition uses the same picture.', 'shots/arcade_trophy'],
-      ['Chicago Bulls logo', 'No code', 'none', true, 'The Bulls logo, stored next to the trophy.', 'shots/arcade_bulls']]],
+      ['Chicago Bulls logo', 'No code', 'none', true, 'The Bulls logo, stored next to the trophy.', 'shots/arcade_bulls'],
+      ['Unused captions', 'No code', 'none', true, '"WINNERS STAY ON AT HALF PRICE!", "CHALLENGE ACCEPTED!" and "CREDIT LOW". The prototypes show CREDIT LOW over a player\'s head; the releases keep the picture but never draw it.', 'shots/arcade_captions']]],
   ],
   tesnes: [
     ['Secret characters', 'At the initials screen, on each letter marked Start, hold Start first and then press the button; pressing both on the same frame can miss. Enter the other letters as usual.',
@@ -769,7 +771,7 @@ const GROUPS = {
     ['Midway staff', 'Rev 4.0 3/23/94. Rev 3.0 2/26/94 disables every one of these (only the NBA players work there).', TE_STAFF.map(c => te(c, false, NOTE[c[1]]))],
     ['Removed after revision 2', MK + ' Rev 2.1 (2/06/94) changed five of the birthdays: use the cards below for it.', [
       ['Sub-Zero', 'SUB', 'Dec 5'], ['Raiden', 'RAD', 'Jul 9'], ['Grim Reaper', 'GRM', 'Oct 31'], ['Tim Coman', 'TJC', 'Oct 11'],
-      ['Kongo', 'KNG', 'Jan 16'], ['Elviscious', 'ELV', 'Jan 8'], ['Scorpion', 'SCO', 'Jul 6'], ['Reptile', 'RPT', 'Nov 11']].map(c => te(c, false))],
+      ['Kongo', 'KNG', 'Jan 16'], ['Elviscious', 'ELV', 'Jan 8'], ['Scorpion', 'SCO', 'Jul 6'], ['Reptile', 'RPT', 'Nov 11']].map(c => CALL[c[1]] ? [...te(c, false, 'The announcer calls the name during play. Later revisions keep the recording but never play it.'), [[CALL[c[1]], 'Name call']]] : te(c, false))],
     ["Tonight's Match-Up codes", "Enter these while the Tonight's Match-Up screen is up. The game counts each player's presses of any button; codes with a count need exactly that many. The message shows at tip-off. Tournament Mode turns all of them off.", [
       ['Powerup goaltending', MU, 'Press any button 24 times', false, 'Exactly 24. Shows "POWERUP G.T."', 'shots/temu_gt'],
       ['Shot percentage display', MU, 'Press any button 15 or more times while turning the stick Up → Right → Down → Left', false,
@@ -814,7 +816,8 @@ const GROUPS = {
       ['Secret Midway Menu: step 2', 'During those credits', 'P1 Turbo, P1 Turbo, P2 Shoot, P2 Shoot, P2 Shoot, P2 Pass, P2 Pass, P1 Shoot, P1 Pass, P2 Turbo, P2 Turbo', true,
         'After the credits: a hidden operator screen with jam counts, audits, team stats and the records table. Any button pages through. Revs 2.0 to 4.0.', 'shots/te_secret_menu']]],
     ['Unused graphics', '', [
-      ["O'Neal and McKey name labels", 'No code', 'none', true, "Name labels for Shaquille O'Neal and Derrick McKey, among the other players' labels. No revision or prototype uses them, and neither player is in the game.", 'shots/te_cut_names']]],
+      ["O'Neal and McKey name labels", 'No code', 'none', true, "Name labels for Shaquille O'Neal and Derrick McKey, among the other players' labels. No revision or prototype uses them, and neither player is in the game.", 'shots/te_cut_names'],
+      ['Dropped courtside ads', 'No code', 'none', true, 'Seven scorer\'s-table ads that revs 1.00 to 2.1 show and later revisions drop, though the pictures are still in them: a red "III", "REV X", Peking Palace, Mustard\'s Last Stand, "DON\'T SMOKE", two fighters and "RECYCLE".', 'shots/te_dropped_ads']]],
   ],
   ht: [
     ['Secret players', "Create a new player and enter the name, then the PIN. Every typed digit counts, SPC included; names shorter than six letters end with END. Titles are the names published for Maximum Hangtime.",
@@ -825,7 +828,8 @@ const GROUPS = {
       ['Secret Midway Menu: step 2', 'While DESIGN TEAM is up', 'P1 Turbo, P1 Turbo, P2 Shoot, P2 Shoot, P2 Shoot, P2 Pass, P2 Pass, P1 Shoot, P1 Pass, P2 Turbo, P2 Turbo, P1 Turbo, P1 Turbo, P1 Turbo, P1 Turbo', false,
         '"SECRET MIDWAY MENU, NBA HANGTIME – VER L1.3 10/10/96": dunk counts, audits, team stats and records. Four more Turbo presses than the NBA Jam version.', 'shots/ht_midway_menu']]],
     ['Trivia contest', "A 1996 sweepstakes built into the game (the TRIVIA CONTEST setting, on from the factory). Attract mode shows the prizes; the questions come at game over.",
-      [['Trivia password', 'Game over, after a full four-quarter game with a created player', 'Answer the questions (2 points each) until you have 100 points', false, 'The game then shows "CONTEST DRAWING QUALIFIER" and an 8-letter password to mail in with your name and PIN (AAAAAA 0000 gets EOFTCSJN). Entries closed September 13, 1996.', 'hangtime/ht_trivia_password']]],
+      [['Trivia password', 'Game over, after a full four-quarter game with a created player', 'Answer the questions (2 points each) until you have 100 points', false, 'The game then shows "CONTEST DRAWING QUALIFIER" and an 8-letter password to mail in with your name and PIN (AAAAAA 0000 gets EOFTCSJN). Entries closed September 13, 1996.', 'hangtime/ht_trivia_password'],
+        ['Sweepstakes rules', 'Attract mode, every 64th loop', 'none', true, 'Two pages of OFFICIAL RULES, about 8 hours of attract mode after power-on: the contest began April 10, 1996, and was closed in Arizona, New York, Vermont and Washington.', 'shots/ht_sweepstakes_rules']]],
     ['Match-up codes', "At Tonight's Match-Up, press Turbo, Shoot and Pass the number of times shown. Holding the joystick counts a digit down instead of up, and each digit wraps from 9 to 0. The published \"2, 0, 0 + Left\" outdoor court is really the joystick code below.", HT_MU.map(htMu)],
     ['Match-up joystick codes', "Also at Tonight's Match-Up, on any player's controls, once the screen has been up for a moment (the codes are watched a little after it appears). \"Hold\" means keep it held through the rest of the code. ★ New: on no published list.", htJoy(HT_JOY, ['Four at once', 'Unused code: hot spots'])],
     ['Rooftop court extras', "Two things tied to the rooftop court that no code list mentions.", [

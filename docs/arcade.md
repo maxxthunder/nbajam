@@ -7,6 +7,8 @@ What the arcade program (`nbajam`, MAME set) holds for secret characters and mat
 Disassembled with MAME 0.282's debugger. The tank game reward and the copyright message were checked in MAME
 0.282 with a Lua script driving the inputs and reading RAM.
 
+Contents: [Secret characters: nothing new](#secret-characters-nothing-new) · [The tank game's reward (rev 3)](#the-tank-games-reward-rev-3) · [Match-up codes (rev 3.01)](#match-up-codes-rev-301) · [Other input checks](#other-input-checks) · [Hidden copyright message](#hidden-copyright-message) · [Hidden stats menu (rev 3.01)](#hidden-stats-menu-rev-301) · [Unused graphics](#unused-graphics) · [Title screen and attract mode](#title-screen-and-attract-mode) · [Operator-menu leftovers](#operator-menu-leftovers) · [Sound board](#sound-board) · [Code and image coverage](#code-and-image-coverage)
+
 ## Secret characters: nothing new
 
 The initials and birthday table at `FF963740` (rev 3.01) has 13 entries, 5 words each: three letters
@@ -293,6 +295,12 @@ once, about 63,000 frames (17½ minutes) in. The attract script (`FF9198D0h`) co
 
 NBA Jam, Tournament Edition and NBA Hangtime share Midway's operator code, and some of it belongs to other games.
 
+- **"ADJUSTMENTS OK" is never shown.** It sits with the factory-settings messages ("ATTEMPT TO RESTORE FACTORY
+  SETTINGS HAS FAILED"), and the only code that prints it (`FF9A8650h` in NBA Jam 3.01, `FFA0E4C0h` in TE 4.0,
+  `FFAE3D80h` in NBA Hangtime L1.3) has no caller or pointer in any of the three games and never ran in the coverage
+  runs. It was found by listing blocks of code that nothing reaches; apart from it and a few short helpers, all three
+  programs are reachable.
+
 - **NBA Jam has a "LIVES PER PLAY" adjustment** (2 to 7 lives, factory setting 3; record at `FFB782C0`, help text "THE
   NUMBER OF LIVES A PLAYER RECEIVES EACH TIME HE STARTS OR CONTINUES A GAME"). The adjustment list skips its record,
   so the GAME ADJUSTMENT screen never offers it (checked in MAME on rev 3.01). The "AUTO H.S. RESET" record isn't in
@@ -332,6 +340,24 @@ byte runs as an ordinary command. Sent that way, all 512 commands, eight times e
 time (130 distinct samples on NBA Jam, 116 on TE), so the program has no randomness. Three games of random play raised
 that to 183 of 297 samples (NBA Jam) and 176 of 275 (TE), all of them among the ones the scripts can reach.
 
+The main program's scripts are the same four words in both games (see
+[arcade_te.md](arcade_te.md#unused-commentary)). NBA Jam rev 3.01's use 338 of the 511 commands, and 173 are never
+sent. 26 of those are speech, the only way to play 18 samples. Revs 1.00 and 2.00 use the same sound ROMs. Of the
+26, only `7A 10` is in their scripts (rev 2.00), and it plays a sample 3.01 still uses, so none of the 18 is played by
+any release revision. The only other commands they script and 3.01 doesn't are `70` and `7A 00`.
+
+The prototypes (1.01 and 2.00) have their own sound ROMs: `u3`, `u12` and `u13` differ from the release, in 706,737
+bytes of the two sample ROMs. Counted against their own sound program, the prototypes never send 198 commands, and
+36 samples are played only by those. 15 of the 36 aren't in the release's sample ROMs at all. Four more are in the
+upper half of the sample address space, which this byte-for-byte comparison doesn't handle, so they're left out.
+
+Transcribed with Whisper (whisper.cpp, small.en), rev 3.01's 18 never-played samples include "Off the rim!", "It's a
+close game!", "Catching up!", "Throws up a brick!", "Able to connect!" and a few gunshot, buzzer and bell effects. The
+15 prototype recordings the release doesn't have include "Can't touch that!", "Off the backboard!", "The clock
+ticking down!", "Launching a three pointer!", "Tie breaking jumper!", "A nice bounce pass!", "All alone!",
+"Fantastic!" and "With the convincing victory!". The prototypes also leave unused some lines the release keeps, such
+as "Win the game!", "Wide open!" and "He's unconscious!".
+
 ## Code and image coverage
 
 A single MAME read tap over the whole program ROM sees every instruction fetch: about 5 million per second of game
@@ -342,9 +368,9 @@ per game logged every fetch and every blitter offset:
 | Game | Call and jump targets that ran | Pointed-to images drawn |
 |------|--------------------------------|-------------------------|
 | NBA Jam rev 3.01 | 498 of 869 (57%); 526 (61%) with save-state runs; 595 (68%) with the test-menu and attract runs | 1,787 of 3,079 (58%); 2,239 (73%) with save-state runs; 2,412 (78%) with them |
-| Tournament Edition rev 4.0 3/23 | 525 of 848 (62%); 575 (68%) with save-state runs; 636 (75%) with the test-menu and attract runs | 1,816 of 4,207 (43%); 2,468 (59%) with save-state runs; 2,610 (62%) with them |
-| NBA Hangtime L1.3 | 607 of 1,198 (51%); 690 (58%) with save-state runs; 770 (64%) with the test-menu and attract runs | 155 more than all the earlier runs ([hangtime.md](hangtime.md#not-covered)) |
-| Maximum Hangtime L1.03 | 630 of 1,185 (53%), save-state runs included; 759 (64%) with the test-menu and credits runs | 2,896 of 7,062 (41%); 3,298 (47%) with them |
+| Tournament Edition rev 4.0 3/23 | 525 of 848 (62%); 575 (68%) with save-state runs; 636 (75%) with the test-menu and attract runs | 1,816 of 4,207 (43%); 2,468 (59%) with save-state runs; 2,610 (62%) with them; 2,677 (64%) with the secret-character and team runs |
+| NBA Hangtime L1.3 | 607 of 1,198 (51%); 690 (58%) with save-state runs; 770 (64%) with the test-menu and attract runs; 781 (65%) with the trivia and rules runs | 155 more than all the earlier runs ([hangtime.md](hangtime.md#not-covered)) |
+| Maximum Hangtime L1.03 | 630 of 1,185 (53%), save-state runs included; 759 (64%) with the test-menu and credits runs; 771 (65%) with the name-and-PIN runs | 2,896 of 7,062 (41%); 3,298 (47%) with them; 4,155 (59%) with the name-and-PIN runs |
 
 The routines that never ran are the operator menus and hardware tests, the CMOS error screens, the beat-all-27-teams
 ending, the credits, and in the Hangtime games the create-player, record, trivia and sweepstakes screens. None of them is an unknown
@@ -364,3 +390,12 @@ about 100,000 frames, all from set-up NVRAM. The menu runs added the operator me
 NBA Jam and TE, 65 on NBA Hangtime) and almost no images; none of them ran a ROM test that reads the whole program.
 The attract runs added the attract screens the random games skip (the credits on all three, NBA Hangtime's
 highlights). On NBA Hangtime the attract run drew 531 pointed-to images that the four random runs above hadn't.
+
+Two directed runs followed. On Tournament Edition, each of the 61 secret characters (rev 4.0 3/23) was entered from
+a save state and played for about 2,500 frames of random input: no new code, and 40 more images, nearly all of them
+the characters' heads. A second set picked each of the 28 team-select squares in turn (the 27 teams and the "?")
+and played the same way: 27 more images, still no new code. On Maximum Hangtime, each of the 86 name-and-PIN
+entries was entered and played for about 1,300 frames: 12 more targets and 857 more images, the most any single
+set of runs has added. On NBA Hangtime, one run forced the trivia contest (quarter counter 4, points 98) and
+answered a question each way, and one set the attract loop counter so that the sweepstakes rules page came up
+([hangtime.md](hangtime.md#arcade-the-trivia-contest)). Together they added 11 targets and 173 images.

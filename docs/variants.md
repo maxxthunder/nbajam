@@ -124,7 +124,22 @@ data; the changes below are the ones that mean something. Secret characters and 
   for cash and prizes !"), a NANI UART test, nine game-speed settings instead of five, and six names to the credits
   (Dave DiGiorgio, Gary Pahlow, Mark Holobach, Matt Bolcer, Mike Lynch, Steve Benoit); Jamie Rivett is no longer in
   them. The backboard shatter is back on, and the uncensored "Get that shit outta here" is one of its random
-  comments ([arcade_te.md](arcade_te.md#unused-commentary)).
+  comments ([arcade_te.md](arcade_te.md#unused-commentary)). In MAME, which has no network board, attract mode shows
+  what the network would add. The features page becomes "NANI NBA JAM T.E. Features:", with the network line in
+  place of rev 4.0's roster line ("Updated team rosters with at least 3 players from each team"). The coin page
+  adds "SORRY, NANI NETWORK INACTIVE" (`FFA050F0h`, flags `@10FEB28h` and `@10F89F8h`). With three branches there
+  changed in MAME's copy of the program (`FFA05120h`, `FFA05160h`, `FFA05530h`), the page reads "NETWORK PLAY" instead
+  and drops the "PURCHASE FULL GAMES FOR ONLY 8 CREDITS PER PLAYER!" offer. Nothing in the program sets the
+  network-play flag directly; it is only ever cleared, so it was probably set from the network board's side. With
+  the flags forced on every read (network play on, network down off), attract mode stays on that page, and
+  inserted coins no longer add credits, so no game starts. A read watch on the network routines saw only the
+  NETWORK PLAY branch run; the network-down message (`FF947380h`) and the routines it leads to never did. The network-down flag is set when a countdown runs out (`FF893D30h`). A routine at
+  `FF947380h` prints "SORRY, NETWORK DOWN" when the flag is set. The program also has "THIS NANI EDITION WILL SEE IF
+  YOU HAVE WHAT IT TAKES TO COMPETE ON A NATIONAL LEVEL AND WIN !!" (`FF9EA540`), but no pointer to it or to the
+  "NBA JAM T.E.?" before it was found.
+
+  <img src="images/te_nani_attract.png" alt="The Nani Edition's features page and its coin page with SORRY, NANI NETWORK INACTIVE" width="808">
+  <img src="images/te_nani_network.png" alt="The coin page with NETWORK PLAY, forced in MAME" width="400">
 - **NBA Hangtime L1.1 → L1.2:** L1.1 carries a "TOTAL CARNAGE TEAM:" list (Mark Turmell, John Tobias, Jim Gentile,
   Shawn Liptak, Jon Hey) that nothing points to, probably left over from Total Carnage's operator code. It also has
   text for a high-score reset option and for LOCKUPS and GAMES NOT FINISHED audits. L1.2 drops all of it and renames

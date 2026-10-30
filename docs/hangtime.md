@@ -9,6 +9,8 @@ version isn't covered.
 Arcade addresses are TMS34010 bit addresses (as MAME shows them); the program ROM is `u54`/`u63` interleaved and
 mapped at `FF800000h`, so file offset = (address - `FF800000h`) / 8.
 
+Contents: [Arcade: secret players](#arcade-secret-players) · [Arcade: Tonight's Match-Up codes](#arcade-tonights-match-up-codes) · [Arcade: match-up joystick codes](#arcade-match-up-joystick-codes) · [Arcade: the trivia contest](#arcade-the-trivia-contest) · [Arcade: title screen and attract mode](#arcade-title-screen-and-attract-mode) · [Arcade: unused graphics](#arcade-unused-graphics) · [Maximum Hangtime](#maximum-hangtime) · [N64 and PlayStation](#n64-and-playstation) · [Super Nintendo and Genesis](#super-nintendo-and-genesis) · [The logo](#the-logo) · [Checked against published lists](#checked-against-published-lists) · [Not covered](#not-covered) · [Tests](#tests)
+
 ## Arcade: secret players
 
 There are no initials and birthdays here: you create a player with a six-letter name and a four-digit PIN. The check
@@ -165,6 +167,20 @@ choice, worth 2 points. At 100 points the game shows "CONTEST DRAWING QUALIFIER"
 to 4 and the points to 98, then answering "What is the name of the NBA franchise in Miami?" with Heat: AAAAAA 0000 got
 `EOFTCSJN`. A one-quarter game (two credits) never reaches the questions.
 
+<p align="center">
+  <img src="images/ht_trivia.png" alt="A trivia question (What year was Otis Thorpe born?) and the CONGRATUATIONS !!! screen with the password EOFTCSJN" width="808">
+</p>
+
+Attract mode runs the rules (`FFA2E0C0h`) only every 64th loop, about 8 hours of attract mode after power-on. With
+the loop counter set to 127 in MAME, the next loop showed them: "NBA HANGTIME SWEEPSTAKES, OFFICIAL RULES, NO PURCHASE
+NECESSARY", over two pages. The contest began April 10, 1996, and was closed to residents of Arizona, New York,
+Vermont and Washington; Midway was the sponsor. You entered by reaching 100 trivia points; the questions come only
+after a full four-quarter game played under a name and PIN.
+
+<p align="center">
+  <img src="images/ht_sweepstakes_rules.png" alt="The two pages of NBA HANGTIME SWEEPSTAKES OFFICIAL RULES" width="808">
+</p>
+
 ## Arcade: title screen and attract mode
 
 The title screen is the same in all six NBA Hangtime revisions (L1.1, L1.2, L1.3, M1.1, M1.2, M1.3; MAME, a frame
@@ -192,6 +208,78 @@ M.Doc and Below Zero, with an Indasoul contact name and Chicago phone number.
 <p align="center">
   <img src="images/ht_attract.png" alt="The M DOC RAPS highlights page and the MUSIC credits page" width="808">
 </p>
+
+## Arcade: unused graphics
+
+`tools/arcade_gfx.py roms/nbahangt.zip` decodes the Wolf unit's images: the same 18-byte headers as NBA Jam, with the
+20 graphics chips in 4 MB banks (read off MAME's assembled region and rebuilt from the chip files). L1.3 has 7,723
+headers. The blitter takes the same command and offset values at `01A80010`-`01A80030`, with size and position at
+`01A00040`-`01A00070`.
+
+The team logos (`FFF56F70`-`FFF580E0`) are pointed to one each, except three: new logos for the **Pistons**
+(`FFF573F0`), **Timberwolves** (`FFF57900`) and **Jazz** (`FFF57FC0`), the designs those teams took up for 1996-97.
+Every NBA Hangtime revision (L1.1, L1.2, L1.3, M1.1, M1.2, M1.3) points to the old logos instead; every Maximum Hangtime
+revision (the L0.9 prototype, L1.0, M1.0, L1.03) points to the new ones and not the old. The **DCS Sound System**
+logo (`FFF58170`) at the end of the block is pointed to by no revision of either game, and wasn't drawn in 36,000
+frames of attract mode from power-on.
+
+<p align="center">
+  <img src="images/ht_unused_logos.png" alt="Old and new Pistons, Timberwolves and Jazz logos, and the DCS Sound System logo" width="740">
+</p>
+
+Nine 9-to-15-pixel captions after `FFC44470` have no pointer in any of the ten revisions above, and nothing points to
+their graphics offsets either:
+
+- seven red ones with their own palette (`FFC757E0`, `FFC44620`-`FFC44980`): "ALL COMPUTER ASSISTANCE TURNED OFF!",
+  "NO PUSHING ALLOWED!", "SHOT PERCENTAGE TURNED ON", "BABY SIZED PLAYERS!", "TOURNAMENT MODE" and "NO CPU
+  ASSISTANCE, POWER-UPS, OR SECRETS ALLOWED!!";
+- "WINNER STAYS ON FREE" twice (`FFC44500`, `FFC44590`), shorter forms of the yellow attract-mode notice "WINNERS STAY
+  ON FREE IN 4 PLAYER GAME!" (`FFC44470`).
+
+That notice is picked at `FFADA370` by operator setting 1Bh from a two-entry table at `FFADA800`: nothing, or
+`FFC44470`. The match-up codes announce themselves with the purple badges loaded at `FF9EBEE0h`-`FF9ECA80h` ("NO
+PUSHING", "SHOT % ON", "BABY MODE"). With 025, 390, 120 and 552 entered in MAME, a log of every blitter command showed
+none of the nine drawn. Nor in tournament mode: in a two-player game with both players on 1-1-1 (flag word `6`), none
+was drawn from the match-up screen through tip-off and into the first quarter. The red palette is still used, by the font text records at `FFABDB70`, `FFADA5A0` and
+`FFB2BED0`.
+
+<p align="center">
+  <img src="images/ht_unused_captions.png" alt="The red rule captions and the two shorter WINNER STAYS ON FREE notices" width="548">
+</p>
+
+**The rest of L1.3's unreferenced headers.** Of its 578 headers with no pointer, 106 are pointed to by some other
+revision (mostly Maximum Hangtime's extra players' name labels and heads, and the 3 × 2 markers before each head set),
+matched by graphics offset and size. That leaves 472 that no revision of either game points to, 259 of a usable size.
+Not having a pointer doesn't prove an image unused, since code can reach one by adding to another's address. Code
+doing that would have to read the header, and the MAME read tap logs every program-ROM read: in eight runs (four
+of random four-player play, four save-state runs) the only unreferenced header read was `FFAAD000`, program data
+that happens to parse as one. None of the places that add `90h`, `120h`, `1B0h` or `240h` bits (one to four
+headers) does so to a header address. One of
+the 259 is reached another way: a dark 88 × 5 strip (`FFC2A640`) whose graphics address shows up in every game log. None
+of the other 258 was drawn in the attract-mode and random-game logs (18 runs), or from the match-up screen through
+tip-off with each of the 13 match-up codes entered (MAME, a tap on the blitter's offset registers). What they are:
+
+- **A player animation** (`FFD4D570`-`FFD4E9B0`): 19 headless frames of a player in a turquoise kit, a high kick, then
+  a run-up and a leap; plus a standing frame in the same palette (`FFF89920`, `FFDC5220`).
+- **Five portrait photos** (`FFC11840`, `FFC173F0`, `FFC175A0`, `FFC18A70`, `FFF8BF70`), the size of the secret
+  characters' pictures.
+- **Ten team-select name labels** (`FFF58560`-`FFF58F80`): MARCIULIONIS, ANZALONE, BENSON, BUTATA, HAEGER, KELLER,
+  LAWMAN, LEE, MIKE and SEAN. None is on either game's roster.
+- **Badges:** "BIG BALL" (`FFC301F0`) and "BABY MODE" (`FFC30430`) in the purple tip-off style, "AUTO REBOUND"
+  (`FFC2EDB0`) and "BREAK BACKBOARD" (`FFC2EED0`), and the "BACK DOOR" bar (see [Revisions](#maximum-hangtime)). With 0-2-5 entered, tip-off shows a purple "BABY SIZED PLAYERS!"
+  banner, not the badge.
+- 28 head frames in partial sets (`FFBE63F0`-`FFDC3FF0`), the other colours of the trivia contest's boxes
+  ("TOURNAMENT MODE DISABLED", "CORRECT ANSWER", "INCORRECT ANSWER", "INVALID NAME ENTERED", "CONTEST DRAWING
+  QUALIFIER"; the code points to one colour each), older copies of labels the game draws from other headers ("PRESS
+  START", "INSERT COIN", "OVERTIME", "CHALLENGE ACCEPTED"), team-colour bars and ovals, arrows and 58 images under
+  200 pixels.
+
+<p align="center">
+  <img src="images/ht_unused_more.png" alt="The unused player animation, standing frame and five portraits" width="740">
+</p>
+
+Maximum Hangtime L1.03 has no unused images of its own. Its usable headers with no pointer in any revision of either
+game are the same images as L1.3's, matched by graphics offset and size.
 
 ## Maximum Hangtime
 
@@ -235,7 +323,7 @@ Hangtime's program points to the same images.
 </p>
 
 **What Maximum Hangtime dropped.** Its program has the same image headers as NBA Hangtime L1.3. Of the images NBA
-Hangtime points to, 38 have no pointer in any Maximum Hangtime revision: the three old team logos (below), the name
+Hangtime points to, 38 have no pointer in any Maximum Hangtime revision: the three old team logos ([above](#arcade-unused-graphics)), the name
 labels of 21 players (George McCloud, Terry Mills, Kenny Smith ... Eric Murdock) who are name codes here, and the
 trivia contest's pieces (CORRECT ANSWER, INCORRECT ANSWER, CONTEST DRAWING QUALIFIER, the rules with the Phoenix
 P.O. box and the September 13, 1996 deadline, the password box and the four prize pictures). The contest is gone: no
@@ -512,75 +600,6 @@ Claims from published lists, checked here:
   "Oct 29 1996 10:25:52" (`0xA3650`) and EU "Jun 3 1997 16:22:11" (`0x97256`), with the memory-manager error text
   (`0xA34B0`); PlayStation "Apr 27 1997" in `SLUS_003.29` (`0x4E1D3`).
 
-## Arcade: unused graphics
-
-`tools/arcade_gfx.py roms/nbahangt.zip` decodes the Wolf unit's images: the same 18-byte headers as NBA Jam, with the
-20 graphics chips in 4 MB banks (read off MAME's assembled region and rebuilt from the chip files). L1.3 has 7,723
-headers. The blitter takes the same command and offset values at `01A80010`-`01A80030`, with size and position at
-`01A00040`-`01A00070`.
-
-The team logos (`FFF56F70`-`FFF580E0`) are pointed to one each, except three: new logos for the **Pistons**
-(`FFF573F0`), **Timberwolves** (`FFF57900`) and **Jazz** (`FFF57FC0`), the designs those teams took up for 1996-97.
-Every NBA Hangtime revision (L1.1, L1.2, L1.3, M1.1, M1.2, M1.3) points to the old logos instead; every Maximum Hangtime
-revision (the L0.9 prototype, L1.0, M1.0, L1.03) points to the new ones and not the old. The **DCS Sound System**
-logo (`FFF58170`) at the end of the block is pointed to by no revision of either game, and wasn't drawn in 36,000
-frames of attract mode from power-on.
-
-<p align="center">
-  <img src="images/ht_unused_logos.png" alt="Old and new Pistons, Timberwolves and Jazz logos, and the DCS Sound System logo" width="740">
-</p>
-
-Nine 9-to-15-pixel captions after `FFC44470` have no pointer in any of the ten revisions above, and nothing points to
-their graphics offsets either:
-
-- seven red ones with their own palette (`FFC757E0`, `FFC44620`-`FFC44980`): "ALL COMPUTER ASSISTANCE TURNED OFF!",
-  "NO PUSHING ALLOWED!", "SHOT PERCENTAGE TURNED ON", "BABY SIZED PLAYERS!", "TOURNAMENT MODE" and "NO CPU
-  ASSISTANCE, POWER-UPS, OR SECRETS ALLOWED!!";
-- "WINNER STAYS ON FREE" twice (`FFC44500`, `FFC44590`), shorter forms of the yellow attract-mode notice "WINNERS STAY
-  ON FREE IN 4 PLAYER GAME!" (`FFC44470`).
-
-That notice is picked at `FFADA370` by operator setting 1Bh from a two-entry table at `FFADA800`: nothing, or
-`FFC44470`. The match-up codes announce themselves with the purple badges loaded at `FF9EBEE0h`-`FF9ECA80h` ("NO
-PUSHING", "SHOT % ON", "BABY MODE"). With 025, 390, 120 and 552 entered in MAME, a log of every blitter command showed
-none of the nine drawn. Nor in tournament mode: in a two-player game with both players on 1-1-1 (flag word `6`), none
-was drawn from the match-up screen through tip-off and into the first quarter. The red palette is still used, by the font text records at `FFABDB70`, `FFADA5A0` and
-`FFB2BED0`.
-
-<p align="center">
-  <img src="images/ht_unused_captions.png" alt="The red rule captions and the two shorter WINNER STAYS ON FREE notices" width="548">
-</p>
-
-**The rest of L1.3's unreferenced headers.** Of its 578 headers with no pointer, 106 are pointed to by some other
-revision (mostly Maximum Hangtime's extra players' name labels and heads, and the 3 × 2 markers before each head set),
-matched by graphics offset and size. That leaves 472 that no revision of either game points to, 259 of a usable size.
-Not having a pointer doesn't prove an image unused, since code can reach one by adding to another's address. Code
-doing that would have to read the header, and the MAME read tap logs every program-ROM read: in eight runs (four
-of random four-player play, four save-state runs) the only unreferenced header read was `FFAAD000`, program data
-that happens to parse as one. None of the places that add `90h`, `120h`, `1B0h` or `240h` bits (one to four
-headers) does so to a header address. One of
-the 259 is reached another way: a dark 88 × 5 strip (`FFC2A640`) whose graphics address shows up in every game log. None
-of the other 258 was drawn in the attract-mode and random-game logs (18 runs), or from the match-up screen through
-tip-off with each of the 13 match-up codes entered (MAME, a tap on the blitter's offset registers). What they are:
-
-- **A player animation** (`FFD4D570`-`FFD4E9B0`): 19 headless frames of a player in a turquoise kit, a high kick, then
-  a run-up and a leap; plus a standing frame in the same palette (`FFF89920`, `FFDC5220`).
-- **Five portrait photos** (`FFC11840`, `FFC173F0`, `FFC175A0`, `FFC18A70`, `FFF8BF70`), the size of the secret
-  characters' pictures.
-- **Ten team-select name labels** (`FFF58560`-`FFF58F80`): MARCIULIONIS, ANZALONE, BENSON, BUTATA, HAEGER, KELLER,
-  LAWMAN, LEE, MIKE and SEAN. None is on either game's roster.
-- **Badges:** "BIG BALL" (`FFC301F0`) and "BABY MODE" (`FFC30430`) in the purple tip-off style, "AUTO REBOUND"
-  (`FFC2EDB0`) and "BREAK BACKBOARD" (`FFC2EED0`), and the "BACK DOOR" bar (see [Revisions](#maximum-hangtime)). With 0-2-5 entered, tip-off shows a purple "BABY SIZED PLAYERS!"
-  banner, not the badge.
-- 28 head frames in partial sets (`FFBE63F0`-`FFDC3FF0`), the other colours of the trivia contest's boxes
-  ("TOURNAMENT MODE DISABLED", "CORRECT ANSWER", "INCORRECT ANSWER", "INVALID NAME ENTERED", "CONTEST DRAWING
-  QUALIFIER"; the code points to one colour each), older copies of labels the game draws from other headers ("PRESS
-  START", "INSERT COIN", "OVERTIME", "CHALLENGE ACCEPTED"), team-colour bars and ovals, arrows and 58 images under
-  200 pixels.
-
-<p align="center">
-  <img src="images/ht_unused_more.png" alt="The unused player animation, standing frame and five portraits" width="740">
-</p>
-
 ## Not covered
 
 - The rest of the arcade's unreferenced images. A log of every blitter offset over 36,000 frames of attract mode and
@@ -604,13 +623,41 @@ tip-off with each of the 13 match-up codes entered (MAME, a tap on the blitter's
   of a player's name: each player has four name commands in a row, and three tables of scripts use the first, second
   and fourth (`$0514`, `$0515` and `$0517` for the first set, at `FFA77EF0`, `FFA7B550` and `FFA79A20`), so the
   third take of 113 of the 145 sets is never called. The other 183 include runs at `$03BC`-`$03E6`, `$087D`-`$08B7`
-  and `$0B12`-`$0BB7`; what they say hasn't been checked.
+  and `$0B12`-`$0BB7`. Recorded in MAME one at a time (192 by a recount that doesn't exclude every value
+  the code loads), all but `$09EF` play something. Most are short: 185 last under 1.5 s, and the longest, `$0B96`,
+  4.6 s. Pairs and triples with neighbouring numbers often play the same sound (19 groups, such as `$01FA`-`$01FC`
+  and `$03E4`-`$03E6`), so there are 171 distinct sounds. They weren't transcribed, so whether each is speech or an
+  effect is still open. Maximum Hangtime uses the same sound ROMs, and its scripts send 30 of these
+  (in its tables at `FFA67490`-`FFA74010`, plus `$00CE`, `$0283`, `$03D0` and `$04F4`) and two more that NBA Hangtime
+  doesn't (`$0706`, `$090E`). That leaves 162 that neither game sends. Most of the 30 sit in Maximum
+  Hangtime's per-team lists of player-name calls (`FFA6D290`-`FFA71AC0`), next to the other players' names and in
+  the same parallel lists for each take (`$0B57` and `$0B5A` are two takes of one name, `$0B59` and `$0B5C` of
+  another). So they are names of players Maximum Hangtime adds to the rosters, already recorded for NBA Hangtime.
+  `$04F4` is one of the team names (`$04B0`-`$0504`, in threes). A pitch check sorts the 162 roughly. It measures the share of 20 ms frames
+  with a periodic, voice-like waveform. Known name calls score 0.50 to 0.82, the rooftop boing 0.02, and most of the
+  30 Maximum Hangtime names above 0.5. By that measure, 117 of the 162 look like speech, including nearly all of
+  `$087E`-`$08B6` and `$0B12`-`$0BB7`. 28 don't, such as `$009C`, `$0131`-`$013F` and `$0BAC`-`$0BAF`. 17 are unclear
+  or silent. This is a measurement, not a transcription.
+
+  Transcribed afterwards with Whisper (whisper.cpp, small.en; short clips, so single words can be misheard):
+  - `$087D`-`$08B7` are the announcer counting, "1" to "59" in order (`$0883` "4" and `$08A4` "40" are the
+    two the games use).
+  - The unused speech in `$0B12`-`$0BB7` is commentary: "fadeaway", "Elevating!", "With the reverse!", "in heavy
+    traffic", "You can put it on the board!", and **"Secret Player Activated"** (`$0B1B`).
+  - The Maximum Hangtime names are the 1996 rookies: Kerry Kittles, Wallace, Othella Harrington, Marcus Camby, Ray
+    Allen, Erick Dampier, Allen Iverson and Stephon Marbury, each with a "To …!" take. **"Tim Duncan"** and "To
+    Duncan!" (`$0B75`, `$0B77`) are recorded too, but no revision of either game sends them; Duncan entered the NBA
+    in 1997.
+  - The L0.9 prototype's extra commands are "Ryan Minor", "To Minor!" (`$0B63`, `$0B65`), "Ron Riley" and "To
+    Riley!" (`$0B8A`, `$0B8C`), the two players only it has.
+  - Most of the rest are effects: gunshots, claps, bell dings, whooshes, short music cues. `$0B8F` is "Maximum Hang
+    Time".
 - Arcade code coverage: those four runs ran 607 of the 1,198 call and jump targets (see
   [arcade.md](arcade.md#code-and-image-coverage)). Four more 120,000-frame runs in MAME kept a save state each time new
   code ran and restarted from those states with random input, which stays in the menus. They added 83, the
   create-player, record and name-notice screens, for 690 in all (58%). Test-menu and attract runs then added the
-  operator menus, hardware tests, credits and highlights, for 770 (64%). What still hasn't run is the trivia contest
-  and sweepstakes screens; nothing in either list is an unknown feature.
+  operator menus, hardware tests, credits and highlights, for 770 (64%). Two forced runs, the trivia contest
+  and the sweepstakes rules page, added 11 more, for 781 (65%).
 - Super Nintendo code coverage. Three 90,000-frame Mesen 2 runs with random input on a pad and a multitap ran 37,631
   of the 110,988 instructions the disassembler traces (33.9%). Much of the rest is the front end in bank `$C6`
   (menus, name entry, records), which plain random input doesn't get far into. Three more 300,000-frame runs kept a
@@ -620,7 +667,12 @@ tip-off with each of the 13 match-up codes entered (MAME, a tap on the blitter's
   file, the total from every Mesen session on this cart including the targeted ones on this page, has 145 of the 153
   calls run; the other eight are the multitap warning below (four), two team-table loads (`$C6A705`, `$C6A724`) and a
   branch at `$C7014F`. Large parts of bank `$C6` haven't run in any session (`$C673A2`-`$C6862A`,
-  `$C695D9`-`$C6A40E`), so there's no list of unused routines yet. Two screens that need a particular console set-up
+  `$C695D9`-`$C6A40E`), so there's no list of unused routines yet. Twelve more runs started from the CHOOSE OPTION screen, three each from Create
+  Player, Enter Name, Select Teams and Options, then pressed mostly menu buttons for about 20,000 frames. They reached
+  the create-player editor (stats, head, uniform, attributes, privileges, name, PIN) and the options screen. The random and save-state runs
+  above were repeated on fresh ROM copies for comparison: 40,280 instructions (36.3%), then 40,812 (36.8%), close to
+  the first figures. On top of those the menu runs add 9,079, for 49,891 (45.0%), most of it from the Create Player
+  runs. Two screens that need a particular console set-up
   never ran in the random runs:
   - On a PAL console (`$213F` bit 4) the US cart shows "This NTSC game pak is not designed for your Super NES/Super
     Famicom" (`$C30DF8`; seen in Mesen set to PAL).

@@ -2,6 +2,14 @@
 
 Changes to the [secret codes page](https://maxxthunder.github.io/nbajam/codes.html) and [password checker](https://maxxthunder.github.io/nbajam/). The version is shown at the bottom of each page. **Codes page** and **Checker** are what visitors see; **Notes** are the [research notes](docs/); **README** is this repo's front page.
 
+## 1.6.14 (2026-10-30)
+- **Codes page:** Tournament Edition's unused captions, dropped courtside ads and Hang Time's sweepstakes rules;
+  the removed characters' name calls, which later revisions keep but never play.
+- **Notes:** every unused announcer and sound call transcribed: Hang Time counting 1 to 59, "Secret Player
+  Activated", an unused Tim Duncan call, Tournament Edition's never-played lines and the NBA Jam prototypes' 15 dropped recordings.
+- **Notes:** Hang Time's trivia and sweepstakes pages, the Nani network-play version, an unreachable
+  "ADJUSTMENTS OK" message, and coverage for Tournament Edition, Maximum Hangtime and the SNES port.
+
 ## 1.6.13 (2026-10-30)
 - **Notes:** the rest of NBA Jam 3.01's and Tournament Edition 4.0's unused images: 57 vertical name labels,
   "WINNERS STAY ON AT HALF PRICE!", 99 dropped player frames and more; CREDIT LOW can't come up in play.
