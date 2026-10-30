@@ -153,6 +153,23 @@ two exceptions:
   `@1136C50h` changes only the ball to red, white and blue, with the same sound commands; a demo with only
   `@1136C50h` set was in the stadium.
 
+### Other input checks
+
+The input ports are reached through pointers in RAM (`@112FE10h`-`@112FEF0h`, holding `@1860000h`-`@1860040h`).
+Every read of the player ports in L1.3 was listed from the disassembly, and a MAME read tap through attract mode,
+four-player games and the test menu found no others. Apart from the codes above they are:
+
+- the input interrupt (`FF8A0A50h`), which keeps current, previous and newly-pressed tables at `@1073260h` and queues
+  cabinet switch presses for a 16-entry handler table (`FF8B1930h`: coins, starts, service, test and volume; two
+  entries are empty);
+- the per-player input words (`@11322A0h` + 16 × player), built at `FF8E5430h` and read by play, the match-up
+  processes and the rooftop check above;
+- the operator test screens;
+- the start of the Secret Midway Menu sequence (`FFAD4AB0h`): both players holding Up and all three buttons (`7171h`),
+  then Down (`0202h`).
+
+So there are no other button codes in NBA Hangtime.
+
 ## Arcade: the trivia contest
 
 NBA Hangtime carries a 1996 sweepstakes, "NBA HANGTIME TRIVIA GAME" (rules in the program at `FFA2E0C0h`, prizes: a trip
@@ -672,7 +689,10 @@ Claims from published lists, checked here:
   the create-player editor (stats, head, uniform, attributes, privileges, name, PIN) and the options screen. The random and save-state runs
   above were repeated on fresh ROM copies for comparison: 40,280 instructions (36.3%), then 40,812 (36.8%), close to
   the first figures. On top of those the menu runs add 9,079, for 49,891 (45.0%), most of it from the Create Player
-  runs. Two screens that need a particular console set-up
+  runs. A fourth 150,000-frame random run on a fresh copy adds 215 more, for 50,106 (45.1%), so random input has
+  stopped finding new code. Of the two unrun stretches of bank `$C6` named above, the menu runs reached part of
+  `$C673A2`-`$C6862A`; `$C695D9`-`$C6A40E` still hasn't run, and every call into it comes from code that hasn't run
+  either. Two screens that need a particular console set-up
   never ran in the random runs:
   - On a PAL console (`$213F` bit 4) the US cart shows "This NTSC game pak is not designed for your Super NES/Super
     Famicom" (`$C30DF8`; seen in Mesen set to PAL).
@@ -683,6 +703,20 @@ Claims from published lists, checked here:
   and all Mesen sessions on this cart together 228. Of the other 20, 18 are in the 29-entry per-team tables
   (`$C0A08D`, `$C0A680`, `$C56619`, `$C5B75C`), for teams no session picked. One is the multitap warning's picture
   (`$E9FCB0`). The last is the packed sound test (above), which has no caller.
+- Genesis code coverage. A 90,000-frame MAME run with random input on two pads, with a read tap on the cart, ran
+  24,464 of the 32,786 instructions found by tracing from the vectors and from every place that ran (74.6%). That
+  total only follows direct jumps and calls, so it undercounts the code and the true share is lower. A read counts as
+  an instruction fetch when it is within a few bytes of the instruction the CPU is running.
+- Text. Nothing is left over in either cart beyond what's above. On the Super Nintendo the 150,000-frame run also
+  logged every ROM byte read; each block of text it never read belongs to a screen described here (the records
+  pages, the cheat ending with its anagrams, the credits). On the Genesis every block of text has a pointer or a
+  PC-relative reference at or just before it. That check can't see an unused string stored right after a used one,
+  such as the four names at `$5A30`. The Genesis ending text, "YOU ARE A GRAND CHAMPION / YOU HAVE DEFEATED ALL NBA
+  TEAMS! NOW GO OUT AND GET YOURSELF SOME FRESH AIR AND RELAX! THANK YOU FOR PLAYING THIS GAME AND WE HOPE YOU WILL
+  ENJOY OUR FUTURE GAMES!" (`$17A1A`), is drawn by `$178D2` when the flag at `$FF15DC` is set; it wasn't seen on screen.
+- Super Nintendo samples. Logging every sample the sound chip started, as for NBA Jam and Tournament Edition
+  ([secrets.md](secrets.md#super-nintendo-code-coverage-and-sound-samples)), doesn't settle anything here: the game
+  swaps sample sets during play, so the directory holds stale entries that can't be told apart from unused ones.
 
 ## Tests
 

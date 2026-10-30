@@ -64,6 +64,9 @@ All checked in MAME.
   `JZG` (Gentile), `RZM` (Macika), `WZD` (Davis), `BZD` (Dabelstein), `JZL` (Linhoff), `KER` (Hoskins) and
   `LOR` (Olivia). `LOR` and `KER` were typed in MAME on `nbajamtep2`: team select shows Olivia and Hoskins with
   their portraits.
+- **NBA Jam's preset records.** Rev 4.0 3/23 keeps NBA Jam's 23 preset records (`FF9960B0`; see
+  [arcade.md](arcade.md#secret-characters-nothing-new)), word for word except `MJT`'s teams-beaten mask. So `MJT`
+  3/22 and `TWG` 12/7 still have preset records here, although they no longer give a secret character. Not typed in.
 
 <p align="center">
   <img src="images/te_codes.png" alt="Rodman (ROD, rev 4.0 3/03), the Grim Reaper (BIG, rev 2.1) and Payton (GEE, Nani Edition)" width="546">

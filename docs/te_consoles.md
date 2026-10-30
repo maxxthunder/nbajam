@@ -520,6 +520,14 @@ Claims from published lists that could be tested here, and what came of them:
   last also holding six short pieces, 4-9), and code loads each block. Songs 0-7 and 9 are played by number through
   `$BBF63F`, `$BBF5F4`, `$BBF5FE` and `$BBF606`. Only 8 has no caller; played from a patched copy in BizHawk, it's a
   sound about a second long, like 4 and 9.
+- **No leftover text on Super Nintendo or Genesis.** A 150,000-frame random run in Mesen 2 logged every ROM byte the
+  Super Nintendo cart read; the text it never read is the options screen and the ending credits, both described
+  here or in [secrets.md](secrets.md#super-nintendo-code-coverage-and-sound-samples). On the Genesis every block of
+  text has a pointer or a PC-relative reference at or just before it (a check that can't see an unused string stored
+  right after a used one).
+- **Genesis code coverage.** A 90,000-frame MAME run with random input on two pads ran 21,372 of the 32,181
+  instructions found by tracing from the vectors and from every place that ran (66.4%). The trace only follows
+  direct jumps and calls, so the true share is lower.
 - **Developer messages**, all present: "Snake Woz Ere!" (32X `0x341F8`), "I Love Emma Wadrop" (32X `0x3B9DC`), "I Luv
   Claire Reily" (Genesis `0x2AB374`), and the Super Nintendo's "SLICK/Audio v1.01 Copyright(C)1994 Bitmasters,Inc."
   (`0x17861B`) and leftover NBA Jam ending text (`0xD6A7A`).

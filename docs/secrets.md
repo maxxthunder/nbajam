@@ -397,6 +397,12 @@ sample's directory slot and start address):
   up, the secret characters (`$B1FAB7`), which random input never types in; both were run separately below.
   Tournament Edition's largest unrun piece, `$81D926`, is bank `$81`'s copy of the per-player code; the same code is
   in banks `$82`, `$A6` and `$A7`, and parts of those copies ran.
+  A fourth, 150,000-frame random run on a fresh copy of each cart adds 2,288 instructions to NBA Jam, for 63,791
+  (78.7%), and 2,711 to Tournament Edition, for 58,430 (64.5%), before the ending runs below.
+- **Text.** That run also logged every ROM byte read. The text neither cart read is the options screen and
+  Tournament Edition's ending credits. On NBA Jam's Genesis cart every block of text has a pointer or a PC-relative
+  reference at or just before it. So no leftover text turned up, though that check can't see an unused string
+  stored right after a used one.
 - **Ending.** The game state word at `$1665` picks the main loop's handler; state `$35` is the ending. The game
   sets it after the results screen (`$8AD656`) when a player's count of beaten teams (`$0AB4`-`$0ABA`) first
   reaches 27. Writing `$35` there from the title screen plays the whole ending: the trophy with "CONGRATULATIONS!

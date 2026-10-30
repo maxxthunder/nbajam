@@ -2,6 +2,12 @@
 
 Changes to the [secret codes page](https://maxxthunder.github.io/nbajam/codes.html) and [password checker](https://maxxthunder.github.io/nbajam/). The version is shown at the bottom of each page. **Codes page** and **Checker** are what visitors see; **Notes** are the [research notes](docs/); **README** is this repo's front page.
 
+## 1.6.15 (2026-10-30)
+- **Notes:** NBA Hangtime's two adjustments the operator menu never offers, and a full check of its input reads
+  (no other button codes); Tournament Edition keeps NBA Jam's preset records.
+- **Notes:** no leftover text on the Super Nintendo or Genesis carts; NBA Hangtime's Genesis ending text; more
+  Super Nintendo coverage and the first Genesis coverage figures.
+
 ## 1.6.14 (2026-10-30)
 - **Codes page:** Tournament Edition's unused captions, dropped courtside ads and Hang Time's sweepstakes rules;
   the removed characters' name calls, which later revisions keep but never play.
