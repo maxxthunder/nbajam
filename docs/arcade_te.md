@@ -225,6 +225,17 @@ The 2.0 prototype points to 15 images no release points to (decoded and compared
 included): earlier versions of the player arrows, the side-on 1 to 4 arrows in each player's colour and the
 downward ones, in a different shading from the releases' (`FFC0F7F0`-`FFC10180` in the prototype).
 
+Between the releases, the images pointed to change twice. Rev 3.0 2/26 stops pointing to seven scorer's-table ads
+that 1.00 to 2.1 use, with their floor reflections: a red "III", "REV X", "PEKING PALACE PORTAGE, MI.", "EAT AT
+Mustard's Last Stand", "DON'T SMOKE", a two-fighter picture and "RECYCLE" (`FFB3B080`-`FFB3BF20` in rev 2.1). Their
+graphics are still in rev 3.0 2/26 and 4.0 3/23, each under two headers nothing points to. Rev 3.0 3/04 stops pointing
+to the removed characters' heads and name labels and to Barkley's (back in rev 4.0 3/23, with `BRK`). Rev 1.00, 2.0
+and 2.1 point to identical images, as do 3.0 3/04 and 4.0 3/03; the Nani Edition changes one arrow.
+
+<p align="center">
+  <img src="images/te_dropped_ads.png" alt="The seven scorer's-table ads dropped in rev 3.0 2/26" width="848">
+</p>
+
 ## Title screen and attract mode
 
 The title screen is the same in all nine revisions in MAME (1.00, 2.0, 2.1, both 3.0s, both 4.0s, the Nani Edition
@@ -234,7 +245,8 @@ and the 2.0 prototype). The logo flies in over static and holds about six second
   <img src="images/te_title.png" alt="Tournament Edition title screen" width="400">
 </p>
 
-In an 80,000-frame attract run of rev 4.0, every other loop (about 24,500 frames apart) ends with the challenge
-crawl, "ATTENTION BALLPLAYERS: DO YOU THINK YOU'VE CONQUERED NBA JAM? WE DON'T THINK SO." through "STEP UP AND SHOW
-SOME SKILL." (text at `FF9E8C80h`), followed by the team roster pages. The credits didn't come up in that run;
-the Secret Midway menu's code reaches them.
+The attract script (`FF958340h` in rev 4.0) runs the title twice per cycle, about 24,500 frames, and ends each cycle
+with the challenge crawl, "ATTENTION BALLPLAYERS: DO YOU THINK YOU'VE CONQUERED NBA JAM? WE DON'T THINK SO." through
+"STEP UP AND SHOW SOME SKILL." (text at `FF9E8C80h`), then the team roster pages. It counts cycles in RAM
+(`@10EC130h`) and runs the credits (`FF95C0C0h`, the routine that also starts the Secret Midway menu's code watcher)
+on every fourth, about 27 minutes after power-on, so an 80,000-frame attract run in MAME didn't reach them.

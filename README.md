@@ -1,6 +1,6 @@
 # NBA Jam and NBA Hangtime: Secret Codes and Password Checker
 
-**[Secret codes →](https://maxxthunder.github.io/nbajam/codes.html)** &nbsp; **[Password checker →](https://maxxthunder.github.io/nbajam/)** &nbsp;[![v1.6.11](https://img.shields.io/badge/version-1.6.11-e8742c)](CHANGELOG.md)
+**[Secret codes →](https://maxxthunder.github.io/nbajam/codes.html)** &nbsp; **[Password checker →](https://maxxthunder.github.io/nbajam/)** &nbsp;[![v1.6.12](https://img.shields.io/badge/version-1.6.12-e8742c)](CHANGELOG.md)
 
 <p align="center">
   <img src="tools/img/logo_nbajam.png" alt="NBA Jam" height="96">

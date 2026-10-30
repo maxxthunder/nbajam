@@ -228,9 +228,21 @@ listing.
 headers fit nbajamp1's graphics). Decoded and compared pixel for pixel
 (palette included), they point to 45 images that no release (1.00, 2.00, 3.01) points to. All but two have a release
 counterpart of the same size or shape: 27 team-select portraits in earlier edits of the same players' photos (paler,
-cropped differently), the numerals 25-31 and the letters K and L in an older shading, two 101 × 15 name plates
-and five 3 × 1 pieces. The other two are a 36 × 19 "CREDIT LOW" label and an 89 × 182 NBA logo (`FFDC3C10`,
-`FFDE4220` in the prototypes).
+cropped differently), the numerals 25-31 and the letters K and L in an older shading, the floor reflections of two
+scorer's-table ads (101 × 15) and five 3 × 1 pieces. The other two are a 36 × 19 "CREDIT LOW" label and an 89 × 182
+NBA logo (`FFDC3C10`, `FFDE4220` in the prototypes):
+
+- The NBA logo is the one that sweeps across the attract-mode demo game (`FF8FE6D0h`, `FF907950h`); the releases
+  sweep a different-sized logo. Seen in MAME on nbajamp1, along with one of the floor reflections.
+- "CREDIT LOW" is drawn by a process (`FF8E7AF0h`) that follows a player for 900 frames, the same shape as NBA
+  Hangtime's CPU label ([hangtime.md](hangtime.md#maximum-hangtime)). It's started from an event handler (`FF8EA050h`,
+  event 9) for the player concerned, unless `@10F3120h` is 3 or more and `@10F30F0h` is at most `60000h`. 14 rounds of
+  random coin, start and play input on nbajamp1 never drew it, so what event 9 is isn't known.
+
+**Between the releases** (pixel-for-pixel comparison of the images each points to): 2.00 drops 42 of 1.00's images
+and adds 48. Most are redrawn player heads and the numerals 21-31 in a new colour; 2.00 also adds the BIRTH
+MONTH, BIRTH DATE, INITIALS and STATS title bars and a small NBA JAM logo. 3.01 drops 15 and adds 21: more redrawn
+player heads and new player 1 and 2 arrows.
 
 ## Title screen and attract mode
 
@@ -243,7 +255,8 @@ second through the first 5,500).
 
 An 80,000-frame attract run of rev 3.01 in MAME showed the title, the record tables, the STARRING pages, the team
 roster pages and demo games every loop, and the credits (DESIGN TEAM with photos, then SPECIAL THANKS and the rest)
-once, about 63,000 frames (17½ minutes) in.
+once, about 63,000 frames (17½ minutes) in. The attract script (`FF9198D0h`) counts its cycles in RAM
+(`@10F1F50h`, so the count starts again at power-on) and runs the credits (`FF91D340h`) on every fourth one.
 
 ## Operator-menu leftovers
 
@@ -297,14 +310,14 @@ per game logged every fetch and every blitter offset:
 
 | Game | Call and jump targets that ran | Pointed-to images drawn |
 |------|--------------------------------|-------------------------|
-| NBA Jam rev 3.01 | 498 of 869 (57%); 526 (61%) with save-state runs | 1,787 of 3,079 (58%); 2,239 (73%) with save-state runs |
-| Tournament Edition rev 4.0 3/23 | 525 of 848 (62%); 575 (68%) with save-state runs | 1,816 of 4,207 (43%); 2,468 (59%) with save-state runs |
-| NBA Hangtime L1.3 | 607 of 1,198 (51%); 690 (58%) with save-state runs | 155 more than all the earlier runs ([hangtime.md](hangtime.md#not-covered)) |
+| NBA Jam rev 3.01 | 498 of 869 (57%); 526 (61%) with save-state runs; 595 (68%) with the test-menu and attract runs | 1,787 of 3,079 (58%); 2,239 (73%) with save-state runs; 2,412 (78%) with them |
+| Tournament Edition rev 4.0 3/23 | 525 of 848 (62%); 575 (68%) with save-state runs; 636 (75%) with the test-menu and attract runs | 1,816 of 4,207 (43%); 2,468 (59%) with save-state runs; 2,610 (62%) with them |
+| NBA Hangtime L1.3 | 607 of 1,198 (51%); 690 (58%) with save-state runs; 770 (64%) with the test-menu and attract runs | 155 more than all the earlier runs ([hangtime.md](hangtime.md#not-covered)) |
 | Maximum Hangtime L1.03 | 630 of 1,185 (53%), save-state runs included; 759 (64%) with the test-menu and credits runs | 2,896 of 7,062 (41%); 3,298 (47%) with them |
 
 The routines that never ran are the operator menus and hardware tests, the CMOS error screens, the beat-all-27-teams
 ending, the credits, and in the Hangtime games the create-player, record, trivia and sweepstakes screens. None of them is an unknown
-feature. The save-state runs keep a state whenever new code runs and restart from kept states with random input
+feature. The test-menu and attract runs below have since reached the menus and hardware tests, and on NBA Jam and NBA Hangtime the credits. The save-state runs keep a state whenever new code runs and restart from kept states with random input
 (four runs per Hangtime game; eight each on NBA Jam and TE, of 100,000 to 250,000 frames). On NBA Jam and TE they
 reached a few more attract-mode screens (the copyright and legal screen, the "ATTENTION BALLPLAYERS" text, part of the credits). The images they
 added are dunk frames, player heads and team names and logos for teams the earlier runs didn't pick; nothing new
@@ -313,3 +326,10 @@ either. One NBA Jam run jumped into data and was left out.
 On Maximum Hangtime, two runs of about 220,000 frames pressed the test button and then random player 1 input
 through the operator menus, and one 70,000-frame attract-mode run reached the credits, which play every fourth loop
 ([hangtime.md](hangtime.md#maximum-hangtime)).
+
+NBA Jam, Tournament Edition and NBA Hangtime got the same treatment: per game, two runs of about 200,000 frames that
+pressed the test button and then random player 1 input through the operator menus, and one attract-mode run of
+about 100,000 frames, all from set-up NVRAM. The menu runs added the operator menus and hardware tests (59 targets on
+NBA Jam and TE, 65 on NBA Hangtime) and almost no images; none of them ran a ROM test that reads the whole program.
+The attract runs added the attract screens the random games skip (NBA Jam's credits, NBA Hangtime's highlights and
+credits). On NBA Hangtime the attract run drew 531 pointed-to images that the four random runs above hadn't.

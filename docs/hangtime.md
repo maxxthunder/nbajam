@@ -174,13 +174,16 @@ every second through the first 3,100).
   <img src="images/ht_title.png" alt="NBA Hangtime title screen" width="400">
 </p>
 
-Each attract-mode loop shows one **"HANGTIME HIGHLIGHTS"** page, taking the next from a list of 11 (text at
-`FFA1EF18h` in L1.3): 150 NBA PLAYERS, CREATE PLAYER, ALLEY OOPS, DOUBLE DUNKS, ROOF TOP COURT, SPIN MOVES, DIGITAL
-SOUND, M DOC RAPS, TRIVIA CONTEST, MEGA SECRETS, AND MORE!. An 80,000-frame attract run in MAME showed M DOC RAPS,
-ALLEY OOPS, AND MORE!, DIGITAL SOUND and CREATE PLAYER, in that order. Every NBA Hangtime revision has the list; no
+Each attract-mode loop includes a **"HANGTIME HIGHLIGHTS"** segment (`FFA1DD00h`) that flashes 11 pages, about two
+seconds each, from the list at `FFA1EBD0h` (text at `FFA1EF18h` in L1.3): 150 NBA PLAYERS, CREATE PLAYER, ALLEY OOPS,
+DOUBLE DUNKS, ROOF TOP COURT, SPIN MOVES, DIGITAL SOUND, M DOC RAPS, TRIVIA CONTEST, MEGA SECRETS, AND MORE!. A
+button press cuts it short. Checked in MAME with a frame every 20. Every NBA Hangtime revision has the segment; no
 Maximum Hangtime revision does.
 
-The same run reached the credits once, about 53,000 frames (15 minutes) in: DESIGN TEAM, ADDITIONAL DESIGN, SOUND
+The attract script (`FF9FF440h`) counts its cycles in RAM (`@1138CF0h`, about 26,500 frames each) and runs the
+credits (`FFA02550h`) on the second and every fourth after that, and the trivia contest's rules page (`FFA2E0C0h`, which
+first reads adjustment `20h`) on every 64th. The 80,000-frame run reached the credits once, about 53,000 frames
+(15 minutes) in: DESIGN TEAM, ADDITIONAL DESIGN, SOUND
 AND MUSIC (Jon Hey, Kevin Quinn, Neil Funk), MUSIC, ACTORS, HARDWARE SUPPORT, NBA SUPPORT, ADDITIONAL TESTERS,
 SPECIAL THANKS and EXECUTIVE PRODUCERS. The MUSIC page names the two songs, "GET UP GET UP" and "HANGTIME - WHATCHA
 GONNA DO": music produced by M.Doc of Indasoul Productions, songs written by Rhyme, rap by Rhyme, backgrounds by
@@ -236,7 +239,7 @@ Hangtime points to, 38 have no pointer in any Maximum Hangtime revision: the thr
 labels of 21 players (George McCloud, Terry Mills, Kenny Smith ... Eric Murdock) who are name codes here, and the
 trivia contest's pieces (CORRECT ANSWER, INCORRECT ANSWER, CONTEST DRAWING QUALIFIER, the rules with the Phoenix
 P.O. box and the September 13, 1996 deadline, the password box and the four prize pictures). The contest is gone: no
-revision has any of its text, and the "HANGTIME HIGHLIGHTS" attract pages, which listed the contest, are gone too
+revision has any of its text, and the "HANGTIME HIGHLIGHTS" attract segment, which listed the contest, is gone too
 ([below](#arcade-title-screen-and-attract-mode)). The credits still have a page for one, though, shown every fourth attract-mode loop
 (`@1138D90h`, `FFA00150h`; about 16½ minutes after power-on in MAME): "MAXIMUM SWEEPSTAKES: MAXIMUM NBA HANGTIME
 SWEEPSTAKES IS CO-SPONSORED BY EGM AND EGM²".
@@ -262,8 +265,10 @@ attract mode (`@112F840h` = 1). The same routine (`FF8B0180h`) also puts up the 
 twice a game: at tip-off (from `FF8AEE20h`) and when play restarts after halftime, once the players' objects have been
 rebuilt for the change of ends (from `FF8F79F0h`). In MAME on L1.03 the labels came up at the start of the first and
 third quarters only. On L1.0 the process was created for both computer players at tip-off, and the blitter never
-drew the BACK DOOR graphics. A check of every arcade revision's header pointers for values like this one (round
-`FFxx0000` addresses) found no other case: the rest sit in pointer tables or point to images the releases draw anyway.
+drew the BACK DOOR graphics. Comparing, pixel for pixel, the images each arcade revision points to (every NBA Jam, Tournament Edition and
+Hangtime set) turned up one other match like it, also only in L1.0 and M1.0: the bytes of a `DSJ` instruction at
+`FF8D2E00h` read `FFBB0D90`, where those two have a 3 × 2 head-set marker. Other revisions point to the same marker
+graphics, so it changes no count. The other differences checked sit in pointer tables.
 
 <p align="center">
   <img src="images/mht_backdoor.png" alt="The unused BACK DOOR image" width="224">
@@ -545,8 +550,12 @@ was drawn from the match-up screen through tip-off and into the first quarter. T
 **The rest of L1.3's unreferenced headers.** Of its 578 headers with no pointer, 106 are pointed to by some other
 revision (mostly Maximum Hangtime's extra players' name labels and heads, and the 3 × 2 markers before each head set),
 matched by graphics offset and size. That leaves 472 that no revision of either game points to, 259 of a usable size.
-Not having a pointer doesn't prove an image unused, since code can reach one by adding to another's address. One of
-the 259 is reached that way: a dark 88 × 5 strip (`FFC2A640`) whose graphics address shows up in every game log. None
+Not having a pointer doesn't prove an image unused, since code can reach one by adding to another's address. Code
+doing that would have to read the header, and the MAME read tap logs every program-ROM read: in eight runs (four
+of random four-player play, four save-state runs) the only unreferenced header read was `FFAAD000`, program data
+that happens to parse as one. None of the places that add `90h`, `120h`, `1B0h` or `240h` bits (one to four
+headers) does so to a header address. One of
+the 259 is reached another way: a dark 88 × 5 strip (`FFC2A640`) whose graphics address shows up in every game log. None
 of the other 258 was drawn in the attract-mode and random-game logs (18 runs), or from the match-up screen through
 tip-off with each of the 13 match-up codes entered (MAME, a tap on the blitter's offset registers). What they are:
 

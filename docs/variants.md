@@ -127,5 +127,7 @@ data; the changes below are the ones that mean something. Secret characters and 
 - **NBA Hangtime and Maximum Hangtime, L and M:** each M revision has the same text as the L revision of the same
   date. The only code change is the number of saved player records: 195 instead of 410 (`$1E0` bits each from CMOS
   `@1408000h`). The M revisions are probably for boards with less CMOS memory; that's a guess from the numbers.
+  Decoded and compared pixel for pixel, the images all six NBA Hangtime revisions point to are identical, and so
+  are those of Maximum Hangtime's L1.0, M1.0 and L1.03.
 - **Maximum Hangtime L0.9 → L1.0:** "CUSTOMISE" becomes "CUSTOMIZE", Dimitri leaves the thanks list and Kevin Day
   joins it, and "ALL NBA TEAM ROSTERS ACCURATE AS OF 11/1/96" is added.

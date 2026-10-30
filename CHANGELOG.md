@@ -2,6 +2,13 @@
 
 Changes to the [secret codes page](https://maxxthunder.github.io/nbajam/codes.html) and [password checker](https://maxxthunder.github.io/nbajam/). The version is shown at the bottom of each page. **Codes page** and **Checker** are what visitors see; **Notes** are the [research notes](docs/); **README** is this repo's front page.
 
+## 1.6.12 (2026-10-29)
+- **Notes:** the images that change between arcade revisions: NBA Jam 1.00 to 2.00 to 3.01, Tournament Edition's
+  seven dropped scorer's-table ads (still in the ROMs), and NBA Hangtime and Maximum Hangtime's identical image sets.
+- **Notes:** the attract-loop schedules, with how often the credits and trivia pages run; NBA Hangtime's
+  highlights flash all 11 pages; the NBA Jam prototypes' NBA logo sweep and CREDIT LOW message.
+- **Notes:** code and image coverage raised with test-menu and attract runs on all three arcade games.
+
 ## 1.6.11 (2026-10-29)
 - **Notes:** Maximum Hangtime's title screen, K DAY's portrait and head, the 38 NBA Hangtime images it dropped
   (the trivia contest among them), the EGM sweepstakes credits page and the L0.9 prototype's two extra portraits;
