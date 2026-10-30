@@ -248,12 +248,15 @@ SWEEPSTAKES IS CO-SPONSORED BY EGM AND EGM²".
   <img src="images/mht_sweepstakes.png" alt="MAXIMUM SWEEPSTAKES credits page" width="400">
 </p>
 
-**Revisions.** The L0.9 prototype's rosters have two entries the releases drop, both without a name label: a player in
-a maroon jersey after the 76ers' unlabeled entry, and one in Detroit's group between Grant Hill and Joe Dumars. Their
-portraits (`FFBDA250`, `FFBDA2E0` in L1.03) are still in every revision.
+**Revisions.** The L0.9 prototype's rosters have two entries the releases drop: **Ryan Minor**, after Allen Iverson in
+the 76ers' group, and **Ron Riley**, in Detroit's group between Grant Hill and Joe Dumars. Neither has a name-label
+image. Like the other late additions (nine other rookies and Kendall Gill), their roster slot holds a number (9 and 10) in
+place of the label pointer, and team select prints that entry's name from a text table (`FFA2B930h` in L0.9), with
+"Rookie" above it for all but Kendall Gill. Both names are still in every Maximum Hangtime revision's table, and their
+portraits (`FFBDA250`, `FFBDA2E0` in L1.03) are still in the graphics ROMs.
 
 <p align="center">
-  <img src="images/mht_proto_portraits.png" alt="The two portraits only the prototype points to" width="244">
+  <img src="images/mht_proto_portraits.png" alt="Ryan Minor and Ron Riley, the two portraits only the prototype points to" width="244">
 </p>
 
 A 112×12 **"BACK DOOR"** image with a bar after the words is in the graphics ROMs of NBA Hangtime and Maximum
@@ -593,14 +596,21 @@ tip-off with each of the 13 match-up codes entered (MAME, a tap on the blitter's
   headers are sorted above; they could still be reached by address arithmetic in code no test ran.
 - Arcade sound (DCS). The main CPU sends each command as two bytes to `@1680000h`, high then low, waiting for the
   board's acknowledge between them (`FF9F9920h`); `$55AA` followed by `$FF00` sets full volume. Sent one by one in
-  MAME, 1,182 of the commands `$0000`-`$0FFF` make a sound. 776 of those appear in no fixed sound script in the
-  program. Most fall in regular runs (`$04B3`-`$0757` in threes, for instance) that look like calls the game works out
-  from a base number, such as player names, so which sounds are unused isn't settled.
+  MAME, 1,182 of the commands `$0000`-`$0FFF` make a sound. A sound script is three words (priority and channel,
+  length, command; queued by `FF9FA1A0h`), and most of them sit in tables indexed by team or player number rather
+  than behind their own pointers: the scripts picked by team number, for instance, are at `FFA7F2E0` + team × 30h,
+  with commands `$04B0`-`$0504` in threes. Counting every script in such a table as well as those with a pointer, 840 of the
+  1,182 commands are in a script, and 46 more appear as an immediate value in code. Of the 296 left, 113 are one take
+  of a player's name: each player has four name commands in a row, and three tables of scripts use the first, second
+  and fourth (`$0514`, `$0515` and `$0517` for the first set, at `FFA77EF0`, `FFA7B550` and `FFA79A20`), so the
+  third take of 113 of the 145 sets is never called. The other 183 include runs at `$03BC`-`$03E6`, `$087D`-`$08B7`
+  and `$0B12`-`$0BB7`; what they say hasn't been checked.
 - Arcade code coverage: those four runs ran 607 of the 1,198 call and jump targets (see
   [arcade.md](arcade.md#code-and-image-coverage)). Four more 120,000-frame runs in MAME kept a save state each time new
   code ran and restarted from those states with random input, which stays in the menus. They added 83, the
-  create-player, record and name-notice screens, for 690 in all (58%). What still hasn't run is operator menus, tests,
-  the credits, and the trivia and sweepstakes screens; nothing in either list is an unknown feature.
+  create-player, record and name-notice screens, for 690 in all (58%). Test-menu and attract runs then added the
+  operator menus, hardware tests, credits and highlights, for 770 (64%). What still hasn't run is the trivia contest
+  and sweepstakes screens; nothing in either list is an unknown feature.
 - Super Nintendo code coverage. Three 90,000-frame Mesen 2 runs with random input on a pad and a multitap ran 37,631
   of the 110,988 instructions the disassembler traces (33.9%). Much of the rest is the front end in bank `$C6`
   (menus, name entry, records), which plain random input doesn't get far into. Three more 300,000-frame runs kept a

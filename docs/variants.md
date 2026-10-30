@@ -100,9 +100,14 @@ data; the changes below are the ones that mean something. Secret characters and 
 [arcade.md](arcade.md), [arcade_te.md](arcade_te.md) and [hangtime.md](hangtime.md).
 
 - **NBA Jam prototypes (1.01 1/23/93, 2.00 1/24/93):** the same text apart from the version line. Their special
-  thanks include Larry DeMar and spell "STEVEN HOWARD"; rev 1.00 drops DeMar and spells Stephen.
+  thanks include Larry DeMar and spell "STEVEN HOWARD"; rev 1.00 drops DeMar and spells Stephen. Against rev 1.00
+  (text and code), the prototypes have no operator message (1.00's "ENTER AN OPERATOR MESSAGE" screen), no "THIS
+  GAME ACCEPTS DOLLAR BILLS" notice, no longest-winning-streak or hot-streak audits, no tank game, no end text for beating all
+  27 teams, and no STARRING or PRODUCED BY pages in the credits (Steven Howard, Willie Morris Jr., Todd McClearn and
+  Tony Scott are under a second SPECIAL THANKS). They do have the CREDIT LOW label ([arcade.md](arcade.md#unused-graphics));
+  1.00 keeps the loop that started it but has a `NOP` where the prototypes branch to it (`FF8EECA0h`).
 - **NBA Jam 1.00 → 2.00:** the end-of-game text for beating all 27 teams is rewritten (2.00 adds "stay in school!"),
-  "YOUR DEAD!" becomes "YOU ARE DEAD!", and Tim Kitzrow, Tony Scott and Willie Morris Jr. join the credits.
+  "YOUR DEAD!" becomes "YOU ARE DEAD!", and Tim Kitzrow joins the credits (Tony Scott and Willie Morris Jr. are already in 1.00's).
 - **NBA Jam 2.00 → 3.01:** adds the computer-assistance and drone-difficulty settings, the hidden JAM INFO menu, and
   the power-up test switch setting; Michelle Brown leaves the credits and Frank Suareo joins.
 - **TE prototype 2.00 → 1.00:** besides the location-test message ([arcade_te.md](arcade_te.md#match-up-codes)), the

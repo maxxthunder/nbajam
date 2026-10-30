@@ -2,6 +2,13 @@
 
 Changes to the [secret codes page](https://maxxthunder.github.io/nbajam/codes.html) and [password checker](https://maxxthunder.github.io/nbajam/). The version is shown at the bottom of each page. **Codes page** and **Checker** are what visitors see; **Notes** are the [research notes](docs/); **README** is this repo's front page.
 
+## 1.6.13 (2026-10-30)
+- **Notes:** the rest of NBA Jam 3.01's and Tournament Edition 4.0's unused images: 57 vertical name labels,
+  "WINNERS STAY ON AT HALF PRICE!", 99 dropped player frames and more; CREDIT LOW can't come up in play.
+- **Notes:** what the NBA Jam prototypes have that 1.00 doesn't; Tournament Edition's credits; Maximum Hangtime
+  prototype portraits named; NBA Hangtime's unused sound calls refined.
+- **Notes:** an index of every picture in the notes; credits and coverage corrections.
+
 ## 1.6.12 (2026-10-29)
 - **Notes:** the images that change between arcade revisions: NBA Jam 1.00 to 2.00 to 3.01, Tournament Edition's
   seven dropped scorer's-table ads (still in the ROMs), and NBA Hangtime and Maximum Hangtime's identical image sets.

@@ -207,9 +207,9 @@ shot.
 
 ## Unused graphics
 
-`tools/arcade_gfx.py roms/nbajamte.zip` decodes rev 4.0's 4,688 image headers; 430 have no direct pointer. Most are
-reached through tables, but two never are in any revision (1.0, 2.0, 2.1, both 3.0s, both 4.0s and the 2.0
-prototype): the name labels **O'NEAL** (`FFA99D70` in rev 4.0) and **McKEY** (`FFA9E180`). They sit among the
+`tools/arcade_gfx.py roms/nbajamte.zip` decodes rev 4.0's 4,688 image headers; 430 have no direct pointer. Two of
+them, with no pointer in any revision (1.0, 2.0, 2.1, both 3.0s, both 4.0s and the 2.0
+prototype), are the name labels **O'NEAL** (`FFA99D70` in rev 4.0) and **McKEY** (`FFA9E180`). They sit among the
 roster's name labels, each of which is pointed to once, and no roster record uses them; neither player is in the
 game. O'Neal is also cut from the Super Nintendo version.
 
@@ -220,6 +220,19 @@ game. O'Neal is also cut from the Super Nintendo version.
 Rev 4.0 also keeps the heads and name labels of the characters removed after revision 2 (Kongo, the Grim Reaper,
 Scorpion, Sub-Zero, Reptile, Raiden, Coman, Elviscious) and the burning-player frames from Fatalities, with nothing
 pointing to them.
+
+**The rest of rev 4.0's unreferenced headers.** Of the 430, 181 have no pointer in any revision, 82 are of a usable
+size (not the 3 × 2 markers, at least 40 pixels), and six of those have their graphics offset in another record. In
+the coverage runs ([arcade.md](arcade.md#code-and-image-coverage)) none of the other 76 headers was read and none of
+their graphics was drawn. Most are the same leftovers as NBA Jam's ([arcade.md](arcade.md#unused-graphics)): the
+crouching man in a white shirt (`FFA95380`), "WINNERS STAY ON AT HALF PRICE!", "CHALLENGE ACCEPTED!", "CREDIT LOW",
+"MAX", the nine backboard pieces, the scoreboard, PRESS START, INSERT COIN, FREE PLAY and LOS ANGELES in other forms,
+and 42 player frames in the default kit (`FFBCD890`-`FFC24980`). New to Tournament Edition are O'NEAL and McKEY, a
+head lying on its side with long dark hair (`FFBB2BF0`, 51 × 37) and five small blue-white arcs (`FFBB2D10`-`FFBB3190`).
+
+<p align="center">
+  <img src="images/te_unused_more.png" alt="Unused Tournament Edition images: the crouching man, WINNERS STAY ON AT HALF PRICE!, CHALLENGE ACCEPTED!, CREDIT LOW, the head on its side, five arcs, O'NEAL, McKEY and MAX" width="740">
+</p>
 
 The 2.0 prototype points to 15 images no release points to (decoded and compared pixel for pixel, palette
 included): earlier versions of the player arrows, the side-on 1 to 4 arrows in each player's colour and the

@@ -200,9 +200,10 @@ logging the blitter's registers in MAME (`01A80010` command, `01A80020`/`30` off
 the same values in the program ROM. The scan finds 3,557 headers in rev 3.01.
 
 The images are drawn through header pointers, through lists of them, or (for backgrounds) through records that hold
-the graphics offset directly. Six headers (four pictures; the hoop is three pieces) have none of these: nothing points
-to the header, and the graphics offset appears only in the header itself. None was drawn in 36,000 frames (10 minutes) of attract mode in MAME,
-with every blitter offset logged. They sit together at `FFA4CB30`-`FFA4CE00`:
+the graphics offset directly. The largest images with none of these (nothing points to the header, and the graphics
+offset appears only in the header itself) are six headers together at `FFA4CB30`-`FFA4CE00`: four pictures, the hoop
+being three pieces. None was drawn in 36,000 frames (10 minutes) of attract mode in MAME, with every blitter offset
+logged. The rest are below.
 
 - **NBA Jam Session logo** (`FFA4CB30`, 307 × 196), already published.
 - **Front-on hoop** (`FFA4CBC0` shot clock, `FFA4CC50` backboard, `FFA4CCE0` MIDWAY stand), already published.
@@ -214,6 +215,31 @@ with every blitter offset logged. They sit together at `FFA4CB30`-`FFA4CE00`:
 
 <p align="center">
   <img src="images/arcade_unused_graphics.png" alt="The NBA Jam Session logo, the front-on hoop, the trophy and the Chicago Bulls logo" width="740">
+</p>
+
+**The rest of 3.01's unreferenced headers.** 383 of its 3,557 headers have no pointer. 267 of those have no pointer in
+any revision either (the prototypes, 1.00 and 2.00, matched by graphics offset and size), and 214 are of a usable size
+(not the 3 × 2 markers, at least 40 pixels). Eight of those have their graphics offset in another record (two
+scorer's-table pictures, two pairs of small CREDIT and FREE PLAY captions, two glass strips). That leaves 206 reached by
+nothing in the program. Code could still reach one by adding to another header's address, but it would have to read
+the header: in the coverage runs below (random play, save-state, test-menu and attract runs, 25 in all, with a MAME
+read tap on the program ROM) none of the 206 headers was read and none of their graphics was drawn. What they are:
+
+- **99 player frames** in the default kit (`FFAE9C80`-`FFB25440`), in gaps in the animation scripts: the script at
+  `FF8B9D70` steps from `FFAE9B60` straight to `FFAE9FE0`, skipping the three frames between them.
+- **57 vertical name labels** (`FFAA8AB0`-`FFAAAA30`, LOHAUS, IUZZOLINO, McHALE, LAIMBEER and so on), one for each of
+  the 57 side-on player heads that the attract mode's head screen (`FF912810h`, list `FF95A3C0`) draws, in the same
+  order.
+- The six pictures above.
+- **Labels and captions:** "WINNERS STAY ON AT HALF PRICE!", "CHALLENGE ACCEPTED!" (the Hangtime games use both
+  ideas), a release copy of the prototypes' "CREDIT LOW", "MAX", "Mc LEARN", a "?", and PRESS START, INSERT COIN,
+  FREE PLAY and LOS ANGELES in forms the game doesn't draw.
+- **Other pictures:** a man in a white shirt and dark trousers, crouching (`FFA2C840`, 37 × 83); eleven frames of one
+  player's head turning (`FFA4D9D0`-`FFA4DF70`); nine 23 × 78 backboard pieces; a 65 × 36 scoreboard with two 888 displays; and
+  font characters (a return arrow, a pound sign, closing quotes).
+
+<p align="center">
+  <img src="images/jam_unused_more.png" alt="Unused NBA Jam images: a crouching man in a white shirt, WINNERS STAY ON AT HALF PRICE!, CHALLENGE ACCEPTED!, CREDIT LOW, seven of the eleven head frames, three skipped player frames, four of the 57 vertical name labels, Mc LEARN and MAX" width="740">
 </p>
 
 The scorer's-table ads (Recycle, Midway, MK II, NBA Jam Session, Tortorice's Pizzeria, Cheer-Accident, Jon Hey Band
@@ -232,12 +258,17 @@ cropped differently), the numerals 25-31 and the letters K and L in an older sha
 scorer's-table ads (101 × 15) and five 3 × 1 pieces. The other two are a 36 × 19 "CREDIT LOW" label and an 89 × 182
 NBA logo (`FFDC3C10`, `FFDE4220` in the prototypes):
 
-- The NBA logo is the one that sweeps across the attract-mode demo game (`FF8FE6D0h`, `FF907950h`); the releases
+- The NBA logo is the one that sweeps across the attract-mode demo game (`FFCFE6D0h`, `FFD07950h`); the releases
   sweep a different-sized logo. Seen in MAME on nbajamp1, along with one of the floor reflections.
-- "CREDIT LOW" is drawn by a process (`FF8E7AF0h`) that follows a player for 900 frames, the same shape as NBA
-  Hangtime's CPU label ([hangtime.md](hangtime.md#maximum-hangtime)). It's started from an event handler (`FF8EA050h`,
-  event 9) for the player concerned, unless `@10F3120h` is 3 or more and `@10F30F0h` is at most `60000h`. 14 rounds of
-  random coin, start and play input on nbajamp1 never drew it, so what event 9 is isn't known.
+- "CREDIT LOW" is drawn by a process (`FFCE7AF0h`) that follows a player for 900 frames, the same shape as NBA
+  Hangtime's CPU label ([hangtime.md](hangtime.md#maximum-hangtime)). It's started every 110 frames during play
+  (`FFCEA050h`) for a player whose record holds 9 at offset `60h` (`10E01B0h` for player 1, `130h` apart),
+  unless it's the fourth quarter or later with a minute or less left (`@10F3120h` 3 or more, clock `@10F30F0h` at
+  most `60000h`), in which case the value becomes `Ah` instead. The code only ever stores 0, `DACh` (when a player
+  buys in), `Ch` (when a game goes to overtime) and `Ah` there, and adds one only to values below 6, so 9 never
+  comes up and the label can't appear in play. Writing 9 there in MAME draws it over player 1:
+
+  <img src="images/jam_proto_credit_low.png" alt="CREDIT LOW over player 1's head at tip-off in the nbajamp1 prototype, forced in MAME" width="400">
 
 **Between the releases** (pixel-for-pixel comparison of the images each points to): 2.00 drops 42 of 1.00's images
 and adds 48. Most are redrawn player heads and the numerals 21-31 in a new colour; 2.00 also adds the BIRTH
@@ -317,7 +348,7 @@ per game logged every fetch and every blitter offset:
 
 The routines that never ran are the operator menus and hardware tests, the CMOS error screens, the beat-all-27-teams
 ending, the credits, and in the Hangtime games the create-player, record, trivia and sweepstakes screens. None of them is an unknown
-feature. The test-menu and attract runs below have since reached the menus and hardware tests, and on NBA Jam and NBA Hangtime the credits. The save-state runs keep a state whenever new code runs and restart from kept states with random input
+feature. The test-menu and attract runs below have since reached the menus, the hardware tests and, on all three games, the credits. The save-state runs keep a state whenever new code runs and restart from kept states with random input
 (four runs per Hangtime game; eight each on NBA Jam and TE, of 100,000 to 250,000 frames). On NBA Jam and TE they
 reached a few more attract-mode screens (the copyright and legal screen, the "ATTENTION BALLPLAYERS" text, part of the credits). The images they
 added are dunk frames, player heads and team names and logos for teams the earlier runs didn't pick; nothing new
@@ -331,5 +362,5 @@ NBA Jam, Tournament Edition and NBA Hangtime got the same treatment: per game, t
 pressed the test button and then random player 1 input through the operator menus, and one attract-mode run of
 about 100,000 frames, all from set-up NVRAM. The menu runs added the operator menus and hardware tests (59 targets on
 NBA Jam and TE, 65 on NBA Hangtime) and almost no images; none of them ran a ROM test that reads the whole program.
-The attract runs added the attract screens the random games skip (NBA Jam's credits, NBA Hangtime's highlights and
-credits). On NBA Hangtime the attract run drew 531 pointed-to images that the four random runs above hadn't.
+The attract runs added the attract screens the random games skip (the credits on all three, NBA Hangtime's
+highlights). On NBA Hangtime the attract run drew 531 pointed-to images that the four random runs above hadn't.

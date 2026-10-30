@@ -63,6 +63,7 @@ proof.
   [region checks](variants.md#region-checks) and [what changed between arcade revisions](variants.md#arcade-revisions).
 - **[nbajam_password.md](nbajam_password.md)**: both password formats, the key made from the initials, and the
   encoder and decoder.
+- **[images.md](images.md)**: every picture in these notes, with a link to the section that explains it.
 
 ## How the checks were done
 

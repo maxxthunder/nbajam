@@ -1,6 +1,6 @@
 # NBA Jam and NBA Hangtime: Secret Codes and Password Checker
 
-**[Secret codes →](https://maxxthunder.github.io/nbajam/codes.html)** &nbsp; **[Password checker →](https://maxxthunder.github.io/nbajam/)** &nbsp;[![v1.6.12](https://img.shields.io/badge/version-1.6.12-e8742c)](CHANGELOG.md)
+**[Secret codes →](https://maxxthunder.github.io/nbajam/codes.html)** &nbsp; **[Password checker →](https://maxxthunder.github.io/nbajam/)** &nbsp;[![v1.6.13](https://img.shields.io/badge/version-1.6.13-e8742c)](CHANGELOG.md)
 
 <p align="center">
   <img src="tools/img/logo_nbajam.png" alt="NBA Jam" height="96">
@@ -160,6 +160,7 @@ MAME (arcade) and DOSBox-X (PC).
 | [docs/hangtime.md](docs/hangtime.md) | NBA Hangtime and Maximum Hangtime, arcade and home |
 | [docs/variants.md](docs/variants.md) | Betas, prototypes and regional versions |
 | [docs/nbajam_password.md](docs/nbajam_password.md) | Both password formats, key, encoder and decoder |
+| [docs/images.md](docs/images.md) | Every picture in the notes, with links to where each is explained |
 
 </details>
 
