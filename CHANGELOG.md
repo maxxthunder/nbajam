@@ -2,6 +2,13 @@
 
 Changes to the [secret codes page](https://maxxthunder.github.io/nbajam/codes.html) and [password checker](https://maxxthunder.github.io/nbajam/). The version is shown at the bottom of each page. **Codes page** and **Checker** are what visitors see; **Notes** are the [research notes](docs/); **README** is this repo's front page.
 
+## 1.6.16 (2026-10-30)
+- **Codes page:** Tournament Edition Genesis's "Celtics!" and "Hawks!" calls that no sequence plays, and its unused
+  "Turnover!" and "Wide open!" lines.
+- **Notes:** the Tournament Edition and Hang Time Genesis endings (NBA Jam's Genesis cart has none), how each
+  Genesis cart maps notes to samples, the handheld text decoded, Hang Time PlayStation's trivia-quiz text, and the
+  operator settings no menu lists in the prototypes and releases.
+
 ## 1.6.15 (2026-10-30)
 - **Notes:** NBA Hangtime's two adjustments the operator menu never offers, and a full check of its input reads
   (no other button codes); Tournament Edition keeps NBA Jam's preset records.

@@ -66,7 +66,8 @@ All checked in MAME.
   their portraits.
 - **NBA Jam's preset records.** Rev 4.0 3/23 keeps NBA Jam's 23 preset records (`FF9960B0`; see
   [arcade.md](arcade.md#secret-characters-nothing-new)), word for word except `MJT`'s teams-beaten mask. So `MJT`
-  3/22 and `TWG` 12/7 still have preset records here, although they no longer give a secret character. Not typed in.
+  3/22 and `TWG` 12/7 still have preset records here, although they no longer give a secret character. Typed in
+  MAME: `MJT` opens a 17–11 record ranked #1, `TWG` a 9–3 record, `MDP` the same 8–12 as in NBA Jam.
 
 <p align="center">
   <img src="images/te_codes.png" alt="Rodman (ROD, rev 4.0 3/03), the Grim Reaper (BIG, rev 2.1) and Payton (GEE, Nani Edition)" width="546">

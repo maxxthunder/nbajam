@@ -303,15 +303,16 @@ NBA Jam, Tournament Edition and NBA Hangtime share Midway's operator code, and s
 
 - **NBA Jam has a "LIVES PER PLAY" adjustment** (2 to 7 lives, factory setting 3; record at `FFB782C0`, help text "THE
   NUMBER OF LIVES A PLAYER RECEIVES EACH TIME HE STARTS OR CONTINUES A GAME"). The adjustment list skips its record,
-  so the GAME ADJUSTMENT screen never offers it (checked in MAME on rev 3.01). The "AUTO H.S. RESET" record isn't in
-  the list either.
+  so the GAME ADJUSTMENT screen never offers it (checked in MAME on rev 3.01). The "AUTO H.S. RESET" and "COIN
+  COUNTER MODE" records aren't in any list either. Both prototypes have the same three unlisted records, and
+  Tournament Edition (rev 4.0 3/23 and the 2.00 prototype) the last two.
 - **NBA Hangtime has two adjustments its menu never offers.** Its records (`FFACF210h` handler, then title, help and
   adjustment number) are listed on the GAME ADJUSTMENT and coin screens, except COIN COUNTER MODE (`18h`, choices
   "1 (PROPORTIONAL)", "2 (1 COUNT/COIN)", "3 (2 COUNTERS)", record at `FFF5FC40h`) and AUTO H.S. RESET (`Fh`,
   `FFF60A00h`). Nothing reads `18h`, so that setting does nothing; `Fh` is read, so it keeps its factory value. The
   GAME ADJUSTMENT list ends at TRIVIA CONTEST (checked in MAME on L1.3). Of the other adjustments the code reads, `16h`
   (custom or DIP-switch pricing) is set by the pricing screens and `1Eh` and `1Fh` by the volume controls; `14h` is
-  only ever cleared.
+  only ever cleared. Maximum Hangtime L1.03 has the same two unlisted records and no TRIVIA CONTEST record.
 - All three games keep help text for a graphic-violence setting ("THIS ALLOWS THE GRAPHIC VIOLENCE SHOWN ON SCREEN TO
   BE ADJUSTED", with NORMAL and LESS VIOLENT choices in NBA Jam), and nothing points to it. Tournament Edition and NBA
   Hangtime also keep the lives help text with nothing pointing to it.

@@ -168,7 +168,11 @@ four-player games and the test menu found no others. Apart from the codes above 
 - the start of the Secret Midway Menu sequence (`FFAD4AB0h`): both players holding Up and all three buttons (`7171h`),
   then Down (`0202h`).
 
-So there are no other button codes in NBA Hangtime.
+So there are no other button codes in NBA Hangtime. Maximum Hangtime (L1.03) reads its ports through the same
+pointers, set to other slots (`@112FE70h` for players 1 and 2, `@112FED0h` for 3 and 4), from the same set of
+routines. It checks the second half of the Secret Midway Menu sequence on the raw port too (`FFA0D470h`: P1 Turbo
+×2, P2 Shoot ×3, P2 Pass ×2, P1 Shoot, P1 Pass, P2 Turbo ×2, P1 Turbo ×4). Its 11 match-up processes (list at
+`FF8C47B0h`) are NBA Hangtime's codes without the rooftop one, plus hot spots and the court selector described below.
 
 ## Arcade: the trivia contest
 
@@ -423,6 +427,14 @@ for big and huge heads, "SHOT % ON", "NO ARROWS"); the ABA ball has no caption b
 All 63 files in the PlayStation `BIGLUMP.BIN` are named in the program, so none is orphaned. The disc also carries
 `HANGTIME.MAP`, the mastering tool's log (BuildCD 2.39.b, 27 April 1997, paths under `D:\HANGTIME\VERSION\PSX\RELEASE\CD`).
 It lists an earlier layout that has no `SLUS_003.29` and puts the files at other sectors.
+
+The PlayStation program also carries the text of a **trivia quiz** (`SLUS_003.29`, from `8005DEC8`): "TRIVIA QUIZ / TEST
+YOUR KNOWLEDGE / AT THE END OF EACH GAME, YOU GET THE CHANCE TO ANSWER ONE QUESTION IN THE NBA HANGTIME TRIVIA QUIZ",
+rules for reaching 100 points, and a prize the arcade never had: "YOU ARE AN NBA HANGTIME TRIVIA CHAMPION! ... AS
+REWARD, YOUR CREATED PLAYER HAS BEEN BOOSTED BY 10 ATTRIBUTE POINTS!". "THORPE", from a
+question about Otis Thorpe, is in `BIGLUMP.BIN`, `HALF.XAF` and `QUART.XAF`. No instruction loads the
+quiz text's address directly, but neither does any for the Create Player menu text beside it, which is used, so
+whether the game shows the quiz wasn't settled.
 
 ## Super Nintendo and Genesis
 
@@ -713,10 +725,20 @@ Claims from published lists, checked here:
   PC-relative reference at or just before it. That check can't see an unused string stored right after a used one,
   such as the four names at `$5A30`. The Genesis ending text, "YOU ARE A GRAND CHAMPION / YOU HAVE DEFEATED ALL NBA
   TEAMS! NOW GO OUT AND GET YOURSELF SOME FRESH AIR AND RELAX! THANK YOU FOR PLAYING THIS GAME AND WE HOPE YOU WILL
-  ENJOY OUR FUTURE GAMES!" (`$17A1A`), is drawn by `$178D2` when the flag at `$FF15DC` is set; it wasn't seen on screen.
-- Super Nintendo samples. Logging every sample the sound chip started, as for NBA Jam and Tournament Edition
-  ([secrets.md](secrets.md#super-nintendo-code-coverage-and-sound-samples)), doesn't settle anything here: the game
-  swaps sample sets during play, so the directory holds stale entries that can't be told apart from unused ones.
+  ENJOY OUR FUTURE GAMES!" (`$17A1A`), is drawn by `$178D2`. After a game's box score, `$18F46` goes there instead of the usual screens when the
+  flag at `$FF15DC` is set (`$376BC` sets it). With the flag held set in MAME, the page came up after the next box
+  score: "CONGRATULATIONS" over the text, then the press-start screen.
+
+  <img src="images/genesis_hangtime_ending.png" alt="Genesis NBA Hang Time ending: CONGRATULATIONS, YOU ARE A GRAND CHAMPION" width="320">
+- Super Nintendo samples. The sound chip's samples come in two RNC-packed banks (`$132720` and `$1907A0`, both
+  loaded at `$2400`), so the directory the chip reads holds stale entries as the game swaps them, and logging what
+  it starts, as for NBA Jam and Tournament Edition
+  ([secrets.md](secrets.md#super-nintendo-code-coverage-and-sound-samples)), can't tell those from unused ones.
+  Walking the banks instead, three 90,000-frame random runs started every sample in `$1907A0` but `$8FCC` and all
+  but ten in `$132720`. Played at 8 kHz, Whisper hears speech in several of those: "The team is on fire",
+  "versus", "win the game!", "76ers" and "No!". They belong to situations random play rarely reaches, so they
+  aren't counted as unused.
+- Genesis samples. Every one of the 57 samples in the GEMS sample table is played by some sequence's notes.
 
 ## Tests
 

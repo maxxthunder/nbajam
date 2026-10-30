@@ -403,6 +403,18 @@ sample's directory slot and start address):
   Tournament Edition's ending credits. On NBA Jam's Genesis cart every block of text has a pointer or a PC-relative
   reference at or just before it. So no leftover text turned up, though that check can't see an unused string
   stored right after a used one.
+- **Genesis code coverage** (MAME, Rev 1). Two 90,000-frame random-input runs, the second pressing Start far more
+  often so it gets past the title menus into games, ran 18,920 of the 26,467 instructions found by tracing from the
+  vectors and from every place that ran (71.5%). The trace only follows direct jumps and calls, so the true share
+  is lower.
+- **Genesis samples.** In this cart's GEMS driver a digital note n plays sample (n − 48) mod 96: that way every
+  sample the random runs read in full belongs to some sequence, while taking n as the sample number leaves 20 with
+  none. (Tournament Edition's driver uses n itself; see
+  [te_consoles.md](te_consoles.md#checked-against-published-lists).) Every speech sample is played by some sequence.
+  The leftovers are three short instrument hits: samples 37 and 39 (0.16 s each), used only by sequences 47 and 48,
+  which nothing starts, and sample 64 (0.3 s), used by none.
+- **No Genesis ending.** The only line about beating every team is the stats page's "YOU HAVE DEFEATED ALL 27 NBA
+  TEAMS!" (`$1FCC41` in Rev 1); there's no congratulations text in the cart.
 - **Ending.** The game state word at `$1665` picks the main loop's handler; state `$35` is the ending. The game
   sets it after the results screen (`$8AD656`) when a player's count of beaten teams (`$0AB4`-`$0ABA`) first
   reaches 27. Writing `$35` there from the title screen plays the whole ending: the trophy with "CONGRATULATIONS!

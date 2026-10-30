@@ -505,13 +505,21 @@ Claims from published lists that could be tested here, and what came of them:
 
 - **Genesis: unused music.** The sound driver (GEMS, banks set up at `$2642AA`: patches `$13B7CA`, envelopes
   `$13CAE9`, sequences `$13CEBB`, samples `$141901`) has 128 sequences. The game starts them in two ways: by sound ID
-  through the table at `$28B476` (8 bytes per ID; the last word is the sequence), and by number through eleven calls to
-  the start routine `$1F65DA`, which play 1, 2, 3, 5 or 6, 7, 10 and 127 (front-end music). Nothing starts sequences
-  0, 4, 8 and 9, and they are full songs (4, 9, 9 and 8 tracks): recorded in MAME by patching a copy of the ROM to play
-  each one at boot, each plays a minute of continuous music that differs from the others and from the used songs (compared by
-  loudness over time, not by ear). Sequences `$2F`, `$30` and
-  `$4D`, also never started, are silent or a blip. A published list gives the unused tracks as 80, 88 and 89, which
-  don't match the driver's numbers.
+  through the table at `$28B476` (8 bytes per ID; the last word is the sequence), and by number through eleven calls
+  to the start routine `$1F65DA`, which play 1, 2, 3, 5 or 6, 7, 10 and 127 (front-end music). Nothing starts
+  sequences 0, 4, 8 and 9, and they are full songs (4, 9, 9 and 8 tracks): recorded in MAME by patching a copy of the
+  ROM to play each one at boot, each plays a minute of continuous music that differs from the others and from the used
+  songs (compared by loudness over time, not by ear). Sequences `$2F`, `$30` and `$4D` are never started either. They
+  aren't silent, as that recording made them seem: they play on the digital channel, where each note picks a sample
+  from the 96 in the sample table, and Whisper hears `$2F` as "Celtics!", and `$30` is "Hawks!" (samples 85 and 87;
+  the team names run in alphabetical order from "Bucks!" to "Mavericks!", and Whisper, given team names as a hint,
+  hears 87 as "Hawks"). Every other team-name sequence has a sound ID; these two have none, so the Boston and Atlanta
+  calls are never heard. `$4D` plays sample 48, which sequence `$45` also uses. Two samples are in no sequence at all:
+  10, "Turnover!", and 13, "Wide open!". (Here a note picks the sample of the same number: every sample a 90,000-frame
+  random run read in full belongs to some sequence that way. On NBA Jam's Genesis cart the driver shifts notes by 48
+  instead; see [secrets.md](secrets.md#super-nintendo-code-coverage-and-sound-samples).) On the 32X the same two
+  sequences are never started either, but its smaller sample table has no team names: their notes point at empty
+  slots. A published list gives the unused tracks as 80, 88 and 89, which don't match the driver's numbers.
 - **32X: no unused music.** The same GEMS driver (sequences at `$986584`, cartridge `0x86584`) has 127 sequences, and
   only 5 and 6 are songs. The start routine (`$8E7164`) is called with 5 or 6 and through the sound table at cartridge
   `0x28E3E`. Of the sequences that hold anything, only 47, 48 and 77 are never started, and they're one- and
@@ -525,9 +533,18 @@ Claims from published lists that could be tested here, and what came of them:
   here or in [secrets.md](secrets.md#super-nintendo-code-coverage-and-sound-samples). On the Genesis every block of
   text has a pointer or a PC-relative reference at or just before it (a check that can't see an unused string stored
   right after a used one).
+  The same check on the 32X and Jaguar carts finds nothing either, nor does one on the Game Boy and Game Gear carts
+  that counts addresses loaded by `LD` instructions or held in pointer tables.
 - **Genesis code coverage.** A 90,000-frame MAME run with random input on two pads ran 21,372 of the 32,181
   instructions found by tracing from the vectors and from every place that ran (66.4%). The trace only follows
   direct jumps and calls, so the true share is lower.
+- **Genesis: the ending.** After a game, `$264B02` checks each player's count of beaten teams (`$FF213A` and
+  `$FF213C`) for 27, with 26 the last time (`$FF2460`, `$FF2462`), and then calls `$22716A`: the gold trophy with
+  "CONGRATULATIONS!" and a scroll of the same text as the Super Nintendo ending ("YOU ARE THE NEW NBA JAM TOURNAMENT
+  EDITION GRAND CHAMPION! ... HOWEVER, THIS IS AN ACCLAIM GAME! ... PLAY ON . . ."), text at `$227430`. Seen in MAME by
+  jumping to `$22716A` from attract mode.
+
+  <img src="images/genesis_te_ending.png" alt="Genesis Tournament Edition ending: trophy and CONGRATULATIONS!" width="320">
 - **Developer messages**, all present: "Snake Woz Ere!" (32X `0x341F8`), "I Love Emma Wadrop" (32X `0x3B9DC`), "I Luv
   Claire Reily" (Genesis `0x2AB374`), and the Super Nintendo's "SLICK/Audio v1.01 Copyright(C)1994 Bitmasters,Inc."
   (`0x17861B`) and leftover NBA Jam ending text (`0xD6A7A`).

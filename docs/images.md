@@ -46,6 +46,7 @@ Every picture in these notes, grouped by the page it appears on, with a link to 
 | <img src="images/mht_proto_portraits.png" alt="" width="160"> | [hangtime.md: Maximum Hangtime](hangtime.md#maximum-hangtime) | Ryan Minor and Ron Riley, the two portraits only the prototype points to |
 | <img src="images/mht_backdoor.png" alt="" width="160"> | [hangtime.md: Maximum Hangtime](hangtime.md#maximum-hangtime) | The unused BACK DOOR image |
 | <img src="images/genesis_hangtime_default_records.png" alt="" width="160"> | [hangtime.md: Other Genesis leftovers](hangtime.md#other-genesis-leftovers) | Genesis attract mode: Greatest Players and Experienced Players, listing the 13 names |
+| <img src="images/genesis_hangtime_ending.png" alt="" width="160"> | [hangtime.md: Not covered](hangtime.md#not-covered) | Genesis NBA Hang Time ending: CONGRATULATIONS, YOU ARE A GRAND CHAMPION |
 
 ## NBA Jam at home
 
@@ -76,6 +77,7 @@ Every picture in these notes, grouped by the page it appears on, with a link to 
 | <img src="images/tesnes_unused_heads.png" alt="" width="160"> | [te_consoles.md: Checked against published lists](te_consoles.md#checked-against-published-lists) | The thirteen unused heads, 16 frames each: 0, 10, 12, 13, 17, 28, 29, 63, 65, 67, 72, 73, 77 |
 | <img src="images/tegen_unused_heads.png" alt="" width="160"> | [te_consoles.md: Checked against published lists](te_consoles.md#checked-against-published-lists) | The fourteen unused Genesis heads, 16 frames each |
 | <img src="images/te32x_unused_heads.png" alt="" width="160"> | [te_consoles.md: Checked against published lists](te_consoles.md#checked-against-published-lists) | The four unused 32X heads, 16 frames each, in stand-in colours |
+| <img src="images/genesis_te_ending.png" alt="" width="160"> | [te_consoles.md: Checked against published lists](te_consoles.md#checked-against-published-lists) | Genesis Tournament Edition ending: trophy and CONGRATULATIONS! |
 
 ## Betas, prototypes and regional versions
 
