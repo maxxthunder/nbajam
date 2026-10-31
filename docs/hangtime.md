@@ -432,9 +432,12 @@ The PlayStation program also carries the text of a **trivia quiz** (`SLUS_003.29
 YOUR KNOWLEDGE / AT THE END OF EACH GAME, YOU GET THE CHANCE TO ANSWER ONE QUESTION IN THE NBA HANGTIME TRIVIA QUIZ",
 rules for reaching 100 points, and a prize the arcade never had: "YOU ARE AN NBA HANGTIME TRIVIA CHAMPION! ... AS
 REWARD, YOUR CREATED PLAYER HAS BEEN BOOSTED BY 10 ATTRIBUTE POINTS!". "THORPE", from a
-question about Otis Thorpe, is in `BIGLUMP.BIN`, `HALF.XAF` and `QUART.XAF`. No instruction loads the
-quiz text's address directly, but neither does any for the Create Player menu text beside it, which is used, so
-whether the game shows the quiz wasn't settled.
+question about Otis Thorpe, is in `BIGLUMP.BIN`, `HALF.XAF` and `QUART.XAF`. The code that uses this text
+isn't in the program but in `PRES.BIN`, an overlay in `BIGLUMP.BIN` (loaded at `8008A024`), and `PRES.BIN` is
+among the files the program names; `trivdata.bin` sits beside it. The quiz screen (`800A38E0`) draws "TRIVIA QUIZ"
+and "TEST YOUR KNOWLEDGE" straight away, and the end-of-game sequence (`8009921C`) calls it after the stats screens
+with no check in between. So the quiz most likely follows every game. That's read from the code; it wasn't
+played through to the end of a game.
 
 ## Super Nintendo and Genesis
 
@@ -736,8 +739,15 @@ Claims from published lists, checked here:
   ([secrets.md](secrets.md#super-nintendo-code-coverage-and-sound-samples)), can't tell those from unused ones.
   Walking the banks instead, three 90,000-frame random runs started every sample in `$1907A0` but `$8FCC` and all
   but ten in `$132720`. Played at 8 kHz, Whisper hears speech in several of those: "The team is on fire",
-  "versus", "win the game!", "76ers" and "No!". They belong to situations random play rarely reaches, so they
-  aren't counted as unused.
+  "versus", "win the game!", "76ers" and "No!".
+  A sound effect goes to the chip as an 8-byte packet (`02 nn 00 01 03 40 7F 00`, queued at `$036D` by `$C5B57C`),
+  and `nn` picks a sample from whichever bank is loaded. Queuing each `nn` from 0 to `$3F` in Mesen showed that in
+  the front-end bank `$132720`, IDs 1-12 play its twelve samples in order: 9 "No!", 10 "versus", 11 "win the game!",
+  12 "76ers". The front end (bank `$C6`) never sends 9-12. The game code does send 10 and 11 (announcer routines at
+  `$C4E062` and `$C4E320`, both run in the coverage runs), but then the game bank is loaded and they play other
+  samples. So those four lines are never heard. In the game bank, ID 9 is "The team is on fire": `$C45634` starts a
+  task (`$C4D8CA`) that sends it once a counter (`$1D`, apparently a team's run of baskets) reaches three. The code around it ran in the
+  coverage runs, but that branch didn't.
 - Genesis samples. Every one of the 57 samples in the GEMS sample table is played by some sequence's notes.
 
 ## Tests

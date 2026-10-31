@@ -305,7 +305,10 @@ NBA Jam, Tournament Edition and NBA Hangtime share Midway's operator code, and s
   NUMBER OF LIVES A PLAYER RECEIVES EACH TIME HE STARTS OR CONTINUES A GAME"). The adjustment list skips its record,
   so the GAME ADJUSTMENT screen never offers it (checked in MAME on rev 3.01). The "AUTO H.S. RESET" and "COIN
   COUNTER MODE" records aren't in any list either. Both prototypes have the same three unlisted records, and
-  Tournament Edition (rev 4.0 3/23 and the 2.00 prototype) the last two.
+  Tournament Edition (rev 4.0 3/23 and the 2.00 prototype) the last two. The adjustment getter (`FF9A1290h` in 3.01,
+  `FFA07060h` in TE 4.0, the same routine as Hang Time's) is called with AUTO H.S. RESET's number (`Eh`) but never with
+  LIVES PER PLAY's (`Fh`) or COIN COUNTER MODE's (`17h`), in any NBA Jam or Tournament Edition set. Its other calls are
+  the coin-chute loop (2 to 5) and the menu itself. So the lives setting and the counter mode do nothing.
 - **NBA Hangtime has two adjustments its menu never offers.** Its records (`FFACF210h` handler, then title, help and
   adjustment number) are listed on the GAME ADJUSTMENT and coin screens, except COIN COUNTER MODE (`18h`, choices
   "1 (PROPORTIONAL)", "2 (1 COUNT/COIN)", "3 (2 COUNTERS)", record at `FFF5FC40h`) and AUTO H.S. RESET (`Fh`,

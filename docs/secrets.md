@@ -415,6 +415,14 @@ sample's directory slot and start address):
   which nothing starts, and sample 64 (0.3 s), used by none.
 - **No Genesis ending.** The only line about beating every team is the stats page's "YOU HAVE DEFEATED ALL 27 NBA
   TEAMS!" (`$1FCC41` in Rev 1); there's no congratulations text in the cart.
+- **The Sega CD has an ending the Genesis lacks.** In `QUARTER.BIN` (loaded at `$E000`), `$F6F2` checks the word at
+  `$8270` for 26 and then calls `$11CB6`, which loads its graphics and scrolls the text at `$12010`: "YOU HAVE
+  DEFEATED ALL 27 NBA TEAMS! YOU ARE AN NBA JAM GRAND CHAMPION! PLAY ON FOR AN EVEN GREATER CHALLENGE.", then
+  "DEVELOPED BY TEAM IGUANA" and joke credits ("ACCLAIM WHITE TEAM / WHY? / BECAUSE WE LIKE YOU", producer Dan
+  Feinstein "BUBBLE BUBBLE TOIL AND TROUBLE", Brett Gow "YOU CAN NOT BEAT THE KING", thanks to Mark Turmell, Jamie
+  Rivett, Sal Divita "AND THE WHOLE WILLIAMS TEAM"). Read from the code, not seen running. Apart from the
+  device-error text (no direct reference; the Genesis copy is described above), every block of text in `FRONT.BIN`
+  and `QUARTER.BIN` has a pointer or a PC-relative reference.
 - **Ending.** The game state word at `$1665` picks the main loop's handler; state `$35` is the ending. The game
   sets it after the results screen (`$8AD656`) when a player's count of beaten teams (`$0AB4`-`$0ABA`) first
   reaches 27. Writing `$35` there from the title screen plays the whole ending: the trophy with "CONGRATULATIONS!

@@ -512,8 +512,8 @@ Claims from published lists that could be tested here, and what came of them:
   songs (compared by loudness over time, not by ear). Sequences `$2F`, `$30` and `$4D` are never started either. They
   aren't silent, as that recording made them seem: they play on the digital channel, where each note picks a sample
   from the 96 in the sample table, and Whisper hears `$2F` as "Celtics!", and `$30` is "Hawks!" (samples 85 and 87;
-  the team names run in alphabetical order from "Bucks!" to "Mavericks!", and Whisper, given team names as a hint,
-  hears 87 as "Hawks"). Every other team-name sequence has a sound ID; these two have none, so the Boston and Atlanta
+  the team names run in alphabetical order from "Bucks!" to "Mavericks!", and 87 sits between "Clippers!" (86) and
+  "Heat!" (88), where only Hawks fits; with no hint Whisper hears it as "Hors!", and given team names, "Hawks"). Every other team-name sequence has a sound ID; these two have none, so the Boston and Atlanta
   calls are never heard. `$4D` plays sample 48, which sequence `$45` also uses. Two samples are in no sequence at all:
   10, "Turnover!", and 13, "Wide open!". (Here a note picks the sample of the same number: every sample a 90,000-frame
   random run read in full belongs to some sequence that way. On NBA Jam's Genesis cart the driver shifts notes by 48
@@ -534,7 +534,13 @@ Claims from published lists that could be tested here, and what came of them:
   text has a pointer or a PC-relative reference at or just before it (a check that can't see an unused string stored
   right after a used one).
   The same check on the 32X and Jaguar carts finds nothing either, nor does one on the Game Boy and Game Gear carts
-  that counts addresses loaded by `LD` instructions or held in pointer tables.
+  that counts addresses loaded by `LD` instructions or held in pointer tables. On the PlayStation the game code is
+  split between the program and `OVERLAY.BIN` (loaded at `$801BF000`); with both scanned and addresses followed
+  through `lui`/`addiu` pairs, every block of text is reached except the preset-record names (one table) and
+  library messages. The Saturn program (loaded at `$06010000`) has one block nothing points to: controller names
+  ("MD 3B PAD", "SEGA MOUSE", "3-AXIS STICK", "KEY BOARD" and so on), which look like Sega's library. On PC, where
+  the addresses are in the two programs' fixup records, the only game text nothing refers to is a "SECRET PLAYER"
+  label in the front end (`$985B2`, just before the record screen's text).
 - **Genesis code coverage.** A 90,000-frame MAME run with random input on two pads ran 21,372 of the 32,181
   instructions found by tracing from the vectors and from every place that ran (66.4%). The trace only follows
   direct jumps and calls, so the true share is lower.

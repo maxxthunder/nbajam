@@ -2,6 +2,12 @@
 
 Changes to the [secret codes page](https://maxxthunder.github.io/nbajam/codes.html) and [password checker](https://maxxthunder.github.io/nbajam/). The version is shown at the bottom of each page. **Codes page** and **Checker** are what visitors see; **Notes** are the [research notes](docs/); **README** is this repo's front page.
 
+## 1.6.17 (2026-10-31)
+- **Notes:** the Sega CD ending and its joke credits (the Genesis cart has none); NBA Jam and Tournament Edition
+  never read the lives or coin-counter settings; Hang Time PlayStation's trivia quiz follows every game.
+- **Notes:** Hang Time Super Nintendo's four menu lines that are never heard, and when "The team is on fire" plays;
+  the "Hawks!" call confirmed; text checks of Tournament Edition on PlayStation, Saturn and PC.
+
 ## 1.6.16 (2026-10-30)
 - **Codes page:** Tournament Edition Genesis's "Celtics!" and "Hawks!" calls that no sequence plays, and its unused
   "Turnover!" and "Wide open!" lines.
