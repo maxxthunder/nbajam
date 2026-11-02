@@ -545,7 +545,9 @@ Claims from published lists that could be tested here, and what came of them:
   earlier wording.
 - **Genesis code coverage.** A 90,000-frame MAME run with random input on two pads ran 21,372 of the 32,181
   instructions found by tracing from the vectors and from every place that ran (66.4%). The trace only follows
-  direct jumps and calls, so the true share is lower.
+  direct jumps and calls, so the true share is lower. The Saturn has no such figure: MAME runs it at a few frames a
+  second with its recompiler off (needed for the read taps) and stalls, and BizHawk's Saturn core offers no execution
+  hooks or registers to Lua.
 - **Genesis: the ending.** After a game, `$264B02` checks each player's count of beaten teams (`$FF213A` and
   `$FF213C`) for 27, with 26 the last time (`$FF2460`, `$FF2462`), and then calls `$22716A`: the gold trophy with
   "CONGRATULATIONS!" and a scroll of the same text as the Super Nintendo ending ("YOU ARE THE NEW NBA JAM TOURNAMENT

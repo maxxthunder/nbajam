@@ -2,6 +2,12 @@
 
 Changes to the [secret codes page](https://maxxthunder.github.io/nbajam/codes.html) and [password checker](https://maxxthunder.github.io/nbajam/). The version is shown at the bottom of each page. **Codes page** and **Checker** are what visitors see; **Notes** are the [research notes](docs/); **README** is this repo's front page.
 
+## 1.6.19 (2026-11-02)
+- **Codes page:** the Sega CD's quarter sound banks, with five announcer lines ("Monster jam!", "The turnover!",
+  "Wide open!", "Stolen!", "The rebound!").
+- **Notes:** how the Sega CD loads a sound bank per quarter and how its samples are packed; Sega CD `QUARTER.BIN`
+  code coverage (46.4%); no Saturn coverage, as BizHawk's Saturn core has no execution hooks.
+
 ## 1.6.18 (2026-11-02)
 - **Codes page:** the Sega CD's grand champion ending, with a screenshot; Hang Time Super Nintendo's four unheard
   lines ("No!", "Versus", "Win the game!", "76ers") with audio.

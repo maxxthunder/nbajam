@@ -435,7 +435,19 @@ sample's directory slot and start address):
   scripts and from tables. Three 54,000-frame MAME runs with random input (one of which reached real games) played
   27 numbers, so this isn't enough play to call any sound unused. The same runs ran 5,735 of the 8,810
   instructions found by tracing `FRONT.BIN` from every place that ran (65.1%) and 10,758 of 14,991 in `GAME.BIN`
-  (71.8%).
+  (71.8%). Two more runs held the clock at 0:03 so each quarter ended within seconds (through halftime and over a
+  dozen overtimes), which ran `QUARTER.BIN`, missed above: 3,185 of 6,865 traced instructions (46.4%). That count
+  comes from a rewritten tracer that gives `GAME.BIN` 75.3% for the first three runs, so it reads a few points above the
+  older figures.
+- **Sega CD quarter sound banks.** The bank at `$B231A` isn't part of `GAME.BIN`: before each quarter the loader at
+  `$69C6` patches the digit in "Q1S4.BIN" to the quarter (`$8296` & 3, plus 1) and reads that file over it. Each of
+  the four files holds eight samples (a table of 32-bit offset and 16-bit length, then 4-bit PCM, two samples a
+  byte, each nibble shifted up into the RF5C164's sign-magnitude format). `Q1S4.BIN` and `Q3S4.BIN` are identical, as
+  are `Q2S4.BIN` and `Q4S4.BIN`, and the two pairs differ in samples 5 and 7: sample 5 is "Monster jam!" in odd
+  quarters and "The turnover!" in even ones (sound 23 plays it). The others include "Wide open!" (sound 20),
+  "Stolen!" (21) and "The rebound!" (29). Each sound entry sets its own playback rate (its fifth and sixth bytes go
+  to the frequency register, about 6,100 to 15,200 Hz); Whisper names these lines clearly at or near those rates,
+  but not sample 7 in either bank, sample 1 or sample 2.
 - **Ending.** The game state word at `$1665` picks the main loop's handler; state `$35` is the ending. The game
   sets it after the results screen (`$8AD656`) when a player's count of beaten teams (`$0AB4`-`$0ABA`) first
   reaches 27. Writing `$35` there from the title screen plays the whole ending: the trophy with "CONGRATULATIONS!
