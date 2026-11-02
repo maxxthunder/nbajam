@@ -7,6 +7,7 @@ Changes to the [secret codes page](https://maxxthunder.github.io/nbajam/codes.ht
   "Wide open!", "Stolen!", "The rebound!").
 - **Notes:** how the Sega CD loads a sound bank per quarter and how its samples are packed; Sega CD `QUARTER.BIN`
   code coverage (46.4%); no Saturn coverage, as BizHawk's Saturn core has no execution hooks.
+- **README:** the Sega CD's grand champion ending and quarter sound banks.
 
 ## 1.6.18 (2026-11-02)
 - **Codes page:** the Sega CD's grand champion ending, with a screenshot; Hang Time Super Nintendo's four unheard

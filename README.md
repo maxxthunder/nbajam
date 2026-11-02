@@ -57,6 +57,8 @@ Codes that no published list had are marked **★ New** on the page. A few terms
 - Arcade: two pictures nothing in the game draws, a gold trophy and a Chicago Bulls logo.
 - Genesis: initials that play a speech clip (with the clips on the page).
 - Sega CD: seven match-up codes no list had.
+- Sega CD: the grand champion ending (the Genesis cartridge has none), and a sound bank per quarter that swaps
+  "Monster jam!" for "The turnover!" (with the clips on the page).
 
 **Tournament Edition**
 - Arcade: Dennis Rodman in two revisions, and the prototype and revision 2.1 birthdays.
