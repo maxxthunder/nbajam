@@ -415,14 +415,27 @@ sample's directory slot and start address):
   which nothing starts, and sample 64 (0.3 s), used by none.
 - **No Genesis ending.** The only line about beating every team is the stats page's "YOU HAVE DEFEATED ALL 27 NBA
   TEAMS!" (`$1FCC41` in Rev 1); there's no congratulations text in the cart.
-- **The Sega CD has an ending the Genesis lacks.** In `QUARTER.BIN` (loaded at `$E000`), `$F6F2` checks the word at
-  `$8270` for 26 and then calls `$11CB6`, which loads its graphics and scrolls the text at `$12010`: "YOU HAVE
-  DEFEATED ALL 27 NBA TEAMS! YOU ARE AN NBA JAM GRAND CHAMPION! PLAY ON FOR AN EVEN GREATER CHALLENGE.", then
-  "DEVELOPED BY TEAM IGUANA" and joke credits ("ACCLAIM WHITE TEAM / WHY? / BECAUSE WE LIKE YOU", producer Dan
-  Feinstein "BUBBLE BUBBLE TOIL AND TROUBLE", Brett Gow "YOU CAN NOT BEAT THE KING", thanks to Mark Turmell, Jamie
-  Rivett, Sal Divita "AND THE WHOLE WILLIAMS TEAM"). Read from the code, not seen running. Apart from the
-  device-error text (no direct reference; the Genesis copy is described above), every block of text in `FRONT.BIN`
-  and `QUARTER.BIN` has a pointer or a PC-relative reference.
+- **The Sega CD has an ending the Genesis lacks.** `QUARTER.BIN` is loaded at `$E000` at each quarter break. After
+  the last quarter, `$F69E`-`$F6FA` checks the four player slots: a slot whose record has beaten 27 teams (`$814C`-
+  `$8152`, counted by `$15F60` from the record's bitmask) and whose word at `$826A`-`$8270` is 26 calls `$11CB6`.
+  That shows a trophy under "CONGRATULATIONS!" and scrolls the text at `$12010`: "YOU HAVE DEFEATED ALL 27 NBA
+  TEAMS! YOU ARE AN NBA JAM GRAND CHAMPION! PLAY ON FOR AN EVEN GREATER CHALLENGE.", then "DEVELOPED BY TEAM IGUANA"
+  and joke credits ("ACCLAIM WHITE TEAM / WHY? / BECAUSE WE LIKE YOU", producer Dan Feinstein "BUBBLE BUBBLE TOIL
+  AND TROUBLE", Brett Gow "YOU CAN NOT BEAT THE KING", thanks to Mark Turmell, Jamie Rivett, Sal Divita "AND THE
+  WHOLE WILLIAMS TEAM"). A grainy video of NBA footage behind star-shaped wipes follows (`ENDVID.VID`),
+  then GAME OVER. Seen in BizHawk (Genesis Plus GX, US BIOS): with the clock set to
+  three seconds in the fourth quarter (`$8296` quarter, `$8350` minutes, `$834E` seconds) and the counting routine
+  patched to return 27 once `QUARTER.BIN` loaded, the ending ran in full. Apart from the device-error text (no
+  direct reference; the Genesis copy is described above), every block of text in `FRONT.BIN` and `QUARTER.BIN` has
+  a pointer or a PC-relative reference.
+- **Sega CD sounds and code coverage.** In `GAME.BIN` sounds are played by number through `$26EC8`, which reads an
+  8-byte entry from the table at `$DD48` (61 entries). An entry either loads a sample from the bank at `$B231A` into
+  the PCM chip, plays one already loaded, passes a command to the main CPU, or does nothing (22 entries start with
+  `$FF` and are silent, though the game still asks for several of them). Code names about 40 of the numbers directly; more come from a sound command in the animation
+  scripts and from tables. Three 54,000-frame MAME runs with random input (one of which reached real games) played
+  27 numbers, so this isn't enough play to call any sound unused. The same runs ran 5,735 of the 8,810
+  instructions found by tracing `FRONT.BIN` from every place that ran (65.1%) and 10,758 of 14,991 in `GAME.BIN`
+  (71.8%).
 - **Ending.** The game state word at `$1665` picks the main loop's handler; state `$35` is the ending. The game
   sets it after the results screen (`$8AD656`) when a player's count of beaten teams (`$0AB4`-`$0ABA`) first
   reaches 27. Writing `$35` there from the title screen plays the whole ending: the trophy with "CONGRATULATIONS!

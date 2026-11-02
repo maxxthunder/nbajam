@@ -436,8 +436,10 @@ question about Otis Thorpe, is in `BIGLUMP.BIN`, `HALF.XAF` and `QUART.XAF`. The
 isn't in the program but in `PRES.BIN`, an overlay in `BIGLUMP.BIN` (loaded at `8008A024`), and `PRES.BIN` is
 among the files the program names; `trivdata.bin` sits beside it. The quiz screen (`800A38E0`) draws "TRIVIA QUIZ"
 and "TEST YOUR KNOWLEDGE" straight away, and the end-of-game sequence (`8009921C`) calls it after the stats screens
-with no check in between. So the quiz most likely follows every game. That's read from the code; it wasn't
-played through to the end of a game.
+with no check in between. A full game in BizHawk (random input, initials and PIN entered, the game lost 51-55)
+confirms it: after the stats came "TRIVIA QUIZ" with the 100-point rules, then a question ("WHAT PORTLAND
+TRAILBLAZERS PLAYER WEARS A HEADBAND DURING GAMES ?", worth 2 points), then GAME OVER. Only the panel of the player
+who entered a name was filled in.
 
 ## Super Nintendo and Genesis
 
@@ -746,8 +748,10 @@ Claims from published lists, checked here:
   12 "76ers". The front end (bank `$C6`) never sends 9-12. The game code does send 10 and 11 (announcer routines at
   `$C4E062` and `$C4E320`, both run in the coverage runs), but then the game bank is loaded and they play other
   samples. So those four lines are never heard. In the game bank, ID 9 is "The team is on fire": `$C45634` starts a
-  task (`$C4D8CA`) that sends it once a counter (`$1D`, apparently a team's run of baskets) reaches three. The code around it ran in the
-  coverage runs, but that branch didn't.
+  task (`$C4D8CA`) that sends it. The basket code (`$C45604`) adds one to `$1D` when `$09` (apparently the scoring team) matches the
+  last one in `$15` and resets it to 1 otherwise, so the call comes on the third basket in a row by the same team.
+  The coverage runs never got a run of three. In Mesen 2, setting `$1D` to 2 and `$15` to `$09` at the first
+  basket of a random game made that basket the third: `$C4D8CA` ran and sent ID 9 four frames later.
 - Genesis samples. Every one of the 57 samples in the GEMS sample table is played by some sequence's notes.
 
 ## Tests

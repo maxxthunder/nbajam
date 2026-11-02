@@ -540,7 +540,9 @@ Claims from published lists that could be tested here, and what came of them:
   library messages. The Saturn program (loaded at `$06010000`) has one block nothing points to: controller names
   ("MD 3B PAD", "SEGA MOUSE", "3-AXIS STICK", "KEY BOARD" and so on), which look like Sega's library. On PC, where
   the addresses are in the two programs' fixup records, the only game text nothing refers to is a "SECRET PLAYER"
-  label in the front end (`$985B2`, just before the record screen's text).
+  label in the front end (`$985B2`, just before the record screen's text). In DOSBox-X, the stats panel after a secret
+  character's initials says "SECRET CHARACTER" instead, from `$9ACF3` (used at `$2804B`), so the label looks like an
+  earlier wording.
 - **Genesis code coverage.** A 90,000-frame MAME run with random input on two pads ran 21,372 of the 32,181
   instructions found by tracing from the vectors and from every place that ran (66.4%). The trace only follows
   direct jumps and calls, so the true share is lower.
