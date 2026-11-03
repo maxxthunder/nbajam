@@ -302,6 +302,20 @@ tip-off with each of the 13 match-up codes entered (MAME, a tap on the blitter's
 Maximum Hangtime L1.03 has no unused images of its own. Its usable headers with no pointer in any revision of either
 game are the same images as L1.3's, matched by graphics offset and size.
 
+## Arcade: all 29 teams, and the boot screens
+
+NBA Hangtime has no ending. Its program has no congratulations text, and the stats screen after a game (`FFA2B4E0h`
+on) only changes its last lines: with the record's beaten-team count (offset `100h`) at 29 it prints "DEFEATED 29 OF
+THE 29 NBA TEAMS" and skips the "next cpu opponent" line. The reward is a place on the GRAND CHAMPIONS records page
+("(defeated all 29 nba teams)"). Maximum Hangtime has the same screen and the same records page.
+
+The power-on screen has NBA Jam's messages ([arcade.md](arcade.md#boot-error-screens)), with the chip name changed:
+"CMOS INVALID -- FACTORY SETTINGS RESTORED", "CMOS CHIP U62 BAD" with "UNABLE TO RESTORE FACTORY SETTINGS", and
+"WARNING -- SLAM SWITCH CLOSED". The slam check reads bit 3 of the input word whose address is kept at `@112FE10h`
+(`01860030h` in MAME). All three came up in MAME on L1.3: with empty NVRAM, with every read of the settings memory
+altered by a Lua read tap, and with that bit forced low. The slam warning is printed on the same line as "LEVEL 1
+SECURITY CHECK", so the two overlap.
+
 ## Maximum Hangtime
 
 Same name check and the same 13 match-up numbers. The joystick codes are rewritten (`FF8C4930h` on): the court becomes

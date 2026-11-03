@@ -15,6 +15,8 @@ Every picture in these notes, grouped by the page it appears on, with a link to 
 | <img src="images/jam_unused_more.png" alt="" width="160"> | [arcade.md: Unused graphics](arcade.md#unused-graphics) | Unused NBA Jam images: a crouching man in a white shirt, WINNERS STAY ON AT HALF PRICE!, CHALLENGE ACCEPTED!, CREDIT LOW, seven of the eleven head frames, three skipped player frames, four of the 57 vertical name labels, Mc LEARN and MAX |
 | <img src="images/jam_proto_credit_low.png" alt="" width="160"> | [arcade.md: Unused graphics](arcade.md#unused-graphics) | CREDIT LOW over player 1's head at tip-off in the nbajamp1 prototype, forced in MAME |
 | <img src="images/jam_title.png" alt="" width="160"> | [arcade.md: Title screen and attract mode](arcade.md#title-screen-and-attract-mode) | NBA Jam title screen |
+| <img src="images/arcade_ending.png" alt="" width="160"> | [arcade.md: Grand champion ending](arcade.md#grand-champion-ending) | The rev 3.01 ending: YOU HAVE DEFEATED ALL 27 NBA TEAMS! over the photo with the trophy and champagne |
+| <img src="images/arcade_cmos_bad.png" alt="" width="160"> | [arcade.md: Boot error screens](arcade.md#boot-error-screens) | Rev 3.01 boot screen: CMOS CHIP UJ11 BAD, UNABLE TO RESTORE FACTORY SETTINGS |
 
 ## Arcade Tournament Edition
 
@@ -28,6 +30,7 @@ Every picture in these notes, grouped by the page it appears on, with a link to 
 | <img src="images/te_unused_more.png" alt="" width="160"> | [arcade_te.md: Unused graphics](arcade_te.md#unused-graphics) | Unused Tournament Edition images: the crouching man, WINNERS STAY ON AT HALF PRICE!, CHALLENGE ACCEPTED!, CREDIT LOW, the head on its side, five arcs, O'NEAL, McKEY and MAX |
 | <img src="images/te_dropped_ads.png" alt="" width="160"> | [arcade_te.md: Unused graphics](arcade_te.md#unused-graphics) | The seven scorer's-table ads dropped in rev 3.0 2/26 |
 | <img src="images/te_title.png" alt="" width="160"> | [arcade_te.md: Title screen and attract mode](arcade_te.md#title-screen-and-attract-mode) | Tournament Edition title screen |
+| <img src="images/te_arcade_ending.png" alt="" width="160"> | [arcade_te.md: Grand champion ending](arcade_te.md#grand-champion-ending) | The rev 4.0 ending: YOU HAVE DEFEATED ALL 27 NBA TEAMS! beside the gold trophy |
 
 ## NBA Hangtime and Maximum Hangtime
 

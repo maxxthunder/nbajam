@@ -2,6 +2,19 @@
 
 Changes to the [secret codes page](https://maxxthunder.github.io/nbajam/codes.html) and [password checker](https://maxxthunder.github.io/nbajam/). The version is shown at the bottom of each page. **Codes page** and **Checker** are what visitors see; **Notes** are the [research notes](docs/); **README** is this repo's front page.
 
+## 1.7.0 (2026-11-03)
+- **Codes page:** arcade NBA Jam's grand champion ending, with rev 1.00's own version; Tournament Edition's ending
+  (a gold trophy, no photo); the boot error screens of all three games (CMOS invalid, CMOS chip bad, slam switch);
+  NBA Hangtime's lack of an ending; announcer lines nothing plays, with audio: 14 from NBA Jam (five from rev 3.01,
+  nine only in the prototypes), three from Tournament Edition and six from NBA Hangtime ("Secret Player Activated",
+  "Tim Duncan!").
+- **Notes:** the endings and boot checks seen running; the ending compared across NBA Jam revisions (rev 1.00's
+  "Hall of Fame" text, rev 2.00's one-word change, none in the prototypes); NBA Jam's unused trophy is the one
+  Tournament Edition's ending draws; the prototypes' four upper-half samples settled (the same as the release);
+  arcade NBA Jam code coverage up to 691 of 869 targets and Tournament Edition to 650 of 848, with runs through every
+  operator-menu path; a Tournament Edition line corrected to "Just seconds left!".
+- **README:** the arcade endings, boot error screens and unheard lines.
+
 ## 1.6.19 (2026-11-02)
 - **Codes page:** the Sega CD's quarter sound banks, with five announcer lines ("Monster jam!", "The turnover!",
   "Wide open!", "Stolen!", "The rebound!").

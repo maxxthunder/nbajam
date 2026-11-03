@@ -211,7 +211,7 @@ logged. The rest are below.
 - **Front-on hoop** (`FFA4CBC0` shot clock, `FFA4CC50` backboard, `FFA4CCE0` MIDWAY stand), already published.
   Put together by their anchors they make one 88 × 177 hoop.
 - **NBA Jam trophy** (`FFA4CD70`, 136 × 201). Tournament Edition rev 4.0 has the same picture with its header pointed
-  to (`FFAB85B0`).
+  to (`FFAB85B0`): it is the trophy in TE's grand champion ending ([arcade_te.md](arcade_te.md#grand-champion-ending)).
 - **Chicago Bulls logo** (`FFA4CE00`, 185 × 183). Its palette is also in a list of palettes at `FF9FB850`; the image
   itself is never pointed to.
 
@@ -322,6 +322,41 @@ NBA Jam, Tournament Edition and NBA Hangtime share Midway's operator code, and s
 - NBA Jam keeps a LOCKUPS audit name. Neither audit page shows it (checked in MAME), and neither does the hidden
   menu's audit page.
 
+## Grand champion ending
+
+After a game, `FF967FE0h` checks each player in turn (`FF968D20h`): a human player whose record has initials, whose
+count of beaten teams (record offset `180h`) is at least 27 and whose previous count (`190h`) was below 27. The first
+one found gets the ending at `FF9680A0h`: a digitized photo of two women in white on a court, in front of an NBA Jam
+cabinet, holding the trophy and a bottle of champagne that they then spray, with this text scrolling up over it
+(`FF9690A0h`): "CONGRATULATIONS! PLAYER 1 / YOU HAVE DEFEATED ALL 27 NBA TEAMS! / LET'S CELEBRATE! YOU ARE THE NEW
+NBA JAM GRAND CHAMPION! / YOU ARE AN INCREDIBLE PLAYER AND ONE OF THE BEST NBA JAM STARS OF ALL TIME! / HOWEVER,
+THERE IS YET A GREATER CHALLENGE AWAITING YOU . . . PLAY ON . . . / REMEMBER: TRUE NBA JAM STARS STAY STRAIGHT AND
+STAY IN SCHOOL! / THANK YOU FOR PLAYING NBA JAM!". It lasts about 50 seconds, then the game goes on to the usual
+winners-stay-on screen. Seen in MAME (rev 3.01) by patching the check to pass for player 1 and playing a game of random
+input to the end.
+
+<img src="images/arcade_ending.png" alt="NBA Jam arcade ending: YOU HAVE DEFEATED ALL 27 NBA TEAMS! over a photo with the trophy" width="400">
+
+**Other revisions.** Rev 2.00 has the same check (`FF95D790h`) and the same text but for its last line, "THANKS
+FOR PLAYING NBA JAM!". Rev 1.00 (`FF954A40h`) has a shorter text of its own: "CONGRATULATIONS!!! YOU HAVE DEFEATED ALL
+OF THE 27 NBA TEAMS! / YOU ARE AN AWESOME BALL PLAYER! / WELCOME TO THE NBA JAM HALL OF FAME! / THANK YOU FOR
+PLAYING!", with no grand champion and no stay-in-school line. Both were seen in MAME the same way as rev 3.01:
+the same photo and champagne in both; rev 2.00 then goes to the winners-stay-on screen, while rev 1.00's shorter
+ending (about 35 seconds) goes straight to the record tables. The two prototypes have neither the text nor the check
+(nothing compares the record's beaten-team count with 27), so they have no ending.
+
+## Boot error screens
+
+At power-on rev 3.01 adds up 192 words of settings memory from `@1404000h` and compares the sum, inverted, with the
+word at `@1404C00h` (`FF9A1000h`). If they match it shows "CMOS OK". If not, it restores the factory settings
+(`FF9A1770h`) and checks again: "CMOS INVALID -- FACTORY SETTINGS RESTORED" if that worked, "CMOS CHIP UJ11 BAD" and
+"UNABLE TO RESTORE FACTORY SETTINGS" if not. It then reports the coinage source ("USING CMOS COINAGE" or "USING
+DIPSWITCH COINAGE") and, if bit 19 of the input word at `@1600000h` reads low, "WARNING -- SLAM SWITCH CLOSED". Any
+error adds "ERRORS DETECTED -- ANY BUTTON TO CONTINUE" and waits. All three error screens came up in MAME: with
+empty NVRAM, with every read of the stored checksum altered by a Lua read tap, and with the slam bit forced low.
+
+<img src="images/arcade_cmos_bad.png" alt="NBA Jam rev 3.01 boot screen: CMOS CHIP UJ11 BAD, UNABLE TO RESTORE FACTORY SETTINGS" width="400">
+
 ## Sound board
 
 The sound board (a 6809 with a YM2151, a DAC and an OKI6295) is the same in NBA Jam and Tournament Edition. The main
@@ -359,11 +394,15 @@ any release revision. The only other commands they script and 3.01 doesn't are `
 
 The prototypes (1.01 and 2.00) have their own sound ROMs: `u3`, `u12` and `u13` differ from the release, in 706,737
 bytes of the two sample ROMs. Counted against their own sound program, the prototypes never send 198 commands, and
-36 samples are played only by those. 15 of the 36 aren't in the release's sample ROMs at all. Four more are in the
-upper half of the sample address space, which this byte-for-byte comparison doesn't handle, so they're left out.
+36 samples are played only by those. 15 of the 36 aren't in the release's sample ROMs at all. The other 21 are, four
+of them in the upper half of the OKI's address space (`$20000`-`$3FFFF`), which isn't banked: it always reads the
+fourth 128 KB block of the sample ROMs (offset `$60000`, the one block with no phrase table of its own). Read from
+there, those four (phrases at `$22050`, `$2D981`, `$2E066` and `$3BF03`) are the same bytes in the prototype and the
+release, though the rest of that block differs in 4,751 bytes.
 
 Transcribed with Whisper (whisper.cpp, small.en), rev 3.01's 18 never-played samples include "Off the rim!", "It's a
-close game!", "Catching up!", "Throws up a brick!", "Able to connect!" and a few gunshot, buzzer and bell effects. The
+close game!", "Catching up!", "Throws up a brick!", "Able to connect!", a few gunshot, buzzer and bell effects, and four short grunts and sighs
+(the four upper-half samples above). The
 15 prototype recordings the release doesn't have include "Can't touch that!", "Off the backboard!", "The clock
 ticking down!", "Launching a three pointer!", "Tie breaking jumper!", "A nice bounce pass!", "All alone!",
 "Fantastic!" and "With the convincing victory!". The prototypes also leave unused some lines the release keeps, such
@@ -378,14 +417,20 @@ per game logged every fetch and every blitter offset:
 
 | Game | Call and jump targets that ran | Pointed-to images drawn |
 |------|--------------------------------|-------------------------|
-| NBA Jam rev 3.01 | 498 of 869 (57%); 526 (61%) with save-state runs; 595 (68%) with the test-menu and attract runs | 1,787 of 3,079 (58%); 2,239 (73%) with save-state runs; 2,412 (78%) with them |
-| Tournament Edition rev 4.0 3/23 | 525 of 848 (62%); 575 (68%) with save-state runs; 636 (75%) with the test-menu and attract runs | 1,816 of 4,207 (43%); 2,468 (59%) with save-state runs; 2,610 (62%) with them; 2,677 (64%) with the secret-character and team runs |
+| NBA Jam rev 3.01 | 498 of 869 (57%); 526 (61%) with save-state runs; 595 (68%) with the test-menu and attract runs; 605 (70%) with the boot-screen runs; 610 (70%) with the test-switch runs; 691 (80%) with the menu-path runs | 1,787 of 3,079 (58%); 2,239 (73%) with save-state runs; 2,412 (78%) with them |
+| Tournament Edition rev 4.0 3/23 | 525 of 848 (62%); 575 (68%) with save-state runs; 636 (75%) with the test-menu and attract runs; 646 (76%) with the boot-screen runs; 650 (77%) with the test-switch runs | 1,816 of 4,207 (43%); 2,468 (59%) with save-state runs; 2,610 (62%) with them; 2,677 (64%) with the secret-character and team runs |
 | NBA Hangtime L1.3 | 607 of 1,198 (51%); 690 (58%) with save-state runs; 770 (64%) with the test-menu and attract runs; 781 (65%) with the trivia and rules runs | 155 more than all the earlier runs ([hangtime.md](hangtime.md#not-covered)) |
 | Maximum Hangtime L1.03 | 630 of 1,185 (53%), save-state runs included; 759 (64%) with the test-menu and credits runs; 771 (65%) with the name-and-PIN runs | 2,896 of 7,062 (41%); 3,298 (47%) with them; 4,155 (59%) with the name-and-PIN runs |
 
 The routines that never ran are the operator menus and hardware tests, the CMOS error screens, the beat-all-27-teams
 ending, the credits, and in the Hangtime games the create-player, record, trivia and sweepstakes screens. None of them is an unknown
-feature. The test-menu and attract runs below have since reached the menus, the hardware tests and, on all three games, the credits. The save-state runs keep a state whenever new code runs and restart from kept states with random input
+feature. On NBA Jam the CMOS error screens and the ending have since been run on purpose (see
+[Boot error screens](#boot-error-screens) and [Grand champion ending](#grand-champion-ending)): the three boot runs
+added 10 targets, and the ending none, since it is reached by a relative branch and calls only routines that had
+already run. An earlier pair of menu runs per game that held the board's test switch instead of the service button
+(not counted before) had reached the same boot code, plus five more targets on NBA Jam and 14 on TE; the TE and NBA
+Hangtime boot runs add nothing beyond them, apart from one target on NBA Hangtime (whose total isn't recounted, as
+its save-state runs' logs weren't kept). The test-menu and attract runs below have since reached the menus, the hardware tests and, on all three games, the credits. The save-state runs keep a state whenever new code runs and restart from kept states with random input
 (four runs per Hangtime game; eight each on NBA Jam and TE, of 100,000 to 250,000 frames). On NBA Jam and TE they
 reached a few more attract-mode screens (the copyright and legal screen, the "ATTENTION BALLPLAYERS" text, part of the credits). The images they
 added are dunk frames, player heads and team names and logos for teams the earlier runs didn't pick; nothing new
@@ -410,3 +455,9 @@ entries was entered and played for about 1,300 frames: 12 more targets and 857 m
 set of runs has added. On NBA Hangtime, one run forced the trivia contest (quarter counter 4, points 98) and
 answered a question each way, and one set the attract loop counter so that the sweepstakes rules page came up
 ([hangtime.md](hangtime.md#arcade-the-trivia-contest)). Together they added 11 targets and 173 images.
+
+Last, 63 short NBA Jam runs each took one path through the operator menu: the service button, every pair of first
+and second picks (7 × 9), then three random picks and 60 random inputs, from set-up NVRAM. They added 81 targets, for
+691 of 869 (80%): the pricing, free-play and dipswitch screens, clearing the coin counters and audits, the factory
+restore, the operator message, the sound board's tunes and the RAM checks, all ordinary operator features. Three of
+them started the ROM test, which reads every word of the program and so counts as 100%; those three are left out.

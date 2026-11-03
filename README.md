@@ -1,6 +1,6 @@
 # NBA Jam and NBA Hangtime: Secret Codes and Password Checker
 
-**[Secret codes →](https://maxxthunder.github.io/nbajam/codes.html)** &nbsp; **[Password checker →](https://maxxthunder.github.io/nbajam/)** &nbsp;[![v1.6.19](https://img.shields.io/badge/version-1.6.19-e8742c)](CHANGELOG.md)
+**[Secret codes →](https://maxxthunder.github.io/nbajam/codes.html)** &nbsp; **[Password checker →](https://maxxthunder.github.io/nbajam/)** &nbsp;[![v1.7.0](https://img.shields.io/badge/version-1.7.0-e8742c)](CHANGELOG.md)
 
 <p align="center">
   <img src="tools/img/logo_nbajam.png" alt="NBA Jam" height="96">
@@ -55,6 +55,8 @@ Codes that no published list had are marked **★ New** on the page. A few terms
 - Arcade: the Secret Midway Menu (a hidden operator screen) and the tank game's reward; the 23 preset records the
   arcade games write into their memory.
 - Arcade: two pictures nothing in the game draws, a gold trophy and a Chicago Bulls logo.
+- Arcade: the grand champion ending (and rev 1.00's different one) and the boot error screens seen running, and 14
+  announcer lines nothing plays (with the clips on the page).
 - Genesis: initials that play a speech clip (with the clips on the page).
 - Sega CD: seven match-up codes no list had.
 - Sega CD: the grand champion ending (the Genesis cartridge has none), and a sound bank per quarter that swaps
@@ -66,6 +68,8 @@ Codes that no published list had are marked **★ New** on the page. A few terms
 - Arcade: the uncensored "Get that shit outta here" plays in the Nani Edition prototype; two announcer calls, "It's
   good!" and "Need to score!", that nothing can play; revisions 1.00 to 2.1 can shatter the backboard; Fatalities
   still works on revision 3.0 2/26 from the right-hand side.
+- Arcade: the grand champion ending (a gold trophy, the picture NBA Jam keeps but never draws), the boot error
+  screens, and three announcer lines nothing plays.
 - Title-menu codes on Super Nintendo, Genesis and 32X (a record one team short of the All-Stars, and the 32X's own).
 - Super Nintendo: six unused in-game heads besides seven already published.
 - Genesis: fourteen unused in-game heads, a set of its own; 32X: four more.
@@ -86,6 +90,8 @@ Codes that no published list had are marked **★ New** on the page. A few terms
 - Arcade: a player animation, five portraits, ten name labels and four badges that no revision points to.
 - Arcade: every 100th attract demo is played on the rooftop court, and holding Up + Right at a rooftop tip-off plays
   a "boing" heard nowhere else (Maximum Hangtime keeps it, on its outdoor court).
+- Arcade: no ending for beating all 29 teams; the boot error screens; and recorded lines neither game plays, among
+  them "Secret Player Activated" and "Tim Duncan!" (with the clips on the page).
 - Maximum Hangtime: 21 extra NBA players.
 - Super Nintendo: two joystick codes no list had, and all eight codes together play the cheat ending.
 - Super Nintendo: a bug where entering no match-up number gives your team goaltending and stealth turbo.

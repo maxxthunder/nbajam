@@ -239,8 +239,8 @@ itself, which leaves 119 that nothing sends. Of those:
   read tap on the sound CPU, the moment it read the `$7A`, which gets it there in time; `7A B5` and `7A C9` play their
   phrases that way.
 
-Transcribed with Whisper, the 13 never-played samples include "Beautiful! I love you!" (`7A B9`), "Off the
-rim!", "It's a close game!", "Throws up a brick!", "The steal!", "The second left!" and three gunshot effects; the
+Transcribed with Whisper, the 13 never-played samples include "Beautiful! …" (`7A B9`), "Off the
+rim!", "It's a close game!", "Throws up a brick!", "The steal!", "Just seconds left!" and three gunshot effects (the first, `7A B9`, is clear up to "Beautiful!"; the rest is hard to make out, and "I love you" is one reading); the
 four in the upper half of the sample space are single short words Whisper can't make out reliably. Eight of them are byte for byte the same recordings as samples in
 NBA Jam rev 3.01 that NBA Jam doesn't play either ([arcade.md](arcade.md#sound-board)), so they were already unused
 there.
@@ -303,3 +303,26 @@ with the challenge crawl, "ATTENTION BALLPLAYERS: DO YOU THINK YOU'VE CONQUERED 
 "STEP UP AND SHOW SOME SKILL." (text at `FF9E8C80h`), then the team roster pages. It counts cycles in RAM
 (`@10EC130h`) and runs the credits (`FF95C0C0h`, the routine that also starts the Secret Midway menu's code watcher)
 on every fourth, about 27 minutes after power-on, so an 80,000-frame attract run in MAME didn't reach them.
+
+## Grand champion ending
+
+Rev 4.0 keeps the original's check at the same place in the game-over code: `FF9E6580h` tries each player with
+`FF9E7350h` (human, initials entered, at least 27 beaten teams now and fewer before) and the first one that passes gets the
+ending at `FF9E6640h`. There's no photo: a gold NBA Jam trophy (`FFAB85B0`, drawn at `FF9E6E80h`; the same picture NBA Jam has but never draws,
+[arcade.md](arcade.md#unused-graphics)) drifts around a purple background while the text
+(`FF9E7690h`) scrolls up over it: "CONGRATULATIONS! PLAYER 1 / YOU HAVE DEFEATED ALL 27 NBA TEAMS! / YOU ARE THE NEW
+NBA JAM TOURNAMENT EDITION GRAND CHAMPION! / YOU ARE AN INCREDIBLE PLAYER AND ONE OF THE BEST NBA JAM STARS OF ALL
+TIME! / HOWEVER, THIS IS A MIDWAY GAME! WHICH MEANS THAT THERE IS YET A GREATER CHALLENGE AWAITING YOU . . . PLAY ON .
+. . / THANK YOU FOR PLAYING NBA JAM TOURNAMENT EDITION!". The original's "LET'S CELEBRATE!" and "STAY IN SCHOOL" lines
+are gone. It lasts about 50 seconds, then the winners-stay-on screen comes up. Seen in MAME by patching
+`FF9E7350h` to pass (`CLRC`, `RETS`) and playing a game of random input to the end.
+
+<img src="images/te_arcade_ending.png" alt="Tournament Edition arcade ending: YOU HAVE DEFEATED ALL 27 NBA TEAMS! beside a gold trophy" width="400">
+
+## Boot error screens
+
+The power-on screen is the original's, with the same messages ([arcade.md](arcade.md#boot-error-screens)): "CMOS
+INVALID -- FACTORY SETTINGS RESTORED", "CMOS CHIP UJ11 BAD" with "UNABLE TO RESTORE FACTORY SETTINGS", and "WARNING
+-- SLAM SWITCH CLOSED" (the same bit 19 of `@1600000h`), each followed by "ERRORS DETECTED -- ANY BUTTON TO CONTINUE".
+All three came up in MAME on rev 4.0: with empty NVRAM, with every read of the settings memory altered by a Lua read tap,
+and with the slam bit forced low.
