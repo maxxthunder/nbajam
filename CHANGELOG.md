@@ -2,6 +2,11 @@
 
 Changes to the [secret codes page](https://maxxthunder.github.io/nbajam/codes.html) and [password checker](https://maxxthunder.github.io/nbajam/). The version is shown at the bottom of each page. **Codes page** and **Checker** are what visitors see; **Notes** are the [research notes](docs/); **README** is this repo's front page.
 
+## 1.7.3 (2026-11-09)
+- **Codes page:** the Sega CD quarter banks' last four lines now play at the game's own rates, and the second is
+  "Yes!", not "No!".
+- **Notes:** which sound plays each of those four lines, at what rate and when.
+
 ## 1.7.2 (2026-11-09)
 - **Codes page:** Maximum Hangtime's full credits roll after its ending (sound and music, the songs, actors, the
   sweepstakes co-sponsor page, testers and more), which any button press cuts short, with a picture of all twelve
