@@ -2,6 +2,14 @@
 
 Changes to the [secret codes page](https://maxxthunder.github.io/nbajam/codes.html) and [password checker](https://maxxthunder.github.io/nbajam/). The version is shown at the bottom of each page. **Codes page** and **Checker** are what visitors see; **Notes** are the [research notes](docs/); **README** is this repo's front page.
 
+## 1.7.1 (2026-11-08)
+- **Codes page:** NBA Hangtime's grand champion ending (a gold trophy and a "coming soon" for Maximum Hangtime),
+  replacing 1.7.0's "no ending"; Maximum Hangtime's own ending (a photo, "a third dimension" and the design team's
+  credits) and its boot error screens.
+- **Notes:** both endings seen in MAME; their words are pictures in the graphics ROMs, which is why reading the program
+  found none. Maximum Hangtime's slam switch address.
+- **Site:** a sitemap for search engines.
+
 ## 1.7.0 (2026-11-03)
 - **Codes page:** arcade NBA Jam's grand champion ending, with rev 1.00's own version; Tournament Edition's ending
   (a gold trophy, no photo); the boot error screens of all three games (CMOS invalid, CMOS chip bad, slam switch);

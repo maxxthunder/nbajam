@@ -52,7 +52,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Collect the page
-        run: mkdir site && cp tools/nbajam_password_checker.html site/index.html && cp tools/nbajam_codes.html site/codes.html && cp -r tools/img site/img && cp -r tools/audio site/audio
+        run: mkdir site && cp tools/nbajam_password_checker.html site/index.html && cp tools/nbajam_codes.html site/codes.html && cp tools/sitemap.xml site/sitemap.xml && cp -r tools/img site/img && cp -r tools/audio site/audio
       - uses: actions/upload-pages-artifact@v3
         with:
           path: site

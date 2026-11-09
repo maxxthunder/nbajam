@@ -36,6 +36,8 @@ Every picture in these notes, grouped by the page it appears on, with a link to 
 
 | Picture | Where | What it shows |
 |---|---|---|
+| <img src="images/ht_arcade_ending.png" alt="" width="160"> | [hangtime.md: Arcade: grand champion endings, and the boot screens](hangtime.md#arcade-grand-champion-endings-and-the-boot-screens) | The NBA Hangtime L1.3 ending: the gold trophy with YOU ARE THE NBA HANGTIME GRAND CHAMPION! |
+| <img src="images/mht_arcade_ending.png" alt="" width="160"> | [hangtime.md: Arcade: grand champion endings, and the boot screens](hangtime.md#arcade-grand-champion-endings-and-the-boot-screens) | The Maximum Hangtime L1.03 ending: YOU ARE THE GRAND CHAMPION! YOU'VE GOT MAXIMUM HANGTIME! |
 | <img src="images/ht_trivia.png" alt="" width="160"> | [hangtime.md: Arcade: the trivia contest](hangtime.md#arcade-the-trivia-contest) | A trivia question (What year was Otis Thorpe born?) and the CONGRATUATIONS !!! screen with the password EOFTCSJN |
 | <img src="images/ht_sweepstakes_rules.png" alt="" width="160"> | [hangtime.md: Arcade: the trivia contest](hangtime.md#arcade-the-trivia-contest) | The two pages of NBA HANGTIME SWEEPSTAKES OFFICIAL RULES |
 | <img src="images/ht_title.png" alt="" width="160"> | [hangtime.md: Arcade: title screen and attract mode](hangtime.md#arcade-title-screen-and-attract-mode) | NBA Hangtime title screen |

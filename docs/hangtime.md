@@ -302,19 +302,39 @@ tip-off with each of the 13 match-up codes entered (MAME, a tap on the blitter's
 Maximum Hangtime L1.03 has no unused images of its own. Its usable headers with no pointer in any revision of either
 game are the same images as L1.3's, matched by graphics offset and size.
 
-## Arcade: all 29 teams, and the boot screens
+## Arcade: grand champion endings, and the boot screens
 
-NBA Hangtime has no ending. Its program has no congratulations text, and the stats screen after a game (`FFA2B4E0h`
-on) only changes its last lines: with the record's beaten-team count (offset `100h`) at 29 it prints "DEFEATED 29 OF
-THE 29 NBA TEAMS" and skips the "next cpu opponent" line. The reward is a place on the GRAND CHAMPIONS records page
-("(defeated all 29 nba teams)"). Maximum Hangtime has the same screen and the same records page.
+Both arcade games have an ending for beating all 29 teams. It plays after the stats screen of a game played under a
+created player, once the record's beaten-team count (offset `100h`) reaches 29; the stats screen (`FFA2B4E0h` on) then
+reads "DEFEATED 29 OF THE 29 NBA TEAMS" and skips the "next cpu opponent" line. The ending's words are pictures in the
+graphics ROMs, not text in the program, which is why an earlier reading of the program found no ending. Both were seen
+in MAME by setting the count to 29 when the stats routine starts (`FFA2A9E0h` on L1.3, `FFA30800h` on Maximum
+Hangtime L1.03) at the end of a random-play game.
+
+- **NBA Hangtime L1.3:** a gold trophy with "YOU ARE THE NBA HANGTIME GRAND CHAMPION!", then scrolling text: "YOU HAVE
+  DEFEATED ALL 29 NBA TEAMS / BUT A GREATER CHALLENGE AWAITS / COMING SOON / NBA MAXIMUM HANGTIME / AVAILABLE NOV 1 /
+  THANK YOU FOR PLAYING", then GAME OVER.
+- **Maximum Hangtime L1.03:** a photo of two models beside the cabinet with "YOU ARE THE GRAND CHAMPION!" and "YOU'VE
+  GOT MAXIMUM HANGTIME!", then: "THE PLAYERS IN NBA HANGTIME TURNED IT UP TO GO MAXIMUM! / BUT NOW YOU HAVE DEFEATED
+  ALL 29 TEAMS TO BECOME THE NEW GRAND CHAMPION! / MIDWAY'S NEXT B'BALL CHALLENGE WILL HAVE A NEW DIMENSION / A THIRD
+  DIMENSION / THANK YOU FOR PLAYING! / YOU HAVEN'T SEEN IT ALL!", then the design team's photos (Jeff Johnson, Mark
+  Turmell, Sal Divita, Dan Thompson, Eugene Geer, Jennifer Hedrick, John Carlton, Jon Hey) and an ADDITIONAL DESIGN
+  list (Shawn Liptak, Jamie Rivett, Pat Fitzgerald, John Root, Marty Martinez, Carlos Pesina, Nick Ehrlich).
+
+The player also goes on the GRAND CHAMPIONS records page ("(defeated all 29 nba teams)").
+
+<p>
+<img src="images/ht_arcade_ending.png" alt="NBA Hangtime grand champion ending" width="400">
+<img src="images/mht_arcade_ending.png" alt="Maximum Hangtime grand champion ending" width="400">
+</p>
 
 The power-on screen has NBA Jam's messages ([arcade.md](arcade.md#boot-error-screens)), with the chip name changed:
 "CMOS INVALID -- FACTORY SETTINGS RESTORED", "CMOS CHIP U62 BAD" with "UNABLE TO RESTORE FACTORY SETTINGS", and
 "WARNING -- SLAM SWITCH CLOSED". The slam check reads bit 3 of the input word whose address is kept at `@112FE10h`
 (`01860030h` in MAME). All three came up in MAME on L1.3: with empty NVRAM, with every read of the settings memory
 altered by a Lua read tap, and with that bit forced low. The slam warning is printed on the same line as "LEVEL 1
-SECURITY CHECK", so the two overlap.
+SECURITY CHECK", so the two overlap. Maximum Hangtime L1.03 shows the same three screens with the same chip name; its
+slam switch address is kept at `@112FE50h`.
 
 ## Maximum Hangtime
 
