@@ -2,6 +2,18 @@
 
 Changes to the [secret codes page](https://maxxthunder.github.io/nbajam/codes.html) and [password checker](https://maxxthunder.github.io/nbajam/). The version is shown at the bottom of each page. **Codes page** and **Checker** are what visitors see; **Notes** are the [research notes](docs/); **README** is this repo's front page.
 
+## 1.7.2 (2026-11-09)
+- **Codes page:** Maximum Hangtime's full credits roll after its ending (sound and music, the songs, actors, the
+  sweepstakes co-sponsor page, testers and more), which any button press cuts short, with a picture of all twelve
+  pages; the GRAND CHAMPIONS records page; which revisions were checked.
+- **Notes:** both endings forced on every revision, and all match; how the GRAND CHAMPIONS page
+  picks its names; arcade coverage with 63 operator-menu runs and new random-play runs: Tournament Edition 730 of
+  848 (86%), NBA Hangtime 886 of 1,198 (74%), Maximum Hangtime 844 of 1,185 (71%); what the unreached targets of TE (118),
+  NBA Hangtime (312) and Maximum Hangtime (341) are; the TE "Beautiful! …" line still unread after more tries.
+- **Sega CD:** the quarter banks' last four lines, identified by ear, with audio: "At the buzzer!", "No!", and
+  "Jams it in!" or "Oh my!" by quarter.
+- **Site:** link previews (title, description and a picture of the three logos) for both pages.
+
 ## 1.7.1 (2026-11-08)
 - **Codes page:** NBA Hangtime's grand champion ending (a gold trophy and a "coming soon" for Maximum Hangtime),
   replacing 1.7.0's "no ending"; Maximum Hangtime's own ending (a photo, "a third dimension" and the design team's

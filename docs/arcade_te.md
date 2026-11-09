@@ -240,7 +240,7 @@ itself, which leaves 119 that nothing sends. Of those:
   phrases that way.
 
 Transcribed with Whisper, the 13 never-played samples include "Beautiful! …" (`7A B9`), "Off the
-rim!", "It's a close game!", "Throws up a brick!", "The steal!", "Just seconds left!" and three gunshot effects (the first, `7A B9`, is clear up to "Beautiful!"; the rest is hard to make out, and "I love you" is one reading); the
+rim!", "It's a close game!", "Throws up a brick!", "The steal!", "Just seconds left!" and three gunshot effects (the first, `7A B9`, is clear up to "Beautiful!"; the rest is about a second long and ends in "you": played at eight rates from 6,000 to 10,000 Hz, and cut at its pauses, Whisper hears "I love you", "how are you", "how about you" or "I don't know you", so it stays unread); the
 four in the upper half of the sample space are single short words Whisper can't make out reliably. Eight of them are byte for byte the same recordings as samples in
 NBA Jam rev 3.01 that NBA Jam doesn't play either ([arcade.md](arcade.md#sound-board)), so they were already unused
 there.

@@ -1,6 +1,6 @@
 # NBA Jam and NBA Hangtime: Secret Codes and Password Checker
 
-**[Secret codes →](https://maxxthunder.github.io/nbajam/codes.html)** &nbsp; **[Password checker →](https://maxxthunder.github.io/nbajam/)** &nbsp;[![v1.7.1](https://img.shields.io/badge/version-1.7.1-e8742c)](CHANGELOG.md)
+**[Secret codes →](https://maxxthunder.github.io/nbajam/codes.html)** &nbsp; **[Password checker →](https://maxxthunder.github.io/nbajam/)** &nbsp;[![v1.7.2](https://img.shields.io/badge/version-1.7.2-e8742c)](CHANGELOG.md)
 
 <p align="center">
   <img src="tools/img/logo_nbajam.png" alt="NBA Jam" height="96">
@@ -91,7 +91,7 @@ Codes that no published list had are marked **★ New** on the page. A few terms
 - Arcade: every 100th attract demo is played on the rooftop court, and holding Up + Right at a rooftop tip-off plays
   a "boing" heard nowhere else (Maximum Hangtime keeps it, on its outdoor court).
 - Arcade: the grand champion endings of both games (NBA Hangtime's trophy and "coming soon" notice; Maximum
-  Hangtime's photo, "a third dimension" and the design team); the boot error screens; and recorded lines neither game plays, among
+  Hangtime's photo, "a third dimension" and a full credits roll that any button cuts short); the boot error screens; and recorded lines neither game plays, among
   them "Secret Player Activated" and "Tim Duncan!" (with the clips on the page).
 - Maximum Hangtime: 21 extra NBA players.
 - Super Nintendo: two joystick codes no list had, and all eight codes together play the cheat ending.

@@ -418,9 +418,9 @@ per game logged every fetch and every blitter offset:
 | Game | Call and jump targets that ran | Pointed-to images drawn |
 |------|--------------------------------|-------------------------|
 | NBA Jam rev 3.01 | 498 of 869 (57%); 526 (61%) with save-state runs; 595 (68%) with the test-menu and attract runs; 605 (70%) with the boot-screen runs; 610 (70%) with the test-switch runs; 691 (80%) with the menu-path runs | 1,787 of 3,079 (58%); 2,239 (73%) with save-state runs; 2,412 (78%) with them |
-| Tournament Edition rev 4.0 3/23 | 525 of 848 (62%); 575 (68%) with save-state runs; 636 (75%) with the test-menu and attract runs; 646 (76%) with the boot-screen runs; 650 (77%) with the test-switch runs | 1,816 of 4,207 (43%); 2,468 (59%) with save-state runs; 2,610 (62%) with them; 2,677 (64%) with the secret-character and team runs |
-| NBA Hangtime L1.3 | 607 of 1,198 (51%); 690 (58%) with save-state runs; 770 (64%) with the test-menu and attract runs; 781 (65%) with the trivia and rules runs | 155 more than all the earlier runs ([hangtime.md](hangtime.md#not-covered)) |
-| Maximum Hangtime L1.03 | 630 of 1,185 (53%), save-state runs included; 759 (64%) with the test-menu and credits runs; 771 (65%) with the name-and-PIN runs | 2,896 of 7,062 (41%); 3,298 (47%) with them; 4,155 (59%) with the name-and-PIN runs |
+| Tournament Edition rev 4.0 3/23 | 525 of 848 (62%); 575 (68%) with save-state runs; 636 (75%) with the test-menu and attract runs; 646 (76%) with the boot-screen runs; 650 (77%) with the test-switch runs; 730 (86%) with the menu-path runs | 1,816 of 4,207 (43%); 2,468 (59%) with save-state runs; 2,610 (62%) with them; 2,677 (64%) with the secret-character and team runs |
+| NBA Hangtime L1.3 | 607 of 1,198 (51%); 690 (58%) with save-state runs; 770 (64%) with the test-menu and attract runs; 781 (65%) with the trivia and rules runs; 886 (74%) recounted with the menu-path and new random-play runs | 155 more than all the earlier runs ([hangtime.md](hangtime.md#not-covered)) |
+| Maximum Hangtime L1.03 | 630 of 1,185 (53%), save-state runs included; 759 (64%) with the test-menu and credits runs; 771 (65%) with the name-and-PIN runs; 844 (71%) recounted with the menu-path and new random-play runs | 2,896 of 7,062 (41%); 3,298 (47%) with them; 4,155 (59%) with the name-and-PIN runs |
 
 The routines that never ran are the operator menus and hardware tests, the CMOS error screens, the beat-all-27-teams
 ending, the credits, and in the Hangtime games the create-player, record, trivia and sweepstakes screens. None of them is an unknown
@@ -461,3 +461,29 @@ and second picks (7 × 9), then three random picks and 60 random inputs, from se
 691 of 869 (80%): the pricing, free-play and dipswitch screens, clearing the coin counters and audits, the factory
 restore, the operator message, the sound board's tunes and the RAM checks, all ordinary operator features. Three of
 them started the ROM test, which reads every word of the program and so counts as 100%; those three are left out.
+The same 63 paths on Tournament Edition rev 4.0, entered with its Test Switch setting instead of the service button,
+added 80 targets, for 730 of 848 (86%): the diagnostics (switch, dipswitch, sound and monitor tests, burn-in), the
+game adjustments (pricing, free play, head size, drone difficulty, tournament mode), the audits and coin bookkeeping,
+the utility menu (clearing credits, counters, audits, high scores and player statistics, default adjustments, the
+factory restore, the operator message) and the RAM checks. The same three paths started the ROM test and are left
+out.
+Of the 118 TE targets still never reached, 110 have no text nearby. The eight that do are ordinary: the stats screen's
+"YOU HAVE DEFEATED:" line in another form (`FF985C10h`), a record display whose month list starts with the blank label
+"UNUSED" for an unset date (`FF99F5E0h`), two factory-restore failure screens ("CMOS CHIP UJ11 BAD", `FFA18C00h` and
+`FFA18E10h`), the RAM-failure screen (`FFA1A7F0h`), the sound board's burn-in test (`FFA30EB0h`), a sound-test
+message (`FFA320C0h`) and a coin-settings screen (`FFA3BCC0h`). None of them is hidden content.
+
+The Hangtime figures were recounted from the run logs that survive (the earlier save-state runs' logs don't, so the
+surviving runs alone gave 718 for NBA Hangtime L1.3 and 504 for Maximum Hangtime L1.03), plus the same 63 menu paths
+(entered with the Test Switch setting) and four new 50-round random-play runs of each game: 886 of 1,198 (74%) and 844
+of 1,185 (71%). Each game again had three paths that started the ROM test, left out.
+
+Of the targets still never reached (312 in NBA Hangtime, 341 in Maximum Hangtime), only a handful have text nearby, and
+none is hidden content. In NBA Hangtime: the trivia prompt "YOU HAVE QUALIFIED TO ENTER THE TRIVIA CONTEST DRAWING" /
+"SHOW INFO ?" (`FFA41730h`), the factory-restore and burn-in screens, a coin-settings screen, a country table
+("FRANCE") and the month list with its "UNUSED" label. In Maximum Hangtime: the same operator screens; the credits roll
+after the ending (`FFA05290h` on, seen in the ending runs, which didn't record coverage); the name-and-PIN change
+screens ("DO YOU REALLY WANT TO CHANGE YOUR NAME AND PIN # ?" and "--- NOTICE --- YOUR PLAYERS' NAME AND PIN NUMBER
+HAVE BEEN CHANGED", `FFB35AB0h` and `FFB2D8E0h`) behind the create-player menu's NEW NAME option; and a "CHECK 2 OF THE
+6" / "CHECK 2 OF THE 7" message (`FFB366F0h`) whose use isn't clear. Several of these were reached by the earlier
+save-state runs, whose logs are gone.

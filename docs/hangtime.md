@@ -311,21 +311,37 @@ graphics ROMs, not text in the program, which is why an earlier reading of the p
 in MAME by setting the count to 29 when the stats routine starts (`FFA2A9E0h` on L1.3, `FFA30800h` on Maximum
 Hangtime L1.03) at the end of a random-play game.
 
+The same runs on the other revisions give the same endings: NBA Hangtime L1.1, L1.2, M1.1, M1.2 and M1.3 match L1.3
+(including "AVAILABLE NOV 1"), and Maximum Hangtime L1.0, M1.0 and the L0.9 prototype match L1.03. On M1.1 the forced
+run first hung in the stats routine; setting only the count, without also setting the player flags and games played,
+let it through.
+
 - **NBA Hangtime L1.3:** a gold trophy with "YOU ARE THE NBA HANGTIME GRAND CHAMPION!", then scrolling text: "YOU HAVE
   DEFEATED ALL 29 NBA TEAMS / BUT A GREATER CHALLENGE AWAITS / COMING SOON / NBA MAXIMUM HANGTIME / AVAILABLE NOV 1 /
   THANK YOU FOR PLAYING", then GAME OVER.
 - **Maximum Hangtime L1.03:** a photo of two models beside the cabinet with "YOU ARE THE GRAND CHAMPION!" and "YOU'VE
   GOT MAXIMUM HANGTIME!", then: "THE PLAYERS IN NBA HANGTIME TURNED IT UP TO GO MAXIMUM! / BUT NOW YOU HAVE DEFEATED
   ALL 29 TEAMS TO BECOME THE NEW GRAND CHAMPION! / MIDWAY'S NEXT B'BALL CHALLENGE WILL HAVE A NEW DIMENSION / A THIRD
-  DIMENSION / THANK YOU FOR PLAYING! / YOU HAVEN'T SEEN IT ALL!", then the design team's photos (Jeff Johnson, Mark
-  Turmell, Sal Divita, Dan Thompson, Eugene Geer, Jennifer Hedrick, John Carlton, Jon Hey) and an ADDITIONAL DESIGN
-  list (Shawn Liptak, Jamie Rivett, Pat Fitzgerald, John Root, Marty Martinez, Carlos Pesina, Nick Ehrlich).
+  DIMENSION / THANK YOU FOR PLAYING! / YOU HAVEN'T SEEN IT ALL!", then a credits roll: the design team's photos (Jeff
+  Johnson, Mark Turmell, Sal Divita, Dan Thompson, Eugene Geer, Jennifer Hedrick, John Carlton, Jon Hey), ADDITIONAL
+  DESIGN (Shawn Liptak, Jamie Rivett, Pat Fitzgerald, John Root, Marty Martinez, Carlos Pesina, Nick Ehrlich), SOUND
+  AND MUSIC, MUSIC (the songs "GET UP GET UP" and "HANGTIME - WHATCHA GONNA DO", with their producers and writers),
+  ACTORS (five photos), HARDWARE SUPPORT, NBA SUPPORT, MAXIMUM SWEEPSTAKES ("MAXIMUM NBA HANGTIME SWEEPSTAKES IS
+  CO-SPONSORED BY EGM AND EGM²"), GAME TESTERS, ADDITIONAL TESTERS, SPECIAL THANKS and EXECUTIVE PRODUCERS, then GAME
+  OVER. Each page waits on a loop that a button press ends (`JA FFA22F70h` after each page, from `FFA05A40h`), and
+  the press ends the roll, so in the first runs, which kept pressing random buttons, it stopped after ADDITIONAL DESIGN.
 
-The player also goes on the GRAND CHAMPIONS records page ("(defeated all 29 nba teams)").
+The player also goes on the GRAND CHAMPIONS records page in attract mode ("(DEFEATED ALL 29 NBA TEAMS)"), which has
+room for three names and shows rows of dots until a record qualifies. The page (`FFA6D4E0h` on L1.3, the second entry
+of the records-page table at `FFA65940h`) loads each of the top three records from the settings memory and prints the
+name only if its beaten-team count (`@1139FC0h` once loaded; `@113A070h` on Maximum Hangtime) is 29 or more. The
+ending's forced count is not saved there, so the page stayed empty after the forced runs; with that read forced to
+29 it lists the top three names in the records table, TURMEL, JAPPLE and JENIFR.
 
 <p>
 <img src="images/ht_arcade_ending.png" alt="NBA Hangtime grand champion ending" width="400">
 <img src="images/mht_arcade_ending.png" alt="Maximum Hangtime grand champion ending" width="400">
+<img src="images/ht_grand_champions.png" alt="GRAND CHAMPIONS records page" width="400">
 </p>
 
 The power-on screen has NBA Jam's messages ([arcade.md](arcade.md#boot-error-screens)), with the chip name changed:

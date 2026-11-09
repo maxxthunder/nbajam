@@ -447,7 +447,9 @@ sample's directory slot and start address):
   quarters and "The turnover!" in even ones (sound 23 plays it). The others include "Wide open!" (sound 20),
   "Stolen!" (21) and "The rebound!" (29). Each sound entry sets its own playback rate (its fifth and sixth bytes go
   to the frequency register, about 6,100 to 15,200 Hz); Whisper names these lines clearly at or near those rates,
-  but not sample 7 in either bank, sample 1 or sample 2.
+  but not sample 7 in either bank, sample 1 or sample 2. Heard by ear at 10 kHz, sample 1 is "At the buzzer!",
+  sample 2 is "No!", and sample 7 is "Jams it in!" in odd quarters and "Oh my!" in even ones (Whisper's readings
+  drifted with the rate, from "record scratch" for sample 1 to a swear for the even sample 7).
 - **Ending.** The game state word at `$1665` picks the main loop's handler; state `$35` is the ending. The game
   sets it after the results screen (`$8AD656`) when a player's count of beaten teams (`$0AB4`-`$0ABA`) first
   reaches 27. Writing `$35` there from the title screen plays the whole ending: the trophy with "CONGRATULATIONS!
