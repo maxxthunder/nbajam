@@ -3,8 +3,10 @@
 Midway's 1996 follow-up runs on the Wolf unit (TMS34010, like NBA Jam). Versions looked at here: the arcade NBA Hangtime
 (L1.3 10/10/96, the MAME parent `nbahangt`, plus L1.1, L1.2 and M1.1-M1.3), arcade Maximum Hangtime (`nbamht` L1.03,
 `nbamhtl10`, `nbamhtm10` and the L0.9 prototype `nbamhtp`), and the home versions on N64, PlayStation, Super
-Nintendo and Genesis. The PC disc packs its game into an InstallShield `DATA.Z` that wasn't unpacked, so the PC
-version isn't covered.
+Nintendo and Genesis. The PC disc packs most of its game into an InstallShield `DATA.Z` that wasn't unpacked, so
+the PC version isn't covered. Its `HANGTIME.EXE` sits on the disc unpacked and holds ending text like the arcade's ("YOU ARE
+THE NBA HANGTIME GRAND CHAMPION! ... COMING SOON MAXIMUM NBA HANGTIME AVAILABLE"), not the N64 and PlayStation
+text; the game itself wasn't run.
 
 Arcade addresses are TMS34010 bit addresses (as MAME shows them); the program ROM is `u54`/`u63` interleaved and
 mapped at `FF800000h`, so file offset = (address - `FF800000h`) / 8.
@@ -491,6 +493,38 @@ confirms it: after the stats came "TRIVIA QUIZ" with the 100-point rules, then a
 TRAILBLAZERS PLAYER WEARS A HEADBAND DURING GAMES ?", worth 2 points), then GAME OVER. Only the panel of the player
 who entered a name was filled in.
 
+### Grand champion ending
+
+Both have an ending for beating all 29 teams, and it isn't the arcade Hangtime's. A trophy comes up under
+"CONGRATULATIONS! YOU ARE THE NEW NBA HANGTIME GRAND CHAMPION!", then the text scrolls up: "YOU HAVE DEFEATED ALL 29
+NBA TEAMS! YOU ARE AN INCREDIBLE PLAYER AND ONE OF THE BEST NBA HANGTIME STARS OF ALL TIME! HOWEVER, THIS IS A MIDWAY
+GAME! WHICH MEANS THAT THERE IS YET A GREATER CHALLENGE AWAITING YOU . . . PLAY ON . . . THANK YOU FOR PLAYING NBA
+HANGTIME!". That is Tournament Edition's closing text with the name changed, not the arcade Hangtime's plug for
+Maximum Hangtime (text at N64 ROM `0x99818`, PlayStation `SLUS_003.29` `0x4E41C`).
+
+It plays after the end-of-game screens and the trivia quiz. The end-of-game sequence calls it every time (N64
+`0x8004C684`, from `0x80035020`; PlayStation `800A2B58` in `PRES.BIN`). It then looks for a player, of the four, who
+passes this check (N64 `0x8004C85C`, PlayStation `800A2D2C`):
+
+- that player's tournament-mode bit is set (N64 `0x800A6EAE`, PlayStation `0x8007315C`; 1-1-1 at the match-up);
+- the player's record is loaded (halfword +`0Eh` above 0, in the 70h-byte records at N64 `0x800A6BB8` and
+  PlayStation `0x80087230`);
+- the beaten-team count (+`28h`) is 29 or more;
+- the count from before the game (+`2Ah`, copied at `0x80039584` on N64) is under 29.
+
+So it plays once, on the game that beats the 29th team. Tournament mode is refused in a one-player game, so it takes
+two human players. Seen in BizHawk on both: values held from tip-off through a one-player game (which the computer
+won), and the ending ran after the trivia quiz. The European N64 cartridge has the same code (check at
+`0x8004B9DC`).
+
+<img src="images/n64_hangtime_ending.png" alt="N64 NBA Hangtime ending: the trophy with CONGRATULATIONS! YOU ARE THE NEW NBA HANGTIME GRAND CHAMPION!" width="320">
+<img src="images/ps_hangtime_ending.png" alt="PlayStation NBA Hangtime ending: the same trophy and text" width="350">
+
+The GRAND CHAMPIONS records page follows the arcade rule. The records are sorted by the beaten-team count (byte
++`1Ah` of the saved record), and three rows are drawn. A row shows the name only if that count is 29 or more, and dots
+otherwise (N64 `0x8003ABC4`, the second entry of the draw table at `0x80097BE4`; PlayStation `8008F180` in
+`PRES.BIN`). The run above didn't save its forced count, so the page stayed empty afterwards.
+
 ## Super Nintendo and Genesis
 
 Funcom's 16-bit ports have no secret players. The names published for them are preset saved records:
@@ -782,7 +816,11 @@ Claims from published lists, checked here:
   TEAMS! NOW GO OUT AND GET YOURSELF SOME FRESH AIR AND RELAX! THANK YOU FOR PLAYING THIS GAME AND WE HOPE YOU WILL
   ENJOY OUR FUTURE GAMES!" (`$17A1A`), is drawn by `$178D2`. After a game's box score, `$18F46` goes there instead of the usual screens when the
   flag at `$FF15DC` is set (`$376BC` sets it). With the flag held set in MAME, the page came up after the next box
-  score: "CONGRATULATIONS" over the text, then the press-start screen.
+  score: "CONGRATULATIONS" over the text, then the press-start screen. The flag is set by the result code (`$37682`). After a
+  win, it sets the beaten team's bit in the record's 29-bit mask (+`12h`), and it sets the flag when that bit
+  completes the mask. So the ending comes once, on the win over the 29th different team. The Genesis GRAND CHAMPIONS
+  page (`$91EE`, from the page table at `$8CFE`) scans the 200 save slots (64 bytes each, from `$300020`). It counts the
+  bits of each slot's mask, keeps up to three slots with all 29 set, and fills the rest with dots.
 
   <img src="images/genesis_hangtime_ending.png" alt="Genesis NBA Hang Time ending: CONGRATULATIONS, YOU ARE A GRAND CHAMPION" width="320">
 - Super Nintendo samples. The sound chip's samples come in two RNC-packed banks (`$132720` and `$1907A0`, both

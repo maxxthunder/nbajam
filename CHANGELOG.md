@@ -2,6 +2,12 @@
 
 Changes to the [secret codes page](https://maxxthunder.github.io/nbajam/codes.html) and [password checker](https://maxxthunder.github.io/nbajam/). The version is shown at the bottom of each page. **Codes page** and **Checker** are what visitors see; **Notes** are the [research notes](docs/); **README** is this repo's front page.
 
+## 1.7.4 (2026-11-10)
+- **Codes page:** grand champion endings for the N64, PlayStation and Genesis Hangtime, with pictures. N64 and
+  PlayStation share a trophy screen and Tournament Edition's "play on" text, and play it only in tournament mode.
+- **Notes:** what each home version checks before its ending, and how each fills its GRAND CHAMPIONS page (29 teams
+  beaten, three names at most). The PC disc's program holds an arcade-style ending text.
+
 ## 1.7.3 (2026-11-09)
 - **Codes page:** the Sega CD quarter banks' last four lines now play at the game's own rates, and the second is
   "Yes!", not "No!".
